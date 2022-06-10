@@ -8,6 +8,28 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "KinematicBody2D",
+"class": "KinematicCharacter2D",
+"language": "GDScript",
+"path": "res://src/kinematic_character_2D.gd"
+}, {
+"base": "Node",
+"class": "PlayerController",
+"language": "GDScript",
+"path": "res://src/player_controller.gd"
+}, {
+"base": "Node",
+"class": "StatusSystem",
+"language": "GDScript",
+"path": "res://src/status_system.gd"
+} ]
+_global_script_class_icons={
+"KinematicCharacter2D": "",
+"PlayerController": "",
+"StatusSystem": ""
+}
+
 [application]
 
 config/name="Dungeon Crawler"
