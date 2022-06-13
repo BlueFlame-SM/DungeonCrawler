@@ -7,6 +7,8 @@ var screen_size
 
 func _ready():
 	screen_size = get_viewport_rect().size
+	$AnimatedSprite.animation = "walk_right"
+
 
 func get_input():
 	velocity = Vector2()
@@ -23,17 +25,17 @@ func get_input():
 func _physics_process(delta):
 	get_input()
 	velocity = move_and_slide(velocity)
-	
+
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
 		$AnimatedSprite.play()
 	else:
 		$AnimatedSprite.stop()
-		
+
 	position += velocity * delta
 	# position.x = clamp(position.x, 0, screen_size.x)
 	# position.y = clamp(position.y, 0, screen_size.y)
-		
+
 	if velocity.x > 0:
 		$AnimatedSprite.animation = "walk_right"
 		# $AnimatedSprite.flip_v = false
