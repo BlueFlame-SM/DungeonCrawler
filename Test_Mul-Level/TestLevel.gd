@@ -25,14 +25,32 @@ export (String) var level_name = "level"
 #	print("gate closing")
 
 
+func _on_LevelCompleted_pressed():
+#	TODO: make gate unenterable collision till level completen
+	$GatesOpen.visible = 1
+	$Gate_to_boss/GateCollision1.disabled = 0
+	$Gate_to_shop/GateCollision2.disabled = 0
+	$Gate_to_lootbox/GateCollision3.disabled = 0
+#	$TileMap.set_cell(384, 0, 1)
+	print("gates should open on completion")
+	pass # Replace with function body.
+
+
+
 func _on_Gate_to_boss_body_entered(body):
+	if body.name != "Player":
+		return
 	emit_signal("level_changed_to_boss", level_name)
 #Source: https://www.youtube.com/watch?v=XHbrKdsZrxY&ab_channel=jmbiv
 
 func _on_Gate_to_shop_body_entered(body):
+	if body.name != "Player":
+		return
 	emit_signal("level_changed_to_shop", level_name)
 
 func _on_Gate_to_lootbox_body_entered(body):
+	if body.name != "Player":
+		return
 	emit_signal("level_changed_to_lootbox", level_name)
 
 
@@ -56,4 +74,3 @@ func _on_Scene_Switcher_gate_closing():
 #	multiple gates lead to multiple levels
 #	sound on entering new level
 #	add gate opens on completion
-
