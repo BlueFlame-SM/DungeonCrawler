@@ -43,6 +43,39 @@ func _physics_process(delta):
 		$AnimatedSprite.animation = "walk_left"
 		# $AnimatedSprite.flip_v = velocity.y > 0
 
+	if Input.is_action_just_pressed("E-key"):
+		for body in $Area2D.get_overlapping_bodies():
+			if body.is_in_group("item"):
+				body.queue_free()
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+
+func _on_Player_mouse_exited():
+	pass # Replace with function body.
+
+var item_in_range = {}
+
+# If player enters the pickup zone, this is excecuted.
+func _on_Pickup_body_entered(body):
+	item_in_range[body] = body
+	$Prompt.visible = !$Prompt.visible
+	print("Item detected")
+
+# If player leaves the pickup zone, this is excecuted.
+func _on_Pickup_body_exited(body):
+	$Prompt.visible = !$Prompt.visible
+	if item_in_range.has(body):
+		item_in_range.erase(body)
+
+# Checks for input.
+func _input(event):
+	if event.is_action_pressed("interact"):
+		if item_in_range.size() > 0:
+			var pickup_item = item_in_range.values()[0]
+			pickup_item.pick_up_item(self)
+			item_in_range.erase(pickup_item)
+
+

@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scenes/item.gd" type="Script" id=1]
+[ext_resource path="res://assets/icon.png" type="Texture" id=2]
+[ext_resource path="res://scenes/itemCol.gd" type="Script" id=3]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 0.20375, 0.196562 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 30, 30.5 )
+
+[node name="item" type="StaticBody2D"]
+show_behind_parent = true
+light_mask = 0
+position = Vector2( 22, -22.5 )
+collision_layer = 35
+collision_mask = 32
+script = ExtResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="."]
+scale = Vector2( 200, 200 )
+collision_layer = 2
+priority = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 3 )
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 4 )
