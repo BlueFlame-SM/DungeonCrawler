@@ -505,9 +505,9 @@ position = Vector2( 1435, 57 )
 texture = ExtResource( 4 )
 color = Color( 0.760784, 0.584314, 0.203922, 0.784314 )
 
-[node name="Player" parent="." instance=ExtResource( 6 )]
-position = Vector2( 480, 968 )
-
 [node name="item" parent="." instance=ExtResource( 7 )]
 show_behind_parent = false
 position = Vector2( 431, 255 )
+
+[node name="Player" parent="." instance=ExtResource( 6 )]
+position = Vector2( 480, 968 )
