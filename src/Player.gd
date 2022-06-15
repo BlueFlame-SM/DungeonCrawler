@@ -8,6 +8,8 @@ var screen_size
 func _ready():
 	screen_size = get_viewport_rect().size
 	$AnimatedSprite.animation = "walk_right"
+#	if $AnimationPlayer
+
 
 
 func get_input():
