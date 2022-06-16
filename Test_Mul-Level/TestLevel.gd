@@ -5,9 +5,12 @@ signal level_changed_to_shop(level_name)
 signal level_changed_to_lootbox(level_name)
 
 #onready var anim = $AnimationPlayer
-
+var ready_count = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	ready_count
+	print(ready_count)
+	$"/root/SpawnLevel".SpawnPath = "res://Test_Mul-Level/TestLevel3.tscn"
 	pass # Replace with function body.
 
 #Not called and not tested
@@ -41,16 +44,16 @@ func enter_gate(body, path):
 
 
 func _on_Gate_to_boss_body_entered(body):
-	enter_gate(body, "res://Test_Mul-Level/TestLevel2.tscn")
+	enter_gate(body, "res://Test_Mul-Level/TestLevel1.tscn")
 #	emit_signal("level_changed_to_boss", level_name)
 #Source: https://www.youtube.com/watch?v=XHbrKdsZrxY&ab_channel=jmbiv
 
 
 func _on_Gate_to_shop_body_entered(body):
-	enter_gate(body, "res://Test_Mul-Level/TestLevel3.tscn")
+	enter_gate(body, "res://Test_Mul-Level/TestLevel1.tscn")
 
 func _on_Gate_to_lootbox_body_entered(body):
-	enter_gate(body, "res://Test_Mul-Level/TestLevel4.tscn")
+	enter_gate(body, "res://Test_Mul-Level/TestLevel1.tscn")
 
 
 func _on_Scene_Switcher_gate_closing():
@@ -72,3 +75,12 @@ func _on_Scene_Switcher_gate_closing():
 #	multiple gates lead to multiple levels
 #	sound on entering new level
 #	add gate opens on completion
+
+
+func _on_CheckBox_pressed():
+	dead()
+	pass # Replace with function body.
+
+func dead():
+	$"/root/SsFade".die($"/root/SpawnLevel".SpawnPath)
+	pass

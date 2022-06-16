@@ -138,33 +138,9 @@ extents = Vector2( 34.25, 54.25 )
 
 [sub_resource type="Animation" id=9]
 resource_name = "fade_in"
-tracks/0/type = "value"
-tracks/0/path = NodePath("OverlayLayer/Overlay:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 0.0705882, 0, 0.152941, 0 ), Color( 0.0705882, 0, 0.152941, 1 ) ]
-}
 
 [sub_resource type="Animation" id=10]
 resource_name = "fade_out"
-tracks/0/type = "value"
-tracks/0/path = NodePath("OverlayLayer/Overlay:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 0.0705882, 0, 0.152941, 1 ), Color( 0.0705882, 0, 0.152941, 0 ) ]
-}
 
 [node name="TestLevel1" type="CanvasLayer"]
 script = ExtResource( 2 )
@@ -185,12 +161,12 @@ format = 1
 tile_data = PoolIntArray( 6, 0, 0, 7, 0, 0, 131086, 0, 0, 196622, 0, 0, 458752, 0, 0, 524288, 0, 0, 589824, 0, 0 )
 
 [node name="Light2D" type="Light2D" parent="."]
-position = Vector2( -816, 684 )
+position = Vector2( 480, 384 )
 texture = ExtResource( 4 )
 color = Color( 0.760784, 0.584314, 0.203922, 0.784314 )
 
 [node name="Light2D2" type="Light2D" parent="."]
-position = Vector2( 1435, 57 )
+position = Vector2( 496, 200 )
 texture = ExtResource( 4 )
 color = Color( 0.760784, 0.584314, 0.203922, 0.784314 )
 
@@ -228,6 +204,12 @@ disabled = true
 position = Vector2( 11, 8 )
 stream = ExtResource( 7 )
 
+[node name="CheckBox" type="CheckBox" parent="door_shuts"]
+margin_left = 69.0
+margin_top = 56.0
+margin_right = 93.0
+margin_bottom = 80.0
+
 [node name="LevelCompleted" type="CheckBox" parent="."]
 margin_left = 420.0
 margin_top = 292.0
@@ -242,4 +224,5 @@ anims/fade_out = SubResource( 10 )
 [connection signal="body_entered" from="Gate_to_boss" to="." method="_on_Gate_to_boss_body_entered"]
 [connection signal="body_entered" from="Gate_to_shop" to="." method="_on_Gate_to_shop_body_entered"]
 [connection signal="body_entered" from="Gate_to_lootbox" to="." method="_on_Gate_to_lootbox_body_entered"]
+[connection signal="pressed" from="door_shuts/CheckBox" to="." method="_on_CheckBox_pressed"]
 [connection signal="pressed" from="LevelCompleted" to="." method="_on_LevelCompleted_pressed"]

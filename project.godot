@@ -11,13 +11,15 @@ config_version=4
 [application]
 
 config/name="Dungeon Crawler"
-run/main_scene="res://Test_Mul-Level/Test_ML.tscn"
+run/main_scene="res://TestLevelSwitcher/Game.tscn"
 config/icon="res://assets/icon.png"
 
 [autoload]
 
 SsFade="*res://Test_Mul-Level/SS_fade.tscn"
 test_anim="*res://test_anim/test.tscn"
+SpawnLevel="*res://Test_Mul-Level/SpawnLevel.gd"
+LevelSwitcher="*res://TestLevelSwitcher/LevelSwitcher.tscn"
 
 [display]
 

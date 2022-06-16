@@ -7,11 +7,15 @@ var followingScene = ""
 var currentScene = ""
 
 onready var player = $AnimationPlayer
-
 func _ready():
 	var root = get_tree().get_root()
 	currentScene = root.get_child(root.get_child_count() - 1)
 
+func die(path):
+	SsFade.followingScene = path
+	player.playback_speed = 1
+	player.play("die")
+	print(player.is_playing())
 
 func goto_scene(path):
 	SsFade.followingScene = path
@@ -24,7 +28,6 @@ func _deferred_goto_scene(path):
 	currentScene.free()
 
 	# Load the new scene.
-	print(path)
 	var s = ResourceLoader.load(path)
 
 	# Instance the new scene.
