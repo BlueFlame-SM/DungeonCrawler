@@ -85,12 +85,12 @@ attack={
 
 [layer_names]
 
-2d_physics/layer_1="World"
-2d_physics/layer_2="Player"
-2d_physics/layer_3="Enemies"
-2d_physics/layer_4="Hazards"
-2d_physics/layer_5="PlayerAttacks"
-2d_physics/layer_6="EnemyAttacks"
+2d_physics/layer_1="collision_world"
+2d_physics/layer_2="collision_player"
+2d_physics/layer_3="collision_enemy"
+2d_physics/layer_4="damagebox_world"
+2d_physics/layer_5="damagebox_player"
+2d_physics/layer_6="damagebox_enemy"
 
 [physics]
 

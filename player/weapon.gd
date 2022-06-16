@@ -8,7 +8,7 @@ export var damage = 2
 # Collision should be disabled
 func _ready():
 	HurtBox.set_deferred("disabled", true)
-	
+
 func attack(direction: Vector2) -> void:
 	var new_angle = atan2(direction.y, direction.x)
 	HurtBox.rotate(new_angle - angle)
@@ -17,7 +17,7 @@ func attack(direction: Vector2) -> void:
 
 func disableHurtBox():
 	HurtBox.disabled = true
-	
+
 
 
 

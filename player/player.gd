@@ -100,6 +100,7 @@ func _on_HazardNotifier_body_entered(body):
 
 func _on_Weapon_body_entered(body):
 	print("weapon hit enemy")
+	body.do_damage(2)
 	emit_signal("hit", weapon.damage)
 
 
