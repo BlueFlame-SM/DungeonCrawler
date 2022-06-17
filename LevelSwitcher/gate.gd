@@ -9,10 +9,14 @@ extends Area2D
 export var next_scene_name: String = "res://LevelSwitcher/Level0.tscn"
 signal gate_opens()
 var rng = RandomNumberGenerator.new()
+var nxt_lvl_nr
 
 func _ready():
 	rng.randomize()
-	print(rng.randi_range(0, 4))
+	if self.name != "StartGate":
+		nxt_lvl_nr = String(rng.randi_range(0, 3))
+		print(nxt_lvl_nr)
+		next_scene_name = "res://LevelSwitcher/Level" + nxt_lvl_nr + ".tscn"
 
 
 #This function should be called when the enemy is defeated. This should signal

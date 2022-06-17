@@ -1,33 +1,35 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=34 format=2]
 
-[ext_resource path="res://TileMap_Nina/Rock_1.png" type="Texture" id=1]
-[ext_resource path="res://TileMap_Nina/Rock_Moss.png" type="Texture" id=2]
-[ext_resource path="res://TileMap_Nina/Gate_Basic.png" type="Texture" id=3]
-[ext_resource path="res://TileMap_Nina/Wall_Up.png" type="Texture" id=4]
-[ext_resource path="res://TileMap_Nina/Floor_Edge_Down_1.png" type="Texture" id=5]
-[ext_resource path="res://TileMap_Nina/Floor_Edge_Basic.png" type="Texture" id=6]
-[ext_resource path="res://TileMap_Nina/Edge_Down.png" type="Texture" id=7]
-[ext_resource path="res://TileMap_Nina/Blank_Floor_4.png" type="Texture" id=8]
-[ext_resource path="res://TileMap_Nina/Blank_Floor_3.png" type="Texture" id=9]
-[ext_resource path="res://TileMap_Nina/Blank_Floor_1.png" type="Texture" id=10]
-[ext_resource path="res://TileMap_Nina/Blank_Floor_2.png" type="Texture" id=11]
-[ext_resource path="res://TileMap_Nina/Stone_Floor_2.png" type="Texture" id=12]
-[ext_resource path="res://TileMap_Nina/Stone_Floor_3.png" type="Texture" id=13]
-[ext_resource path="res://TileMap_Nina/Stone_Floor_1.png" type="Texture" id=14]
-[ext_resource path="res://TileMap_Nina/Floor_Edge_Down_2.png" type="Texture" id=15]
-[ext_resource path="res://TileMap_Nina/Floor_Edge_Right_2.png" type="Texture" id=16]
-[ext_resource path="res://TileMap_Nina/River_Basic.png" type="Texture" id=17]
-[ext_resource path="res://TileMap_Nina/Stone_Floor_4.png" type="Texture" id=18]
-[ext_resource path="res://TileMap_Nina/Floor_Edge_Right_1.png" type="Texture" id=19]
-[ext_resource path="res://TileMap_Nina/River_Edge_Left.png" type="Texture" id=20]
-[ext_resource path="res://TileMap_Nina/Floor_Edge_Up.png" type="Texture" id=21]
-[ext_resource path="res://TileMap_Nina/River_Edge_Right.png" type="Texture" id=22]
-[ext_resource path="res://TileMap_Nina/River_Edge_Down.png" type="Texture" id=23]
-[ext_resource path="res://LevelSwitcher/Level.gd" type="Script" id=24]
+[ext_resource path="res://TileMap_Nina/Stone_Floor_4.png" type="Texture" id=1]
+[ext_resource path="res://TileMap_Nina/Stone_Floor_1.png" type="Texture" id=2]
+[ext_resource path="res://TileMap_Nina/River_Basic.png" type="Texture" id=3]
+[ext_resource path="res://TileMap_Nina/Stone_Floor_3.png" type="Texture" id=4]
+[ext_resource path="res://TileMap_Nina/Edge_Down.png" type="Texture" id=5]
+[ext_resource path="res://TileMap_Nina/Stone_Floor_2.png" type="Texture" id=6]
+[ext_resource path="res://TileMap_Nina/River_Edge_Left.png" type="Texture" id=7]
+[ext_resource path="res://TileMap_Nina/River_Edge_Right.png" type="Texture" id=8]
+[ext_resource path="res://TileMap_Nina/River_Edge_Down.png" type="Texture" id=9]
+[ext_resource path="res://TileMap_Nina/Gate_Basic.png" type="Texture" id=10]
+[ext_resource path="res://TileMap_Nina/Floor_Edge_Right_1.png" type="Texture" id=11]
+[ext_resource path="res://TileMap_Nina/Floor_Edge_Basic.png" type="Texture" id=12]
+[ext_resource path="res://TileMap_Nina/Floor_Edge_Down_1.png" type="Texture" id=13]
+[ext_resource path="res://TileMap_Nina/Wall_Up.png" type="Texture" id=14]
+[ext_resource path="res://LevelSwitcher/gate.tscn" type="PackedScene" id=15]
+[ext_resource path="res://TileMap_Nina/Blank_Floor_1.png" type="Texture" id=16]
+[ext_resource path="res://TileMap_Nina/Blank_Floor_2.png" type="Texture" id=17]
+[ext_resource path="res://TileMap_Nina/Floor_Edge_Down_2.png" type="Texture" id=18]
+[ext_resource path="res://TileMap_Nina/Blank_Floor_3.png" type="Texture" id=19]
+[ext_resource path="res://TileMap_Nina/Blank_Floor_4.png" type="Texture" id=20]
+[ext_resource path="res://TileMap_Nina/Rock_Moss.png" type="Texture" id=21]
+[ext_resource path="res://TileMap_Nina/Rock_1.png" type="Texture" id=22]
+[ext_resource path="res://TileMap_Nina/Floor_Edge_Right_2.png" type="Texture" id=23]
+[ext_resource path="res://TileMap_Nina/Floor_Edge_Up.png" type="Texture" id=24]
+[ext_resource path="res://LevelSwitcher/Level.gd" type="Script" id=25]
+[ext_resource path="res://TileMap_Nina/Vase_1.png" type="Texture" id=26]
 
 [sub_resource type="TileSet" id=1]
 0/name = "Blank_Floor_1.png 0"
-0/texture = ExtResource( 10 )
+0/texture = ExtResource( 16 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
 0/region = Rect2( 0, 0, 32, 32 )
@@ -41,7 +43,7 @@
 0/shapes = [  ]
 0/z_index = 0
 1/name = "Blank_Floor_2.png 1"
-1/texture = ExtResource( 11 )
+1/texture = ExtResource( 17 )
 1/tex_offset = Vector2( 0, 0 )
 1/modulate = Color( 1, 1, 1, 1 )
 1/region = Rect2( 0, 0, 32, 32 )
@@ -55,7 +57,7 @@
 1/shapes = [  ]
 1/z_index = 0
 2/name = "Blank_Floor_3.png 2"
-2/texture = ExtResource( 9 )
+2/texture = ExtResource( 19 )
 2/tex_offset = Vector2( 0, 0 )
 2/modulate = Color( 1, 1, 1, 1 )
 2/region = Rect2( 0, 0, 32, 32 )
@@ -69,7 +71,7 @@
 2/shapes = [  ]
 2/z_index = 0
 3/name = "Blank_Floor_4.png 3"
-3/texture = ExtResource( 8 )
+3/texture = ExtResource( 20 )
 3/tex_offset = Vector2( 0, 0 )
 3/modulate = Color( 1, 1, 1, 1 )
 3/region = Rect2( 0, 0, 32, 32 )
@@ -83,7 +85,7 @@
 3/shapes = [  ]
 3/z_index = 0
 4/name = "Edge_Down.png 4"
-4/texture = ExtResource( 7 )
+4/texture = ExtResource( 5 )
 4/tex_offset = Vector2( 0, 0 )
 4/modulate = Color( 1, 1, 1, 1 )
 4/region = Rect2( 0, 0, 32, 32 )
@@ -97,7 +99,7 @@
 4/shapes = [  ]
 4/z_index = 0
 5/name = "Floor_Edge_Basic.png 5"
-5/texture = ExtResource( 6 )
+5/texture = ExtResource( 12 )
 5/tex_offset = Vector2( 0, 0 )
 5/modulate = Color( 1, 1, 1, 1 )
 5/region = Rect2( 0, 0, 32, 32 )
@@ -111,7 +113,7 @@
 5/shapes = [  ]
 5/z_index = 0
 6/name = "Floor_Edge_Down_1.png 6"
-6/texture = ExtResource( 5 )
+6/texture = ExtResource( 13 )
 6/tex_offset = Vector2( 0, 0 )
 6/modulate = Color( 1, 1, 1, 1 )
 6/region = Rect2( 0, 0, 32, 32 )
@@ -125,7 +127,7 @@
 6/shapes = [  ]
 6/z_index = 0
 7/name = "Floor_Edge_Down_2.png 7"
-7/texture = ExtResource( 15 )
+7/texture = ExtResource( 18 )
 7/tex_offset = Vector2( 0, 0 )
 7/modulate = Color( 1, 1, 1, 1 )
 7/region = Rect2( 0, 0, 32, 32 )
@@ -139,7 +141,7 @@
 7/shapes = [  ]
 7/z_index = 0
 8/name = "Floor_Edge_Right_1.png 8"
-8/texture = ExtResource( 19 )
+8/texture = ExtResource( 11 )
 8/tex_offset = Vector2( 0, 0 )
 8/modulate = Color( 1, 1, 1, 1 )
 8/region = Rect2( 0, 0, 32, 32 )
@@ -153,7 +155,7 @@
 8/shapes = [  ]
 8/z_index = 0
 9/name = "Floor_Edge_Right_2.png 9"
-9/texture = ExtResource( 16 )
+9/texture = ExtResource( 23 )
 9/tex_offset = Vector2( 0, 0 )
 9/modulate = Color( 1, 1, 1, 1 )
 9/region = Rect2( 0, 0, 32, 32 )
@@ -167,7 +169,7 @@
 9/shapes = [  ]
 9/z_index = 0
 10/name = "Floor_Edge_Up.png 10"
-10/texture = ExtResource( 21 )
+10/texture = ExtResource( 24 )
 10/tex_offset = Vector2( 0, 0 )
 10/modulate = Color( 1, 1, 1, 1 )
 10/region = Rect2( 0, 0, 32, 32 )
@@ -181,7 +183,7 @@
 10/shapes = [  ]
 10/z_index = 0
 11/name = "River_Basic.png 11"
-11/texture = ExtResource( 17 )
+11/texture = ExtResource( 3 )
 11/tex_offset = Vector2( 0, 0 )
 11/modulate = Color( 1, 1, 1, 1 )
 11/region = Rect2( 0, 0, 32, 32 )
@@ -195,7 +197,7 @@
 11/shapes = [  ]
 11/z_index = 0
 12/name = "River_Edge_Down.png 12"
-12/texture = ExtResource( 23 )
+12/texture = ExtResource( 9 )
 12/tex_offset = Vector2( 0, 0 )
 12/modulate = Color( 1, 1, 1, 1 )
 12/region = Rect2( 0, 0, 32, 32 )
@@ -209,7 +211,7 @@
 12/shapes = [  ]
 12/z_index = 0
 13/name = "River_Edge_Left.png 13"
-13/texture = ExtResource( 20 )
+13/texture = ExtResource( 7 )
 13/tex_offset = Vector2( 0, 0 )
 13/modulate = Color( 1, 1, 1, 1 )
 13/region = Rect2( 0, 0, 32, 32 )
@@ -223,7 +225,7 @@
 13/shapes = [  ]
 13/z_index = 0
 14/name = "River_Edge_Right.png 14"
-14/texture = ExtResource( 22 )
+14/texture = ExtResource( 8 )
 14/tex_offset = Vector2( 0, 0 )
 14/modulate = Color( 1, 1, 1, 1 )
 14/region = Rect2( 0, 0, 32, 32 )
@@ -237,7 +239,7 @@
 14/shapes = [  ]
 14/z_index = 0
 15/name = "Stone_Floor_1.png 15"
-15/texture = ExtResource( 14 )
+15/texture = ExtResource( 2 )
 15/tex_offset = Vector2( 0, 0 )
 15/modulate = Color( 1, 1, 1, 1 )
 15/region = Rect2( 0, 0, 32, 32 )
@@ -251,7 +253,7 @@
 15/shapes = [  ]
 15/z_index = 0
 16/name = "Stone_Floor_2.png 16"
-16/texture = ExtResource( 12 )
+16/texture = ExtResource( 6 )
 16/tex_offset = Vector2( 0, 0 )
 16/modulate = Color( 1, 1, 1, 1 )
 16/region = Rect2( 0, 0, 32, 32 )
@@ -265,7 +267,7 @@
 16/shapes = [  ]
 16/z_index = 0
 17/name = "Stone_Floor_3.png 17"
-17/texture = ExtResource( 13 )
+17/texture = ExtResource( 4 )
 17/tex_offset = Vector2( 0, 0 )
 17/modulate = Color( 1, 1, 1, 1 )
 17/region = Rect2( 0, 0, 32, 32 )
@@ -279,7 +281,7 @@
 17/shapes = [  ]
 17/z_index = 0
 18/name = "Stone_Floor_4.png 18"
-18/texture = ExtResource( 18 )
+18/texture = ExtResource( 1 )
 18/tex_offset = Vector2( 0, 0 )
 18/modulate = Color( 1, 1, 1, 1 )
 18/region = Rect2( 0, 0, 32, 32 )
@@ -301,7 +303,7 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 
 [sub_resource type="TileSet" id=4]
 0/name = "Rock_1.png 0"
-0/texture = ExtResource( 1 )
+0/texture = ExtResource( 22 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
 0/region = Rect2( 0, 0, 32, 32 )
@@ -322,7 +324,7 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 } ]
 0/z_index = 0
 1/name = "Rock_Moss.png 1"
-1/texture = ExtResource( 2 )
+1/texture = ExtResource( 21 )
 1/tex_offset = Vector2( 0, 0 )
 1/modulate = Color( 1, 1, 1, 1 )
 1/region = Rect2( 0, 0, 32, 32 )
@@ -342,6 +344,20 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 1/z_index = 0
+2/name = "Vase_1.png 2"
+2/texture = ExtResource( 26 )
+2/tex_offset = Vector2( 0, 0 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 0, 0, 32, 32 )
+2/tile_mode = 0
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shape_offset = Vector2( 0, 0 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+2/shape_one_way = false
+2/shape_one_way_margin = 0.0
+2/shapes = [  ]
+2/z_index = 0
 
 [sub_resource type="ConvexPolygonShape2D" id=5]
 points = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
@@ -351,7 +367,7 @@ points = PoolVector2Array( 64, 14, 3, 14, 3, 1, 64, 1 )
 
 [sub_resource type="TileSet" id=7]
 0/name = "Wall_Up.png 0"
-0/texture = ExtResource( 4 )
+0/texture = ExtResource( 14 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
 0/region = Rect2( 0, 0, 64, 64 )
@@ -372,7 +388,7 @@ points = PoolVector2Array( 64, 14, 3, 14, 3, 1, 64, 1 )
 } ]
 0/z_index = 0
 1/name = "Gate_Basic.png 1"
-1/texture = ExtResource( 3 )
+1/texture = ExtResource( 10 )
 1/tex_offset = Vector2( 0, 0 )
 1/modulate = Color( 1, 1, 1, 1 )
 1/region = Rect2( 0, 0, 64, 64 )
@@ -393,8 +409,8 @@ points = PoolVector2Array( 64, 14, 3, 14, 3, 1, 64, 1 )
 } ]
 1/z_index = 0
 
-[node name="LevelEx" type="Node2D"]
-script = ExtResource( 24 )
+[node name="Level3" type="Node2D"]
+script = ExtResource( 25 )
 
 [node name="floor" type="TileMap" parent="."]
 tile_set = SubResource( 1 )
@@ -406,9 +422,26 @@ tile_data = PoolIntArray( 131074, 1610612736, 0, 131075, 1610612736, 0, 131076, 
 tile_set = SubResource( 4 )
 cell_size = Vector2( 32, 32 )
 format = 1
-tile_data = PoolIntArray( 262162, 0, 0, 262163, 0, 0, 327699, 1, 0, 327704, 0, 0, 524294, 0, 0, 720922, 1, 0, 851984, 0, 0, 1114137, 1, 0 )
+tile_data = PoolIntArray( 262162, 0, 0, 262163, 0, 0, 327699, 1, 0, 327704, 0, 0, 524294, 0, 0, 524311, 2, 0, 720922, 1, 0, 851978, 2, 0, 851984, 0, 0, 1114137, 1, 0 )
 
 [node name="Walls+Gates" type="TileMap" parent="."]
 tile_set = SubResource( 7 )
 format = 1
 tile_data = PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 1, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 1, 0, 13, 0, 0, 14, -1610612736, 0, 65536, -1073741824, 0, 65550, -1610612736, 0, 131072, -1073741824, 0, 131086, -1610612736, 0, 196608, -1073741824, 0, 196622, -1610612736, 0, 262144, -1073741824, 0, 262158, -1610612736, 0, 327680, -1073741824, 0, 327694, -1610612736, 0, 393216, -1073741824, 0, 393230, -1610612736, 0, 458752, -1073741824, 0, 458766, -1610612736, 0, 524288, -1073741824, 0, 524302, -1610612736, 0, 589824, 1610612736, 0, 589825, 1610612736, 0, 589826, 1610612736, 0, 589827, 1610612736, 0, 589828, 1610612736, 0, 589829, 1610612736, 0, 589830, 1610612736, 0, 589831, 1610612737, 0, 589832, 1610612736, 0, 589833, 1610612736, 0, 589834, 1610612736, 0, 589835, 1610612736, 0, 589836, 1610612736, 0, 589837, 1610612736, 0, 589838, -1610612736, 0 )
+
+[node name="Gate" parent="." instance=ExtResource( 15 )]
+position = Vector2( 104, -24 )
+
+[node name="Gate2" parent="." instance=ExtResource( 15 )]
+position = Vector2( 744, -24 )
+
+[node name="LevelCompleted" type="CheckBox" parent="."]
+margin_left = 420.0
+margin_top = 292.0
+margin_right = 444.0
+margin_bottom = 324.0
+
+[connection signal="body_entered" from="Gate" to="Gate" method="_on_Gate_body_entered"]
+[connection signal="body_entered" from="Gate2" to="Gate2" method="_on_Gate_body_entered"]
+[connection signal="pressed" from="LevelCompleted" to="Gate" method="_on_LevelCompleted_pressed"]
+[connection signal="pressed" from="LevelCompleted" to="Gate2" method="_on_LevelCompleted_pressed"]
