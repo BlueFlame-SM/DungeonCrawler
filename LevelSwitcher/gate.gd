@@ -1,27 +1,40 @@
 #Source: https://www.youtube.com/watch?v=XHbrKdsZrxY&ab_channel=jmbiv
 
 
-extends Node2D
+extends Area2D
 #
 #signal level_changed_to_boss(level_name)
 #signal level_changed_to_shop(level_name)
 #signal level_changed_to_lootbox(level_name)
-export var next_scene_name: String = "res://Test_Mul-Level/TestLevel1.tscn"
+export var next_scene_name: String = "res://LevelSwitcher/Level0.tscn"
 signal gate_opens()
+var rng = RandomNumberGenerator.new()
+
+func _ready():
+	rng.randomize()
+	print(rng.randi_range(0, 4))
 
 
 #This function should be called when the enemy is defeated. This should signal
 #from enemy class.
 func _on_LevelCompleted_pressed():
+	print("button pressed")
 #	This signal should notify the level that the gates should now appear open.
 #	This can be done by putting a second tilemap on top of the first one and
 #	making this tilemap visible on signal
 	emit_signal("gate_opens")
 #	Collision box for gate enabled.
-	$Gate_to_next_level/GateCollision.disabled = 0
+	$GateCollision.disabled = 0
 
 
 # If the player collides with a gate collisionbox, go to scene
-func _on_Gate_to_next_level_body_entered(body):
+func _on_Gate_body_entered(body):
 	if body.name == "Player":
-		SsFade.goto_scene(next_scene_name)
+		print("ienteredgate")
+		if next_scene_name == "res://LevelSwitcher/Level0.tscn":
+			LevelSwitcher.die(next_scene_name)
+		else:
+			LevelSwitcher.goto_scene(next_scene_name)
+
+
+
