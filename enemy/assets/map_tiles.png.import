@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/map_tiles.png-d07dc9ce8c65b3d16459ca2acf4e4576.stex"
+path="res://.import/map_tiles.png-3903500c2d8bec71a89eab029cad8223.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/map_tiles.png"
-dest_files=[ "res://.import/map_tiles.png-d07dc9ce8c65b3d16459ca2acf4e4576.stex" ]
+source_file="res://enemy/assets/map_tiles.png"
+dest_files=[ "res://.import/map_tiles.png-3903500c2d8bec71a89eab029cad8223.stex" ]
 
 [params]
 
