@@ -1,8 +1,8 @@
 extends Node2D
 
 
-func _on_Player_character_died():
-	$Player.queue_free()
+func _ready():
+	Player.position = $PlayerSpawn.position
 
 
 func _on_Button_pressed():
