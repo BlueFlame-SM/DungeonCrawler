@@ -63,11 +63,11 @@ func choose_action():
 #			if player and levelNavigation:
 #				generate_path()
 #				navigate()
-			var player_direction = (player.get_position() - self.position).normalized()
-			velocity = position.direction_to(player.position) * speed
+			var player_direction = (Player.get_position() - self.position).normalized()
+			velocity = position.direction_to(Player.position) * speed
 		states.KNOCKBACK:
-			var player_direction = (player.get_position() - self.position).normalized()
-			velocity = position.direction_to(player.position) * -200
+			var player_direction = (Player.get_position() - self.position).normalized()
+			velocity = position.direction_to(Player.position) * -200
 
 func _on_Range_body_entered(body):
 	state = states.CHASE

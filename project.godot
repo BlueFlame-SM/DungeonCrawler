@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Dungeon Crawler"
-run/main_scene="res://levels/test_level_1.tscn"
+run/main_scene="res://levels/Level0.tscn"
 config/icon="res://assets/icon.png"
 
 [autoload]
@@ -30,7 +30,8 @@ PluginSettings="*res://addons/github-integration/scripts/PluginSettings.gd"
 IconLoaderGithub="*res://addons/github-integration/scripts/IconLoaderGithub.gd"
 UserData="*res://addons/github-integration/scripts/user_data.gd"
 RestHandler="*res://addons/github-integration/scenes/RestHandler.tscn"
-SceneSwitcher="*res://scene_switcher/scene_switcher.tscn"
+LevelSwitcher="*res://level_switcher/LevelSwitcher.tscn"
+Player="*res://player/player.tscn"
 
 [display]
 

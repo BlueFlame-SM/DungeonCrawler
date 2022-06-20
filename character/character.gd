@@ -23,10 +23,15 @@ export var agility: int = 1 setget _set_agility, _get_agility
 export var dexterity: int = 1 setget _set_dexterity, _get_dexterity
 export var damage: int = 1 setget _set_damage, _get_damage
 
+export var can_move: bool = true
+
 
 # Computes the velocity vector of the character from `direction` and the speed stat.
 func move_in_direction(direction: Vector2) -> Vector2:
-	return direction.normalized() * ((speed - 1) * SPEED_WEIGHT + SPEED_BIAS)
+	if can_move:
+		return direction.normalized() * ((speed - 1) * SPEED_WEIGHT + SPEED_BIAS)
+	else:
+		return Vector2.ZERO
 
 
 # Kills the character.
