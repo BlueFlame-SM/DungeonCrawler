@@ -127,3 +127,11 @@ func die():
 #func _on_Player_hit(amount):
 #	damage(amount)
 #	print(health)
+
+# Checks for input.
+func _input(event):
+	if event.is_action_pressed("interact"):
+		var items = $Pickup.get_overlapping_bodies()
+		if items.size() > 0:
+			var item = items[0]
+			item.pick_up_item(self)
