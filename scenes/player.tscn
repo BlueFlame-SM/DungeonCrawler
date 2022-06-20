@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/idle_right.png" type="Texture" id=2]
 [ext_resource path="res://assets/idle_left.png" type="Texture" id=3]
 [ext_resource path="res://art/pickup.png" type="Texture" id=4]
-[ext_resource path="res://src/Camera2D.gd" type="Script" id=5]
+[ext_resource path="res://src/camera2d.gd" type="Script" id=5]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -41,7 +41,6 @@ animations = [ {
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
 script = ExtResource( 1 )
-speed = 10
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )

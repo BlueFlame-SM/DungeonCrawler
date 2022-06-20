@@ -18,7 +18,7 @@ export var health: int = 10 setget _set_health, _get_health
 export var max_health: int = 10 setget _set_max_health, _get_max_health
 export var strength: int = 1 setget _set_strength, _get_strength
 export var defence: int = 1 setget _set_defence, _get_defence
-export var speed: int = 1 setget _set_speed, _get_speed
+export var speed: int = 10 setget _set_speed, _get_speed
 export var agility: int = 1 setget _set_agility, _get_agility
 export var dexterity: int = 1 setget _set_dexterity, _get_dexterity
 

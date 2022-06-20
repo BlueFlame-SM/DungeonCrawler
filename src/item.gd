@@ -1,34 +1,46 @@
-extends StaticBody2D
+# Source: https://github.com/arkeve/Godot-Inventory-System
 
-var player = null
-var picked_up = false
+extends Node2D
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+var item_name
+var item_quantity
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	randomize()
+	var rand_val = randi() % 6 - 1
+	var options = ["tree_branch", "slime_potion","iron_sword", "brown_shirt", "blue_jeans", "brown_boots"]
+	item_name = options[rand_val]
 	
-# Function called every in-game tick.
-func _physics_process(delta):
+	$TextureRect.texture = load("res://art/" + item_name + ".png")
+
+	# This line loads the stackszise of a item from the dictionary.
+	var stack_size = int(JsonData.item_data[item_name]["StackSize"])
+	item_quantity = randi() % stack_size + 1
 	
-	# If item is picked up, animation plays, and item is removed.
-	if picked_up == true:
-		if self.scale.x > 0:
-			self.scale.x -= 0.1
-			self.scale.y -= 0.1
-			
-		if self.scale.x < 0.2:
-			queue_free()
+	if stack_size == 1:
+		$Label.visible = false
+	else:
+		$Label.text = String(item_quantity)
 
-# Function called when the item is picked up.
-func pick_up_item(body):
-	player = body
-	picked_up = true
+func set_item(nm, qt):
+	item_name = nm
+	item_quantity = qt
+	$TextureRect.texture = load("res://art/" + item_name + ".png")
+	
+	var stack_size = int(JsonData.item_data[item_name]["StackSize"])
+	if stack_size == 1:
+		$Label.visible = false
+	else:
+		$Label.visible = true
+		$Label.text = String(item_quantity)
+		
+# add item to stack.
+func add_item_quantity(amount_to_add):
+	item_quantity += amount_to_add
+	$Label.text = String(item_quantity)
+	
+# remove item from stack.
+func decrease_item_quantity(amount_to_remove):
+	item_quantity -= amount_to_remove
+	$Label.text = String(item_quantity)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass

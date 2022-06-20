@@ -1,5 +1,10 @@
 extends "res://src/character.gd"
 
+const slot = preload("res://src/slot.gd")
+#var player_inventory = preload("res://src/player_inventory.gd")
+
+#func _ready():
+#	player_inventory = player_inventory.new()
 
 func _physics_process(delta):
 	var direction = Vector2()
@@ -29,11 +34,6 @@ func _physics_process(delta):
 		$AnimatedSprite.animation = "walk_left"
 		# $AnimatedSprite.flip_v = velocity.y > 0
 
-	if Input.is_action_just_pressed("E-key"):
-		for body in $Area2D.get_overlapping_bodies():
-			if body.is_in_group("item"):
-				body.queue_free()
-
 
 var item_in_range = {}
 
@@ -55,6 +55,21 @@ func _input(event):
 		if item_in_range.size() > 0:
 			var pickup_item = item_in_range.values()[0]
 			pickup_item.pick_up_item(self)
+			
+#			$Inventory.initialize_inventory()
+			
+			# Putting picked up item into inventory.
+#			var myClass = slot.new()
+#			myClass.putIntoSlot(pickup_item, 1)
+#			var myClass = player_inventory.new()
+#			myClass.add_item(pickup_item, 1)
+			
+#			player_inventory.add_item(pickup_item, 1)
+			
+#			print(pickup_item["item2"])
+#			var picture = pickup_item.AnimatedSprite.get_sprite_frames()
+#			print("picture: ", picture)
+			
 			item_in_range.erase(pickup_item)
 
 
