@@ -14,6 +14,8 @@ signal hit(amount)
 var attack_cooldown_time = 100
 var next_attack_time = 0
 
+func _ready():
+	speed = 3
 
 func playAnimations(velocity: Vector2, delta: float) -> void:
 	# Only move if attack animation is not playing
