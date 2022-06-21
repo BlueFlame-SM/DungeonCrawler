@@ -48,9 +48,13 @@ func playAnimations(velocity: Vector2, delta: float) -> void:
 			if lastDirection == Vector2.DOWN:
 				$AnimatedSprite.animation = "idle_down"
 			elif lastDirection == Vector2.UP:
-				$AnimatedSprite.play("back_slash")
+				$AnimatedSprite.play("idle_up")
+			elif lastDirection == Vector2.LEFT:
+				$AnimatedSprite.play("idle_left")
+				$AnimatedSprite.flip_h = false
 			else:
 				$AnimatedSprite.animation = "idle_left"
+				$AnimatedSprite.flip_h = true
 			$AnimatedSprite.flip_v = false
 	# Play attack animation based on direction
 	else:

@@ -29,7 +29,7 @@
 [ext_resource path="res://gate/gate.tscn" type="PackedScene" id=27]
 [ext_resource path="res://levels/Level.gd" type="Script" id=28]
 [ext_resource path="res://assets/tilesheet.png" type="Texture" id=29]
-[ext_resource path="res://enemy_range/enemy_range.tscn" type="PackedScene" id=30]
+[ext_resource path="res://enemy_dash/enemy_dash.tscn" type="PackedScene" id=30]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
@@ -700,8 +700,7 @@ margin_bottom = 324.0
 [node name="PlayerSpawn" type="Position2D" parent="."]
 position = Vector2( 479, 549 )
 
-[node name="EnemyRange" parent="." instance=ExtResource( 30 )]
-position = Vector2( 456, 179 )
+[node name="EnemyDash" parent="." instance=ExtResource( 30 )]
 
 [connection signal="body_entered" from="Gate" to="Gate" method="_on_Gate_body_entered"]
 [connection signal="body_entered" from="Gate2" to="Gate2" method="_on_Gate_body_entered"]
