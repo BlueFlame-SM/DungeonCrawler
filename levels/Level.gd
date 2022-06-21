@@ -6,8 +6,10 @@ var timer = Timer.new()
 
 
 func enable_styx():
-	if $Styx/CollisionPolygon2D:
-		$Styx/CollisionPolygon2D.disabled = false
+	if $River_collision:
+		for child in $River_collision.get_children():
+			child.disabled = false
+			print(child.name)
 
 
 # Called when the node enters the scene tree for the first time.
@@ -15,12 +17,19 @@ func _ready():
 	Player.position = $PlayerSpawn.position
 	Player.can_move = true
 	timer.connect("timeout",self,"enable_styx")
-	timer.wait_time = 1
+	timer.wait_time = 2
 	timer.one_shot = true
 	add_child(timer)
 	timer.start()
 
-func _on_Styx_body_entered(body):
-#	print(Player/CollisionShape2D.disabled)
+#func open_gates()
+
+
+
+func _on_River_collision_body_entered(body):
 	if body.name == "Player":
 		Player.die()
+
+
+func _on_gate_opens():
+	$Gates_open.visible = true

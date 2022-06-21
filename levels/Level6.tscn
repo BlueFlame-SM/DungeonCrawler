@@ -1,12 +1,14 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://tilemap/walls3.tres" type="TileSet" id=1]
 [ext_resource path="res://tilemap/rocks1.tres" type="TileSet" id=2]
 [ext_resource path="res://tilemap/gates4.tres" type="TileSet" id=3]
 [ext_resource path="res://tilemap/floor.tres" type="TileSet" id=4]
 [ext_resource path="res://gate/gate.tscn" type="PackedScene" id=5]
+[ext_resource path="res://levels/Level.gd" type="Script" id=6]
 
 [node name="Level6" type="Node2D"]
+script = ExtResource( 6 )
 
 [node name="Floor" type="TileMap" parent="."]
 tile_set = ExtResource( 4 )
@@ -34,16 +36,17 @@ format = 1
 tile_data = PoolIntArray( 7, 0, 0, 47, 0, 0, 589851, 1610612736, 0 )
 
 [node name="Gates_open" type="TileMap" parent="."]
+visible = false
 tile_set = ExtResource( 3 )
 cell_size = Vector2( 16, 64 )
 format = 1
 tile_data = PoolIntArray( 7, 1, 0, 47, 1, 0 )
 
 [node name="Gate" parent="." instance=ExtResource( 5 )]
-position = Vector2( 104, -24 )
+position = Vector2( 105, -18 )
 
 [node name="Gate2" parent="." instance=ExtResource( 5 )]
-position = Vector2( 744, -24 )
+position = Vector2( 745, -18 )
 
 [node name="LevelCompleted" type="CheckBox" parent="."]
 margin_right = 24.0
@@ -52,15 +55,27 @@ margin_bottom = 24.0
 [node name="River_collision" type="Area2D" parent="."]
 
 [node name="River_left" type="CollisionPolygon2D" parent="River_collision"]
+position = Vector2( -3.8147e-06, 48.375 )
+scale = Vector2( 1, 0.859375 )
 polygon = PoolVector2Array( 64, 368, 64, 448, 96, 448, 96, 368 )
 
 [node name="River_mid" type="CollisionPolygon2D" parent="River_collision"]
+position = Vector2( 0, 16.2231 )
+scale = Vector2( 1, 0.908654 )
 polygon = PoolVector2Array( 160, 368, 160, 448, 224, 448, 224, 416, 352, 416, 352, 384, 448, 384, 448, 352, 512, 352, 512, 320, 576, 320, 576, 240, 448, 240, 448, 272, 320, 272, 320, 304, 288, 304, 288, 336, 224, 336, 224, 368 )
 
 [node name="River_right" type="CollisionPolygon2D" parent="River_collision"]
+position = Vector2( -6.10352e-05, 16.8306 )
+scale = Vector2( 1, 0.873264 )
 polygon = PoolVector2Array( 640, 208, 640, 320, 704, 320, 704, 288, 736, 288, 736, 256, 896, 256, 896, 176, 672, 176, 672, 208 )
 
+[node name="PlayerSpawn" type="Position2D" parent="."]
+position = Vector2( 478, 539 )
+
 [connection signal="body_entered" from="Gate" to="Gate" method="_on_Gate_body_entered"]
+[connection signal="gate_opens" from="Gate" to="." method="_on_gate_opens"]
 [connection signal="body_entered" from="Gate2" to="Gate2" method="_on_Gate_body_entered"]
+[connection signal="gate_opens" from="Gate2" to="." method="_on_gate_opens"]
 [connection signal="pressed" from="LevelCompleted" to="Gate" method="_on_LevelCompleted_pressed"]
 [connection signal="pressed" from="LevelCompleted" to="Gate2" method="_on_LevelCompleted_pressed"]
+[connection signal="body_entered" from="River_collision" to="." method="_on_River_collision_body_entered"]

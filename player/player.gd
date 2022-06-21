@@ -15,7 +15,7 @@ var attack_cooldown_time = 100
 var next_attack_time = 0
 
 func _ready():
-	speed = 3
+	speed = 4
 
 func playAnimations(velocity: Vector2, delta: float) -> void:
 	# Only move if attack animation is not playing
@@ -31,31 +31,26 @@ func playAnimations(velocity: Vector2, delta: float) -> void:
 		if velocity.x > 0:
 			$AnimatedSprite.animation = "walk_left"
 			$AnimatedSprite.flip_h = true
-			$AnimatedSprite.flip_v = false
 		elif velocity.x < 0:
 			$AnimatedSprite.animation = "walk_left"
 			$AnimatedSprite.flip_h = false
-			$AnimatedSprite.flip_v = false
 		elif velocity.y > 0:
 			$AnimatedSprite.animation = "walk_down"
 			$AnimatedSprite.flip_h = false
-			$AnimatedSprite.flip_v = false
 		elif velocity.y < 0:
 			$AnimatedSprite.animation = "walk_up"
 			$AnimatedSprite.flip_h = false
-			$AnimatedSprite.flip_v = false
 		elif velocity.x == 0 and velocity.y == 0:
 			if lastDirection == Vector2.DOWN:
 				$AnimatedSprite.animation = "idle_down"
 			elif lastDirection == Vector2.UP:
-				$AnimatedSprite.play("idle_up")
+				$AnimatedSprite.animation = "idle_up"
 			elif lastDirection == Vector2.LEFT:
-				$AnimatedSprite.play("idle_left")
+				$AnimatedSprite.animation = "idle_left"
 				$AnimatedSprite.flip_h = false
 			else:
 				$AnimatedSprite.animation = "idle_left"
 				$AnimatedSprite.flip_h = true
-			$AnimatedSprite.flip_v = false
 	# Play attack animation based on direction
 	else:
 		if lastDirection == Vector2.DOWN:
@@ -121,7 +116,7 @@ func _on_Weapon_body_entered(body):
 
 func die():
 	self.can_move = false
-	LevelSwitcher.goto_scene("res://levels/Level0.tscn", true)
+	LevelSwitcher.goto_scene("res://levels/LevelStart.tscn", true)
 #
 #func change_collision():
 #	$CollisionShape2D.disabled = !$CollisionShape2D.disabled

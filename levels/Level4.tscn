@@ -1,12 +1,14 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://tilemap/walls3.tres" type="TileSet" id=1]
 [ext_resource path="res://tilemap/rocks1.tres" type="TileSet" id=2]
 [ext_resource path="res://tilemap/gates4.tres" type="TileSet" id=3]
 [ext_resource path="res://tilemap/floor.tres" type="TileSet" id=4]
 [ext_resource path="res://gate/gate.tscn" type="PackedScene" id=5]
+[ext_resource path="res://levels/Level.gd" type="Script" id=6]
 
 [node name="Level4" type="Node2D"]
+script = ExtResource( 6 )
 
 [node name="Floor" type="TileMap" parent="."]
 tile_set = ExtResource( 4 )
@@ -34,16 +36,17 @@ format = 1
 tile_data = PoolIntArray( 7, 0, 0, 47, 0, 0, 589851, 1610612736, 0 )
 
 [node name="Gates_open" type="TileMap" parent="."]
+visible = false
 tile_set = ExtResource( 3 )
 cell_size = Vector2( 16, 64 )
 format = 1
 tile_data = PoolIntArray( 7, 1, 0, 47, 1, 0 )
 
 [node name="Gate" parent="." instance=ExtResource( 5 )]
-position = Vector2( 103, -24 )
+position = Vector2( 106, -18 )
 
 [node name="Gate2" parent="." instance=ExtResource( 5 )]
-position = Vector2( 742, -24 )
+position = Vector2( 742, -20 )
 
 [node name="LevelCompleted" type="CheckBox" parent="."]
 margin_right = 24.0
@@ -53,9 +56,17 @@ margin_bottom = 24.0
 collision_mask = 2
 
 [node name="Lake" type="CollisionPolygon2D" parent="River_collision"]
+position = Vector2( 7.62939e-06, 4.16845 )
+scale = Vector2( 1, 0.944568 )
 polygon = PoolVector2Array( 384, 176, 576, 176, 576, 208, 640, 208, 640, 240, 672, 240, 672, 272, 704, 272, 704, 304, 736, 304, 736, 448, 704, 448, 704, 480, 672, 480, 672, 512, 544, 512, 544, 480, 416, 480, 416, 448, 352, 448, 352, 416, 288, 416, 288, 384, 256, 384, 256, 352, 224, 352, 224, 272, 320, 272, 320, 240, 352, 240, 352, 208, 384, 208 )
 
+[node name="PlayerSpawn" type="Position2D" parent="."]
+position = Vector2( 478, 539 )
+
 [connection signal="body_entered" from="Gate" to="Gate" method="_on_Gate_body_entered"]
+[connection signal="gate_opens" from="Gate" to="." method="_on_gate_opens"]
 [connection signal="body_entered" from="Gate2" to="Gate2" method="_on_Gate_body_entered"]
+[connection signal="gate_opens" from="Gate2" to="." method="_on_gate_opens"]
 [connection signal="pressed" from="LevelCompleted" to="Gate" method="_on_LevelCompleted_pressed"]
 [connection signal="pressed" from="LevelCompleted" to="Gate2" method="_on_LevelCompleted_pressed"]
+[connection signal="body_entered" from="River_collision" to="." method="_on_River_collision_body_entered"]

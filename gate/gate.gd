@@ -2,7 +2,7 @@
 
 
 extends Area2D
-export var next_scene_name: String = "res://levels/Level0.tscn"
+export var next_scene_name: String = "res://levels/Level5.tscn"
 signal gate_opens()
 var rng = RandomNumberGenerator.new()
 var nxt_lvl_nr
@@ -12,10 +12,9 @@ var nxt_lvl_nr
 func _ready():
 #	dit werkt nog niet? snap die seed niet echt
 	rng.randomize()
-	if self.name != "StartGate":
-		nxt_lvl_nr = String(rng.randi_range(1, 3))
-		print(nxt_lvl_nr)
-		next_scene_name = "res://levels/Level" + nxt_lvl_nr + ".tscn"
+	nxt_lvl_nr = String(rng.randi_range(5, 14))
+	print(nxt_lvl_nr)
+	next_scene_name = "res://levels/Level" + nxt_lvl_nr + ".tscn"
 
 
 #This function should be called when the enemy is defeated. This should signal
@@ -32,11 +31,7 @@ func _on_LevelCompleted_pressed():
 # If the player collides with a gate collisionbox, go to scene
 func _on_Gate_body_entered(body):
 	if body.name == "Player":
+		print("gate body entered")
 		Player.can_move = false
-		if next_scene_name == "res://levels/Level0.tscn":
-			LevelSwitcher.die()
-		else:
-			LevelSwitcher.goto_scene(next_scene_name)
-
-
+		LevelSwitcher.goto_scene(next_scene_name)
 
