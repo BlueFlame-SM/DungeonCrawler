@@ -45,6 +45,8 @@ func choose_action():
 
 
 func _on_Range_body_entered(body):
+	player_pos = get_player_pos()
+	enemy_pos = get_enemy_pos()
 	timer.start()
 
 
@@ -58,5 +60,13 @@ func _on_Player_hit(amount):
 
 
 func _on_Timer_timeout():
-	player_pos = Player.position
+	player_pos = get_player_pos()
+	enemy_pos = get_enemy_pos()
 	state = states.CHARGE
+
+
+func get_player_pos():
+	return Player.get_position()
+
+func get_enemy_pos():
+	return self.position
