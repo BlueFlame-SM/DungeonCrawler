@@ -9,19 +9,31 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Area2D",
+"class": "Bullet",
+"language": "GDScript",
+"path": "res://bullet/bullet.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Character",
 "language": "GDScript",
 "path": "res://character/character.gd"
+}, {
+"base": "StaticBody2D",
+"class": "FloorItem",
+"language": "GDScript",
+"path": "res://floor_item/floor_item.gd"
 } ]
 _global_script_class_icons={
-"Character": ""
+"Bullet": "",
+"Character": "",
+"FloorItem": ""
 }
 
 [application]
 
 config/name="Dungeon Crawler"
-run/main_scene="res://levels/Level0.tscn"
+run/main_scene="res://levels/Level1.tscn"
 config/icon="res://assets/icon.png"
 
 [autoload]
@@ -32,6 +44,8 @@ UserData="*res://addons/github-integration/scripts/user_data.gd"
 RestHandler="*res://addons/github-integration/scenes/RestHandler.tscn"
 LevelSwitcher="*res://level_switcher/LevelSwitcher.tscn"
 Player="*res://player/player.tscn"
+JsonData="*res://other/json_data.gd"
+PlayerInventory="*res://player_inventory/player_inventory.gd"
 
 [display]
 
@@ -81,6 +95,16 @@ down={
 attack={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+inventory={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":73,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+interact={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":69,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 
