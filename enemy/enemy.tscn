@@ -5,7 +5,7 @@
 [ext_resource path="res://enemy/SmallShadow.png" type="Texture" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 188.322
+radius = 195.021
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 32, 32 )
@@ -74,7 +74,7 @@ modulate = Color( 0.984314, 0.984314, 0.984314, 1 )
 position = Vector2( 0, -12 )
 scale = Vector2( 4, 4 )
 frames = SubResource( 10 )
-frame = 1
+frame = 4
 playing = true
 
 [node name="Shadow" type="AnimatedSprite" parent="."]

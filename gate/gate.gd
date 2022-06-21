@@ -8,13 +8,12 @@ var rng = RandomNumberGenerator.new()
 var nxt_lvl_nr
 
 
-
+#Optie: gooi randomise in levelswitcher.
 func _ready():
-	rng.set_seed(11)
 #	dit werkt nog niet? snap die seed niet echt
-#	rng.randomize()
+	rng.randomize()
 	if self.name != "StartGate":
-		nxt_lvl_nr = String(rng.randi_range(0, 3))
+		nxt_lvl_nr = String(rng.randi_range(1, 3))
 		print(nxt_lvl_nr)
 		next_scene_name = "res://levels/Level" + nxt_lvl_nr + ".tscn"
 
@@ -35,7 +34,7 @@ func _on_Gate_body_entered(body):
 	if body.name == "Player":
 		Player.can_move = false
 		if next_scene_name == "res://levels/Level0.tscn":
-			LevelSwitcher.goto_scene(next_scene_name, true)
+			LevelSwitcher.die()
 		else:
 			LevelSwitcher.goto_scene(next_scene_name)
 

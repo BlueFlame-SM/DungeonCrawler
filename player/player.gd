@@ -17,8 +17,6 @@ var next_attack_time = 0
 
 func playAnimations(velocity: Vector2, delta: float) -> void:
 	# Only move if attack animation is not playing
-	if !self.can_move:
-		print("cant move")
 	if !playAttack:
 		if velocity.length() > 0:
 			velocity = velocity.normalized() * speed
@@ -48,7 +46,7 @@ func playAnimations(velocity: Vector2, delta: float) -> void:
 			if lastDirection == Vector2.DOWN:
 				$AnimatedSprite.animation = "idle_down"
 			elif lastDirection == Vector2.UP:
-				$AnimatedSprite.play("back_slash")
+				$AnimatedSprite.animation = "idle_up"
 			else:
 				$AnimatedSprite.animation = "idle_left"
 			$AnimatedSprite.flip_v = false
@@ -118,8 +116,11 @@ func _on_Weapon_body_entered(body):
 func die():
 	self.can_move = false
 	LevelSwitcher.goto_scene("res://levels/Level0.tscn", true)
-	pass
-
+#
+#func change_collision():
+#	$CollisionShape2D.disabled = !$CollisionShape2D.disabled
+#
+#
 
 
 # CONNECT HIT SIGNAL TO ENEMY
@@ -127,3 +128,4 @@ func die():
 #func _on_Player_hit(amount):
 #	damage(amount)
 #	print(health)
+
