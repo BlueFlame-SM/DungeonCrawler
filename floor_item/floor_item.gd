@@ -1,5 +1,5 @@
 class_name FloorItem
-extends StaticBody2D
+extends RigidBody2D
 
 var player = null
 var picked_up = false

@@ -14,11 +14,14 @@ script = ExtResource( 4 )
 
 [node name="TextureRect" type="TextureRect" parent="."]
 margin_left = 575.0
-margin_top = 430.0
+margin_top = 427.0
 margin_right = 926.0
-margin_bottom = 612.0
+margin_bottom = 609.0
 texture = ExtResource( 3 )
 stretch_mode = 1
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="GridContainer" type="GridContainer" parent="."]
 margin_left = 735.0

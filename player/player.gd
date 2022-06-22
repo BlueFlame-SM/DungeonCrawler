@@ -135,3 +135,7 @@ func _input(event):
 		if items.size() > 0:
 			var item = items[0]
 			item.pick_up_item(self)
+
+	if event.is_action_pressed("inventory"):
+		$CanvasLayer/Inventory.visible = !$Inventory.visible
+		$Inventory.initialize_inventory()

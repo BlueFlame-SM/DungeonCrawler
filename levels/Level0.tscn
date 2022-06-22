@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://TileMap_Nina/Edge_Down.png" type="Texture" id=1]
 [ext_resource path="res://TileMap_Nina/Stone_Floor_2.png" type="Texture" id=2]
@@ -15,7 +15,6 @@
 [ext_resource path="res://gate/gate.gd" type="Script" id=13]
 [ext_resource path="res://TileMap_Nina/Wall_Down.png" type="Texture" id=14]
 [ext_resource path="res://assets/tilesheet.png" type="Texture" id=15]
-[ext_resource path="res://inventory/inventory.tscn" type="PackedScene" id=16]
 [ext_resource path="res://floor_item/floor_item.tscn" type="PackedScene" id=17]
 
 [sub_resource type="TileSet" id=1]
@@ -303,10 +302,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Inventory" parent="." instance=ExtResource( 16 )]
-
 [node name="FloorItem" parent="." instance=ExtResource( 17 )]
-show_behind_parent = false
 position = Vector2( 536, 306 )
 collision_layer = 64
 

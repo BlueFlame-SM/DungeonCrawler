@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://player/player.gd" type="Script" id=1]
 [ext_resource path="res://player/player.tres" type="SpriteFrames" id=2]
+[ext_resource path="res://inventory/inventory.tscn" type="PackedScene" id=3]
+[ext_resource path="res://hotbar/hotbar.tscn" type="PackedScene" id=4]
 [ext_resource path="res://player/weapon.gd" type="Script" id=18]
 
 [sub_resource type="CapsuleShape2D" id=2]
@@ -48,6 +50,14 @@ shape = SubResource( 3 )
 __meta__ = {
 "_edit_group_": true
 }
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Inventory" parent="CanvasLayer" instance=ExtResource( 3 )]
+position = Vector2( 8, -410 )
+
+[node name="Hotbar" parent="CanvasLayer" instance=ExtResource( 4 )]
+position = Vector2( 754, 18 )
 
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="animation_finished" from="AnimatedSprite/AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
