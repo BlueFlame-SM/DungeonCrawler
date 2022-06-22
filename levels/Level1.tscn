@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-[gd_scene load_steps=49 format=2]
-=======
-[gd_scene load_steps=50 format=2]
->>>>>>> 172b673a4364229cca03451171a49aaff3724171
+[gd_scene load_steps=52 format=2]
 
 [ext_resource path="res://TileMap_Nina/Floor_Edge_Basic.png" type="Texture" id=1]
 [ext_resource path="res://TileMap_Nina/Floor_Edge_Down_1.png" type="Texture" id=2]
@@ -33,15 +29,12 @@
 [ext_resource path="res://gate/gate.tscn" type="PackedScene" id=27]
 [ext_resource path="res://levels/Level.gd" type="Script" id=28]
 [ext_resource path="res://assets/tilesheet.png" type="Texture" id=29]
-<<<<<<< HEAD
 [ext_resource path="res://inventory/inventory.tscn" type="PackedScene" id=30]
-=======
-[ext_resource path="res://enemy_range/enemy_range.tscn" type="PackedScene" id=30]
+[ext_resource path="res://enemy_range/enemy_range.tscn" type="PackedScene" id=31]
 
 [sub_resource type="NavigationPolygon" id=24]
 vertices = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
->>>>>>> 172b673a4364229cca03451171a49aaff3724171
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
@@ -713,12 +706,9 @@ margin_bottom = 324.0
 [node name="PlayerSpawn" type="Position2D" parent="."]
 position = Vector2( 479, 549 )
 
-<<<<<<< HEAD
 [node name="Inventory" parent="." instance=ExtResource( 30 )]
-=======
-[node name="EnemyRange" parent="." instance=ExtResource( 30 )]
+[node name="EnemyRange" parent="." instance=ExtResource( 31 )]
 position = Vector2( 456, 179 )
->>>>>>> 172b673a4364229cca03451171a49aaff3724171
 
 [connection signal="body_entered" from="Gate" to="Gate" method="_on_Gate_body_entered"]
 [connection signal="body_entered" from="Gate2" to="Gate2" method="_on_Gate_body_entered"]
