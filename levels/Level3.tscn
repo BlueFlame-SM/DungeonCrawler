@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://TileMap_Nina/Stone_Floor_4.png" type="Texture" id=1]
 [ext_resource path="res://TileMap_Nina/Stone_Floor_1.png" type="Texture" id=2]
@@ -27,7 +27,6 @@
 [ext_resource path="res://levels/Level.gd" type="Script" id=25]
 [ext_resource path="res://TileMap_Nina/Vase_1.png" type="Texture" id=26]
 [ext_resource path="res://enemy/enemy.tscn" type="PackedScene" id=27]
-[ext_resource path="res://assets/tilesheet.png" type="Texture" id=28]
 
 [sub_resource type="TileSet" id=1]
 0/name = "Blank_Floor_1.png 0"
@@ -361,32 +360,6 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 2/shapes = [  ]
 2/z_index = 0
 
-[sub_resource type="ConvexPolygonShape2D" id=22]
-points = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
-
-[sub_resource type="TileSet" id=23]
-0/name = "tilesheet.png 0"
-0/texture = ExtResource( 28 )
-0/tex_offset = Vector2( 0, 0 )
-0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 672, 0, 64, 64 )
-0/tile_mode = 0
-0/occluder_offset = Vector2( 0, 0 )
-0/navigation_offset = Vector2( 0, 0 )
-0/shape_offset = Vector2( 0, 0 )
-0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-0/shape = SubResource( 22 )
-0/shape_one_way = false
-0/shape_one_way_margin = 1.0
-0/shapes = [ {
-"autotile_coord": Vector2( 0, 0 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 22 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-} ]
-0/z_index = 0
-
 [sub_resource type="ConvexPolygonShape2D" id=5]
 points = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
 
@@ -452,16 +425,6 @@ cell_size = Vector2( 32, 32 )
 format = 1
 tile_data = PoolIntArray( 262162, 0, 0, 262163, 0, 0, 327699, 1, 0, 327704, 0, 0, 524294, 0, 0, 524311, 2, 0, 720922, 1, 0, 851978, 2, 0, 851984, 0, 0, 1114137, 1, 0 )
 
-[node name="Hazards" type="TileMap" parent="."]
-tile_set = SubResource( 23 )
-cell_size = Vector2( 32, 32 )
-collision_layer = 8
-collision_mask = 0
-format = 1
-__meta__ = {
-"_edit_lock_": true
-}
-
 [node name="Walls+Gates" type="TileMap" parent="."]
 tile_set = SubResource( 7 )
 format = 1
@@ -489,7 +452,15 @@ collision_mask = 3
 [node name="Enemy2" parent="." instance=ExtResource( 27 )]
 position = Vector2( 732, 270 )
 
+[node name="Styx" type="Area2D" parent="."]
+collision_layer = 128
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Styx"]
+polygon = PoolVector2Array( 286, 68, 287, 126, 319, 127, 323, 156, 384, 157, 386, 188, 415, 189, 416, 216, 510, 224, 508, 193, 541, 193, 541, 156, 573, 157, 573, 127, 636, 126, 640, 66 )
+disabled = true
+
 [connection signal="body_entered" from="Gate" to="Gate" method="_on_Gate_body_entered"]
 [connection signal="body_entered" from="Gate2" to="Gate2" method="_on_Gate_body_entered"]
 [connection signal="pressed" from="LevelCompleted" to="Gate" method="_on_LevelCompleted_pressed"]
 [connection signal="pressed" from="LevelCompleted" to="Gate2" method="_on_LevelCompleted_pressed"]
+[connection signal="body_entered" from="Styx" to="." method="_on_Styx_body_entered"]

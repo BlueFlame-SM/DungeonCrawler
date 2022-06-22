@@ -1,12 +1,14 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://tilemap/walls3.tres" type="TileSet" id=1]
 [ext_resource path="res://tilemap/rocks1.tres" type="TileSet" id=2]
 [ext_resource path="res://tilemap/gates4.tres" type="TileSet" id=3]
 [ext_resource path="res://tilemap/floor.tres" type="TileSet" id=4]
 [ext_resource path="res://gate/gate.tscn" type="PackedScene" id=5]
+[ext_resource path="res://levels/Level.gd" type="Script" id=6]
 
 [node name="Level5" type="Node2D"]
+script = ExtResource( 6 )
 
 [node name="Floor" type="TileMap" parent="."]
 tile_set = ExtResource( 4 )
@@ -34,36 +36,49 @@ format = 1
 tile_data = PoolIntArray( 7, 0, 0, 47, 0, 0, 589851, 1610612736, 0 )
 
 [node name="Gates_open" type="TileMap" parent="."]
+visible = false
 tile_set = ExtResource( 3 )
 cell_size = Vector2( 16, 64 )
 format = 1
 tile_data = PoolIntArray( 7, 1, 0, 47, 1, 0 )
 
 [node name="Gate" parent="." instance=ExtResource( 5 )]
-position = Vector2( 104, -24 )
+position = Vector2( 109, -19 )
 
 [node name="Gate2" parent="." instance=ExtResource( 5 )]
-position = Vector2( 744, -24 )
+position = Vector2( 744, -21 )
 
 [node name="LevelCompleted" type="CheckBox" parent="."]
 margin_right = 24.0
 margin_bottom = 24.0
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="River_collision" type="Area2D" parent="."]
 
-[node name="Upper_left" type="CollisionPolygon2D" parent="Area2D"]
+[node name="Upper_left" type="CollisionPolygon2D" parent="River_collision"]
+position = Vector2( 0, 17.1643 )
+scale = Vector2( 1, 0.879464 )
 polygon = PoolVector2Array( 192, 176, 192, 288, 256, 288, 256, 224, 416, 224, 416, 176 )
 
-[node name="Upper_right" type="CollisionPolygon2D" parent="Area2D"]
+[node name="Upper_right" type="CollisionPolygon2D" parent="River_collision"]
+position = Vector2( -3.05176e-05, 17.1643 )
+scale = Vector2( 1, 0.879464 )
 polygon = PoolVector2Array( 544, 176, 544, 224, 704, 224, 704, 288, 768, 288, 768, 176 )
 
-[node name="Lower_left" type="CollisionPolygon2D" parent="Area2D"]
+[node name="Lower_left" type="CollisionPolygon2D" parent="River_collision"]
+position = Vector2( 0, 30.9768 )
+scale = Vector2( 1, 0.907366 )
 polygon = PoolVector2Array( 192, 368, 192, 480, 416, 480, 416, 432, 256, 432, 256, 368 )
 
-[node name="Lower_right" type="CollisionPolygon2D" parent="Area2D"]
+[node name="Lower_right" type="CollisionPolygon2D" parent="River_collision"]
+position = Vector2( -3.05176e-05, 49.6375 )
+scale = Vector2( 1, 0.851562 )
 polygon = PoolVector2Array( 544, 432, 544, 480, 768, 480, 768, 368, 704, 368, 704, 432 )
+
+[node name="PlayerSpawn" type="Position2D" parent="."]
+position = Vector2( 478, 539 )
 
 [connection signal="body_entered" from="Gate" to="Gate" method="_on_Gate_body_entered"]
 [connection signal="body_entered" from="Gate2" to="Gate2" method="_on_Gate_body_entered"]
 [connection signal="pressed" from="LevelCompleted" to="Gate" method="_on_LevelCompleted_pressed"]
 [connection signal="pressed" from="LevelCompleted" to="Gate2" method="_on_LevelCompleted_pressed"]
+[connection signal="body_entered" from="River_collision" to="." method="_on_River_collision_body_entered"]

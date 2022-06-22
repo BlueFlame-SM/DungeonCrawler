@@ -1,12 +1,14 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://tilemap/walls3.tres" type="TileSet" id=1]
 [ext_resource path="res://tilemap/floor.tres" type="TileSet" id=2]
 [ext_resource path="res://tilemap/rocks1.tres" type="TileSet" id=3]
 [ext_resource path="res://gate/gate.tscn" type="PackedScene" id=4]
 [ext_resource path="res://tilemap/gates4.tres" type="TileSet" id=5]
+[ext_resource path="res://levels/Level.gd" type="Script" id=6]
 
 [node name="Level14" type="Node2D"]
+script = ExtResource( 6 )
 __meta__ = {
 "_edit_vertical_guides_": [ -184.0 ]
 }
@@ -39,16 +41,17 @@ format = 1
 tile_data = PoolIntArray( 7, 0, 0, 47, 0, 0, 589851, 1610612736, 0 )
 
 [node name="Gates_open" type="TileMap" parent="."]
+visible = false
 tile_set = ExtResource( 5 )
 cell_size = Vector2( 16, 64 )
 format = 1
 tile_data = PoolIntArray( 7, 1, 0, 47, 1, 0 )
 
 [node name="Gate" parent="." instance=ExtResource( 4 )]
-position = Vector2( 101, -24 )
+position = Vector2( 105, -21 )
 
 [node name="Gate2" parent="." instance=ExtResource( 4 )]
-position = Vector2( 744, -24 )
+position = Vector2( 744, -23 )
 
 [node name="LevelCompleted" type="CheckBox" parent="."]
 margin_left = 473.0
@@ -61,7 +64,10 @@ collision_layer = 8
 collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="River_collision"]
+position = Vector2( 6.10352e-05, 6.89545 )
+scale = Vector2( 1, 0.883523 )
 polygon = PoolVector2Array( 416, 112, 544, 112, 544, 144, 576, 144, 576, 256, 544, 256, 544, 288, 416, 288, 416, 256, 384, 256, 384, 144, 416, 144 )
+disabled = true
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="River_collision"]
 polygon = PoolVector2Array( 704, 576, 704, 496, 736, 496, 736, 464, 768, 464, 768, 432, 800, 432, 800, 400, 896, 400, 896, 576 )
@@ -69,7 +75,13 @@ polygon = PoolVector2Array( 704, 576, 704, 496, 736, 496, 736, 464, 768, 464, 76
 [node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="River_collision"]
 polygon = PoolVector2Array( 64, 400, 160, 400, 160, 432, 192, 432, 192, 464, 224, 464, 224, 496, 256, 496, 256, 576, 64, 576 )
 
+[node name="PlayerSpawn" type="Position2D" parent="."]
+position = Vector2( 478, 539 )
+
 [connection signal="body_entered" from="Gate" to="Gate" method="_on_Gate_body_entered"]
+[connection signal="gate_opens" from="Gate" to="." method="_on_gate_opens"]
 [connection signal="body_entered" from="Gate2" to="Gate2" method="_on_Gate_body_entered"]
+[connection signal="gate_opens" from="Gate2" to="." method="_on_gate_opens"]
 [connection signal="pressed" from="LevelCompleted" to="Gate" method="_on_LevelCompleted_pressed"]
 [connection signal="pressed" from="LevelCompleted" to="Gate2" method="_on_LevelCompleted_pressed"]
+[connection signal="body_entered" from="River_collision" to="." method="_on_River_collision_body_entered"]
