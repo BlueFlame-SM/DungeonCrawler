@@ -14,6 +14,8 @@ signal hit(amount)
 var attack_cooldown_time = 100
 var next_attack_time = 0
 
+func _ready():
+	speed = 3
 
 func playAnimations(velocity: Vector2, delta: float) -> void:
 	# Only move if attack animation is not playing
@@ -48,9 +50,13 @@ func playAnimations(velocity: Vector2, delta: float) -> void:
 			if lastDirection == Vector2.DOWN:
 				$AnimatedSprite.animation = "idle_down"
 			elif lastDirection == Vector2.UP:
-				$AnimatedSprite.play("back_slash")
+				$AnimatedSprite.play("idle_up")
+			elif lastDirection == Vector2.LEFT:
+				$AnimatedSprite.play("idle_left")
+				$AnimatedSprite.flip_h = false
 			else:
 				$AnimatedSprite.animation = "idle_left"
+				$AnimatedSprite.flip_h = true
 			$AnimatedSprite.flip_v = false
 	# Play attack animation based on direction
 	else:
