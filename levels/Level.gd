@@ -9,7 +9,6 @@ func enable_styx():
 	if $River_collision:
 		for child in $River_collision.get_children():
 			child.disabled = false
-			print(child.name)
 
 
 # Called when the node enters the scene tree for the first time.
@@ -22,14 +21,11 @@ func _ready():
 	add_child(timer)
 	timer.start()
 
-#func open_gates()
 
+func _on_gate_opens():
+	$Gates_open.visible = true
 
 
 func _on_River_collision_body_entered(body):
 	if body.name == "Player":
 		Player.die()
-
-
-func _on_gate_opens():
-	$Gates_open.visible = true
