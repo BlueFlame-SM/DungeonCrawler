@@ -61,19 +61,19 @@ collision_layer = 8
 collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="River_collision"]
-position = Vector2( 3.8147e-06, 4.5375 )
-scale = Vector2( 1, 0.871094 )
+position = Vector2( 7.6294e-06, 7.05834 )
+scale = Vector2( 1, 0.799479 )
 polygon = PoolVector2Array( 64, 64, 128, 64, 128, 160, 64, 160 )
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="River_collision"]
-position = Vector2( 0, 5.225 )
-scale = Vector2( 1, 0.851562 )
+position = Vector2( 0, 7.74581 )
+scale = Vector2( 1, 0.779948 )
 polygon = PoolVector2Array( 192, 64, 192, 160, 768, 160, 768, 64 )
 disabled = true
 
 [node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="River_collision"]
-position = Vector2( -0.000183105, 4.76667 )
-scale = Vector2( 1, 0.864583 )
+position = Vector2( -0.00036621, 7.28749 )
+scale = Vector2( 1, 0.792969 )
 polygon = PoolVector2Array( 832, 64, 896, 64, 896, 160, 832, 160 )
 
 [node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="River_collision"]

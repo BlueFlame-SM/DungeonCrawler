@@ -61,13 +61,13 @@ polygon = PoolVector2Array( 64, 64, 64, 576, 96, 576, 96, 64 )
 polygon = PoolVector2Array( 864, 64, 864, 576, 896, 576, 896, 64 )
 
 [node name="Upper" type="CollisionPolygon2D" parent="River_collision"]
-position = Vector2( 0, 93.6625 )
-scale = Vector2( 1, 0.539063 )
+position = Vector2( 1, 53.6518 )
+scale = Vector2( 1, 0.630893 )
 polygon = PoolVector2Array( 288, 208, 288, 224, 672, 224, 672, 208 )
 
 [node name="Lower" type="CollisionPolygon2D" parent="River_collision"]
-position = Vector2( 0, 196.913 )
-scale = Vector2( 1, 0.539062 )
+position = Vector2( 1.93126, 248.124 )
+scale = Vector2( 1.00618, 0.390628 )
 polygon = PoolVector2Array( 288, 432, 288, 448, 672, 448, 672, 432 )
 
 [node name="PlayerSpawn" type="Position2D" parent="."]

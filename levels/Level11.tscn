@@ -66,8 +66,8 @@ scale = Vector2( 1, 0.861328 )
 polygon = PoolVector2Array( 608, 64, 608, 144, 576, 144, 576, 176, 544, 176, 544, 192, 672, 192, 672, 160, 704, 160, 704, 128, 736, 128, 736, 64 )
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="River_collision"]
-position = Vector2( 1, 24 )
-scale = Vector2( 1, 0.890625 )
+position = Vector2( 1, 45 )
+scale = Vector2( 1, 0.847796 )
 polygon = PoolVector2Array( 576, 224, 664, 224, 672, 224, 672, 240, 704, 240, 704, 272, 736, 272, 736, 320, 704, 320, 704, 352, 672, 352, 672, 432, 704, 432, 704, 448, 576, 448, 576, 416, 544, 416, 544, 368, 576, 368, 576, 336, 608, 336, 608, 256, 576, 256 )
 
 [node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="River_collision"]
