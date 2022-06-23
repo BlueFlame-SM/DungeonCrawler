@@ -14,7 +14,6 @@ func _ready():
 
 
 func goto_scene(path, dead=false):
-	print(path)
 	LevelSwitcher.followingScene = path
 	player.playback_speed = 1
 	if !dead:
@@ -24,7 +23,6 @@ func goto_scene(path, dead=false):
 
 
 func _deferred_goto_scene(path):
-	print(path)
 	get_tree().change_scene(path)
 
 	# It is now safe to remove the current scene
