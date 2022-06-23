@@ -19,6 +19,8 @@ func _ready():
 		spawn_enemies()
 	elif GlobalVars.level_type == "loot":
 		spawn_chests()
+	elif GlobalVars.level_type == "start":
+		Player._set_health(10)
 	Player.position = $PlayerSpawn.position
 	Player.can_move = true
 	timer.connect("timeout",self,"enable_styx")

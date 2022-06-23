@@ -1,0 +1,114 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://interface/fonts/Lato-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://interface/main_menu/background.jpg" type="Texture" id=2]
+[ext_resource path="res://interface/settings_menu.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 27
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 23
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 23
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 23
+font_data = ExtResource( 1 )
+
+[node name="SettingsMenu" type="Popup"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 100.0
+margin_top = 100.0
+margin_right = -100.0
+margin_bottom = -100.0
+script = ExtResource( 3 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 2 )
+expand = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 100.0
+margin_top = 30.0
+margin_right = -100.0
+margin_bottom = -30.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_right = 560.0
+margin_bottom = 380.0
+custom_constants/separation = 10
+alignment = 1
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer"]
+margin_right = 560.0
+margin_bottom = 33.0
+custom_fonts/font = SubResource( 1 )
+text = "Settings"
+align = 1
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 43.0
+margin_right = 560.0
+margin_bottom = 380.0
+size_flags_vertical = 3
+custom_constants/vseparation = 10
+custom_constants/hseparation = 350
+columns = 2
+
+[node name="DisplayLabel" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+margin_top = 4.0
+margin_right = 109.0
+margin_bottom = 32.0
+custom_fonts/font = SubResource( 2 )
+text = "Full screen"
+
+[node name="DisplayCheck" type="CheckBox" parent="MarginContainer/VBoxContainer/GridContainer"]
+margin_left = 459.0
+margin_right = 521.0
+margin_bottom = 36.0
+focus_neighbour_top = NodePath("../../../../MarginContainer2/BackButton")
+custom_fonts/font = SubResource( 5 )
+text = "Off"
+
+[node name="VsyncLabel" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+margin_top = 50.0
+margin_right = 109.0
+margin_bottom = 78.0
+custom_fonts/font = SubResource( 2 )
+text = "Vsync"
+
+[node name="VsyncCheck" type="CheckBox" parent="MarginContainer/VBoxContainer/GridContainer"]
+margin_left = 459.0
+margin_top = 46.0
+margin_right = 521.0
+margin_bottom = 82.0
+focus_neighbour_bottom = NodePath("../../../../MarginContainer2/BackButton")
+custom_fonts/font = SubResource( 6 )
+text = "Off"
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+margin_left = 325.0
+margin_top = 390.0
+margin_right = 435.0
+margin_bottom = 410.0
+
+[node name="BackButton" type="Button" parent="MarginContainer2"]
+margin_right = 110.0
+margin_bottom = 20.0
+focus_neighbour_top = NodePath("../../MarginContainer/VBoxContainer/GridContainer/VsyncCheck")
+focus_neighbour_bottom = NodePath("../../MarginContainer/VBoxContainer/GridContainer/DisplayCheck")
+text = "Back"
+
+[connection signal="toggled" from="MarginContainer/VBoxContainer/GridContainer/DisplayCheck" to="." method="_on_DisplayCheck_toggled"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/GridContainer/VsyncCheck" to="." method="_on_VsyncCheck_toggled"]
+[connection signal="pressed" from="MarginContainer2/BackButton" to="." method="_on_BackButton_pressed"]

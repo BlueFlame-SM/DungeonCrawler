@@ -33,7 +33,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Dungeon Crawler"
-run/main_scene="res://levels/LevelStart.tscn"
+run/main_scene="res://interface/main_menu.tscn"
 config/icon="res://assets/icon.png"
 
 [autoload]
@@ -47,6 +47,7 @@ Player="*res://player/player.tscn"
 GlobalVars="*res://global_vars.gd"
 PlayerInventory="*res://player_inventory/player_inventory.gd"
 JsonData="*res://other/json_data.gd"
+Gui="*res://interface/gui.tscn"
 
 [display]
 

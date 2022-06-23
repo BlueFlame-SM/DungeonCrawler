@@ -117,6 +117,7 @@ func _on_Weapon_body_entered(body):
 
 func die():
 	self.can_move = false
+	do_damage(health)
 	GlobalVars.level_type = "start"
 	LevelSwitcher.goto_scene("res://levels/LevelStart.tscn", true)
 #
