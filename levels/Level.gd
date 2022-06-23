@@ -29,3 +29,4 @@ func _on_gate_opens():
 func _on_River_collision_body_entered(body):
 	if body.name == "Player":
 		Player.die()
+

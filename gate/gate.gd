@@ -2,10 +2,13 @@
 
 """
 TODO:
-	- make gates appear different based on whats behind it
+	- make gates appear different based on whats behind it (DONE)
 	- Make loot or enemy spawn in level.
-	- Dont select current level (done)
-	- Fix animation issue
+	- Dont select current level (DONE)
+	- Fix animation issue (DONE)
+	- Sound on slash
+	- Level script detects if level completed (chest opened/enemies defeated)
+	- Enemy can kill player (pls outsource)
 """
 
 extends Area2D
@@ -22,16 +25,26 @@ var cur_lvl_nr
 func _ready():
 #	dit werkt nog niet? snap die seed niet echt
 	rng.randomize()
+	$BossOpen.visible = false
+	$LootOpen.visible = false
 	next_scene_name = det_gate_type()
+
 
 func det_gate_type():
 	cur_lvl_nr = int(get_parent().name.right(5))
 	if rng.randf_range(0, 1) < 0.3:
 		loot_levels.erase(cur_lvl_nr)
 		nxt_lvl_nr = loot_levels[randi() % loot_levels.size()]
+		print("loot icon")
+		$LootOpen.visible = true
+		print($LootOpen)
 	else:
 		combat_levels.erase(cur_lvl_nr)
 		nxt_lvl_nr = combat_levels[randi() % combat_levels.size()]
+		print("boss icon")
+		$BossOpen.visible = true
+		print($BossOpen)
+
 	return "res://levels/Level" + String(nxt_lvl_nr) + ".tscn"
 
 

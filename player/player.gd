@@ -99,7 +99,6 @@ func _physics_process(delta: float) -> void:
 func _on_AnimatedSprite_animation_finished():
 	# If attack animation is done, player can move again
 	playAttack = false
-	$AnimatedSprite.play("idle_left")
 	weapon.disableHurtBox()
 
 

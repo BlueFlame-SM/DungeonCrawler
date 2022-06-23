@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://tilemap/walls3.tres" type="TileSet" id=1]
 [ext_resource path="res://tilemap/floor.tres" type="TileSet" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://tilemap/gates4.tres" type="TileSet" id=5]
 [ext_resource path="res://levels/Level.gd" type="Script" id=6]
 [ext_resource path="res://tilemap/Gate_Loot_Icon.png" type="Texture" id=7]
+[ext_resource path="res://gate/gate.gd" type="Script" id=8]
+[ext_resource path="res://tilemap/Gate_Boss_Open_Icon.png" type="Texture" id=9]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 94, 17, 0, 20, 0, 0, 96, 0 )
@@ -32,6 +34,41 @@ points = PoolVector2Array( 94, 17, 0, 20, 0, 0, 96, 0 )
 "shape": SubResource( 1 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
+0/z_index = 0
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 24.25, 27 )
+
+[sub_resource type="TileSet" id=3]
+0/name = "Gate_Boss_Open_Icon.png 0"
+0/texture = ExtResource( 9 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 96, 64 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+
+[sub_resource type="TileSet" id=5]
+0/name = "Gate_Loot_Icon.png 0"
+0/texture = ExtResource( 7 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 96, 64 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
 0/z_index = 0
 
 [node name="Level14" type="Node2D"]
@@ -67,13 +104,6 @@ cell_size = Vector2( 16, 64 )
 format = 1
 tile_data = PoolIntArray( 7, 0, 0, 47, 0, 0, 589851, 1610612736, 0 )
 
-[node name="Loot" type="TileMap" parent="Gates_closed"]
-visible = false
-tile_set = SubResource( 2 )
-cell_size = Vector2( 16, 64 )
-format = 1
-tile_data = PoolIntArray( 7, 0, 0, 47, 0, 0 )
-
 [node name="Gates_open" type="TileMap" parent="."]
 visible = false
 tile_set = ExtResource( 5 )
@@ -88,10 +118,29 @@ format = 1
 tile_data = PoolIntArray( 7, 0, 0, 47, 0, 0 )
 
 [node name="Gate" parent="." instance=ExtResource( 4 )]
-position = Vector2( 105, -21 )
+position = Vector2( 106, -1 )
 
-[node name="Gate2" parent="." instance=ExtResource( 4 )]
-position = Vector2( 744, -23 )
+[node name="Gate_right" type="Area2D" parent="."]
+position = Vector2( 742, -20 )
+script = ExtResource( 8 )
+
+[node name="GateCollision" type="CollisionShape2D" parent="Gate_right"]
+position = Vector2( 58, 60 )
+shape = SubResource( 4 )
+
+[node name="BossOpen" type="TileMap" parent="Gate_right"]
+visible = false
+position = Vector2( 10, 20 )
+tile_set = SubResource( 3 )
+format = 1
+tile_data = PoolIntArray( 0, 0, 0 )
+
+[node name="LootOpen" type="TileMap" parent="Gate_right"]
+visible = false
+position = Vector2( 10, 20 )
+tile_set = SubResource( 5 )
+format = 1
+tile_data = PoolIntArray( 0, 0, 0 )
 
 [node name="LevelCompleted" type="CheckBox" parent="."]
 margin_left = 473.0
@@ -120,8 +169,6 @@ position = Vector2( 478, 539 )
 
 [connection signal="body_entered" from="Gate" to="Gate" method="_on_Gate_body_entered"]
 [connection signal="gate_opens" from="Gate" to="." method="_on_gate_opens"]
-[connection signal="body_entered" from="Gate2" to="Gate2" method="_on_Gate_body_entered"]
-[connection signal="gate_opens" from="Gate2" to="." method="_on_gate_opens"]
+[connection signal="body_entered" from="Gate_right" to="Gate_right" method="_on_Gate_body_entered"]
 [connection signal="pressed" from="LevelCompleted" to="Gate" method="_on_LevelCompleted_pressed"]
-[connection signal="pressed" from="LevelCompleted" to="Gate2" method="_on_LevelCompleted_pressed"]
 [connection signal="body_entered" from="River_collision" to="." method="_on_River_collision_body_entered"]
