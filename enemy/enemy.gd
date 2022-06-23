@@ -1,4 +1,3 @@
-
 extends "res://character/character.gd"
 
 enum states {PATROL, CHASE, ATTACK, KNOCKBACK, DEAD}
@@ -17,18 +16,19 @@ onready var player = get_node("../Player")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	speed = 4
 	screen_size = get_viewport_rect().size
 	"""Kan pas met nieuwe tileset, laten staan!!!"""
-#	yield(get_tree(), "idle_frame")
-#	var tree = get_tree()
-#	if tree.has_group("LevelNavigation"):
-#		levelNavigation = tree.get_nodes_in_group("LevelNavigation")[0]
-#	if tree.has_group("Player"):
-#		player = tree.get_nodes_in_group("Player")[0]
+	yield(get_tree(), "idle_frame")
+	var tree = get_tree()
+	if tree.has_group("LevelNavigation"):
+		levelNavigation = tree.get_nodes_in_group("LevelNavigation")[0]
+	if tree.has_group("Player"):
+		player = tree.get_nodes_in_group("Player")[0]
 
 func _physics_process(delta):
 	choose_action()
-	velocity = move_and_slide(move_and_slide(move_in_direction(velocity)))
+	velocity = move_and_slide(move_in_direction(velocity))
 	position.x = clamp(position.x, 0, screen_size.x)
 	position.y = clamp(position.y, 0, screen_size.y)
 	if health == 0:
@@ -60,11 +60,11 @@ func choose_action():
 			state = states.KNOCKBACK
 		states.CHASE:
 			""" Weer tileset"""
-#			if player and levelNavigation:
-#				generate_path()
-#				navigate()
-			var player_direction = (Player.get_position() - self.position).normalized()
-			velocity = position.direction_to(Player.position) * speed
+			if player and levelNavigation:
+				generate_path()
+				navigate()
+#			var player_direction = (Player.get_position() - self.position).normalized()
+#			velocity = position.direction_to(Player.position) * speed
 		states.KNOCKBACK:
 			var player_direction = (Player.get_position() - self.position).normalized()
 			velocity = position.direction_to(Player.position) * -200
@@ -79,14 +79,14 @@ func _on_Player_hit(amount):
 """
 Functies voor pathfinding zodat het niet achter bosjes blijft zitten, kan pas met nieuwe tileset.
 """
-#func navigate():	# Define the next position to go to
-#	if path.size() > 0:
-#		velocity = global_position.direction_to(path[1]) * speed
-#
-#	# If the destination is reached, remove this path from the array
-#	if global_position == path[0]:
-#		path.pop_front()
-#
-#func generate_path():	# It generates the path
-#	if levelNavigation != null and player != null:
-#		path = levelNavigation.get_simple_path(global_position, player.global_position, false)
+func navigate():	# Define the next position to go to
+	if path.size() > 0:
+		velocity = global_position.direction_to(path[1]) * speed
+
+	# If the destination is reached, remove this path from the array
+	if global_position == path[0]:
+		path.pop_front()
+
+func generate_path():	# It generates the path
+	if levelNavigation != null and player != null:
+		path = levelNavigation.get_simple_path(global_position, player.global_position, false)
