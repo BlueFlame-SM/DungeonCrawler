@@ -17,6 +17,8 @@ func enable_styx():
 func _ready():
 	if GlobalVars.level_type == "boss":
 		spawn_enemies()
+	elif GlobalVars.level_type == "loot":
+		spawn_chests()
 	Player.position = $PlayerSpawn.position
 	Player.can_move = true
 	timer.connect("timeout",self,"enable_styx")
@@ -32,8 +34,10 @@ func spawn_enemies():
 	add_child(enemy)
 
 func spawn_chests():
-	pass
-
+	print("spawning chest")
+	var chest = load("res://chest/Chest.tscn").instance()
+	chest.position = $EnemySpawn.position
+	add_child(chest)
 
 func _on_River_collision_body_entered(body):
 	if body.name == "Player":

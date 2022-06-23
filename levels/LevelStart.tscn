@@ -81,7 +81,7 @@ position = Vector2( 485, 114 )
 position = Vector2( 424, -18 )
 script = ExtResource( 5 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StartGate"]
+[node name="GateCollision" type="CollisionShape2D" parent="StartGate"]
 position = Vector2( 58, 55.5 )
 shape = SubResource( 1 )
 

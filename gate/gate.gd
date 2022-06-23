@@ -6,11 +6,12 @@ TODO:
 	- Fix bug that doesnt make gate appear open in level 5 (DONE)
 	- Dont select current level (DONE)
 	- Fix animation issue (DONE)
+	- Fix bugs in gate differentiation. (DONE)
+	- Fix double level, spawns enemies (i think fixed)
 
+	- Get chest from misha fork and spawn in loot levels
 	- Make loot or enemy spawn in level.
 	- Level script detects if level completed (chest opened/enemies defeated)
-	- Fix double level, spawns enemies???
-	- Fix bugs in gate differentiation.
 	- Enemy can kill player (pls outsource)
 	- Multiple enemies???? Count them
 	- On death, dont play gate close but some sort of dying sound.
@@ -34,6 +35,8 @@ func _ready():
 	rng.randomize()
 	$BossOpen.visible = false
 	$LootOpen.visible = false
+	if self.name != "StartGate":
+		$GateCollision.disabled = true
 	next_scene_name = det_gate_type()
 
 
@@ -41,15 +44,16 @@ func det_gate_type():
 	cur_lvl_nr = int(get_parent().name.right(5))
 	combat_levels.erase(cur_lvl_nr)
 	loot_levels.erase(cur_lvl_nr)
-	if rng.randf_range(0, 1) < 0.3:
+	if rng.randf_range(0, 1) < 0.8:
 		nxt_lvl_nr = loot_levels[randi() % loot_levels.size()]
 		$LootOpen.visible = true
 		gate_type = "loot"
-
 	else:
 		nxt_lvl_nr = combat_levels[randi() % combat_levels.size()]
 		$BossOpen.visible = true
 		gate_type = "boss"
+	print("my gate type is")
+	print(gate_type)
 
 	return "res://levels/Level" + String(nxt_lvl_nr) + ".tscn"
 
@@ -58,10 +62,9 @@ func det_gate_type():
 # If the player collides with a gate collisionbox, go to scene
 func _on_Gate_body_entered(body):
 	if body.name == "Player":
-		print("gate body entered")
 		Player.can_move = false
 		print(gate_type)
-		print(self.name)
+		print(get_parent().name)
 		GlobalVars.level_type = gate_type
 		print("going to ")
 		print(next_scene_name)

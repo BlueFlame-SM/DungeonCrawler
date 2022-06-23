@@ -15,7 +15,7 @@ func _ready():
 	# This line loads the stackszise of a item from the dictionary.
 	var stack_size = int(JsonData.item_data[item_name]["StackSize"])
 	item_quantity = randi() % stack_size + 1
-	
+
 	if stack_size == 1:
 		$Label.visible = false
 	else:
@@ -25,19 +25,19 @@ func set_item(nm, qt):
 	item_name = nm
 	item_quantity = qt
 	$AnimatedSprite.animation = item_name
-	
+
 	var stack_size = int(JsonData.item_data[item_name]["StackSize"])
 	if stack_size == 1:
 		$Label.visible = false
 	else:
 		$Label.visible = true
 		$Label.text = String(item_quantity)
-		
+
 # add item to stack.
 func add_item_quantity(amount_to_add):
 	item_quantity += amount_to_add
 	$Label.text = String(item_quantity)
-	
+
 # remove item from stack.
 func decrease_item_quantity(amount_to_remove):
 	item_quantity -= amount_to_remove

@@ -15,7 +15,7 @@ var attack_cooldown_time = 100
 var next_attack_time = 0
 
 func _ready():
-	speed = 4
+	speed = 5
 
 func playAnimations(velocity: Vector2, delta: float) -> void:
 	# Only move if attack animation is not playing
@@ -90,6 +90,8 @@ func _physics_process(delta: float) -> void:
 				weapon.attack(lastDirection)
 				# Add cooldown time to current time
 				next_attack_time = now + attack_cooldown_time
+		if Input.is_action_just_pressed("inventory"):
+			$CanvasLayer/Inventory.visible = !$CanvasLayer/Inventory.visible
 
 	var velocity = move_and_slide(move_in_direction(direction))
 	position += velocity * delta
@@ -115,6 +117,7 @@ func _on_Weapon_body_entered(body):
 
 func die():
 	self.can_move = false
+	GlobalVars.level_type = "start"
 	LevelSwitcher.goto_scene("res://levels/LevelStart.tscn", true)
 #
 #func change_collision():
@@ -131,8 +134,22 @@ func die():
 
 # Checks for input.
 func _input(event):
-	if event.is_action_pressed("interact"):
+	if event.is_action_pressed("pick_up"):
 		var items = $Pickup.get_overlapping_bodies()
 		if items.size() > 0:
 			var item = items[0]
 			item.pick_up_item(self)
+
+
+func _on_Inventory_use_i():
+	var item = JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["ItemCategory"]
+	if item == "Consumable":
+		Player._set_health(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["AddHealth"])
+		print(health)
+
+func _on_Inventory_use_w():
+	var item = JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["ItemCategory"]
+	if item == "Weapon":
+		Player._set_damage(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Damage"])
+	# TODO: De hoeveelheid damage die een wapen geeft moet gekoppeld worden aan stats.
+	# Dat doe je zoals bij on_Inventory_use_i.
