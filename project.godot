@@ -44,6 +44,7 @@ UserData="*res://addons/github-integration/scripts/user_data.gd"
 RestHandler="*res://addons/github-integration/scenes/RestHandler.tscn"
 LevelSwitcher="*res://level_switcher/LevelSwitcher.tscn"
 Player="*res://player/player.tscn"
+GlobalVars="*res://global_vars.gd"
 
 [display]
 

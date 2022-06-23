@@ -23,8 +23,6 @@ func goto_scene(path, dead=false):
 
 
 func _deferred_goto_scene(path):
-#	get_tree().change_scene(path)
-
 	# It is now safe to remove the current scene
 	currentScene.free()
 

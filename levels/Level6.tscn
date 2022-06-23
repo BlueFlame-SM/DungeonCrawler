@@ -129,8 +129,12 @@ polygon = PoolVector2Array( 640, 208, 640, 320, 704, 320, 704, 288, 736, 288, 73
 [node name="PlayerSpawn" type="Position2D" parent="."]
 position = Vector2( 478, 539 )
 
+[node name="EnemySpawn" type="Position2D" parent="."]
+position = Vector2( 594, 128 )
+
+[connection signal="gates_open" from="." to="Gate" method="_on_gates_open"]
+[connection signal="gates_open" from="." to="Gate_right" method="_on_gates_open"]
 [connection signal="body_entered" from="Gate" to="Gate" method="_on_Gate_body_entered"]
-[connection signal="gate_opens" from="Gate" to="." method="_on_gate_opens"]
 [connection signal="body_entered" from="Gate_right" to="Gate_right" method="_on_Gate_body_entered"]
-[connection signal="pressed" from="LevelCompleted" to="Gate" method="_on_LevelCompleted_pressed"]
+[connection signal="pressed" from="LevelCompleted" to="." method="_on_LevelCompleted_pressed"]
 [connection signal="body_entered" from="River_collision" to="." method="_on_River_collision_body_entered"]

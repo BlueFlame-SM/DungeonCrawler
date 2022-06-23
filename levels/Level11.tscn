@@ -83,7 +83,7 @@ format = 1
 tile_data = PoolIntArray( 7, 1, 0, 47, 1, 0 )
 
 [node name="Gate" parent="." instance=ExtResource( 4 )]
-position = Vector2( 107, 0 )
+position = Vector2( 111, 1 )
 
 [node name="Gate_right" type="Area2D" parent="."]
 position = Vector2( 742, -20 )
@@ -133,8 +133,12 @@ polygon = PoolVector2Array( 608, 480, 736, 480, 736, 512, 704, 512, 704, 544, 67
 [node name="PlayerSpawn" type="Position2D" parent="."]
 position = Vector2( 478, 539 )
 
+[node name="EnemySpawn" type="Position2D" parent="."]
+position = Vector2( 135, 307 )
+
+[connection signal="gates_open" from="." to="Gate" method="_on_gates_open"]
+[connection signal="gates_open" from="." to="Gate_right" method="_on_gates_open"]
 [connection signal="body_entered" from="Gate" to="Gate" method="_on_Gate_body_entered"]
-[connection signal="gate_opens" from="Gate" to="." method="_on_gate_opens"]
 [connection signal="body_entered" from="Gate_right" to="Gate_right" method="_on_Gate_body_entered"]
-[connection signal="pressed" from="LevelCompleted" to="Gate" method="_on_LevelCompleted_pressed"]
+[connection signal="pressed" from="LevelCompleted" to="." method="_on_LevelCompleted_pressed"]
 [connection signal="body_entered" from="River_collision" to="." method="_on_River_collision_body_entered"]
