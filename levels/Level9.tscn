@@ -76,12 +76,9 @@ polygon = PoolVector2Array( 288, 432, 288, 448, 672, 448, 672, 432 )
 [node name="PlayerSpawn" type="Position2D" parent="."]
 position = Vector2( 478, 539 )
 
-<<<<<<< HEAD
 [node name="Enemy" parent="." instance=ExtResource( 7 )]
 position = Vector2( 210, 279 )
 
-=======
->>>>>>> 88fd2e0cdc79165c6919f499481f0a862ad5255f
 [connection signal="body_entered" from="Gate" to="Gate" method="_on_Gate_body_entered"]
 [connection signal="gate_opens" from="Gate" to="." method="_on_gate_opens"]
 [connection signal="body_entered" from="Gate2" to="Gate2" method="_on_Gate_body_entered"]

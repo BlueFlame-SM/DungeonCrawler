@@ -74,7 +74,6 @@ modulate = Color( 0.984314, 0.984314, 0.984314, 1 )
 position = Vector2( 0, -12 )
 scale = Vector2( 4, 4 )
 frames = SubResource( 10 )
-frame = 4
 playing = true
 
 [node name="Shadow" type="AnimatedSprite" parent="."]
