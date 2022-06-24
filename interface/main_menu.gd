@@ -23,8 +23,6 @@ func _on_NewGame_pressed():
 	"""
 	LevelSwitcher.goto_scene("res://levels/LevelStart.tscn")
 	Player.show()
-	Gui.get_child(0).show()
-
 
 func _on_Quit_pressed():
 	"""

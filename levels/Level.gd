@@ -33,7 +33,7 @@ func _ready():
 
 func spawn_enemies():
 	print("spawning enemy")
-	var enemy = load("res://enemy/enemy.tscn").instance()
+	var enemy = load("res://enemy_dash/enemy_dash.tscn").instance()
 	enemy.position = $EnemySpawn.position
 	add_child(enemy)
 #	This becomes relevant if you want to spawn more than 1 enemy. Not currently implemented.
