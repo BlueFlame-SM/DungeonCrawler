@@ -5,6 +5,7 @@ export (String) var level_name = "level"
 var timer = Timer.new()
 var challenge_counter = 0
 signal gates_open()
+var rng = RandomNumberGenerator.new()
 
 func enable_styx():
 	if $River_collision:
@@ -16,6 +17,8 @@ func enable_styx():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	GlobalVars.level_counter += 1
+	rng.randomize()
 	GlobalVars.connect("challenge_down", self, "_on_challenge_down")
 
 	if GlobalVars.level_type == "boss":
@@ -33,7 +36,11 @@ func _ready():
 
 func spawn_enemies():
 	print("spawning enemy")
-	var enemy = load("res://enemy_range/enemy_range.tscn").instance()
+	var enemy
+	if rng.randf_range(0, 1) < 0.5:
+		enemy = load("res://enemy_range/enemy_range.tscn").instance()
+	else:
+		enemy = load("res://enemy/enemy.tscn").instance()
 	enemy.position = $EnemySpawn.position
 	add_child(enemy)
 #	This becomes relevant if you want to spawn more than 1 enemy. Not currently implemented.

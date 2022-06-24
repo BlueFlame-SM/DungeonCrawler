@@ -90,7 +90,7 @@ position = Vector2( 739, -17 )
 script = ExtResource( 7 )
 
 [node name="GateCollision" type="CollisionShape2D" parent="Gate_right"]
-position = Vector2( -4, 53 )
+position = Vector2( -4, 55 )
 shape = SubResource( 4 )
 
 [node name="BossOpen" type="TileMap" parent="Gate_right"]
@@ -101,6 +101,7 @@ format = 1
 tile_data = PoolIntArray( 0, 0, 0 )
 
 [node name="LootOpen" type="TileMap" parent="Gate_right"]
+visible = false
 position = Vector2( -51, 16 )
 tile_set = SubResource( 5 )
 format = 1
