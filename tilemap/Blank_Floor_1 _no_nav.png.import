@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/River_Edge_Left.png-8f715b2f99cda66d3b3a826167b47504.stex"
+path="res://.import/Blank_Floor_1 _no_nav.png-1204175d0d9f40dc4dbd9681f39a1b00.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://TileMap_Nina/River_Edge_Left.png"
-dest_files=[ "res://.import/River_Edge_Left.png-8f715b2f99cda66d3b3a826167b47504.stex" ]
+source_file="res://tilemap/Blank_Floor_1 _no_nav.png"
+dest_files=[ "res://.import/Blank_Floor_1 _no_nav.png-1204175d0d9f40dc4dbd9681f39a1b00.stex" ]
 
 [params]
 

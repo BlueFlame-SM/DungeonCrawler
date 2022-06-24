@@ -1,16 +1,16 @@
-
 extends "res://character/character.gd"
 
-enum states {PATROL, FIRE, DEAD}
+enum states {PATROL, FIRE, DEAD, CHASE}
 
 var state = states.PATROL
 var time = 1
 var screen_size
 var velocity = Vector2()
 var knockback = Vector2.ZERO
-var fire = null
+var fire = false
 
 onready var timer = $Timer
+var fire_counter = 0
 
 var path: Array = []
 var levelNavigation: Navigation2D = null
@@ -21,11 +21,19 @@ onready var BULLET_SCENE = preload("res://bullet/bullet.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	speed = 4
 	screen_size = get_viewport_rect().size
+	"""Kan pas met nieuwe tileset, laten staan!!!"""
+	yield(get_tree(), "idle_frame")
+	var tree = get_tree()
+	if tree.has_group("LevelNavigation"):
+		levelNavigation = tree.get_nodes_in_group("LevelNavigation")[0]
+	if tree.has_group("Player"):
+		player = tree.get_nodes_in_group("Player")[0]
 
 func _physics_process(delta):
 	choose_action()
-	velocity = move_and_slide(move_and_slide(move_in_direction(velocity)))
+	velocity = move_and_slide(move_in_direction(velocity))
 	position.x = clamp(position.x, 0, screen_size.x)
 	position.y = clamp(position.y, 0, screen_size.y)
 	if health == 0:
@@ -52,11 +60,40 @@ func choose_action():
 		states.PATROL:
 			velocity = Vector2.ZERO
 		states.FIRE:
+			velocity = Vector2.ZERO
 			pass
+		states.CHASE:
+			""" Weer tileset"""
+			if player and levelNavigation:
+				generate_path()
+				navigate()
 
 func _on_Range_body_entered(body):
+	state = states.CHASE
+
+func _on_FiringRange_body_entered(body):
+	state = states.FIRE
+
+#	if fire_counter == 0:
+#		fire()
+	fire()
+
 	fire = true
 	timer.start(0)
+
+func _on_FiringRange_body_exited(body):
+	state = states.CHASE
+	fire = false
+
+#	fire_counter = 1
+	timer.stop()
+
+func _on_Timer_timeout():
+#	if fire_counter == 1:
+#		fire_counter = 0
+##		timer.stop()
+	if fire != false:
+		fire()
 
 
 func fire():
@@ -65,8 +102,18 @@ func fire():
 	get_parent().add_child(bullet)
 
 
-func _on_Timer_timeout():
-	if fire != null:
-		fire()
+"""
+Functies voor pathfinding zodat het niet achter bosjes blijft zitten, kan pas met nieuwe tileset.
+"""
+func navigate():	# Define the next position to go to
+	if path.size() > 0:
+		velocity = global_position.direction_to(path[1]) * speed
 
+	# If the destination is reached, remove this path from the array
+	if global_position == path[0]:
+		path.pop_front()
 
+# Generates a path to the player.
+func generate_path():
+	if levelNavigation != null and player != null:
+		path = levelNavigation.get_simple_path(global_position, player.global_position, false)

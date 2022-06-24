@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://enemy/sprites/Bat.png" type="Texture" id=1]
 [ext_resource path="res://enemy/enemy.gd" type="Script" id=2]
@@ -51,10 +51,13 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="CircleShape2D" id=17]
+radius = 55.0364
+
 [node name="Enemy" type="KinematicBody2D"]
 position = Vector2( 100, 100 )
 collision_layer = 4
-collision_mask = 11
+collision_mask = 10
 script = ExtResource( 2 )
 
 [node name="Range" type="Area2D" parent="."]
@@ -82,5 +85,18 @@ position = Vector2( 0, 20 )
 scale = Vector2( 3, 3 )
 frames = SubResource( 11 )
 
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource( 17 )
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="body_entered" from="Range" to="." method="_on_Range_body_entered"]
 [connection signal="body_exited" from="Range" to="." method="_on_Range_body_exited"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_body_entered"]
+[connection signal="body_exited" from="Hitbox" to="." method="_on_Hitbox_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

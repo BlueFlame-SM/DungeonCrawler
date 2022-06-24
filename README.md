@@ -18,3 +18,6 @@ https://docs.google.com/document/d/1oVRcXGDCauN2EQRkg_3sK2dU6C8ZlpkrIgdM-7srU_4/
 
 Enemies:
 https://docs.google.com/document/d/1cmWADQ-cFN5owzd0HY3cwC2X2t8OprcN5GLwvYnreEM/edit?usp=sharing
+
+Agenda:
+https://docs.google.com/spreadsheets/d/1eO9IDSayotqlMNERWH-zEk_pjOx9J_3VT0gsljjKTYg/edit#gid=0
