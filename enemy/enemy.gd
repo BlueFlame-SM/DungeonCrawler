@@ -12,7 +12,10 @@ var path: Array = []
 var levelNavigation: Navigation2D = null
 
 onready var player = get_node("../Player")
+signal enemy_hit
 
+var attack_counter = 0
+onready var timer = $Timer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -57,14 +60,13 @@ func choose_action():
 			velocity = Vector2.ZERO
 		states.ATTACK:
 			velocity = Vector2.ZERO
-			state = states.KNOCKBACK
+			if attack_counter == 0:
+				_damage_player()
 		states.CHASE:
 			""" Weer tileset"""
 			if player and levelNavigation:
 				generate_path()
 				navigate()
-#			var player_direction = (Player.get_position() - self.position).normalized()
-#			velocity = position.direction_to(Player.position) * speed
 		states.KNOCKBACK:
 			var player_direction = (Player.get_position() - self.position).normalized()
 			velocity = position.direction_to(Player.position) * -200
@@ -87,6 +89,32 @@ func navigate():	# Define the next position to go to
 	if global_position == path[0]:
 		path.pop_front()
 
-func generate_path():	# It generates the path
+# Generates a path to the player.
+func generate_path():
 	if levelNavigation != null and player != null:
 		path = levelNavigation.get_simple_path(global_position, player.global_position, false)
+
+# When the player enters Area2D named Hitbox, the enemy will change to ATTACK mode.
+func _on_Hitbox_body_entered(body):
+	print("enter")
+	state = states.ATTACK
+
+# When the player exits Area2D named Hitbox, the enemy will change to CHASE mode.
+func _on_Hitbox_body_exited(body):
+	print("exit")
+	state = states.CHASE
+
+"""
+Gives damage to the player equal to the damage stat of the enemy
+and starts a 1 second timer as cooldown for attack.
+"""
+func _damage_player():
+	Player.do_damage(self._get_damage())
+	timer.start()
+	attack_counter = 1
+	print(Player.health)
+
+func _on_Timer_timeout():
+	print("timeout")
+	timer.stop()
+	attack_counter = 0
