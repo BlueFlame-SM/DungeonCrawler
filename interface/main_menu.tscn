@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://fonts/m5x7.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://interface/settings_menu.tscn" type="PackedScene" id=2]
-[ext_resource path="res://fonts/pause_menu.tres" type="DynamicFont" id=3]
+[ext_resource path="res://fonts/button_text.tres" type="DynamicFont" id=3]
+[ext_resource path="res://interface/how_to_play.tscn" type="PackedScene" id=4]
 [ext_resource path="res://interface/main_menu/background.jpg" type="Texture" id=7]
 [ext_resource path="res://interface/main_menu.gd" type="Script" id=8]
 
@@ -49,26 +50,34 @@ custom_constants/separation = 10
 alignment = 1
 
 [node name="NewGame" type="Button" parent="MarginContainer/VBoxContainer/Buttons"]
-margin_top = 128.0
+margin_top = 103.0
 margin_right = 320.0
-margin_bottom = 168.0
+margin_bottom = 143.0
 rect_min_size = Vector2( 170, 40 )
 focus_neighbour_top = NodePath("../Quit")
 custom_fonts/font = ExtResource( 3 )
 text = "New Game"
 
-[node name="Settings" type="Button" parent="MarginContainer/VBoxContainer/Buttons"]
-margin_top = 178.0
+[node name="How_to_play" type="Button" parent="MarginContainer/VBoxContainer/Buttons"]
+margin_top = 153.0
 margin_right = 320.0
-margin_bottom = 218.0
+margin_bottom = 193.0
+rect_min_size = Vector2( 0, 40 )
+custom_fonts/font = ExtResource( 3 )
+text = "How To Play"
+
+[node name="Settings" type="Button" parent="MarginContainer/VBoxContainer/Buttons"]
+margin_top = 203.0
+margin_right = 320.0
+margin_bottom = 243.0
 rect_min_size = Vector2( 170, 40 )
 custom_fonts/font = ExtResource( 3 )
 text = "Settings"
 
 [node name="Quit" type="Button" parent="MarginContainer/VBoxContainer/Buttons"]
-margin_top = 228.0
+margin_top = 253.0
 margin_right = 320.0
-margin_bottom = 268.0
+margin_bottom = 293.0
 rect_min_size = Vector2( 170, 40 )
 focus_neighbour_bottom = NodePath("../NewGame")
 custom_fonts/font = ExtResource( 3 )
@@ -76,6 +85,9 @@ text = "Quit"
 
 [node name="SettingsMenu" parent="." instance=ExtResource( 2 )]
 
+[node name="How_to_play" parent="." instance=ExtResource( 4 )]
+
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/NewGame" to="." method="_on_NewGame_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/How_to_play" to="." method="_on_How_to_play_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/Settings" to="." method="_on_Settings_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/Quit" to="." method="_on_Quit_pressed"]
