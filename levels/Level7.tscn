@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://tilemap/walls3.tres" type="TileSet" id=1]
 [ext_resource path="res://tilemap/rocks1.tres" type="TileSet" id=2]
@@ -9,7 +9,6 @@
 [ext_resource path="res://gate/gate.gd" type="Script" id=7]
 [ext_resource path="res://tilemap/Gate_Boss_Open_Icon.png" type="Texture" id=8]
 [ext_resource path="res://tilemap/Gate_Loot_Icon.png" type="Texture" id=9]
-[ext_resource path="res://enemy_range/enemy_range.tscn" type="PackedScene" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 24.25, 27 )
@@ -125,9 +124,6 @@ position = Vector2( 478, 539 )
 
 [node name="EnemySpawn" type="Position2D" parent="."]
 position = Vector2( 475, 289 )
-
-[node name="EnemyRange" parent="." instance=ExtResource( 10 )]
-position = Vector2( 757, 285 )
 
 [connection signal="gates_open" from="." to="Gate" method="_on_gates_open"]
 [connection signal="gates_open" from="." to="Gate_right" method="_on_gates_open"]
