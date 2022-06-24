@@ -15,6 +15,7 @@ onready var timer = $Timer
 var path: Array = []
 var levelNavigation: Navigation2D = null
 
+#Lijkt me niet nodig want global
 onready var player = get_node("../Player")
 onready var BULLET_SCENE = preload("res://bullet/bullet.tscn")
 

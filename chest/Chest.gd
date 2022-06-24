@@ -4,6 +4,8 @@ extends Area2D
 var area_entered = false
 var opened_before = false
 
+signal chest_opened()
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -14,6 +16,7 @@ func _ready():
 func _process(delta):
 	if area_entered == true:
 		if Input.is_action_just_pressed("pick_up"):
+			GlobalVars.challenge_down()
 			get_parent().get_node("Chest/AnimatedSprite").playing = false
 			get_parent().get_node("Chest/AnimatedSprite").frame = 1
 

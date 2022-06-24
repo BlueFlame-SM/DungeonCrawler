@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://tilemap/walls3.tres" type="TileSet" id=1]
 [ext_resource path="res://tilemap/rocks1.tres" type="TileSet" id=2]
@@ -9,7 +9,6 @@
 [ext_resource path="res://gate/gate.gd" type="Script" id=7]
 [ext_resource path="res://tilemap/Gate_Loot_Icon.png" type="Texture" id=8]
 [ext_resource path="res://tilemap/Gate_Boss_Open_Icon.png" type="Texture" id=9]
-[ext_resource path="res://chest/Chest.tscn" type="PackedScene" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 24.25, 27 )
@@ -106,10 +105,6 @@ tile_set = SubResource( 2 )
 format = 1
 tile_data = PoolIntArray( 0, 0, 0 )
 
-[node name="LevelCompleted" type="CheckBox" parent="."]
-margin_right = 24.0
-margin_bottom = 24.0
-
 [node name="River_collision" type="Area2D" parent="."]
 collision_mask = 2
 
@@ -125,12 +120,8 @@ position = Vector2( 479, 548 )
 [node name="EnemySpawn" type="Position2D" parent="."]
 position = Vector2( 269, 207 )
 
-[node name="Chest" parent="." instance=ExtResource( 10 )]
-position = Vector2( 168, 145 )
-
 [connection signal="gates_open" from="." to="Gate" method="_on_gates_open"]
 [connection signal="gates_open" from="." to="Gate_right" method="_on_gates_open"]
 [connection signal="body_entered" from="Gate" to="Gate" method="_on_Gate_body_entered"]
 [connection signal="body_entered" from="Gate_right" to="Gate_right" method="_on_Gate_body_entered"]
-[connection signal="pressed" from="LevelCompleted" to="." method="_on_LevelCompleted_pressed"]
 [connection signal="body_entered" from="River_collision" to="." method="_on_River_collision_body_entered"]

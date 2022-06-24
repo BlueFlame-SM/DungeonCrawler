@@ -110,12 +110,6 @@ tile_set = SubResource( 5 )
 format = 1
 tile_data = PoolIntArray( 0, 0, 0 )
 
-[node name="LevelCompleted" type="CheckBox" parent="."]
-margin_left = 468.0
-margin_top = 327.0
-margin_right = 492.0
-margin_bottom = 351.0
-
 [node name="River_collision" type="Area2D" parent="."]
 collision_layer = 8
 collision_mask = 0
@@ -146,5 +140,4 @@ position = Vector2( 774, 193 )
 [connection signal="gates_open" from="." to="Gate_right" method="_on_gates_open"]
 [connection signal="body_entered" from="Gate" to="Gate" method="_on_Gate_body_entered"]
 [connection signal="body_entered" from="Gate_right" to="Gate_right" method="_on_Gate_body_entered"]
-[connection signal="pressed" from="LevelCompleted" to="." method="_on_LevelCompleted_pressed"]
 [connection signal="body_entered" from="River_collision" to="." method="_on_River_collision_body_entered"]
