@@ -107,7 +107,7 @@ func _on_HazardNotifier_body_entered(body):
 	do_damage(2)
 	print("HP: {}/{}".format([health, max_health], "{}"))
 
-#Dit werkyt niet, doet damage aan zichzelf.
+#Dit werkt niet, doet damage aan zichzelf.
 func _on_Weapon_body_entered(body):
 	print(body.name)
 	print("weapon hit enemy (not necessarilly)")
@@ -127,7 +127,7 @@ func die():
 # CONNECT HIT SIGNAL TO ENEMY
 # ADD THIS TO ENEMY SCRIPT
 #func _on_Player_hit(amount):
-#	damage(amount)
+#	do_damage(amount)
 #	print(health)
 
 # Checks for input.
