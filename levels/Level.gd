@@ -33,7 +33,7 @@ func _ready():
 
 func spawn_enemies():
 	print("spawning enemy")
-	var enemy = load("res://enemy_dash/enemy_dash.tscn").instance()
+	var enemy = load("res://enemy_range/enemy_range.tscn").instance()
 	enemy.position = $EnemySpawn.position
 	add_child(enemy)
 #	This becomes relevant if you want to spawn more than 1 enemy. Not currently implemented.
@@ -49,6 +49,7 @@ func spawn_chests():
 
 func _on_River_collision_body_entered(body):
 	if body.name == "Player":
+		Player.do_damage(Player.health)
 		Player.die()
 
 func _on_challenge_down():
@@ -60,10 +61,10 @@ func _on_challenge_down():
 
 func level_completed():
 	emit_signal("gates_open")
-	$Gates_open.visible = true
+	$LevelNavigation/Gates_open.visible = true
 
 #This function should be called when the enemy is defeated. This should signal
 #from enemy class.
 func _on_LevelCompleted_pressed():
 	emit_signal("gates_open")
-	$Gates_open.visible = true
+	$LevelNavigation/Gates_open.visible = true

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Lion_Walk_3.png-ce4450e7415f2b7285c6961a9a88ed36.stex"
+path="res://.import/Lion_Walk_3.png-d40512d0fde1154e6be9a637e7a37d36.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://TileMap_Nina/Lion_Walk_3.png"
-dest_files=[ "res://.import/Lion_Walk_3.png-ce4450e7415f2b7285c6961a9a88ed36.stex" ]
+source_file="res://tilemap/Lion_Walk_3.png"
+dest_files=[ "res://.import/Lion_Walk_3.png-d40512d0fde1154e6be9a637e7a37d36.stex" ]
 
 [params]
 

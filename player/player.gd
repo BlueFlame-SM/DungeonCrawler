@@ -110,14 +110,14 @@ func _on_HazardNotifier_body_entered(body):
 
 #Dit werkt niet, doet damage aan zichzelf.
 func _on_Weapon_body_entered(body):
-	print(body.name)
-	print("weapon hit enemy (not necessarilly)")
+#	print(body.name)
+#	print("weapon hit enemy (not necessarilly)")
 	body.do_damage(2)
 	emit_signal("hit", weapon.damage)
 
 func die():
 	self.can_move = false
-	do_damage(health)
+#	do_damage(health)
 	GlobalVars.level_type = "start"
 	LevelSwitcher.goto_scene("res://levels/LevelStart.tscn", true)
 #
@@ -154,3 +154,8 @@ func _on_Inventory_use_w():
 		Player._set_damage(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Damage"])
 	# TODO: De hoeveelheid damage die een wapen geeft moet gekoppeld worden aan stats.
 	# Dat doe je zoals bij on_Inventory_use_i.
+
+
+func _on_Player_healthChanged(newValue):
+	if Player.health <= 0:
+		die()

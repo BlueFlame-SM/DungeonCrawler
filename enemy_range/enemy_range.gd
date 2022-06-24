@@ -55,6 +55,7 @@ func choose_action():
 			if time > 0:
 				self.modulate.a = 0 if Engine.get_frames_drawn() % 5 == 0 else 1.0
 			else:
+				GlobalVars.challenge_down()
 				set_physics_process(false)
 				queue_free()
 		states.PATROL:

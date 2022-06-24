@@ -1,7 +1,5 @@
 #Source: https://docs.godotengine.org/en/3.0/getting_started/step_by_step/ui_code_a_life_bar.html
 
-
-
 extends CanvasLayer
 
 
