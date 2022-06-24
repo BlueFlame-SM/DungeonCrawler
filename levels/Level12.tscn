@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://tilemap/floor.tres" type="TileSet" id=1]
 [ext_resource path="res://tilemap/rocks1.tres" type="TileSet" id=2]
@@ -6,7 +6,44 @@
 [ext_resource path="res://gate/gate.tscn" type="PackedScene" id=4]
 [ext_resource path="res://tilemap/gates4.tres" type="TileSet" id=5]
 [ext_resource path="res://levels/Level.gd" type="Script" id=6]
-[ext_resource path="res://enemy_range/enemy_range.tscn" type="PackedScene" id=7]
+[ext_resource path="res://gate/gate.gd" type="Script" id=7]
+[ext_resource path="res://tilemap/Gate_Boss_Open_Icon.png" type="Texture" id=8]
+[ext_resource path="res://tilemap/Gate_Loot_Icon.png" type="Texture" id=9]
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 24.25, 27 )
+
+[sub_resource type="TileSet" id=3]
+0/name = "Gate_Boss_Open_Icon.png 0"
+0/texture = ExtResource( 8 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 96, 64 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+
+[sub_resource type="TileSet" id=5]
+0/name = "Gate_Loot_Icon.png 0"
+0/texture = ExtResource( 9 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 96, 64 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
 
 [node name="Level12" type="Node2D"]
 script = ExtResource( 6 )
@@ -48,16 +85,29 @@ format = 1
 tile_data = PoolIntArray( 7, 1, 0, 47, 1, 0 )
 
 [node name="Gate" parent="." instance=ExtResource( 4 )]
-position = Vector2( 103, -22 )
+position = Vector2( 111, 2 )
 
-[node name="Gate2" parent="." instance=ExtResource( 4 )]
-position = Vector2( 744, -21 )
+[node name="Gate_right" type="Area2D" parent="."]
+position = Vector2( 742, -20 )
+script = ExtResource( 7 )
 
-[node name="LevelCompleted" type="CheckBox" parent="."]
-margin_left = 482.0
-margin_top = 300.0
-margin_right = 506.0
-margin_bottom = 324.0
+[node name="GateCollision" type="CollisionShape2D" parent="Gate_right"]
+position = Vector2( 58, 60 )
+shape = SubResource( 4 )
+
+[node name="BossOpen" type="TileMap" parent="Gate_right"]
+visible = false
+position = Vector2( 10, 20 )
+tile_set = SubResource( 3 )
+format = 1
+tile_data = PoolIntArray( 0, 0, 0 )
+
+[node name="LootOpen" type="TileMap" parent="Gate_right"]
+visible = false
+position = Vector2( 10, 20 )
+tile_set = SubResource( 5 )
+format = 1
+tile_data = PoolIntArray( 0, 0, 0 )
 
 [node name="River_collision" type="Area2D" parent="."]
 collision_layer = 8
@@ -70,21 +120,19 @@ polygon = PoolVector2Array( 64, 576, 128, 576, 128, 480, 160, 480, 160, 416, 192
 disabled = true
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="River_collision"]
-position = Vector2( 0, 0.845833 )
-scale = Vector2( 1, 0.867839 )
+position = Vector2( 0, 1.0125 )
+scale = Vector2( 1, 0.841797 )
 polygon = PoolVector2Array( 192, 64, 512, 64, 512, 128, 480, 128, 480, 160, 448, 160, 448, 192, 416, 192, 416, 224, 384, 224, 384, 256, 320, 256, 320, 224, 288, 224, 288, 192, 256, 192, 256, 160, 224, 160, 224, 128, 192, 128 )
 disabled = true
 
 [node name="PlayerSpawn" type="Position2D" parent="."]
 position = Vector2( 478, 539 )
 
-[node name="EnemyRange" parent="." instance=ExtResource( 7 )]
-position = Vector2( 798, 161 )
+[node name="EnemySpawn" type="Position2D" parent="."]
+position = Vector2( 360, 309 )
 
+[connection signal="gates_open" from="." to="Gate" method="_on_gates_open"]
+[connection signal="gates_open" from="." to="Gate_right" method="_on_gates_open"]
 [connection signal="body_entered" from="Gate" to="Gate" method="_on_Gate_body_entered"]
-[connection signal="gate_opens" from="Gate" to="." method="_on_gate_opens"]
-[connection signal="body_entered" from="Gate2" to="Gate2" method="_on_Gate_body_entered"]
-[connection signal="gate_opens" from="Gate2" to="." method="_on_gate_opens"]
-[connection signal="pressed" from="LevelCompleted" to="Gate" method="_on_LevelCompleted_pressed"]
-[connection signal="pressed" from="LevelCompleted" to="Gate2" method="_on_LevelCompleted_pressed"]
+[connection signal="body_entered" from="Gate_right" to="Gate_right" method="_on_Gate_body_entered"]
 [connection signal="body_entered" from="River_collision" to="." method="_on_River_collision_body_entered"]

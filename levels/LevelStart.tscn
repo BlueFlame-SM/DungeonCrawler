@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://tilemap/rocks1.tres" type="TileSet" id=1]
 [ext_resource path="res://tilemap/gates4.tres" type="TileSet" id=2]
@@ -6,9 +6,43 @@
 [ext_resource path="res://tilemap/floor.tres" type="TileSet" id=4]
 [ext_resource path="res://gate/gate.gd" type="Script" id=5]
 [ext_resource path="res://levels/Level.gd" type="Script" id=6]
+[ext_resource path="res://tilemap/Gate_Mini_Open_Icon.png" type="Texture" id=7]
+[ext_resource path="res://tilemap/Gate_Loot_Icon.png" type="Texture" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 26, 30.5 )
+
+[sub_resource type="TileSet" id=2]
+0/name = "Gate_Mini_Open_Icon.png 0"
+0/texture = ExtResource( 7 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 96, 64 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+
+[sub_resource type="TileSet" id=3]
+0/name = "Gate_Loot_Icon.png 0"
+0/texture = ExtResource( 8 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 96, 64 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
 
 [node name="LevelStart" type="Node2D"]
 script = ExtResource( 6 )
@@ -49,9 +83,21 @@ position = Vector2( 481, 516 )
 position = Vector2( 424, -18 )
 script = ExtResource( 5 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StartGate"]
+[node name="GateCollision" type="CollisionShape2D" parent="StartGate"]
 position = Vector2( 58, 55.5 )
 shape = SubResource( 1 )
+
+[node name="BossOpen" type="TileMap" parent="StartGate"]
+position = Vector2( 7, 17 )
+tile_set = SubResource( 2 )
+format = 1
+tile_data = PoolIntArray( 0, 0, 0 )
+
+[node name="LootOpen" type="TileMap" parent="StartGate"]
+position = Vector2( 9, 18 )
+tile_set = SubResource( 3 )
+format = 1
+tile_data = PoolIntArray( 0, 0, 0 )
 
 [node name="River_collision" type="Area2D" parent="."]
 
@@ -60,7 +106,7 @@ position = Vector2( 8.69638, 0 )
 scale = Vector2( 0.936845, 1 )
 polygon = PoolVector2Array( 195, 67, 321, 67, 320, 127, 351, 129, 353, 157, 386, 161, 384, 202, 352, 201, 352, 234, 320, 233, 320, 312, 321, 319, 350, 319, 350, 351, 381, 353, 383, 395, 350, 395, 351, 427, 321, 428, 320, 512, 351, 512, 350, 543, 383, 541, 384, 571, 197, 576 )
 
-[node name="Left2" type="CollisionPolygon2D" parent="River_collision"]
+[node name="Right" type="CollisionPolygon2D" parent="River_collision"]
 position = Vector2( 359.58, 2 )
 scale = Vector2( 0.927029, 1 )
 polygon = PoolVector2Array( 444, 64, 321, 67, 320, 127, 285, 128, 285, 159, 254, 159, 254, 202, 287, 202, 288, 231, 320, 233, 320, 312, 321, 319, 286, 320, 287, 351, 254, 353, 256, 396, 288, 398, 290, 429, 321, 428, 316, 512, 285, 513, 285, 540, 254, 545, 253, 571, 384, 571, 444, 573 )
