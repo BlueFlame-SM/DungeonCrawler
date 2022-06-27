@@ -90,8 +90,13 @@ func _physics_process(delta: float) -> void:
 				weapon.attack(lastDirection)
 				# Add cooldown time to current time
 				next_attack_time = now + attack_cooldown_time
-		if Input.is_action_just_pressed("inventory"):
-			$CanvasLayer/Inventory.visible = !$CanvasLayer/Inventory.visible
+
+		# Inventory can't be opened during start screen.
+		if GlobalVars.level_counter != 0:
+			if Input.is_action_just_pressed("inventory"):
+				$CanvasLayer/Inventory.visible = !$CanvasLayer/Inventory.visible
+			$CanvasLayer/Hotbar.visible = true
+
 
 	var velocity = move_and_slide(move_in_direction(direction))
 	position += velocity * delta
@@ -108,30 +113,21 @@ func _on_HazardNotifier_body_entered(body):
 	do_damage(2)
 	print("HP: {}/{}".format([health, max_health], "{}"))
 
-#Dit werkt niet, doet damage aan zichzelf.
+# If the weapon hitbox enters an enemy this function is activated.
 func _on_Weapon_body_entered(body):
-#	print(body.name)
-#	print("weapon hit enemy (not necessarilly)")
 	body.do_damage(2)
 	emit_signal("hit", weapon.damage)
+	body.state = body.states.KNOCKBACK
 
+
+"""
+When the player dies, the player stops being able to move. The next level is
+the start level. We then call the levelswitcher to go to the start level.
+"""
 func die():
 	self.can_move = false
-#	do_damage(health)
 	GlobalVars.level_type = "start"
 	LevelSwitcher.goto_scene("res://levels/LevelStart.tscn", true)
-#
-#func change_collision():
-#	$CollisionShape2D.disabled = !$CollisionShape2D.disabled
-#
-#
-
-
-# CONNECT HIT SIGNAL TO ENEMY
-# ADD THIS TO ENEMY SCRIPT
-#func _on_Player_hit(amount):
-#	do_damage(amount)
-#	print(health)
 
 # Checks for input.
 func _input(event):
@@ -140,6 +136,9 @@ func _input(event):
 		if items.size() > 0:
 			var item = items[0]
 			item.pick_up_item(self)
+#	if event.is_action_pressed("inventory"):
+#		$CanvasLayer/Inventory.visible = !$CanvasLayer/Inventory.visible
+#		$CanvasLayer/Inventory.initialize_inventory()
 
 
 func _on_Inventory_use_i():
@@ -157,5 +156,8 @@ func _on_Inventory_use_w():
 
 
 func _on_Player_healthChanged(newValue):
+	if GlobalVars.level_type != "start":
+			$AnimatedSprite.play("hit_effect")
+			$HurtSound.play()
 	if Player.health <= 0:
 		die()

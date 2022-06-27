@@ -90,7 +90,7 @@ position = Vector2( 739, -17 )
 script = ExtResource( 7 )
 
 [node name="GateCollision" type="CollisionShape2D" parent="Gate_right"]
-position = Vector2( -4, 53 )
+position = Vector2( -4, 55 )
 shape = SubResource( 4 )
 
 [node name="BossOpen" type="TileMap" parent="Gate_right"]
@@ -101,6 +101,7 @@ format = 1
 tile_data = PoolIntArray( 0, 0, 0 )
 
 [node name="LootOpen" type="TileMap" parent="Gate_right"]
+visible = false
 position = Vector2( -51, 16 )
 tile_set = SubResource( 5 )
 format = 1
@@ -127,8 +128,19 @@ polygon = PoolVector2Array( 288, 432, 288, 448, 672, 448, 672, 432 )
 [node name="PlayerSpawn" type="Position2D" parent="."]
 position = Vector2( 478, 539 )
 
-[node name="EnemySpawn" type="Position2D" parent="."]
-position = Vector2( 473, 119 )
+[node name="EnemySpawns" type="Node2D" parent="."]
+
+[node name="EnemySpawn1" type="Position2D" parent="EnemySpawns"]
+position = Vector2( 615, 317 )
+
+[node name="EnemySpawn2" type="Position2D" parent="EnemySpawns"]
+position = Vector2( 187, 124 )
+
+[node name="EnemySpawn3" type="Position2D" parent="EnemySpawns"]
+position = Vector2( 793, 119 )
+
+[node name="EnemySpawn4" type="Position2D" parent="EnemySpawns"]
+position = Vector2( 255, 308 )
 
 [connection signal="gates_open" from="." to="Gate" method="_on_gates_open"]
 [connection signal="gates_open" from="." to="Gate_right" method="_on_gates_open"]

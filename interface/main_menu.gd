@@ -36,3 +36,10 @@ func _on_Settings_pressed():
 	If Settings button is pressed, show Settings pop-up
 	"""
 	$SettingsMenu.popup()
+
+
+func _on_How_to_play_pressed():
+	"""
+	If How To Play button is pressed, show How To Play pop-up.
+	"""
+	$How_to_play.popup()

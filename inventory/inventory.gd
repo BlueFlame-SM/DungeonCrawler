@@ -3,10 +3,14 @@
 extends Node2D
 
 const SlotClass = preload("res://inventory/slot.gd")
-onready var inventory_slots = $GridContainer
+onready var inventory_slots = $GridContainer.get_children()
+onready var hotbar_slots = get_parent().find_node("Hotbar").find_node("GridContainer").get_children()
+onready var slots
+
 var holding_item = null
+var use_item_slot: SlotClass = null
 var use_item = null
-var equipped_slot = null
+var equipped_slot: SlotClass = null
 var equiped_item = null
 
 signal use_i
@@ -14,18 +18,26 @@ signal use_w
 
 func _ready():
 	PlayerInventory.connect("inventory_updated", self, "initialize_inventory")
-	var slots = inventory_slots.get_children()
+	get_parent().find_node("Hotbar").connect("inventory_updated", self, "initialize_inventory")
+	if get_parent().find_node("GridContainer2"):
+		slots = get_parent().find_node("GridContainer2").get_children()
+	slots += hotbar_slots + inventory_slots
 	for i in range(slots.size()):
 		slots[i].connect("gui_input", self, "slot_gui_input", [slots[i]])
 		slots[i].slot_index = i
+		slots[i].slot_type = SlotClass.SlotType.INVENTORY
 	initialize_inventory()
+#	emit_signal("inventory_updated")
 
 #const PlayerInventory = preload("res://src/PlayerInventory.gd")
 func initialize_inventory():
-	var slots = inventory_slots.get_children()
+#	var slots = inventory_slots.get_children()
 	for i in range(slots.size()):
 		if PlayerInventory.inventory.has(i):
 			slots[i].initialize_item(PlayerInventory.inventory[i][0], PlayerInventory.inventory[i][1])
+
+	equiped_item = slots[0].item
+	print(PlayerInventory.inventory)
 
 func slot_gui_input(event: InputEvent, slot: SlotClass):
 	# When a mouseclick occurs, check if it is a left mouse click.
@@ -35,8 +47,6 @@ func slot_gui_input(event: InputEvent, slot: SlotClass):
 			if holding_item != null:
 				# When there is no item in the slot, put the new item in the slot.
 				if !slot.item:
-					if holding_item == equiped_item:
-						slot_green(slot)
 					left_click_empty_slot(slot)
 				# When there is already an item in the slot.
 				else:
@@ -53,32 +63,51 @@ func slot_gui_input(event: InputEvent, slot: SlotClass):
 				left_click_not_holding_item(slot)
 		# Consumes an item.
 		if event.button_index == BUTTON_RIGHT && event.pressed:
-			if !slot.item:
-				return -1
-			if JsonData.item_data[slot.item.item_name]["ItemCategory"] == "Weapon":
-				use_item = slot.item
-				emit_signal("use_w")
-				if equipped_slot == null:
-					equiped_item = slot.item
-					equipped_slot = slot
-				if equipped_slot != slot:
-					equipped_slot.modulate = "ffffff"
-					equipped_slot = slot
-					equiped_item = slot.item
-				slot_green(equipped_slot)
-			else:
-				use_item = slot.item
-				emit_signal("use_i")
-				var stack_size = int(JsonData.item_data[slot.item.item_name]["StackSize"])
-				if slot.item.item_quantity == 1:
-					slot.pickFromSlot()
-				else:
-					use_item.decrease_item_quantity(1)
+			consume_item(slot)
 
-func _input(_event):
+func consume_item(slot):
+	if !slot.item:
+		return -1
+	if JsonData.item_data[slot.item.item_name]["ItemCategory"] == "Weapon":
+		use_item = slot.item
+		var old_equiped_item = slots[0].item
+#		var slot_num = slots.find(slot)
+		PlayerInventory.remove_item(slot)
+		PlayerInventory.remove_item(slots[0])
+		PlayerInventory.add_item_to_empty_slot(use_item, slots[0])
+		if old_equiped_item != null:
+			PlayerInventory.add_item_to_empty_slot(old_equiped_item, slot)
+		else:
+			slot.pickFromSlot()
+#		emit_signal("use_w")
+		initialize_inventory()
+	else:
+		use_item = slot.item
+		use_item_slot = slot
+		timer_use()
+		emit_signal("use_i")
+		var stack_size = int(JsonData.item_data[slot.item.item_name]["StackSize"])
+		if slot.item.item_quantity == 1:
+			slot.pickFromSlot()
+		else:
+#			use_item.decrease_item_quantity(1)
+			PlayerInventory.add_item_quantity(slot, -1)
+			initialize_inventory()
+
+func _input(event):
 	# location of item held gets updated by mouse location.
 	if holding_item:
 		holding_item.global_position = get_global_mouse_position()
+	if event is InputEventKey:
+		if event.pressed and [49,50,51,52,53].has(event.unicode):
+			var slot = get_parent().find_node("Hotbar").find_node("HotbarSlot" + str(event.unicode - 48))
+			consume_item(slot)
+
+func timer_use():
+	slot_blue(use_item_slot)
+	yield(get_tree().create_timer(0.1), "timeout")
+	slot_white(use_item_slot)
+#	use_item_slot = null
 
 func left_click_empty_slot(slot):
 	PlayerInventory.add_item_to_empty_slot(holding_item, slot)
@@ -118,3 +147,6 @@ func slot_green(slot):
 
 func slot_white(slot):
 	 slot.modulate = "ffffff"
+
+func slot_blue(slot):
+	 slot.modulate = "0000FF"

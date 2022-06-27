@@ -12,7 +12,6 @@ func _ready():
 	currentScene = root.get_child(root.get_child_count() - 1)
 
 
-
 func goto_scene(path, dead=false):
 	LevelSwitcher.followingScene = path
 	player.playback_speed = 1

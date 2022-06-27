@@ -17,6 +17,9 @@ signal enemy_hit
 
 var attack_counter = 0
 onready var timer = $Timer
+onready var timer_hurt = $Timer_anim_hurt
+onready var timer_attack = $Timer_anim_attack
+onready var timer_knockback = $TimerKnockback
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -29,6 +32,7 @@ func _ready():
 		levelNavigation = tree.get_nodes_in_group("LevelNavigation")[0]
 	if tree.has_group("Player"):
 		player = tree.get_nodes_in_group("Player")[0]
+	$AnimatedSprite.animation = "default"
 
 func _physics_process(delta):
 	choose_action()
@@ -51,6 +55,7 @@ Chooses the right state at the right moment:
 func choose_action():
 	match state:
 		states.DEAD:
+			$AnimatedSprite.animation = "on_hit"
 			velocity = Vector2.ZERO
 			if time > 0:
 				self.modulate.a = 0 if Engine.get_frames_drawn() % 5 == 0 else 1.0
@@ -70,9 +75,19 @@ func choose_action():
 				generate_path()
 				navigate()
 		states.KNOCKBACK:
-			var player_direction = (Player.get_position() - self.position).normalized()
-			velocity = position.direction_to(Player.position) * -200
+			if $TimerKnockback.time_left <= 0:
+				velocity = Vector2.ZERO
+				timer_knockback.start()
+			_knockback_Enemy()
 
+func _knockback_Enemy():
+	var player_direction = (Player.get_position() - self.position).normalized()
+	velocity = position.direction_to(Player.position) * -200
+
+func _on_TimerKnockback_timeout():
+	state = states.CHASE
+
+# If the player comes in the detection range the enemy starts chasing the player.
 func _on_Range_body_entered(body):
 	state = states.CHASE
 
@@ -95,16 +110,19 @@ func navigate():	# Define the next position to go to
 func generate_path():
 	if levelNavigation != null and player != null:
 		path = levelNavigation.get_simple_path(global_position, player.global_position, false)
+		if path[-1].x > path[-2].x:
+			$AnimatedSprite.flip_h = true
+		else:
+			$AnimatedSprite.flip_h = false
 
 # When the player enters Area2D named Hitbox, the enemy will change to ATTACK mode.
 func _on_Hitbox_body_entered(body):
-	print("enter")
 	state = states.ATTACK
 
 # When the player exits Area2D named Hitbox, the enemy will change to CHASE mode.
 func _on_Hitbox_body_exited(body):
-	print("exit")
-	state = states.CHASE
+	if $TimerKnockback.time_left <= 0:
+		state = states.CHASE
 
 """
 Gives damage to the player equal to the damage stat of the enemy
@@ -112,11 +130,27 @@ and starts a 1 second timer as cooldown for attack.
 """
 func _damage_player():
 	Player.do_damage(self._get_damage())
+	$AnimatedSprite.animation = "attack"
+	timer_attack.start()
 	timer.start()
 	attack_counter = 1
 	print(Player.health)
 
 func _on_Timer_timeout():
-	print("timeout")
 	timer.stop()
 	attack_counter = 0
+
+
+func _on_Enemy_healthChanged(newValue):
+	$AnimatedSprite.animation = "on_hit"
+	timer_hurt.start()
+
+
+func _on_Timer_anim_attack_timeout():
+	timer_attack.stop()
+	$AnimatedSprite.animation = "default"
+
+
+func _on_Timer_anim_hurt_timeout():
+	timer_hurt.stop()
+	$AnimatedSprite.animation = "default"

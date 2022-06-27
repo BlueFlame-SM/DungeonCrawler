@@ -1,6 +1,6 @@
 extends "res://character/character.gd"
 
-enum states {PATROL, FIRE, DEAD, CHASE}
+enum states {PATROL, FIRE, DEAD, CHASE, KNOCKBACK}
 
 var state = states.PATROL
 var time = 1
@@ -18,6 +18,8 @@ var levelNavigation: Navigation2D = null
 #Lijkt me niet nodig want global
 onready var player = get_node("../Player")
 onready var BULLET_SCENE = preload("res://bullet/bullet.tscn")
+
+onready var timer_knockback = $TimerKnockback
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -68,34 +70,42 @@ func choose_action():
 			if player and levelNavigation:
 				generate_path()
 				navigate()
+		states.KNOCKBACK:
+			if $TimerKnockback.time_left <= 0:
+				velocity = Vector2.ZERO
+				timer_knockback.start()
+
+			_knockback_Enemy()
+
+func _knockback_Enemy():
+	var player_direction = (Player.get_position() - self.position).normalized()
+	velocity = position.direction_to(Player.position) * -200
+
+func _on_TimerKnockback_timeout():
+	if fire == true:
+		state = states.FIRE
+	else:
+		state = states.CHASE
 
 func _on_Range_body_entered(body):
 	state = states.CHASE
 
 func _on_FiringRange_body_entered(body):
 	state = states.FIRE
-
-#	if fire_counter == 0:
-#		fire()
 	fire()
-
 	fire = true
 	timer.start(0)
 
 func _on_FiringRange_body_exited(body):
-	state = states.CHASE
-	fire = false
+	if $TimerKnockback.time_left <= 0:
+		state = states.CHASE
 
-#	fire_counter = 1
+	fire = false
 	timer.stop()
 
 func _on_Timer_timeout():
-#	if fire_counter == 1:
-#		fire_counter = 0
-##		timer.stop()
 	if fire != false:
 		fire()
-
 
 func fire():
 	var bullet = BULLET_SCENE.instance()
