@@ -6,6 +6,7 @@ var lastDirection = Vector2.LEFT
 
 # onready var healthbar = $HealthBar
 onready var weapon = $Weapon
+var health_change = false
 
 # When player hits enemy
 signal hit(amount)
@@ -16,6 +17,7 @@ var next_attack_time = 0
 
 func _ready():
 	speed = 5
+
 
 func playAnimations(velocity: Vector2, delta: float) -> void:
 	# Only move if attack animation is not playing
@@ -59,7 +61,14 @@ func playAnimations(velocity: Vector2, delta: float) -> void:
 			$AnimatedSprite.play("back_slash")
 		else:
 			$AnimatedSprite.play("left_slash")
+	
+	if GlobalVars.level_type == "start":
+			health_change = false
 
+	if health_change == true:
+			$AnimatedSprite.play("hit_effect")
+			$HurtSound.play()
+			health_change = false
 
 func _physics_process(delta: float) -> void:
 	var direction = Vector2.ZERO
@@ -90,8 +99,11 @@ func _physics_process(delta: float) -> void:
 				weapon.attack(lastDirection)
 				# Add cooldown time to current time
 				next_attack_time = now + attack_cooldown_time
-		if Input.is_action_just_pressed("inventory"):
-			$CanvasLayer/Inventory.visible = !$CanvasLayer/Inventory.visible
+				
+		# Inventory can't be opened during start screen.
+		if GlobalVars.level_counter != 0:
+			if Input.is_action_just_pressed("inventory"):
+				$CanvasLayer/Inventory.visible = !$CanvasLayer/Inventory.visible
 
 	var velocity = move_and_slide(move_in_direction(direction))
 	position += velocity * delta
@@ -124,18 +136,6 @@ func die():
 	self.can_move = false
 	GlobalVars.level_type = "start"
 	LevelSwitcher.goto_scene("res://levels/LevelStart.tscn", true)
-#
-#func change_collision():
-#	$CollisionShape2D.disabled = !$CollisionShape2D.disabled
-#
-#
-
-
-# CONNECT HIT SIGNAL TO ENEMY
-# ADD THIS TO ENEMY SCRIPT
-#func _on_Player_hit(amount):
-#	do_damage(amount)
-#	print(health)
 
 # Checks for input.
 func _input(event):
@@ -161,5 +161,6 @@ func _on_Inventory_use_w():
 
 
 func _on_Player_healthChanged(newValue):
+	health_change = true
 	if Player.health <= 0:
 		die()
