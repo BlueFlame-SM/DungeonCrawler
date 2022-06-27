@@ -31,3 +31,7 @@ func _on_Quit_button_pressed():
 
 func _on_Settings_button_pressed():
 	$SettingsMenu.popup()
+
+
+func _on_Rules_button_pressed():
+	$How_to_play.popup()
