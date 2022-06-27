@@ -72,6 +72,7 @@ func spawn_chests():
 	var chest = load("res://chest/Chest.tscn").instance()
 	var spawn_point = $EnemySpawns.get_children()[randi() % 4]
 	chest.position = spawn_point.position
+#	Change this to get random ints of max len_keys.
 	chest.choose_items([0,1,2,3,4])
 	add_child(chest)
 #	This becomes relevant if you want to spawn more than 1 chest. Not currently implemented.
@@ -106,3 +107,4 @@ appear open.
 func level_completed():
 	emit_signal("gates_open")
 	$LevelNavigation/Gates_open.visible = true
+

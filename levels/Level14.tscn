@@ -144,7 +144,7 @@ position = Vector2( 139, 126 )
 position = Vector2( 794, 218 )
 
 [node name="EnemySpawn4" type="Position2D" parent="EnemySpawns"]
-position = Vector2( 636, 103 )
+position = Vector2( 649, 119 )
 
 [connection signal="gates_open" from="." to="Gate" method="_on_gates_open"]
 [connection signal="gates_open" from="." to="Gate_right" method="_on_gates_open"]

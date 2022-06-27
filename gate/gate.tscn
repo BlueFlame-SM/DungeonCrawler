@@ -49,6 +49,7 @@ shape = SubResource( 1 )
 disabled = true
 
 [node name="LootOpen" type="TileMap" parent="."]
+visible = false
 position = Vector2( 0, -1 )
 tile_set = SubResource( 3 )
 format = 1

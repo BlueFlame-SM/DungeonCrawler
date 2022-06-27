@@ -116,19 +116,18 @@ scale = Vector2( 1, 0.925967 )
 polygon = PoolVector2Array( 384, 176, 576, 176, 576, 208, 640, 208, 640, 240, 672, 240, 672, 272, 704, 272, 704, 304, 736, 304, 736, 448, 704, 448, 704, 480, 672, 480, 672, 512, 544, 512, 544, 480, 416, 480, 416, 448, 352, 448, 352, 416, 288, 416, 288, 384, 256, 384, 256, 352, 224, 352, 224, 272, 320, 272, 320, 240, 352, 240, 352, 208, 384, 208 )
 
 [node name="PlayerSpawn" type="Position2D" parent="."]
-visible = false
 position = Vector2( 479, 548 )
 
 [node name="EnemySpawns" type="Node2D" parent="."]
 
 [node name="EnemySpawn1" type="Position2D" parent="EnemySpawns"]
-position = Vector2( 269, 207 )
+position = Vector2( 269, 204 )
 
 [node name="EnemySpawn2" type="Position2D" parent="EnemySpawns"]
 position = Vector2( 139, 126 )
 
 [node name="EnemySpawn3" type="Position2D" parent="EnemySpawns"]
-position = Vector2( 814, 139 )
+position = Vector2( 749, 184 )
 
 [node name="EnemySpawn4" type="Position2D" parent="EnemySpawns"]
 position = Vector2( 171, 467 )
