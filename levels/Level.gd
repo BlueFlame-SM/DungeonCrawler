@@ -26,7 +26,7 @@ func enable_styx():
 func _ready():
 #	Count how many levels the player has played from start level
 	GlobalVars.level_counter += 1
-	
+
 	rng.randomize()
 #	Connect the signal from GlobalVars to function
 	GlobalVars.connect("challenge_down", self, "_on_challenge_down")
@@ -73,6 +73,7 @@ func spawn_chests():
 	var chest = load("res://chest/Chest.tscn").instance()
 	var spawn_point = $EnemySpawns.get_children()[randi() % 4]
 	chest.position = spawn_point.position
+#	Change this to get random ints of max len_keys.
 	chest.choose_items([0,1,2,3,4])
 	add_child(chest)
 #	This becomes relevant if you want to spawn more than 1 chest. Not currently implemented.
