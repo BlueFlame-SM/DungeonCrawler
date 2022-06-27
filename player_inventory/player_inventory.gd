@@ -11,8 +11,8 @@ const NUM_HOTBAR_SLOTS = 5
 var inventory = {
 	0: ['iron_sword', 1],
 	1: ["slime_potion", 45],
-	2: ["slime_potion", 50],
-	3: ["slime_potion", 30],
+	2: ["slime_potion", 5],
+	3: ["slime_potion", 3],
 	4: ['iron_sword', 1],
 }
 

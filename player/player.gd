@@ -14,12 +14,8 @@ signal hit(amount)
 var attack_cooldown_time = 100
 var next_attack_time = 0
 
-<<<<<<< HEAD
-=======
 func _ready():
 	speed = 5
-
->>>>>>> 28f5118ce97992b87b7fd4ff0284b552f83a550a
 
 func playAnimations(velocity: Vector2, delta: float) -> void:
 	# Only move if attack animation is not playing
@@ -48,12 +44,6 @@ func playAnimations(velocity: Vector2, delta: float) -> void:
 			if lastDirection == Vector2.DOWN:
 				$AnimatedSprite.animation = "idle_down"
 			elif lastDirection == Vector2.UP:
-<<<<<<< HEAD
-				$AnimatedSprite.play("back_slash")
-			else:
-				$AnimatedSprite.animation = "idle_left"
-			$AnimatedSprite.flip_v = false
-=======
 				$AnimatedSprite.animation = "idle_up"
 			elif lastDirection == Vector2.LEFT:
 				$AnimatedSprite.animation = "idle_left"
@@ -61,7 +51,6 @@ func playAnimations(velocity: Vector2, delta: float) -> void:
 			else:
 				$AnimatedSprite.animation = "idle_left"
 				$AnimatedSprite.flip_h = true
->>>>>>> 28f5118ce97992b87b7fd4ff0284b552f83a550a
 	# Play attack animation based on direction
 	else:
 		if lastDirection == Vector2.DOWN:
@@ -106,6 +95,8 @@ func _physics_process(delta: float) -> void:
 		if GlobalVars.level_counter != 0:
 			if Input.is_action_just_pressed("inventory"):
 				$CanvasLayer/Inventory.visible = !$CanvasLayer/Inventory.visible
+			$CanvasLayer/Hotbar.visible = true
+			
 
 	var velocity = move_and_slide(move_in_direction(direction))
 	position += velocity * delta
@@ -146,9 +137,9 @@ func _input(event):
 		if items.size() > 0:
 			var item = items[0]
 			item.pick_up_item(self)
-	if event.is_action_pressed("inventory"):
-		$CanvasLayer/Inventory.visible = !$CanvasLayer/Inventory.visible
-		$CanvasLayer/Inventory.initialize_inventory()
+#	if event.is_action_pressed("inventory"):
+#		$CanvasLayer/Inventory.visible = !$CanvasLayer/Inventory.visible
+#		$CanvasLayer/Inventory.initialize_inventory()
 
 
 func _on_Inventory_use_i():
