@@ -54,8 +54,9 @@ Spawns either a range or normal enemy. Can be extended to other types.
 """
 func spawn_enemies():
 	var enemy
-	if rng.randf_range(0, 1) < 0.6:
+	if rng.randf_range(0, 1) < 0.1:
 		enemy = load("res://enemy_range/enemy_range.tscn").instance()
+#		enemy/AnimatedSprite =
 	else:
 		enemy = load("res://enemy/enemy.tscn").instance()
 	var spawn_point = $EnemySpawns.get_children()[randi() % 4]
