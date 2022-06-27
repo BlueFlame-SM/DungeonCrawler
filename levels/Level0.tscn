@@ -304,6 +304,7 @@ __meta__ = {
 
 [node name="FloorItem" parent="." instance=ExtResource( 17 )]
 position = Vector2( 536, 306 )
+scale = Vector2( 2, 2 )
 collision_layer = 64
 
 [connection signal="body_entered" from="StartGate" to="StartGate" method="_on_Gate_body_entered"]

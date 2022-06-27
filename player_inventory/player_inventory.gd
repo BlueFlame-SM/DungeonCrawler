@@ -5,19 +5,26 @@ signal inventory_updated
 const SLOT = preload("res://inventory/slot.gd")
 const ITEM = preload("res://inventory_item/inventory_item.gd")
 const NUM_INVENTORY_SLOTS = 20
+const NUM_HOTBAR_SLOTS = 5
 
 # slot index: [name, quantity]
 var inventory = {
 	0: ['iron_sword', 1],
 	1: ["slime_potion", 45],
-	2: ["slime_potion", 50],
-	3: ["slime_potion", 30]
+	2: ["tree_branch", 10],
+	3: ["slime_potion", 30],
+	4: ['iron_sword', 1],
+	5: ["slime_potion", 4],
+	6: ["slime_potion", 5],
+	7: ["tree_branch", 1],
+	8: ['iron_sword', 1],
+	9: ["slime_potion", 45],
+	10: ["slime_potion", 50],
+	11: ["slime_potion", 30]
 }
 
 func add_item(item_name, item_quantity):
 	for item in inventory:
-		print("item_name:", item_name)
-		print("\n\nander dingetje:", inventory[item][0])
 		if inventory[item][0] == item_name:
 			var stack_size = int(JsonData.item_data[item_name]["StackSize"])
 			var able_to_add = stack_size - inventory[item][1]
@@ -42,5 +49,8 @@ func remove_item(slot):
 	inventory.erase(slot.slot_index)
 	
 func add_item_quantity(slot, quantity):
-	inventory[slot.slot_index][1] += quantity	
+	if inventory[slot.slot_index][1] == 1 and quantity == -1:
+		remove_item(slot)
+	else:
+		inventory[slot.slot_index][1] += quantity	
 	

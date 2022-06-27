@@ -2,7 +2,7 @@ extends Node
 
 var item_data: Dictionary = {
   "tree_branch": {
-	"ItemCategory": "Resource",
+	"ItemCategory": "Weapon",
 	"StackSize": 99,
 	"Description": "A sturdy tree branch that can be used for crafting."
   },
@@ -14,7 +14,7 @@ var item_data: Dictionary = {
 	"Description": "It smells like medicine."
   },
   "iron_sword": {
-	"ItemCategory": "Sword",
+	"ItemCategory": "Weapon",
 	"ItemAttack": 3,
 	"ItemSpeed": 0.75, 
 	"StackSize": 1,

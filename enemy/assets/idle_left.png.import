@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/SmallShadow.png-3d633ca9f87e83202f65ddc3997d813b.stex"
+path="res://.import/idle_left.png-46e38cfa6913fbe134116903648f9893.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemy/sprites/SmallShadow.png"
-dest_files=[ "res://.import/SmallShadow.png-3d633ca9f87e83202f65ddc3997d813b.stex" ]
+source_file="res://enemy/assets/idle_left.png"
+dest_files=[ "res://.import/idle_left.png-46e38cfa6913fbe134116903648f9893.stex" ]
 
 [params]
 

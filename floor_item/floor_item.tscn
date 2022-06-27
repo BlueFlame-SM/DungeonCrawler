@@ -22,6 +22,7 @@ extents = Vector2( 15.5, 16 )
 [node name="FloorItem" type="RigidBody2D"]
 light_mask = 0
 position = Vector2( 22, -22.5 )
+scale = Vector2( 5, 5 )
 collision_layer = 130
 collision_mask = 0
 gravity_scale = 0.0

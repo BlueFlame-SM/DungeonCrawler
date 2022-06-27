@@ -11,6 +11,12 @@ var empty_style: StyleBoxTexture = null
 var ItemClass = preload("res://inventory_item/inventory_item.tscn")
 var item = null
 var slot_index
+var slot_type
+
+enum SlotType {
+	HOTBAR = 0,
+	INVENTORY,
+}
 
 func _ready():
 	default_style = StyleBoxTexture.new()
@@ -22,7 +28,7 @@ func _ready():
 #	if randi() % 2 == 0:
 #		item = ItemClass.instance()
 #		add_child(item)
-#	refresh_style()
+	refresh_style()
 #
 # If an item is in a slot, the slot is highligthed.
 func refresh_style():
@@ -34,7 +40,7 @@ func refresh_style():
 # Function for picking item from slot.
 func pickFromSlot():
 	remove_child(item)
-	var inventoryNode = find_parent("Inventory")
+	var inventoryNode = find_parent("CanvasLayer")
 	inventoryNode.add_child(item)
 	item = null
 	refresh_style()
@@ -47,7 +53,7 @@ func putIntoSlot(new_item, picked_up):
 		pass
 		
 	item.position = Vector2(0, 0)
-	var inventoryNode = find_parent("Inventory")
+	var inventoryNode = find_parent("CanvasLayer")
 	if picked_up == 0:
 		inventoryNode.remove_child(item)
 

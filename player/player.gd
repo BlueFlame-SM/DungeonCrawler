@@ -14,8 +14,6 @@ signal hit(amount)
 var attack_cooldown_time = 100
 var next_attack_time = 0
 
-func _ready():
-	speed = 3
 
 func playAnimations(velocity: Vector2, delta: float) -> void:
 	# Only move if attack animation is not playing
@@ -50,13 +48,9 @@ func playAnimations(velocity: Vector2, delta: float) -> void:
 			if lastDirection == Vector2.DOWN:
 				$AnimatedSprite.animation = "idle_down"
 			elif lastDirection == Vector2.UP:
-				$AnimatedSprite.play("idle_up")
-			elif lastDirection == Vector2.LEFT:
-				$AnimatedSprite.play("idle_left")
-				$AnimatedSprite.flip_h = false
+				$AnimatedSprite.play("back_slash")
 			else:
 				$AnimatedSprite.animation = "idle_left"
-				$AnimatedSprite.flip_h = true
 			$AnimatedSprite.flip_v = false
 	# Play attack animation based on direction
 	else:
@@ -141,7 +135,18 @@ func _input(event):
 		if items.size() > 0:
 			var item = items[0]
 			item.pick_up_item(self)
-
 	if event.is_action_pressed("inventory"):
-		$CanvasLayer/Inventory.visible = !$Inventory.visible
-		$Inventory.initialize_inventory()
+		$CanvasLayer/Inventory.visible = !$CanvasLayer/Inventory.visible
+		$CanvasLayer/Inventory.initialize_inventory()
+
+func _on_Inventory_use_i():
+	print($CanvasLayer/Inventory.use_item.item_name)
+	var item = JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Item_category"]
+	if item == "Consumable":
+		health += JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["AddHealth"]
+		print(health)
+
+func _on_Inventory_use_w():
+	var item = JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["ItemCategory"]
+	# TODO: De hoeveelheid damage die een wapen geeft moet gekoppeld worden aan stats.
+	# Dat doe je zoals bij on_Inventory_use_i.
