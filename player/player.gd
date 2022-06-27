@@ -6,6 +6,7 @@ var lastDirection = Vector2.LEFT
 
 # onready var healthbar = $HealthBar
 onready var weapon = $Weapon
+var health_change = false
 
 # When player hits enemy
 signal hit(amount)
@@ -59,7 +60,10 @@ func playAnimations(velocity: Vector2, delta: float) -> void:
 			$AnimatedSprite.play("back_slash")
 		else:
 			$AnimatedSprite.play("left_slash")
-
+	
+	if health_change == true:
+		$AnimatedSprite.play("hit_effect")
+		health_change = false
 
 func _physics_process(delta: float) -> void:
 	var direction = Vector2.ZERO
@@ -161,5 +165,6 @@ func _on_Inventory_use_w():
 
 
 func _on_Player_healthChanged(newValue):
+	health_change = true
 	if Player.health <= 0:
 		die()
