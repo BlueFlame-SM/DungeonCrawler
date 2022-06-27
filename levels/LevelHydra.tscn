@@ -63,7 +63,7 @@ tile_set = ExtResource( 8 )
 cell_size = Vector2( 32, 32 )
 cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
 format = 1
-tile_data = PoolIntArray( 589913, 8, 0, 655462, 3, 0, 655466, 7, 0, 720919, 0, 0, 786531, 3, 0, 786536, 1, 0, 851981, 1, 0, 852023, 2, 0, 917605, 3, 0, 917609, 8, 0, 983064, 3, 0, 983119, 8, 0, 983139, 3, 0, 983145, 9, 0 )
+tile_data = PoolIntArray( 720919, 0, 0, 851981, 1, 0, 983064, 3, 0 )
 
 [node name="Walls" type="TileMap" parent="LevelNavigation"]
 tile_set = ExtResource( 1 )

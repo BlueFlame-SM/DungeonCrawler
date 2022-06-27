@@ -26,8 +26,8 @@ export var next_scene_name: String = "res://levels/Level5.tscn"
 
 var rng = RandomNumberGenerator.new()
 var nxt_lvl_nr
-var combat_levels = [4, 5, 6, 7, 8 ,9 ,11, 12, 13, 14]
-var loot_levels = [4, 5, 6, 7, 8 ,9, 10 ,11, 12, 13, 14]
+var combat_levels = [1, 2, 3, 4, 5, 6, 7, 8 ,9 ,11]
+var loot_levels = [1, 2, 3, 4, 5, 6, 7, 8 ,9, 10 ,11]
 var cur_lvl_nr
 var gate_type = "loot"
 
