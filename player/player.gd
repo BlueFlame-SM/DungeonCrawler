@@ -61,9 +61,13 @@ func playAnimations(velocity: Vector2, delta: float) -> void:
 		else:
 			$AnimatedSprite.play("left_slash")
 	
+	if GlobalVars.level_type == "start":
+			health_change = false
+
 	if health_change == true:
-		$AnimatedSprite.play("hit_effect")
-		health_change = false
+			$AnimatedSprite.play("hit_effect")
+			$HurtSound.play()
+			health_change = false
 
 func _physics_process(delta: float) -> void:
 	var direction = Vector2.ZERO
