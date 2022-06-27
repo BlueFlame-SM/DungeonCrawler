@@ -20,12 +20,11 @@ func enable_styx():
 			child.disabled = false
 	Player.can_move = true
 
-
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 #	Count how many levels the player has played from start level
 	GlobalVars.level_counter += 1
+	print(GlobalVars.level_counter)
 
 	rng.randomize()
 #	Connect the signal from GlobalVars to function
@@ -37,8 +36,7 @@ func _ready():
 		spawn_chests()
 	elif GlobalVars.level_type == "start":
 #		Reset level counter and player health
-		GlobalVars.level_counter = 1
-		Player._set_health(10)
+		Player._set_health(Player.max_health)
 #	Set the global player at the start position near the entering gate
 	Player.position = $PlayerSpawn.position
 #	Wait a second to enable styx collision box
@@ -110,11 +108,12 @@ func level_completed():
 	$LevelNavigation/Gates_open.visible = true
 
 func enemy_difficulties(enemy):
-	if GlobalVars.level_counter % 2:
-		enemy._set_damage(enemy._get_damage() + 1)
-		print("enemy DMG: ", enemy._get_damage())
-		print("level counter:", GlobalVars.level_counter)
-	if GlobalVars.level_counter % 3:
-		enemy._set_damage(enemy._get_damage() + 1)
-		print("enemy DMG: ", enemy._get_damage())
-		print("level counter:", GlobalVars.level_counter)
+	pass
+#	if GlobalVars.level_counter % 2:
+#		enemy._set_damage(enemy._get_damage() + 1)
+#		print("enemy DMG: ", enemy._get_damage())
+#		print("level counter:", GlobalVars.level_counter)
+#	if GlobalVars.level_counter % 3:
+#		enemy._set_damage(enemy._get_damage() + 1)
+#		print("enemy DMG: ", enemy._get_damage())
+#		print("level counter:", GlobalVars.level_counter)

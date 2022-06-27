@@ -4,11 +4,12 @@ extends Node2D
 
 var item_name
 var item_quantity
+var options = JsonData.item_data.keys()
+
 
 func _ready():
 	randomize()
 	var rand_val = randi() % 6 - 1
-	var options = ["tree_branch", "slime_potion","iron_sword", "brown_shirt", "blue_jeans", "brown_boots"]
 	item_name = options[rand_val]
 	$AnimatedSprite.animation = item_name
 

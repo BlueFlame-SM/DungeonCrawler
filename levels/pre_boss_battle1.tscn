@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://tilemap/floor.tres" type="TileSet" id=1]
 [ext_resource path="res://tilemap/rocks1.tres" type="TileSet" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://tilemap/Gate_Mini_Open_Icon.png" type="Texture" id=5]
 [ext_resource path="res://levels/Level.gd" type="Script" id=6]
 [ext_resource path="res://gate/gate.gd" type="Script" id=7]
+[ext_resource path="res://chest/Chest.tscn" type="PackedScene" id=8]
 
 [sub_resource type="TileSet" id=2]
 0/name = "Gate_Mini_Open_Icon.png 0"
@@ -128,6 +129,8 @@ polygon = PoolVector2Array( -488.501, 585.406, -479.619, 46246.8, -449.026, 4536
 
 [node name="PlayerSpawn" type="Position2D" parent="."]
 position = Vector2( 478, 539 )
+
+[node name="Chest" parent="." instance=ExtResource( 8 )]
 
 [connection signal="body_entered" from="BossGate" to="BossGate" method="_on_Gate_body_entered"]
 [connection signal="body_entered" from="River_collision" to="." method="_on_River_collision_body_entered"]

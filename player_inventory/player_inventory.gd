@@ -9,11 +9,7 @@ const NUM_HOTBAR_SLOTS = 5
 
 # slot index: [name, quantity]
 var inventory = {
-	0: ['iron_sword', 1],
-	1: ["slime_potion", 45],
-	2: ["slime_potion", 5],
-	3: ["slime_potion", 3],
-	4: ['iron_sword', 1],
+	0: ['Iron_sword', 1],
 }
 
 func add_item(item_name, item_quantity):

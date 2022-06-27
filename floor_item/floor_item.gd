@@ -4,6 +4,7 @@ extends RigidBody2D
 var player = null
 var picked_up = false
 export var item_name: String
+var options = JsonData.item_data.keys()
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -11,7 +12,6 @@ export var item_name: String
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# 0: branch, 1:poison, 2:sword, 3:shirt, 4:pants, 5:boots
-	var options = ["tree_branch", "slime_potion","iron_sword", "brown_shirt", "blue_jeans", "brown_boots"]
 	$AnimatedSprite.set_frame(options.find(item_name))
 	$AnimatedSprite.scale.x = 3
 	$AnimatedSprite.scale.y = 3

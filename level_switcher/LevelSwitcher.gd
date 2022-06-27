@@ -18,6 +18,7 @@ func goto_scene(path, dead=false):
 	if !dead:
 		player.play("fade")
 	else:
+		GlobalVars.level_counter = 0
 		player.play("die")
 
 
