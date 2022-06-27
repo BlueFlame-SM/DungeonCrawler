@@ -5,6 +5,13 @@ var area_entered = false
 var opened_before = false
 var contained_items = []
 
+func choose_items(list):
+	var options = ["tree_branch", "slime_potion","iron_sword", "brown_shirt", "blue_jeans", "brown_boots"]
+	var items_chest = []
+	for item in list:
+		items_chest.append(options[item])
+	return items_chest
+
 # If the area is entered, and the E button is pressed,
 # the chest will open.
 func _process(delta):
@@ -50,7 +57,6 @@ func load_chest(item_list):
 # The area is entered.
 func _on_Pickup_Chest_body_entered(body):
 		area_entered = true
-
 
 # The area is exited.
 func _on_Pickup_Chest_body_exited(body):
