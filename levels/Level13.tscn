@@ -138,8 +138,19 @@ polygon = PoolVector2Array( 512, 576, 512, 496, 896, 496, 896, 576 )
 [node name="PlayerSpawn" type="Position2D" parent="."]
 position = Vector2( 478, 539 )
 
-[node name="EnemySpawn" type="Position2D" parent="."]
-position = Vector2( 777, 324 )
+[node name="EnemySpawns" type="Node2D" parent="."]
+
+[node name="EnemySpawn1" type="Position2D" parent="EnemySpawns"]
+position = Vector2( 491, 259 )
+
+[node name="EnemySpawn2" type="Position2D" parent="EnemySpawns"]
+position = Vector2( 164, 205 )
+
+[node name="EnemySpawn3" type="Position2D" parent="EnemySpawns"]
+position = Vector2( 870, 267 )
+
+[node name="EnemySpawn4" type="Position2D" parent="EnemySpawns"]
+position = Vector2( 232, 368 )
 
 [connection signal="gates_open" from="." to="Gate" method="_on_gates_open"]
 [connection signal="gates_open" from="." to="Gate_right" method="_on_gates_open"]

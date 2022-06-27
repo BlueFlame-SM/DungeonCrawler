@@ -8,12 +8,12 @@ TODO:
 	- Fix animation issue (DONE)
 	- Fix bugs in gate differentiation. (DONE)
 	- Fix double level, spawns enemies (i think fixed)
+	- Multiple enemies???? Count them (DONE)
+	- Get chest from misha fork and spawn in loot levels DONE
+	- Make loot or enemy spawn in level. DONE
+	- Level script detects if level completed (chest opened/enemies defeated) DONE
 
-	- Get chest from misha fork and spawn in loot levels
-	- Make loot or enemy spawn in level.
-	- Level script detects if level completed (chest opened/enemies defeated)
 	- Enemy can kill player (pls outsource)
-	- Multiple enemies???? Count them
 	- On death, dont play gate close but some sort of dying sound.
 	- Sound on slash
 """
@@ -73,5 +73,6 @@ func _on_Gate_body_entered(body):
 
 #Gets signal from level script that level has been completed.
 func _on_gates_open():
+	print("gates open")
 	$GateCollision.disabled = 0
 
