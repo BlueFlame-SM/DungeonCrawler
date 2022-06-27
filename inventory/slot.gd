@@ -82,7 +82,7 @@ func refresh_style():
 func pickFromSlot():
 	remove_child(item)
 	var inventoryNode = find_parent("CanvasLayer")
-#	inventoryNode.add_child(item)
+	inventoryNode.add_child(item)
 	item = null
 	refresh_style()
 

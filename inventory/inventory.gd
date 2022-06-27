@@ -90,6 +90,7 @@ func consume_item(slot):
 		if slot.item.item_quantity == 1:
 			slot.remove_child(use_item)
 			slot.item = null
+			slot.refresh_style()
 #			use_item.decrease_item_quantity(1)
 		PlayerInventory.add_item_quantity(slot, -1)
 		initialize_inventory()
