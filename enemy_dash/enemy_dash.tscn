@@ -38,6 +38,11 @@ animations = [ {
 "loop": true,
 "name": "default",
 "speed": 10.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "New Anim",
+"speed": 5.0
 } ]
 
 [sub_resource type="SpriteFrames" id=11]
@@ -64,7 +69,7 @@ modulate = Color( 0.984314, 0.984314, 0.984314, 1 )
 position = Vector2( 0, -12 )
 scale = Vector2( 4, 4 )
 frames = SubResource( 10 )
-frame = 2
+animation = "New Anim"
 playing = true
 
 [node name="Shadow" type="AnimatedSprite" parent="."]

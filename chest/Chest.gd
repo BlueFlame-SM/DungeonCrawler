@@ -3,11 +3,11 @@ extends Area2D
 # Area is not entered yet.
 var area_entered = false
 var opened_before = false
-var contained_items = []
+var items_chest = []
 
+#Probably needs to be rewritten to accept string list instead of indices
 func choose_items(list):
 	var options = ["tree_branch", "slime_potion","iron_sword", "brown_shirt", "blue_jeans", "brown_boots"]
-	var items_chest = []
 	for item in list:
 		items_chest.append(options[item])
 	return items_chest
@@ -25,34 +25,24 @@ func _process(delta):
 			return
 
 func open_chest():
-	var item_count = contained_items.size()
+	var item_count = items_chest.size()
 	if item_count == 0:
 		return
 	var item_angle = 2 * PI / item_count
-	var radius = 400
+	var radius = 300
 	var angle = 0
-	var x_pos = 0
-	var y_pos = 0
-	for i in item_count:
-		"""TODO!!!"""
+
+	for i in len(items_chest):
 		var scene = load("res://floor_item/floor_item.tscn")
 		var instance = scene.instance()
-		var options = ["tree_branch", "slime_potion","iron_sword", "brown_shirt", "blue_jeans", "brown_boots"]
-		instance.item_name = options[i]
-
-
+		instance.item_name = items_chest[i]
 
 #		Spawn items around chest
 		var direction = Vector2(cos(angle), sin(angle))
 		instance.position = direction * radius
 		instance.scale = Vector2(0.02, 0.02)
-		instance.add_force(Vector2(1, 1), Vector2(10, 10))
 		var child = add_child(instance)
 		angle += item_angle
-
-func load_chest(item_list):
-	for item in item_list:
-		contained_items.append(item)
 
 # The area is entered.
 func _on_Pickup_Chest_body_entered(body):
