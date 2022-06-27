@@ -6,7 +6,6 @@ var lastDirection = Vector2.LEFT
 
 # onready var healthbar = $HealthBar
 onready var weapon = $Weapon
-var health_change = false
 
 # When player hits enemy
 signal hit(amount)
@@ -61,14 +60,7 @@ func playAnimations(velocity: Vector2, delta: float) -> void:
 			$AnimatedSprite.play("back_slash")
 		else:
 			$AnimatedSprite.play("left_slash")
-	
-	if GlobalVars.level_type == "start":
-			health_change = false
 
-	if health_change == true:
-			$AnimatedSprite.play("hit_effect")
-			$HurtSound.play()
-			health_change = false
 
 func _physics_process(delta: float) -> void:
 	var direction = Vector2.ZERO
@@ -99,7 +91,7 @@ func _physics_process(delta: float) -> void:
 				weapon.attack(lastDirection)
 				# Add cooldown time to current time
 				next_attack_time = now + attack_cooldown_time
-				
+
 		# Inventory can't be opened during start screen.
 		if GlobalVars.level_counter != 0:
 			if Input.is_action_just_pressed("inventory"):
@@ -161,6 +153,8 @@ func _on_Inventory_use_w():
 
 
 func _on_Player_healthChanged(newValue):
-	health_change = true
+	if GlobalVars.level_type != "start":
+			$AnimatedSprite.play("hit_effect")
+			$HurtSound.play()
 	if Player.health <= 0:
 		die()

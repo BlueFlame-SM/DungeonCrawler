@@ -33,7 +33,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Dungeon Crawler"
-run/main_scene="res://levels/Level4.tscn"
+run/main_scene="res://interface/main_menu.tscn"
 config/icon="res://assets/icon.png"
 
 [autoload]
