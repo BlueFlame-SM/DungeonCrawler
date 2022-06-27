@@ -131,16 +131,16 @@ position = Vector2( 478, 539 )
 [node name="EnemySpawns" type="Node2D" parent="."]
 
 [node name="EnemySpawn1" type="Position2D" parent="EnemySpawns"]
-position = Vector2( 349, 308 )
+position = Vector2( 357, 324 )
 
 [node name="EnemySpawn2" type="Position2D" parent="EnemySpawns"]
-position = Vector2( 806, 392 )
+position = Vector2( 809, 395 )
 
 [node name="EnemySpawn3" type="Position2D" parent="EnemySpawns"]
 position = Vector2( 849, 172 )
 
 [node name="EnemySpawn4" type="Position2D" parent="EnemySpawns"]
-position = Vector2( 653, 143 )
+position = Vector2( 666, 143 )
 
 [connection signal="gates_open" from="." to="Gate" method="_on_gates_open"]
 [connection signal="gates_open" from="." to="Gate_right" method="_on_gates_open"]

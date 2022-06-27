@@ -138,7 +138,7 @@ position = Vector2( 478, 539 )
 [node name="EnemySpawns" type="Node2D" parent="."]
 
 [node name="EnemySpawn1" type="Position2D" parent="EnemySpawns"]
-position = Vector2( 265, 253 )
+position = Vector2( 251, 247 )
 
 [node name="EnemySpawn2" type="Position2D" parent="EnemySpawns"]
 position = Vector2( 127, 128 )
@@ -147,7 +147,7 @@ position = Vector2( 127, 128 )
 position = Vector2( 814, 139 )
 
 [node name="EnemySpawn4" type="Position2D" parent="EnemySpawns"]
-position = Vector2( 709, 248 )
+position = Vector2( 726, 244 )
 
 [connection signal="gates_open" from="." to="Gate" method="_on_gates_open"]
 [connection signal="gates_open" from="." to="Gate_right" method="_on_gates_open"]

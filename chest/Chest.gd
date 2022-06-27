@@ -4,12 +4,20 @@ extends Area2D
 var area_entered = false
 var opened_before = false
 var items_chest = []
+var item_options = JsonData.item_data.keys()
 
-#Probably needs to be rewritten to accept string list instead of indices
+"""
+If list contains strings, append strings to items_chest, otherwise append
+item at passed index to items_chest
+"""
 func choose_items(list):
-	var options = ["tree_branch", "slime_potion","iron_sword", "brown_shirt", "blue_jeans", "brown_boots"]
-	for item in list:
-		items_chest.append(options[item])
+	if typeof(list[0]) == TYPE_STRING:
+		for item in list:
+			if item in item_options:
+				items_chest.append(item)
+	else:
+		for item in list:
+			items_chest.append(item_options[item])
 	return items_chest
 
 # If the area is entered, and the E button is pressed,
@@ -25,6 +33,7 @@ func _process(delta):
 			return
 
 func open_chest():
+	print(item_options)
 	var item_count = items_chest.size()
 	if item_count == 0:
 		return

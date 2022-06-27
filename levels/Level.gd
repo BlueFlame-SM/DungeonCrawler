@@ -26,6 +26,7 @@ func enable_styx():
 func _ready():
 #	Count how many levels the player has played from start level
 	GlobalVars.level_counter += 1
+
 	rng.randomize()
 #	Connect the signal from GlobalVars to function
 	GlobalVars.connect("challenge_down", self, "_on_challenge_down")
@@ -57,12 +58,12 @@ func spawn_enemies():
 	var enemy
 	if rng.randf_range(0, 1) < 0.9:
 		enemy = load("res://enemy_range/enemy_range.tscn").instance()
-#		enemy/AnimatedSprite =
 	else:
 		enemy = load("res://enemy/enemy.tscn").instance()
 	var spawn_point = $EnemySpawns.get_children()[randi() % 4]
 	enemy.position = spawn_point.position
 	add_child(enemy)
+	enemy_difficulties(enemy)
 #	This becomes relevant if you want to spawn more than 1 enemy. Not currently implemented.
 	challenge_counter += 1
 
@@ -73,6 +74,7 @@ func spawn_chests():
 	var chest = load("res://chest/Chest.tscn").instance()
 	var spawn_point = $EnemySpawns.get_children()[randi() % 4]
 	chest.position = spawn_point.position
+#	Change this to get random ints of max len_keys.
 	chest.choose_items([0,1,2,3,4])
 	add_child(chest)
 #	This becomes relevant if you want to spawn more than 1 chest. Not currently implemented.
@@ -107,3 +109,10 @@ appear open.
 func level_completed():
 	emit_signal("gates_open")
 	$LevelNavigation/Gates_open.visible = true
+
+
+"""Function to increase the stats of enemies when levels increase. """
+func enemy_difficulties(enemy):
+	print("ENEMY DMG: ", enemy._get_damage())
+	if GlobalVars.level_counter % 2 or GlobalVars.level_counter % 3:
+		enemy._set_damage(enemy._get_damage() + 1)
