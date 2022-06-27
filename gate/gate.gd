@@ -12,12 +12,15 @@ TODO:
 	- Get chest from misha fork and spawn in loot levels DONE
 	- Make loot or enemy spawn in level. DONE
 	- Level script detects if level completed (chest opened/enemies defeated) DONE
+	- Fix that chest cant be opened in level 9 (DONE)
 
 	- Enemy can kill player (pls outsource) (Not sure if this works for every enemy)
 	- On death, dont play gate close but some sort of dying sound.
 	- Sound on slash
 	- Make what is in chest variable
-	- Fix that chest cant be opened in level 9
+	- Connect (random) sprite to enemy
+
+
 """
 
 extends Area2D
@@ -54,7 +57,7 @@ func det_gate_type():
 	cur_lvl_nr = int(get_parent().name.right(5))
 	combat_levels.erase(cur_lvl_nr)
 	loot_levels.erase(cur_lvl_nr)
-	if rng.randf_range(0, 1) < 0.9:
+	if rng.randf_range(0, 1) < 0.5:
 		nxt_lvl_nr = loot_levels[randi() % loot_levels.size()]
 		$LootOpen.visible = true
 		gate_type = "loot"

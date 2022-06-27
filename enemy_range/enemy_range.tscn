@@ -87,8 +87,8 @@ frames = SubResource( 10 )
 playing = true
 
 [node name="Shadow" type="AnimatedSprite" parent="."]
-position = Vector2( 0, 20 )
-scale = Vector2( 3, 3 )
+position = Vector2( 1, 7 )
+scale = Vector2( 0.64, 0.575 )
 frames = SubResource( 11 )
 
 [node name="Timer" type="Timer" parent="."]

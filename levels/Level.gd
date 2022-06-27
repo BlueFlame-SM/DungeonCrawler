@@ -54,8 +54,9 @@ Spawns either a range or normal enemy. Can be extended to other types.
 """
 func spawn_enemies():
 	var enemy
-	if rng.randf_range(0, 1) < 0.6:
+	if rng.randf_range(0, 1) < 0.1:
 		enemy = load("res://enemy_range/enemy_range.tscn").instance()
+#		enemy/AnimatedSprite =
 	else:
 		enemy = load("res://enemy/enemy.tscn").instance()
 	var spawn_point = $EnemySpawns.get_children()[randi() % 4]
@@ -71,6 +72,7 @@ func spawn_chests():
 	var chest = load("res://chest/Chest.tscn").instance()
 	var spawn_point = $EnemySpawns.get_children()[randi() % 4]
 	chest.position = spawn_point.position
+	chest.choose_items([0,1,2,3,4])
 	add_child(chest)
 #	This becomes relevant if you want to spawn more than 1 chest. Not currently implemented.
 	challenge_counter += 1
