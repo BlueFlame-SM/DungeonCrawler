@@ -56,6 +56,7 @@ func spawn_enemies():
 	var enemy
 	if rng.randf_range(0, 1) < 0.6:
 		enemy = load("res://enemy_range/enemy_range.tscn").instance()
+		enemy.sprite
 	else:
 		enemy = load("res://enemy/enemy.tscn").instance()
 	var spawn_point = $EnemySpawns.get_children()[randi() % 4]
@@ -71,6 +72,7 @@ func spawn_chests():
 	var chest = load("res://chest/Chest.tscn").instance()
 	var spawn_point = $EnemySpawns.get_children()[randi() % 4]
 	chest.position = spawn_point.position
+	chest.load_chest(["a", "b"])
 	add_child(chest)
 #	This becomes relevant if you want to spawn more than 1 chest. Not currently implemented.
 	challenge_counter += 1

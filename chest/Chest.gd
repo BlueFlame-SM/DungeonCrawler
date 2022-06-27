@@ -3,11 +3,7 @@ extends Area2D
 # Area is not entered yet.
 var area_entered = false
 var opened_before = false
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
+var contained_items = []
 
 # If the area is entered, and the E button is pressed,
 # the chest will open.
@@ -18,30 +14,38 @@ func _process(delta):
 			GlobalVars.challenge_down()
 			get_parent().get_node("Chest/AnimatedSprite").playing = false
 			get_parent().get_node("Chest/AnimatedSprite").frame = 1
-
-			var item_count = 5
-			var item_angle = 2.0 * PI / item_count
-			var radius = 400
-			var angle = 0
-			var x_pos = 0
-			var y_pos = 0
-			for i in item_count:
-				var scene = load("res://floor_item/floor_item.tscn")
-
-				var instance = scene.instance()
-				var options = ["tree_branch", "slime_potion","iron_sword", "brown_shirt", "blue_jeans", "brown_boots"]
-				instance.item_name = options[i]
-#				instance.visibilityEnablers
-				var direction = Vector2(cos(angle), sin(angle))
-				instance.position = direction * radius
-				instance.scale = Vector2(0.02, 0.02)
-#				instance.linear_velocity = Vector2(10, 10)
-#				instance.add_force(Vector2(1, 1), Vector2(10, 10))
-				var child = add_child(instance)
-				angle += item_angle
-			area_entered = false
+			open_chest()
 			return
 
+func open_chest():
+	var item_count = contained_items.size()
+	if item_count == 0:
+		return
+	var item_angle = 2 * PI / item_count
+	var radius = 400
+	var angle = 0
+	var x_pos = 0
+	var y_pos = 0
+	for i in item_count:
+		"""TODO!!!"""
+		var scene = load("res://floor_item/floor_item.tscn")
+		var instance = scene.instance()
+		var options = ["tree_branch", "slime_potion","iron_sword", "brown_shirt", "blue_jeans", "brown_boots"]
+		instance.item_name = options[i]
+
+
+
+#		Spawn items around chest
+		var direction = Vector2(cos(angle), sin(angle))
+		instance.position = direction * radius
+		instance.scale = Vector2(0.02, 0.02)
+		instance.add_force(Vector2(1, 1), Vector2(10, 10))
+		var child = add_child(instance)
+		angle += item_angle
+
+func load_chest(item_list):
+	for item in item_list:
+		contained_items.append(item)
 
 # The area is entered.
 func _on_Pickup_Chest_body_entered(body):

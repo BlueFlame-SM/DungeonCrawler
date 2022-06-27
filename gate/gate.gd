@@ -12,12 +12,15 @@ TODO:
 	- Get chest from misha fork and spawn in loot levels DONE
 	- Make loot or enemy spawn in level. DONE
 	- Level script detects if level completed (chest opened/enemies defeated) DONE
+	- Fix that chest cant be opened in level 9 (DONE)
 
 	- Enemy can kill player (pls outsource) (Not sure if this works for every enemy)
 	- On death, dont play gate close but some sort of dying sound.
 	- Sound on slash
 	- Make what is in chest variable
-	- Fix that chest cant be opened in level 9
+	- Connect (random) sprite to enemy
+
+
 """
 
 extends Area2D
