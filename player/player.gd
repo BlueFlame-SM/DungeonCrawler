@@ -95,6 +95,8 @@ func _physics_process(delta: float) -> void:
 		if GlobalVars.level_counter != 0:
 			if Input.is_action_just_pressed("inventory"):
 				$CanvasLayer/Inventory.visible = !$CanvasLayer/Inventory.visible
+			$CanvasLayer/Hotbar.visible = true
+			
 
 	var velocity = move_and_slide(move_in_direction(direction))
 	position += velocity * delta
@@ -135,6 +137,9 @@ func _input(event):
 		if items.size() > 0:
 			var item = items[0]
 			item.pick_up_item(self)
+#	if event.is_action_pressed("inventory"):
+#		$CanvasLayer/Inventory.visible = !$CanvasLayer/Inventory.visible
+#		$CanvasLayer/Inventory.initialize_inventory()
 
 
 func _on_Inventory_use_i():
