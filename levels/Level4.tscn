@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://tilemap/walls3.tres" type="TileSet" id=1]
 [ext_resource path="res://tilemap/rocks1.tres" type="TileSet" id=2]
@@ -9,9 +9,6 @@
 [ext_resource path="res://gate/gate.gd" type="Script" id=7]
 [ext_resource path="res://tilemap/Gate_Loot_Icon.png" type="Texture" id=8]
 [ext_resource path="res://tilemap/Gate_Boss_Open_Icon.png" type="Texture" id=9]
-
-[sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 26, 31.75 )
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 24.25, 27 )
@@ -86,11 +83,7 @@ format = 1
 tile_data = PoolIntArray( 7, 1, 0, 47, 1, 0 )
 
 [node name="Gate" parent="." instance=ExtResource( 5 )]
-position = Vector2( 112, 8 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Gate"]
-position = Vector2( 48, 32.75 )
-shape = SubResource( 4 )
+position = Vector2( 112, 1 )
 
 [node name="Gate_right" type="Area2D" parent="."]
 position = Vector2( 742, -20 )

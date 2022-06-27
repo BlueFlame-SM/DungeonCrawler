@@ -17,7 +17,6 @@ var next_attack_time = 0
 func _ready():
 	speed = 5
 
-
 func playAnimations(velocity: Vector2, delta: float) -> void:
 	# Only move if attack animation is not playing
 	if !playAttack:

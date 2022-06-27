@@ -8,13 +8,13 @@ TODO:
 	- Fix animation issue (DONE)
 	- Fix bugs in gate differentiation. (DONE)
 	- Fix double level, spawns enemies (i think fixed)
-	- Multiple enemies???? Count them (DONE)
 	- Get chest from misha fork and spawn in loot levels DONE
 	- Make loot or enemy spawn in level. DONE
 	- Level script detects if level completed (chest opened/enemies defeated) DONE
 	- Fix that chest cant be opened in level 9 (DONE)
 
-	- Enemy can kill player (pls outsource) (Not sure if this works for every enemy)
+	- Multiple enemies???? Count them
+	- Enemy can kill player (Not sure if this works for every enemy)
 	- On death, dont play gate close but some sort of dying sound.
 	- Sound on slash
 	- Make what is in chest variable
