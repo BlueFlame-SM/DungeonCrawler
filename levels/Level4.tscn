@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://tilemap/walls3.tres" type="TileSet" id=1]
 [ext_resource path="res://tilemap/rocks1.tres" type="TileSet" id=2]
@@ -9,9 +9,6 @@
 [ext_resource path="res://gate/gate.gd" type="Script" id=7]
 [ext_resource path="res://tilemap/Gate_Loot_Icon.png" type="Texture" id=8]
 [ext_resource path="res://tilemap/Gate_Boss_Open_Icon.png" type="Texture" id=9]
-
-[sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 26, 31.75 )
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 24.25, 27 )
@@ -86,11 +83,7 @@ format = 1
 tile_data = PoolIntArray( 7, 1, 0, 47, 1, 0 )
 
 [node name="Gate" parent="." instance=ExtResource( 5 )]
-position = Vector2( 112, 8 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Gate"]
-position = Vector2( 48, 32.75 )
-shape = SubResource( 4 )
+position = Vector2( 112, 1 )
 
 [node name="Gate_right" type="Area2D" parent="."]
 position = Vector2( 742, -20 )
@@ -123,19 +116,18 @@ scale = Vector2( 1, 0.925967 )
 polygon = PoolVector2Array( 384, 176, 576, 176, 576, 208, 640, 208, 640, 240, 672, 240, 672, 272, 704, 272, 704, 304, 736, 304, 736, 448, 704, 448, 704, 480, 672, 480, 672, 512, 544, 512, 544, 480, 416, 480, 416, 448, 352, 448, 352, 416, 288, 416, 288, 384, 256, 384, 256, 352, 224, 352, 224, 272, 320, 272, 320, 240, 352, 240, 352, 208, 384, 208 )
 
 [node name="PlayerSpawn" type="Position2D" parent="."]
-visible = false
 position = Vector2( 479, 548 )
 
 [node name="EnemySpawns" type="Node2D" parent="."]
 
 [node name="EnemySpawn1" type="Position2D" parent="EnemySpawns"]
-position = Vector2( 269, 207 )
+position = Vector2( 269, 204 )
 
 [node name="EnemySpawn2" type="Position2D" parent="EnemySpawns"]
 position = Vector2( 139, 126 )
 
 [node name="EnemySpawn3" type="Position2D" parent="EnemySpawns"]
-position = Vector2( 814, 139 )
+position = Vector2( 749, 184 )
 
 [node name="EnemySpawn4" type="Position2D" parent="EnemySpawns"]
 position = Vector2( 171, 467 )
