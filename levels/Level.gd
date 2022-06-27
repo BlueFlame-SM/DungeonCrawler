@@ -46,6 +46,7 @@ func _ready():
 	timer.one_shot = true
 	add_child(timer)
 	timer.start()
+	print(self.name)
 
 
 """
@@ -54,7 +55,7 @@ Spawns either a range or normal enemy. Can be extended to other types.
 """
 func spawn_enemies():
 	var enemy
-	if rng.randf_range(0, 1) < 0.1:
+	if rng.randf_range(0, 1) < 0.9:
 		enemy = load("res://enemy_range/enemy_range.tscn").instance()
 #		enemy/AnimatedSprite =
 	else:

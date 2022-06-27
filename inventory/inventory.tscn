@@ -19,9 +19,6 @@ margin_right = 926.0
 margin_bottom = 609.0
 texture = ExtResource( 3 )
 stretch_mode = 1
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="GridContainer" type="GridContainer" parent="."]
 margin_left = 735.0

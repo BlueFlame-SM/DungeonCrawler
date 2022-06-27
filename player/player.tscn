@@ -55,11 +55,11 @@ __meta__ = {
 
 [node name="Inventory" parent="CanvasLayer" instance=ExtResource( 3 )]
 visible = false
-position = Vector2( 16, 10 )
+position = Vector2( 10, -406 )
 
 [node name="Hotbar" parent="CanvasLayer" instance=ExtResource( 4 )]
 visible = false
-position = Vector2( 295, 568 )
+position = Vector2( 27, 517 )
 script = ExtResource( 6 )
 
 [node name="HurtSound" type="AudioStreamPlayer" parent="."]
