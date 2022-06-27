@@ -115,9 +115,13 @@ func _on_Weapon_body_entered(body):
 	body.do_damage(2)
 	emit_signal("hit", weapon.damage)
 
+
+"""
+When the player dies, the player stops being able to move. The next level is
+the start level. We then call the levelswitcher to go to the start level.
+"""
 func die():
 	self.can_move = false
-#	do_damage(health)
 	GlobalVars.level_type = "start"
 	LevelSwitcher.goto_scene("res://levels/LevelStart.tscn", true)
 #
