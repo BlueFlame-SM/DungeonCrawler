@@ -42,6 +42,7 @@ func initialize_inventory():
 func slot_gui_input(event: InputEvent, slot: SlotClass):
 	# When a mouseclick occurs, check if it is a left mouse click.
 	if event is InputEventMouseButton:
+		# Edge case to check if there are items to click.
 		if event.button_index == BUTTON_LEFT && event.pressed:
 			if holding_item != null:
 				# When there is no item in the slot, put the new item in the slot.
@@ -52,10 +53,10 @@ func slot_gui_input(event: InputEvent, slot: SlotClass):
 					# If it is a different item, swap the item held by the item in the slot.
 					if holding_item.item_name != slot.item.item_name:
 						left_click_dif_item(event, slot)
-					# If it is the same item, check if it can be stacked. 
+					# If it is the same item, check if it can be stacked.
 					else:
 						left_click_same_item(slot)
-						
+
 			# If nothing is held yet, here the item will be picked up.
 			elif slot.item:
 				slot_white(slot)
@@ -63,10 +64,10 @@ func slot_gui_input(event: InputEvent, slot: SlotClass):
 		# Consumes an item.
 		if event.button_index == BUTTON_RIGHT && event.pressed:
 			consume_item(slot)
-			
+
 func consume_item(slot):
 	if !slot.item:
-		return -1	
+		return -1
 	if JsonData.item_data[slot.item.item_name]["ItemCategory"] == "Weapon":
 		use_item = slot.item
 		var old_equiped_item = slots[0].item
@@ -92,7 +93,7 @@ func consume_item(slot):
 #			use_item.decrease_item_quantity(1)
 			PlayerInventory.add_item_quantity(slot, -1)
 			initialize_inventory()
-	
+
 func _input(event):
 	# location of item held gets updated by mouse location.
 	if holding_item:
@@ -124,7 +125,6 @@ func left_click_dif_item(event, slot):
 
 func left_click_same_item(slot):
 	var stack_size = int(JsonData.item_data[slot.item.item_name]["StackSize"])
-#	var stack_size = int(JsonData.item_data[item_name]["StackSize"])
 	var able_to_add = stack_size - slot.item.item_quantity
 	if able_to_add >= holding_item.item_quantity:
 		PlayerInventory.add_item_quantity(slot, holding_item.item_quantity)
@@ -147,6 +147,6 @@ func slot_green(slot):
 
 func slot_white(slot):
 	 slot.modulate = "ffffff"
-	
+
 func slot_blue(slot):
 	 slot.modulate = "0000FF"

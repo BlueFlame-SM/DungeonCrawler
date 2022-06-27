@@ -25,6 +25,8 @@ export var damage: int = 1 setget _set_damage, _get_damage
 
 export var can_move: bool = true
 
+signal healthChanged(newValue)
+
 
 # Computes the velocity vector of the character from `direction` and the speed stat.
 func move_in_direction(direction: Vector2) -> Vector2:
@@ -61,6 +63,7 @@ func _set_health(value: int) -> void:
 	health = clamp(value, 0, max_health)
 	if health == 0:
 		emit_signal("character_died")
+	emit_signal("healthChanged", health)
 
 
 func _get_health() -> int:

@@ -15,21 +15,21 @@ func _ready():
 	$AnimatedSprite.set_frame(options.find(item_name))
 	$AnimatedSprite.scale.x = 3
 	$AnimatedSprite.scale.y = 3
-	
-	
+
+
 # Function called every in-game tick.
 func _physics_process(delta):
-	
+
 	# If item is picked up, animation plays, and item is removed.
 	if picked_up == true:
 		if self.scale.x > 0:
 			self.scale.x -= 0.1
 			self.scale.y -= 0.1
-			
+
 		if self.scale.x < 0.2:
 			PlayerInventory.add_item(item_name, 1)
 			queue_free()
-		
+
 
 # Function called when the item is picked up.
 func pick_up_item(body):

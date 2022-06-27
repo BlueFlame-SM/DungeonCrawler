@@ -2,7 +2,7 @@ extends Node
 
 var item_data: Dictionary = {
   "tree_branch": {
-	"ItemCategory": "Weapon",
+	"ItemCategory": "Resource",
 	"StackSize": 99,
 	"Description": "A sturdy tree branch that can be used for crafting."
   },
@@ -15,10 +15,22 @@ var item_data: Dictionary = {
   },
   "iron_sword": {
 	"ItemCategory": "Weapon",
-	"ItemAttack": 3,
-	"ItemSpeed": 0.75, 
+#	"ItemAttack": 3,
+#	"ItemSpeed": 0.75,
 	"StackSize": 1,
-	"Description": "Quite a rusty sword, but should be able to get the job done."
+	"Item_category": "Melee weapon",
+	"Damage": 3,
+	"Attack_speed": 5,
+	"Attack_type": "Swipe",
+	"Range": 32,
+	"Knockback": 64,
+	"Poison": 0,
+	"Bleed": 0,
+	"Slow_enemy": 0,
+	"Speed_change": 0,
+	"Stun_chance": 0,	#Percentage chance for enemies to get stunned.
+#	"Stack_size": 1,
+	"Description": "Simple, but effective."
   },
   "brown_shirt": {
 	"ItemCategory": "Shirt",
@@ -46,6 +58,3 @@ var item_data: Dictionary = {
 #	var file_data = File.new()
 #
 #	file_data.open(file_path, File.READ)
-#	json_data = JSON.parse(file_data.get_as_text())
-#	file_data.close()
-#	return json_data.result

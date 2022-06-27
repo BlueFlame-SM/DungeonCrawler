@@ -14,11 +14,15 @@ signal hit(amount)
 var attack_cooldown_time = 100
 var next_attack_time = 0
 
+<<<<<<< HEAD
+=======
+func _ready():
+	speed = 5
+
+>>>>>>> 28f5118ce97992b87b7fd4ff0284b552f83a550a
 
 func playAnimations(velocity: Vector2, delta: float) -> void:
 	# Only move if attack animation is not playing
-	if !self.can_move:
-		print("cant move")
 	if !playAttack:
 		if velocity.length() > 0:
 			velocity = velocity.normalized() * speed
@@ -31,27 +35,33 @@ func playAnimations(velocity: Vector2, delta: float) -> void:
 		if velocity.x > 0:
 			$AnimatedSprite.animation = "walk_left"
 			$AnimatedSprite.flip_h = true
-			$AnimatedSprite.flip_v = false
 		elif velocity.x < 0:
 			$AnimatedSprite.animation = "walk_left"
 			$AnimatedSprite.flip_h = false
-			$AnimatedSprite.flip_v = false
 		elif velocity.y > 0:
 			$AnimatedSprite.animation = "walk_down"
 			$AnimatedSprite.flip_h = false
-			$AnimatedSprite.flip_v = false
 		elif velocity.y < 0:
 			$AnimatedSprite.animation = "walk_up"
 			$AnimatedSprite.flip_h = false
-			$AnimatedSprite.flip_v = false
 		elif velocity.x == 0 and velocity.y == 0:
 			if lastDirection == Vector2.DOWN:
 				$AnimatedSprite.animation = "idle_down"
 			elif lastDirection == Vector2.UP:
+<<<<<<< HEAD
 				$AnimatedSprite.play("back_slash")
 			else:
 				$AnimatedSprite.animation = "idle_left"
 			$AnimatedSprite.flip_v = false
+=======
+				$AnimatedSprite.animation = "idle_up"
+			elif lastDirection == Vector2.LEFT:
+				$AnimatedSprite.animation = "idle_left"
+				$AnimatedSprite.flip_h = false
+			else:
+				$AnimatedSprite.animation = "idle_left"
+				$AnimatedSprite.flip_h = true
+>>>>>>> 28f5118ce97992b87b7fd4ff0284b552f83a550a
 	# Play attack animation based on direction
 	else:
 		if lastDirection == Vector2.DOWN:
@@ -92,6 +102,11 @@ func _physics_process(delta: float) -> void:
 				# Add cooldown time to current time
 				next_attack_time = now + attack_cooldown_time
 
+		# Inventory can't be opened during start screen.
+		if GlobalVars.level_counter != 0:
+			if Input.is_action_just_pressed("inventory"):
+				$CanvasLayer/Inventory.visible = !$CanvasLayer/Inventory.visible
+
 	var velocity = move_and_slide(move_in_direction(direction))
 	position += velocity * delta
 	playAnimations(velocity, delta)
@@ -100,7 +115,6 @@ func _physics_process(delta: float) -> void:
 func _on_AnimatedSprite_animation_finished():
 	# If attack animation is done, player can move again
 	playAttack = false
-	$AnimatedSprite.play("idle_left")
 	weapon.disableHurtBox()
 
 
@@ -108,29 +122,26 @@ func _on_HazardNotifier_body_entered(body):
 	do_damage(2)
 	print("HP: {}/{}".format([health, max_health], "{}"))
 
-#Dit werkyt niet, doet damage aan zichzelf.
+#Dit werkt niet, doet damage aan zichzelf.
 func _on_Weapon_body_entered(body):
-	print(body.name)
-	print("weapon hit enemy (not necessarilly)")
+#	print(body.name)
+#	print("weapon hit enemy (not necessarilly)")
 	body.do_damage(2)
 	emit_signal("hit", weapon.damage)
 
+
+"""
+When the player dies, the player stops being able to move. The next level is
+the start level. We then call the levelswitcher to go to the start level.
+"""
 func die():
 	self.can_move = false
-	LevelSwitcher.goto_scene("res://levels/Level0.tscn", true)
-	pass
-
-
-
-# CONNECT HIT SIGNAL TO ENEMY
-# ADD THIS TO ENEMY SCRIPT
-#func _on_Player_hit(amount):
-#	damage(amount)
-#	print(health)
+	GlobalVars.level_type = "start"
+	LevelSwitcher.goto_scene("res://levels/LevelStart.tscn", true)
 
 # Checks for input.
 func _input(event):
-	if event.is_action_pressed("interact"):
+	if event.is_action_pressed("pick_up"):
 		var items = $Pickup.get_overlapping_bodies()
 		if items.size() > 0:
 			var item = items[0]
@@ -139,14 +150,24 @@ func _input(event):
 		$CanvasLayer/Inventory.visible = !$CanvasLayer/Inventory.visible
 		$CanvasLayer/Inventory.initialize_inventory()
 
+
 func _on_Inventory_use_i():
-	print($CanvasLayer/Inventory.use_item.item_name)
-	var item = JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Item_category"]
+	var item = JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["ItemCategory"]
 	if item == "Consumable":
-		health += JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["AddHealth"]
+		Player._set_health(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["AddHealth"])
 		print(health)
 
 func _on_Inventory_use_w():
 	var item = JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["ItemCategory"]
+	if item == "Weapon":
+		Player._set_damage(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Damage"])
 	# TODO: De hoeveelheid damage die een wapen geeft moet gekoppeld worden aan stats.
 	# Dat doe je zoals bij on_Inventory_use_i.
+
+
+func _on_Player_healthChanged(newValue):
+	if GlobalVars.level_type != "start":
+			$AnimatedSprite.play("hit_effect")
+			$HurtSound.play()
+	if Player.health <= 0:
+		die()

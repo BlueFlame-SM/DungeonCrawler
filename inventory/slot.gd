@@ -23,7 +23,7 @@ func _ready():
 	empty_style = StyleBoxTexture.new()
 	default_style.texture = default_tex
 	empty_style.texture = empty_tex
-	
+
 	# Puts random item in slot.
 #	if randi() % 2 == 0:
 #		item = ItemClass.instance()
@@ -36,7 +36,7 @@ func refresh_style():
 		set('custom_styles/panel', empty_style)
 	else:
 		set('custom_styles/panel', default_style)
-		
+
 # Function for picking item from slot.
 func pickFromSlot():
 	remove_child(item)
@@ -44,14 +44,14 @@ func pickFromSlot():
 	inventoryNode.add_child(item)
 	item = null
 	refresh_style()
-	
+
 # Function for putting item into slot.
 func putIntoSlot(new_item, picked_up):
 	item = new_item
 	if picked_up == 1:
 		# wait for luuk
 		pass
-		
+
 	item.position = Vector2(0, 0)
 	var inventoryNode = find_parent("CanvasLayer")
 	if picked_up == 0:
@@ -59,7 +59,7 @@ func putIntoSlot(new_item, picked_up):
 
 	add_child(item)
 	refresh_style()
-	
+
 func initialize_item(item_name, item_quantity):
 	if item == null:
 		item = ItemClass.instance()

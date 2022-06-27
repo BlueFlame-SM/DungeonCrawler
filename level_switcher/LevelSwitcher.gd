@@ -12,9 +12,7 @@ func _ready():
 	currentScene = root.get_child(root.get_child_count() - 1)
 
 
-
 func goto_scene(path, dead=false):
-	print(path)
 	LevelSwitcher.followingScene = path
 	player.playback_speed = 1
 	if !dead:
@@ -24,9 +22,6 @@ func goto_scene(path, dead=false):
 
 
 func _deferred_goto_scene(path):
-	print(path)
-	get_tree().change_scene(path)
-
 	# It is now safe to remove the current scene
 	currentScene.free()
 
@@ -52,3 +47,4 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 	if LevelSwitcher.followingScene != "":
 		call_deferred("_deferred_goto_scene", LevelSwitcher.followingScene)
 	LevelSwitcher.followingScene = ""
+	Gui.get_child(0).show()
