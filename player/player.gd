@@ -97,7 +97,6 @@ func _physics_process(delta: float) -> void:
 				$CanvasLayer/Inventory.visible = !$CanvasLayer/Inventory.visible
 			$CanvasLayer/Hotbar.visible = true
 
-
 	var velocity = move_and_slide(move_in_direction(direction))
 	position += velocity * delta
 	playAnimations(velocity, delta)

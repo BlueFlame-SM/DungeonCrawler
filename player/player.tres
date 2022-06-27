@@ -17,30 +17,25 @@
 [ext_resource path="res://player/sprites/Player_Left.png" type="Texture" id=15]
 [ext_resource path="res://effects/HitEffect.png" type="Texture" id=16]
 
-[sub_resource type="AtlasTexture" id=15]
+[sub_resource type="AtlasTexture" id=5]
 flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 0, 0, 70, 85 )
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 64, 64 )
 
-[sub_resource type="AtlasTexture" id=16]
+[sub_resource type="AtlasTexture" id=6]
 flags = 4
-atlas = ExtResource( 11 )
-region = Rect2( 0, 0, 70, 85 )
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 64, 98 )
 
-[sub_resource type="AtlasTexture" id=17]
+[sub_resource type="AtlasTexture" id=7]
 flags = 4
-atlas = ExtResource( 14 )
-region = Rect2( 0, 0, 70, 85 )
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 98, 98 )
 
-[sub_resource type="AtlasTexture" id=18]
+[sub_resource type="AtlasTexture" id=8]
 flags = 4
-atlas = ExtResource( 7 )
-region = Rect2( 0, 0, 70, 85 )
-
-[sub_resource type="AtlasTexture" id=19]
-flags = 4
-atlas = ExtResource( 15 )
-region = Rect2( 0, 0, 36, 64 )
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 98, 98 )
 
 [sub_resource type="AtlasTexture" id=9]
 flags = 4
@@ -72,45 +67,30 @@ flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 160, 0, 32, 64 )
 
-[sub_resource type="AtlasTexture" id=1]
+[sub_resource type="AtlasTexture" id=15]
 flags = 4
-atlas = ExtResource( 6 )
-region = Rect2( 0, 0, 40, 64 )
+atlas = ExtResource( 13 )
+region = Rect2( 0, 0, 70, 85 )
 
-[sub_resource type="AtlasTexture" id=2]
+[sub_resource type="AtlasTexture" id=16]
 flags = 4
-atlas = ExtResource( 6 )
-region = Rect2( 40, 0, 40, 64 )
+atlas = ExtResource( 11 )
+region = Rect2( 0, 0, 70, 85 )
 
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="AtlasTexture" id=17]
 flags = 4
-atlas = ExtResource( 6 )
-region = Rect2( 80, 0, 40, 64 )
+atlas = ExtResource( 14 )
+region = Rect2( 0, 0, 70, 85 )
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=18]
 flags = 4
-atlas = ExtResource( 6 )
-region = Rect2( 120, 0, 40, 64 )
+atlas = ExtResource( 7 )
+region = Rect2( 0, 0, 70, 85 )
 
-[sub_resource type="AtlasTexture" id=5]
+[sub_resource type="AtlasTexture" id=19]
 flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 0, 0, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=6]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 64, 98 )
-
-[sub_resource type="AtlasTexture" id=7]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 0, 0, 98, 98 )
-
-[sub_resource type="AtlasTexture" id=8]
-flags = 4
-atlas = ExtResource( 5 )
-region = Rect2( 0, 0, 98, 98 )
+atlas = ExtResource( 15 )
+region = Rect2( 0, 0, 36, 64 )
 
 [sub_resource type="AtlasTexture" id=20]
 flags = 4
@@ -162,6 +142,26 @@ flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 32, 64 )
 
+[sub_resource type="AtlasTexture" id=1]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 40, 64 )
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 40, 0, 40, 64 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 80, 0, 40, 64 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 120, 0, 40, 64 )
+
 [sub_resource type="AtlasTexture" id=30]
 flags = 4
 atlas = ExtResource( 16 )
@@ -184,6 +184,16 @@ region = Rect2( 24, 0, 24, 24 )
 
 [resource]
 animations = [ {
+"frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
+"loop": true,
+"name": "front_slash",
+"speed": 20.0
+}, {
+"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ) ],
+"loop": true,
+"name": "walk_down",
+"speed": 5.0
+}, {
 "frames": [ SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ) ],
 "loop": true,
 "name": "left_slash",
@@ -193,21 +203,6 @@ animations = [ {
 "loop": true,
 "name": "idle_left",
 "speed": 5.0
-}, {
-"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ) ],
-"loop": true,
-"name": "walk_down",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
-"loop": true,
-"name": "walk_up",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
-"loop": true,
-"name": "front_slash",
-"speed": 20.0
 }, {
 "frames": [ SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ) ],
 "loop": true,
@@ -227,6 +222,11 @@ animations = [ {
 "frames": [ SubResource( 29 ) ],
 "loop": true,
 "name": "idle_down",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "walk_up",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ) ],

@@ -109,12 +109,9 @@ func level_completed():
 	emit_signal("gates_open")
 	$LevelNavigation/Gates_open.visible = true
 
+
+"""Function to increase the stats of enemies when levels increase. """
 func enemy_difficulties(enemy):
-	if GlobalVars.level_counter % 2:
+	print("ENEMY DMG: ", enemy._get_damage())
+	if GlobalVars.level_counter % 2 or GlobalVars.level_counter % 3:
 		enemy._set_damage(enemy._get_damage() + 1)
-		print("enemy DMG: ", enemy._get_damage())
-		print("level counter:", GlobalVars.level_counter)
-	if GlobalVars.level_counter % 3:
-		enemy._set_damage(enemy._get_damage() + 1)
-		print("enemy DMG: ", enemy._get_damage())
-		print("level counter:", GlobalVars.level_counter)

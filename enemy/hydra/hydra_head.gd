@@ -41,7 +41,6 @@ func _ready():
 	if tree.has_group("Player"):
 		player = tree.get_nodes_in_group("Player")[0]
 
-
 #func _physics_process(delta):
 #	choose_action()
 ##	generate_neck()
