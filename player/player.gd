@@ -11,7 +11,7 @@ onready var weapon = $Weapon
 signal hit(amount)
 
 # Attack cooldown variables
-var attack_cooldown_time = 100
+var attack_cooldown_time = 300
 var next_attack_time = 0
 
 func _ready():

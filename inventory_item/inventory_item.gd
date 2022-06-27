@@ -7,8 +7,8 @@ var item_quantity
 
 func _ready():
 	randomize()
-	var rand_val = randi() % 6 - 1
-	var options = ["tree_branch", "slime_potion","iron_sword", "brown_shirt", "blue_jeans", "brown_boots"]
+	var rand_val = randi() % 1 - 1
+	var options = ["iron_sword"]
 	item_name = options[rand_val]
 	$AnimatedSprite.animation = item_name
 
