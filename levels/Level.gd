@@ -26,6 +26,7 @@ func enable_styx():
 func _ready():
 #	Count how many levels the player has played from start level
 	GlobalVars.level_counter += 1
+	
 	rng.randomize()
 #	Connect the signal from GlobalVars to function
 	GlobalVars.connect("challenge_down", self, "_on_challenge_down")
@@ -56,12 +57,12 @@ func spawn_enemies():
 	var enemy
 	if rng.randf_range(0, 1) < 0.1:
 		enemy = load("res://enemy_range/enemy_range.tscn").instance()
-#		enemy/AnimatedSprite =
 	else:
 		enemy = load("res://enemy/enemy.tscn").instance()
 	var spawn_point = $EnemySpawns.get_children()[randi() % 4]
 	enemy.position = spawn_point.position
 	add_child(enemy)
+	enemy_difficulties(enemy)
 #	This becomes relevant if you want to spawn more than 1 enemy. Not currently implemented.
 	challenge_counter += 1
 
@@ -106,3 +107,13 @@ appear open.
 func level_completed():
 	emit_signal("gates_open")
 	$LevelNavigation/Gates_open.visible = true
+
+func enemy_difficulties(enemy):
+	if GlobalVars.level_counter % 2:
+		enemy._set_damage(enemy._get_damage() + 1)
+		print("enemy DMG: ", enemy._get_damage())
+		print("level counter:", GlobalVars.level_counter)
+	if GlobalVars.level_counter % 3:
+		enemy._set_damage(enemy._get_damage() + 1)
+		print("enemy DMG: ", enemy._get_damage())
+		print("level counter:", GlobalVars.level_counter)

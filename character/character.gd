@@ -47,7 +47,7 @@ func do_damage(damage) -> void:
 
 
 func _set_damage(value: int) -> void:
-	clamp(value, 1, MAX_POINTS)
+	damage = clamp(value, 1, MAX_POINTS)
 
 
 func _get_damage() -> int:

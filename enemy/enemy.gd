@@ -142,7 +142,6 @@ func _on_Timer_anim_attack_timeout():
 	$AnimatedSprite.animation = "default"
 
 
-
 func _on_Timer_anim_hurt_timeout():
 	timer_hurt.stop()
 	$AnimatedSprite.animation = "default"
