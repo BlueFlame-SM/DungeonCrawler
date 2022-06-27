@@ -137,10 +137,10 @@ position = Vector2( 478, 539 )
 position = Vector2( 476, 318 )
 
 [node name="EnemySpawn2" type="Position2D" parent="EnemySpawns"]
-position = Vector2( 87, 183 )
+position = Vector2( 121, 186 )
 
 [node name="EnemySpawn3" type="Position2D" parent="EnemySpawns"]
-position = Vector2( 853, 299 )
+position = Vector2( 841, 300 )
 
 [node name="EnemySpawn4" type="Position2D" parent="EnemySpawns"]
 position = Vector2( 480, 100 )

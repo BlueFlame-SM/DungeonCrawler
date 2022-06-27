@@ -134,7 +134,7 @@ position = Vector2( 478, 539 )
 position = Vector2( 615, 317 )
 
 [node name="EnemySpawn2" type="Position2D" parent="EnemySpawns"]
-position = Vector2( 184, 115 )
+position = Vector2( 187, 124 )
 
 [node name="EnemySpawn3" type="Position2D" parent="EnemySpawns"]
 position = Vector2( 793, 119 )

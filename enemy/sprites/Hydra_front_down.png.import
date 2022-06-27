@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/SmallShadow.png-3d633ca9f87e83202f65ddc3997d813b.stex"
+path="res://.import/Hydra_front_down.png-c9194e80e1e3b884a0e946f9786e884a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemy/sprites/SmallShadow.png"
-dest_files=[ "res://.import/SmallShadow.png-3d633ca9f87e83202f65ddc3997d813b.stex" ]
+source_file="res://enemy/sprites/Hydra_front_down.png"
+dest_files=[ "res://.import/Hydra_front_down.png-c9194e80e1e3b884a0e946f9786e884a.stex" ]
 
 [params]
 
