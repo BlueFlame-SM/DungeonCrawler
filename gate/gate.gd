@@ -8,14 +8,16 @@ TODO:
 	- Fix animation issue (DONE)
 	- Fix bugs in gate differentiation. (DONE)
 	- Fix double level, spawns enemies (i think fixed)
+	- Multiple enemies???? Count them (DONE)
+	- Get chest from misha fork and spawn in loot levels DONE
+	- Make loot or enemy spawn in level. DONE
+	- Level script detects if level completed (chest opened/enemies defeated) DONE
 
-	- Get chest from misha fork and spawn in loot levels
-	- Make loot or enemy spawn in level.
-	- Level script detects if level completed (chest opened/enemies defeated)
-	- Enemy can kill player (pls outsource)
-	- Multiple enemies???? Count them
+	- Enemy can kill player (pls outsource) (Not sure if this works for every enemy)
 	- On death, dont play gate close but some sort of dying sound.
 	- Sound on slash
+	- Make what is in chest variable
+	- Fix that chest cant be opened in level 9
 """
 
 extends Area2D
@@ -29,22 +31,30 @@ var cur_lvl_nr
 var gate_type = "loot"
 
 
-#Optie: gooi randomise in levelswitcher.
 func _ready():
-#	dit werkt nog niet? snap die seed niet echt
 	rng.randomize()
+#	As a default, no sign should appear above the gate unless its determined
+#	what is behind the gate.
 	$BossOpen.visible = false
 	$LootOpen.visible = false
-	if self.name != "StartGate":
+#	In case the gate belongs to the startlevel, the gate should be open.
+#	Otherwise the collision box should be disabled so the player cant collide
+	if GlobalVars.level_type != "start":
 		$GateCollision.disabled = true
+#	To get the scene that this gate leads to, determine what kind of gate it is
 	next_scene_name = det_gate_type()
 
 
+"""
+This function picks randomly either a loot level or combat level as next level.
+The current level layout is removed as an option to not get two similar levels
+in a row. The appropriate sign on top of the gate appears visible.
+"""
 func det_gate_type():
 	cur_lvl_nr = int(get_parent().name.right(5))
 	combat_levels.erase(cur_lvl_nr)
 	loot_levels.erase(cur_lvl_nr)
-	if rng.randf_range(0, 1) < 0.3:
+	if rng.randf_range(0, 1) < 0.9:
 		nxt_lvl_nr = loot_levels[randi() % loot_levels.size()]
 		$LootOpen.visible = true
 		gate_type = "loot"
@@ -52,26 +62,27 @@ func det_gate_type():
 		nxt_lvl_nr = combat_levels[randi() % combat_levels.size()]
 		$BossOpen.visible = true
 		gate_type = "boss"
-	print("my gate type is")
-	print(gate_type)
-
+#	Returns the name of the next level
 	return "res://levels/Level" + String(nxt_lvl_nr) + ".tscn"
 
 
 
-# If the player collides with a gate collisionbox, go to scene
+"""
+If the player collides with a gate collisionbox, the player stops moving.
+The next level type is set to the type of the gate that was entered. We then
+go to the next level.
+"""
 func _on_Gate_body_entered(body):
 	if body.name == "Player":
 		Player.can_move = false
-		print(gate_type)
-		print(get_parent().name)
 		GlobalVars.level_type = gate_type
-		print("going to ")
-		print(next_scene_name)
 		LevelSwitcher.goto_scene(next_scene_name)
 
 
-#Gets signal from level script that level has been completed.
+"""
+Gets signal from level script that level has been completed. Gate collisions
+are disabled so that player can collide with them.
+"""
 func _on_gates_open():
 	$GateCollision.disabled = 0
 
