@@ -14,8 +14,8 @@ const SPEED_BIAS = 100
 # speed: Increases movement speed.
 # agility: (optional) Increases acceleration.
 # dexterity: (optional) Increases attack speed.
-export var health: int = 40 setget _set_health, _get_health
-export var max_health: int = 40 setget _set_max_health, _get_max_health
+export var health: int = 10 setget _set_health, _get_health
+export var max_health: int = 10 setget _set_max_health, _get_max_health
 export var strength: int = 1 setget _set_strength, _get_strength
 export var defence: int = 1 setget _set_defence, _get_defence
 export var speed: int = 1 setget _set_speed, _get_speed
