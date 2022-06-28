@@ -124,8 +124,7 @@ func level_completed():
 
 """Function to increase the stats of enemies when levels increase. """
 func enemy_difficulties(enemy):
-	pass
-	if GlobalVars.level_counter % 2:
-		enemy._set_damage(enemy._get_damage() + 1)
-	if GlobalVars.level_counter % 3:
+	if GlobalVars.level_counter == 1:
+		enemy._set_damage(2)
+	if GlobalVars.level_counter % 2 or GlobalVars.level_counter % 3:
 		enemy._set_damage(enemy._get_damage() + 1)
