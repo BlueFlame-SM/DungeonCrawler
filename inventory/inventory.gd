@@ -88,11 +88,12 @@ func consume_item(slot):
 		emit_signal("use_i")
 		var stack_size = int(JsonData.item_data[slot.item.item_name]["StackSize"])
 		if slot.item.item_quantity == 1:
-			slot.pickFromSlot()
-		else:
+			slot.remove_child(use_item)
+			slot.item = null
+			slot.refresh_style()
 #			use_item.decrease_item_quantity(1)
-			PlayerInventory.add_item_quantity(slot, -1)
-			initialize_inventory()
+		PlayerInventory.add_item_quantity(slot, -1)
+		initialize_inventory()
 
 func _input(event):
 	# location of item held gets updated by mouse location.

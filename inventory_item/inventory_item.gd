@@ -9,7 +9,8 @@ var options = JsonData.item_data.keys()
 
 func _ready():
 	randomize()
-	var rand_val = randi() % 6 - 1
+	var rand_val = randi() % 1 - 1
+	var options = ["Iron_sword"]
 	item_name = options[rand_val]
 	$AnimatedSprite.animation = item_name
 
