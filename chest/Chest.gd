@@ -26,7 +26,7 @@ func _process(delta):
 	if area_entered == true and opened_before == false:
 		if Input.is_action_just_pressed("pick_up"):
 			opened_before = true
-			GlobalVars.challenge_down()
+			GlobalVars.challenge_down("chest")
 			get_parent().get_node("Chest/AnimatedSprite").playing = false
 			get_parent().get_node("Chest/AnimatedSprite").frame = 1
 			open_chest()

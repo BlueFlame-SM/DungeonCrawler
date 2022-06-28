@@ -37,7 +37,6 @@ func initialize_inventory():
 			slots[i].initialize_item(PlayerInventory.inventory[i][0], PlayerInventory.inventory[i][1])
 
 	equiped_item = slots[0].item
-	print(PlayerInventory.inventory)
 
 func slot_gui_input(event: InputEvent, slot: SlotClass):
 	# When a mouseclick occurs, check if it is a left mouse click.

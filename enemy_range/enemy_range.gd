@@ -36,6 +36,23 @@ func _physics_process(delta):
 	velocity = move_and_slide(move_in_direction(velocity))
 	position.x = clamp(position.x, 0, screen_size.x)
 	position.y = clamp(position.y, 0, screen_size.y)
+	if abs(velocity.x) - abs(velocity.y) > 10:
+		if velocity.x > 0:
+			print(true)
+			$AnimatedSprite.animation = "zombie_left"
+			$AnimatedSprite.flip_h = true
+		elif velocity.x < 0:
+			$AnimatedSprite.animation = "zombie_left"
+			$AnimatedSprite.flip_h = false
+	else:
+		if velocity.y > 0:
+			$AnimatedSprite.animation = "zombie_down"
+			$AnimatedSprite.flip_h = false
+		elif velocity.y < 0:
+			$AnimatedSprite.animation = "zombie_up"
+			$AnimatedSprite.flip_h = false
+
+
 	if health == 0:
 		state = states.DEAD
 	match state:
@@ -55,7 +72,7 @@ func choose_action():
 			if time > 0:
 				self.modulate.a = 0 if Engine.get_frames_drawn() % 5 == 0 else 1.0
 			else:
-				GlobalVars.challenge_down()
+				GlobalVars.challenge_down("enemy", self.position)
 				set_physics_process(false)
 				queue_free()
 		states.PATROL:
