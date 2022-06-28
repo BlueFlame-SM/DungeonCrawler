@@ -58,9 +58,19 @@ The current level layout is removed as an option to not get two similar levels
 in a row. The appropriate sign on top of the gate appears visible.
 """
 func det_gate_type():
-	if GlobalVars.level_counter % 5 == 0 and GlobalVars.level_counter != 0:
+	if GlobalVars.level_counter % 15 == 0 and GlobalVars.level_counter != 0:
 		$LootOpen.visible = true
 		gate_type = "preboss"
+#		Change to CERBERUS
+		return "res://levels/pre_boss_battle1.tscn"
+	elif GlobalVars.level_counter % 10 == 0 and GlobalVars.level_counter != 0:
+		$LootOpen.visible = true
+		gate_type = "preboss"
+		return "res://levels/pre_boss_battle1.tscn"
+	elif GlobalVars.level_counter % 5 == 0 and GlobalVars.level_counter != 0:
+		$LootOpen.visible = true
+		gate_type = "preboss"
+#		CHANGE TO LION LEVEL
 		return "res://levels/pre_boss_battle1.tscn"
 
 	cur_lvl_nr = int(get_parent().name.right(5))

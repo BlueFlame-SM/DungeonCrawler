@@ -17,7 +17,7 @@ var extra_speed = 0
 var extra_damage = 0
 
 func _ready():
-	self._set_perm_speed(5)
+	self._set_perm_speed(0)
 
 func playAnimations(velocity: Vector2, delta: float) -> void:
 	# Only move if attack animation is not playing
