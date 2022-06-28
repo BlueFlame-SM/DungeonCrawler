@@ -14,8 +14,8 @@ const SPEED_BIAS = 100
 # speed: Increases movement speed.
 # agility: (optional) Increases acceleration.
 # dexterity: (optional) Increases attack speed.
-export var health: int = 10 setget _set_health, _get_health
-export var max_health: int = 10 setget _set_max_health, _get_max_health
+export var health: int = 40 setget _set_health, _get_health
+export var max_health: int = 40 setget _set_max_health, _get_max_health
 export var strength: int = 1 setget _set_strength, _get_strength
 export var defence: int = 1 setget _set_defence, _get_defence
 export var speed: int = 1 setget _set_speed, _get_speed
@@ -24,8 +24,7 @@ export var dexterity: int = 1 setget _set_dexterity, _get_dexterity
 export var damage: int = 1 setget _set_damage, _get_damage
 
 export var can_move: bool = true
-
-signal healthChanged(newValue)
+signal healthChanged(newValue, dif)
 
 
 # Computes the velocity vector of the character from `direction` and the speed stat.
@@ -60,10 +59,11 @@ func heal(amount: int) -> void:
 
 
 func _set_health(value: int) -> void:
+	var dif = value - health
 	health = clamp(value, 0, max_health)
 	if health == 0:
 		emit_signal("character_died")
-	emit_signal("healthChanged", health)
+	emit_signal("healthChanged", health, dif)
 
 
 func _get_health() -> int:

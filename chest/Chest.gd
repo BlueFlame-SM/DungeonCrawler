@@ -33,7 +33,6 @@ func _process(delta):
 			return
 
 func open_chest():
-	print(item_options)
 	var item_count = items_chest.size()
 	if item_count == 0:
 		return

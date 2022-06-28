@@ -40,7 +40,7 @@ func _ready():
 		levelNavigation = tree.get_nodes_in_group("LevelNavigation")[0]
 	if tree.has_group("Player"):
 		player = tree.get_nodes_in_group("Player")[0]
-		
+
 
 #func _physics_process(delta):
 #	choose_action()
@@ -134,12 +134,12 @@ Functies voor pathfinding zodat het niet achter bosjes blijft zitten, kan pas me
 #
 
 
-func _on_EnemyRange_healthChanged(newValue):
+func _on_EnemyRange_healthChanged(newValue, dif):
 	if timer_hurt != null:
 		$AnimatedSprite.animation = "hurt"
 	#	print(timer_hurt)
 		timer_hurt.start()
-	
+
 
 func _on_Timer_anim_hurt_timeout():
 	timer_hurt.stop()

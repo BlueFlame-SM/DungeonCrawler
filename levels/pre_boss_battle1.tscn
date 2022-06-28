@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://tilemap/floor.tres" type="TileSet" id=1]
 [ext_resource path="res://tilemap/rocks1.tres" type="TileSet" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://tilemap/Gate_Mini_Open_Icon.png" type="Texture" id=5]
 [ext_resource path="res://levels/Level.gd" type="Script" id=6]
 [ext_resource path="res://gate/gate.gd" type="Script" id=7]
+[ext_resource path="res://chest/Chest.tscn" type="PackedScene" id=8]
 
 [sub_resource type="TileSet" id=2]
 0/name = "Gate_Mini_Open_Icon.png 0"
@@ -95,39 +96,48 @@ disabled = true
 position = Vector2( -48, -144 )
 scale = Vector2( 0.932129, 0.964356 )
 polygon = PoolVector2Array( 125.519, 553.737, 126.592, 739.354, 179.16, 739.354, 175.941, 697.875, 207.053, 696.838, 209.199, 668.84, 232.8, 670.914, 238.165, 644.99, 236.019, 638.768, 272.495, 637.731, 278.931, 609.733, 312.189, 602.475, 318.625, 571.366, 345.446, 571.366, 345.446, 564.107 )
+disabled = true
 
 [node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="River_collision"]
 position = Vector2( 685, -144 )
 scale = Vector2( 0.944336, 0.949707 )
 polygon = PoolVector2Array( -466.995, 229.544, -295.446, 403.282, -295.446, 230.597 )
+disabled = true
 
 [node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="River_collision"]
 position = Vector2( 688, 577.425 )
 scale = Vector2( 0.944336, -0.00314205 )
 polygon = PoolVector2Array( -466.995, 229.544, -299.681, 54751.5, -295.446, 403.282, -295.446, 230.597, -351.57, -819.438 )
+disabled = true
 
 [node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="River_collision"]
 position = Vector2( 254, -147 )
 scale = Vector2( -1.0133, 0.949707 )
 polygon = PoolVector2Array( -466.995, 229.544, -295.446, 403.282, -295.446, 230.597 )
+disabled = true
 
 [node name="CollisionPolygon2D7" type="CollisionPolygon2D" parent="River_collision"]
 position = Vector2( 256, 570 )
 scale = Vector2( -1.0133, -0.00341645 )
 polygon = PoolVector2Array( -466.995, 229.544, -293.101, 47141.2, -295.446, 403.282, -295.446, 230.597 )
+disabled = true
 
 [node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="River_collision"]
 position = Vector2( 393, 397 )
 scale = Vector2( -1.0133, -0.00341645 )
 polygon = PoolVector2Array( -488.501, 585.406, -489.488, -50344.6, -455.934, -49759.2, -295.446, 403.282, -295.446, 230.597 )
+disabled = true
 
 [node name="CollisionPolygon2D8" type="CollisionPolygon2D" parent="River_collision"]
 position = Vector2( 400, 236 )
 scale = Vector2( -1.0133, -0.00341645 )
 polygon = PoolVector2Array( -488.501, 585.406, -479.619, 46246.8, -449.026, 45368.7, -295.446, 403.282, -295.446, 230.597 )
+disabled = true
 
 [node name="PlayerSpawn" type="Position2D" parent="."]
 position = Vector2( 478, 539 )
+
+[node name="Chest" parent="." instance=ExtResource( 8 )]
 
 [connection signal="body_entered" from="BossGate" to="BossGate" method="_on_Gate_body_entered"]
 [connection signal="body_entered" from="River_collision" to="." method="_on_River_collision_body_entered"]

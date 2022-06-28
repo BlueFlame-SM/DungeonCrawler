@@ -19,8 +19,6 @@ TODO:
 	- Sound on slash
 	- Make what is in chest variable
 	- Connect (random) sprite to enemy
-
-
 """
 
 extends Area2D
@@ -28,8 +26,8 @@ export var next_scene_name: String = "res://levels/Level5.tscn"
 
 var rng = RandomNumberGenerator.new()
 var nxt_lvl_nr
-var combat_levels = [4, 5, 6, 7, 8 ,9 ,11, 12, 13, 14]
-var loot_levels = [4, 5, 6, 7, 8 ,9, 10 ,11, 12, 13, 14]
+var combat_levels = [1, 2, 3, 4, 5, 6, 7, 8 ,9 ,11]
+var loot_levels = [1, 2, 3, 4, 5, 6, 7, 8 ,9, 10 ,11]
 var cur_lvl_nr
 var gate_type = "loot"
 
@@ -46,10 +44,12 @@ func _ready():
 	if GlobalVars.level_type != "start" and GlobalVars.level_type != "preboss":
 		$GateCollision.disabled = true
 #	To get the scene that this gate leads to, determine what kind of gate it is
-	if GlobalVars.level_type != "preboss":
-		next_scene_name = det_gate_type()
+	if GlobalVars.level_type == "preboss":
+		gate_type = "bigboss"
+		next_scene_name = "res://levels/LevelHydra.tscn"
 	else:
-		next_scene_name = "res://levels/Level5.tscn"
+		next_scene_name = det_gate_type()
+
 
 
 """
@@ -58,7 +58,7 @@ The current level layout is removed as an option to not get two similar levels
 in a row. The appropriate sign on top of the gate appears visible.
 """
 func det_gate_type():
-	if GlobalVars.level_counter % 2 == 0 and GlobalVars.level_counter != 0:
+	if GlobalVars.level_counter % 5 == 0 and GlobalVars.level_counter != 0:
 		$LootOpen.visible = true
 		gate_type = "preboss"
 		return "res://levels/pre_boss_battle1.tscn"
@@ -78,7 +78,6 @@ func det_gate_type():
 	return "res://levels/Level" + String(nxt_lvl_nr) + ".tscn"
 
 
-
 """
 If the player collides with a gate collisionbox, the player stops moving.
 The next level type is set to the type of the gate that was entered. We then
@@ -88,6 +87,7 @@ func _on_Gate_body_entered(body):
 	if body.name == "Player":
 		Player.can_move = false
 		GlobalVars.level_type = gate_type
+		print(next_scene_name)
 		LevelSwitcher.goto_scene(next_scene_name)
 
 
