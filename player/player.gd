@@ -144,12 +144,6 @@ func _input(event):
 			item.pick_up_item(self)
 
 
-func _on_Inventory_use_i():
-	var item = JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["ItemCategory"]
-	if item == "Consumable":
-		Player._set_health(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["AddHealth"])
-
-
 func _on_Player_healthChanged(newValue, dif):
 	if dif < 0:
 		if GlobalVars.level_type != "start":
