@@ -23,5 +23,4 @@ func _on_Bullet_body_entered(body):
 	if body == Player:
 		#TODO: hardcode weghalen
 		Player.health -= 2
-	print(Player.health)
 	queue_free()

@@ -117,14 +117,17 @@ collision_mask = 0
 position = Vector2( 6.10352e-05, 3.55 )
 scale = Vector2( 1, 0.861328 )
 polygon = PoolVector2Array( 608, 64, 608, 144, 576, 144, 576, 176, 544, 176, 544, 192, 672, 192, 672, 160, 704, 160, 704, 128, 736, 128, 736, 64 )
+disabled = true
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="River_collision"]
 position = Vector2( 1, 45 )
 scale = Vector2( 1, 0.847796 )
 polygon = PoolVector2Array( 576, 224, 664, 224, 672, 224, 672, 240, 704, 240, 704, 272, 736, 272, 736, 320, 704, 320, 704, 352, 672, 352, 672, 432, 704, 432, 704, 448, 576, 448, 576, 416, 544, 416, 544, 368, 576, 368, 576, 336, 608, 336, 608, 256, 576, 256 )
+disabled = true
 
 [node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="River_collision"]
 polygon = PoolVector2Array( 608, 480, 736, 480, 736, 512, 704, 512, 704, 544, 672, 544, 672, 576, 544, 576, 544, 560, 576, 560, 576, 528, 608, 528 )
+disabled = true
 
 [node name="PlayerSpawn" type="Position2D" parent="."]
 position = Vector2( 478, 539 )
@@ -141,7 +144,7 @@ position = Vector2( 297, 245 )
 position = Vector2( 849, 268 )
 
 [node name="EnemySpawn4" type="Position2D" parent="EnemySpawns"]
-position = Vector2( 105, 319 )
+position = Vector2( 128, 309 )
 
 [connection signal="gates_open" from="." to="Gate" method="_on_gates_open"]
 [connection signal="gates_open" from="." to="Gate_right" method="_on_gates_open"]

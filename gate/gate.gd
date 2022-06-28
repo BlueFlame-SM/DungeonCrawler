@@ -8,16 +8,17 @@ TODO:
 	- Fix animation issue (DONE)
 	- Fix bugs in gate differentiation. (DONE)
 	- Fix double level, spawns enemies (i think fixed)
-	- Multiple enemies???? Count them (DONE)
 	- Get chest from misha fork and spawn in loot levels DONE
 	- Make loot or enemy spawn in level. DONE
 	- Level script detects if level completed (chest opened/enemies defeated) DONE
+	- Fix that chest cant be opened in level 9 (DONE)
 
-	- Enemy can kill player (pls outsource) (Not sure if this works for every enemy)
+	- Multiple enemies???? Count them
+	- Enemy can kill player (Not sure if this works for every enemy)
 	- On death, dont play gate close but some sort of dying sound.
 	- Sound on slash
 	- Make what is in chest variable
-	- Fix that chest cant be opened in level 9
+	- Connect (random) sprite to enemy
 """
 
 extends Area2D
@@ -25,8 +26,8 @@ export var next_scene_name: String = "res://levels/Level5.tscn"
 
 var rng = RandomNumberGenerator.new()
 var nxt_lvl_nr
-var combat_levels = [4, 5, 6, 7, 8 ,9 ,11, 12, 13, 14]
-var loot_levels = [4, 5, 6, 7, 8 ,9, 10 ,11, 12, 13, 14]
+var combat_levels = [1, 2, 3, 4, 5, 6, 7, 8 ,9 ,11]
+var loot_levels = [1, 2, 3, 4, 5, 6, 7, 8 ,9, 10 ,11]
 var cur_lvl_nr
 var gate_type = "loot"
 
@@ -35,14 +36,20 @@ func _ready():
 	rng.randomize()
 #	As a default, no sign should appear above the gate unless its determined
 #	what is behind the gate.
-	$BossOpen.visible = false
-	$LootOpen.visible = false
+	if GlobalVars.level_type != "preboss":
+		$BossOpen.visible = false
+		$LootOpen.visible = false
 #	In case the gate belongs to the startlevel, the gate should be open.
 #	Otherwise the collision box should be disabled so the player cant collide
-	if GlobalVars.level_type != "start":
+	if GlobalVars.level_type != "start" and GlobalVars.level_type != "preboss":
 		$GateCollision.disabled = true
 #	To get the scene that this gate leads to, determine what kind of gate it is
-	next_scene_name = det_gate_type()
+	if GlobalVars.level_type == "preboss":
+		gate_type = "bigboss"
+		next_scene_name = "res://levels/LevelHydra.tscn"
+	else:
+		next_scene_name = det_gate_type()
+
 
 
 """
@@ -51,10 +58,15 @@ The current level layout is removed as an option to not get two similar levels
 in a row. The appropriate sign on top of the gate appears visible.
 """
 func det_gate_type():
+	if GlobalVars.level_counter % 5 == 0 and GlobalVars.level_counter != 0:
+		$LootOpen.visible = true
+		gate_type = "preboss"
+		return "res://levels/pre_boss_battle1.tscn"
+
 	cur_lvl_nr = int(get_parent().name.right(5))
 	combat_levels.erase(cur_lvl_nr)
 	loot_levels.erase(cur_lvl_nr)
-	if rng.randf_range(0, 1) < 0.9:
+	if rng.randf_range(0, 1) < 0.1:
 		nxt_lvl_nr = loot_levels[randi() % loot_levels.size()]
 		$LootOpen.visible = true
 		gate_type = "loot"
@@ -64,7 +76,6 @@ func det_gate_type():
 		gate_type = "boss"
 #	Returns the name of the next level
 	return "res://levels/Level" + String(nxt_lvl_nr) + ".tscn"
-
 
 
 """

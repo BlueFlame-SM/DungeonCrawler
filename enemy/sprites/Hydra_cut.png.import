@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Bat.png-a11add09610f471db67303263cd6b293.stex"
+path="res://.import/Hydra_cut.png-3df78ee088255e855de3a9afdf273784.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemy/sprites/Bat.png"
-dest_files=[ "res://.import/Bat.png-a11add09610f471db67303263cd6b293.stex" ]
+source_file="res://enemy/sprites/Hydra_cut.png"
+dest_files=[ "res://.import/Hydra_cut.png-3df78ee088255e855de3a9afdf273784.stex" ]
 
 [params]
 

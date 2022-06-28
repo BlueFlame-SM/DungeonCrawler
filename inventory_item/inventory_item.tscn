@@ -11,34 +11,34 @@
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 4 ) ],
+"frames": [ ExtResource( 2 ) ],
 "loop": true,
-"name": "blue_jeans",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 6 ) ],
-"loop": true,
-"name": "brown_boots",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 5 ) ],
-"loop": true,
-"name": "brown_shirt",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 8 ) ],
-"loop": true,
-"name": "slime_potion",
+"name": "Obsidian_sword",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 7 ) ],
 "loop": true,
-"name": "tree_branch",
+"name": "Steel_sword",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 2 ) ],
+"frames": [ ExtResource( 8 ) ],
 "loop": true,
-"name": "iron_sword",
+"name": "Speed_potion",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "Iron_sword",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "Club",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "Broom",
 "speed": 5.0
 } ]
 
@@ -52,7 +52,7 @@ script = ExtResource( 3 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 8, 8 )
 frames = SubResource( 2 )
-animation = "slime_potion"
+animation = "Steel_sword"
 
 [node name="Label" type="Label" parent="."]
 margin_left = 7.0
