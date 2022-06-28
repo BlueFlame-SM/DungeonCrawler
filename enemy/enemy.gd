@@ -88,7 +88,7 @@ Functies voor pathfinding zodat het niet achter bosjes blijft zitten, kan pas me
 """
 func navigate():	# Define the next position to go to
 	if path.size() > 0:
-		velocity = global_position.direction_to(path[1]) * self._get_temp_speed()
+		velocity = global_position.direction_to(path[1]) * (_get_temp_speed() + _get_temp_speed())
 
 	# If the destination is reached, remove this path from the array
 	if global_position == path[0]:
@@ -116,7 +116,7 @@ Gives damage to the player equal to the damage stat of the enemy
 and starts a 1 second timer as cooldown for attack.
 """
 func _damage_player():
-	Player.do_damage(self._get_temp_damage())
+	Player.do_damage(_get_temp_damage() + _get_perm_damage())
 	$AnimatedSprite.animation = "attack"
 	timer_attack.start()
 	timer.start()

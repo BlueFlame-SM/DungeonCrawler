@@ -1,7 +1,5 @@
 extends Node2D
 
-export (String) var level_name = "level"
-
 var timer = Timer.new()
 var challenge_counter = 0
 signal gates_open()
@@ -45,7 +43,6 @@ func _ready():
 	timer.one_shot = true
 	add_child(timer)
 	timer.start()
-	print(self.name)
 
 
 """
@@ -54,7 +51,7 @@ Spawns either a range or normal enemy. Can be extended to other types.
 """
 func spawn_enemies():
 	var enemy
-	if rng.randf_range(0, 1) < 0.9:
+	if rng.randf_range(0, 1) < 0.5:
 		enemy = load("res://enemy_range/enemy_range.tscn").instance()
 	else:
 		enemy = load("res://enemy/enemy.tscn").instance()
@@ -64,6 +61,18 @@ func spawn_enemies():
 	enemy_difficulties(enemy)
 #	This becomes relevant if you want to spawn more than 1 enemy. Not currently implemented.
 	challenge_counter += 1
+
+
+"""TODO get location of enemy that died"""
+func spawn_reward(item, pos):
+	if typeof(item) == TYPE_STRING:
+		var scene = load("res://floor_item/floor_item.tscn")
+		var instance = scene.instance()
+		instance.item_name = item
+		instance.position = pos
+		var broom = add_child(instance)
+
+
 
 """
 Spawns a chest in a level at a random position out of 4 possible positions.
@@ -94,9 +103,15 @@ This function is called when a challenge to the player is overcome. Possible
 challenges are killing enemies or opening chests. When all tasks are completed
 the challenge counter is 0 and the function or level_completed is called.
 """
-func _on_challenge_down():
+func _on_challenge_down(type, pos):
 	challenge_counter -= 1
 	if challenge_counter <= 0:
+#		Because of this code, be wary of spawning both a chest and enemy at once
+#	Needs to be rewritten to support this implementation.
+		if type == "enemy":
+			spawn_reward("Broom", pos)
+		if type == "boss":
+			spawn_chests()
 		level_completed()
 
 """
@@ -113,10 +128,10 @@ func level_completed():
 func enemy_difficulties(enemy):
 	pass
 	if GlobalVars.level_counter % 2:
-		enemy._set_perm_damage(1)
+		enemy._set_perm_damage(enemy._get_perm_damage() + 1)
 		print("enemy DMG: ", enemy._get_perm_damage())
 		print("level counter:", GlobalVars.level_counter)
 	if GlobalVars.level_counter % 3:
-		enemy._set_perm_damage(1)
+		enemy._set_perm_damage(enemy._get_perm_damage() + 1)
 		print("enemy DMG: ", enemy._get_perm_damage())
 		print("level counter:", GlobalVars.level_counter)

@@ -23,7 +23,6 @@ func _ready():
 	empty_style = StyleBoxTexture.new()
 	default_style.texture = default_tex
 	empty_style.texture = empty_tex
-
 	# Puts random item in slot.
 #	if randi() % 2 == 0:
 #		item = ItemClass.instance()
@@ -37,19 +36,19 @@ func refresh_style():
 	else:
 		set('custom_styles/panel', default_style)
 #		# melee weapons
-		if item.item_name == "iron_sword":
+		if item.item_name == "Iron_sword":
 			hint_tooltip = "Iron_sword, \nDamage: x3, \nAttack_speed: +5, \nRange: x1"
-		if item.item_name == "broom":
+		if item.item_name == "Broom":
 			hint_tooltip = "Broom, \nDamage: x2, \nAttack_speed: +3, \nRange: x1"
 		if item.item_name == "steel_sword":
 			hint_tooltip = "Steel_sword, \nDamage: x4, \nAttack_speed: +5, \nRange: x1"
-		if item.item_name == "obsidian_sword":
+		if item.item_name == "Obsidian_sword":
 			hint_tooltip = "Obsidian_sword, \nDamage: x6, \nAttack_speed: +5, \nRange: x1"
-		if item.item_name == "club":
+		if item.item_name == "Club":
 			hint_tooltip = "Club, \nDamage: x6, \nAttack_speed: +1, \nRange: x1.5"
-		if item.item_name == "posionous_blade":
+		if item.item_name == "Posionous_blade":
 			hint_tooltip = "Posionous_blade, \nDamage: x2, \nAttack_speed: +5, \nRange: x1"
-		if item.item_name == "spear":
+		if item.item_name == "Spear":
 			hint_tooltip = "Spear, \nDamage: x4, \nAttack_speed: +4, \nRange: x2"
 
 		# Permanent potions

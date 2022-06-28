@@ -17,8 +17,8 @@ const MAX_COOLDOWN = 1000
 # dexterity: (optional) Increases attack speed.
 export var health: int = 10 setget _set_health, _get_health
 export var max_health: int = 10 setget _set_max_health, _get_max_health
-export var perm_speed: int = 1 setget _set_perm_speed, _get_perm_speed
-export var temp_speed: int = 1 setget _set_temp_speed, _get_temp_speed
+export var perm_speed: int = 0 setget _set_perm_speed, _get_perm_speed
+export var temp_speed: int = 0 setget _set_temp_speed, _get_temp_speed
 export var perm_damage: int = 1 setget _set_perm_damage, _get_perm_damage
 export var temp_damage: int = 1 setget _set_temp_damage, _get_temp_damage
 export var attack_speed: int = 1 setget _set_attack_speed, _get_attack_speed
@@ -48,14 +48,13 @@ func do_damage(damage) -> void:
 
 
 func _set_perm_damage(value: int) -> void:
-	perm_damage = clamp(perm_damage + value, 1, MAX_POINTS)
-	temp_damage = _get_temp_damage() + value
+	perm_damage = clamp(value, 1, MAX_POINTS)
 
 func _get_perm_damage() -> int:
 	return perm_damage
 
 func _set_temp_damage(value: int) -> void:
-	temp_damage = clamp(perm_damage + value, 1, MAX_POINTS)
+	temp_damage = clamp(value, 1, MAX_POINTS)
 
 func _get_temp_damage() -> int:
 	return temp_damage
@@ -91,15 +90,14 @@ func _get_perm_speed() -> int:
 	return perm_speed
 
 func _set_perm_speed(value: int) -> void:
-	perm_speed = clamp(value + perm_speed, 1, MAX_POINTS)
-	temp_speed = _get_temp_speed() + value
+	perm_speed = clamp(value, 0, MAX_POINTS)
 
 
 func _get_temp_speed() -> int:
 	return temp_speed
 
 func _set_temp_speed(value: int) -> void:
-	temp_speed = clamp(value + perm_speed, 1, MAX_POINTS)
+	temp_speed = clamp(value, 0, MAX_POINTS)
 
 func _get_attack_speed() -> int:
 	return attack_speed

@@ -70,9 +70,9 @@ mouse_default_cursor_shape = 6
 script = ExtResource( 3 )
 
 [node name="TextureRect" type="TextureRect" parent="."]
-margin_left = -5.0
-margin_top = -3.5
-margin_right = 188.0
-margin_bottom = 42.5
+margin_left = -4.5
+margin_top = -4.0
+margin_right = 145.5
+margin_bottom = 31.0
 mouse_filter = 2
 texture = ExtResource( 1 )
