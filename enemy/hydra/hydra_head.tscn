@@ -7,13 +7,13 @@
 [ext_resource path="res://enemy/sprites/Hydra_front_up.png" type="Texture" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 222.441
+radius = 317.0
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 32, 32 )
 
 [sub_resource type="CircleShape2D" id=17]
-radius = 145.055
+radius = 193.21
 
 [sub_resource type="SpriteFrames" id=11]
 animations = [ {
@@ -86,10 +86,13 @@ playing = true
 [node name="Timer" type="Timer" parent="."]
 
 [node name="Timer_anim_hurt" type="Timer" parent="."]
-wait_time = 0.25
+wait_time = 0.35
 
 [node name="Timer_anim_attack" type="Timer" parent="."]
 wait_time = 0.25
+
+[node name="TimerKnockback" type="Timer" parent="."]
+wait_time = 0.35
 
 [connection signal="healthChanged" from="." to="." method="_on_EnemyRange_healthChanged"]
 [connection signal="body_entered" from="Range" to="." method="_on_Range_body_entered"]
@@ -98,3 +101,4 @@ wait_time = 0.25
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="Timer_anim_hurt" to="." method="_on_Timer_anim_hurt_timeout"]
 [connection signal="timeout" from="Timer_anim_attack" to="." method="_on_Timer_anim_attack_timeout"]
+[connection signal="timeout" from="TimerKnockback" to="." method="_on_TimerKnockback_timeout"]

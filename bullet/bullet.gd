@@ -27,8 +27,12 @@ func init(pos:Vector2=position, vel:Vector2=velocity, dmg:int=damage):
 func _physics_process(delta):
 	position += velocity * delta
 
-
+"""
+When a bullet hits a body, we want to remove it from the world.
+This is done by calling the remove_body function.
+"""
 func _on_Bullet_body_entered(body):
+
 	if body == Player:
 		Player.health -= damage
 	queue_free()

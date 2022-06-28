@@ -22,6 +22,7 @@ func enable_styx():
 		$Enemy/Range/CollisionShape2D.disabled = false
 	if GlobalVars.level_type == "start":
 		GlobalVars.reset()
+		GlobalVars.level_counter = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -66,9 +67,11 @@ func spawn_enemies():
 """TODO get location of enemy that died"""
 func spawn_reward(item, pos):
 	if typeof(item) == TYPE_STRING:
-		print(pos)
-		pass
-	pass
+		var scene = load("res://floor_item/floor_item.tscn")
+		var instance = scene.instance()
+		instance.item_name = item
+		instance.position = pos
+		var broom = add_child(instance)
 
 
 
@@ -102,14 +105,14 @@ challenges are killing enemies or opening chests. When all tasks are completed
 the challenge counter is 0 and the function or level_completed is called.
 """
 func _on_challenge_down(type, pos):
-	print(challenge_counter)
 	challenge_counter -= 1
 	if challenge_counter <= 0:
 #		Because of this code, be wary of spawning both a chest and enemy at once
 #	Needs to be rewritten to support this implementation.
 		if type == "enemy":
-			spawn_reward("a", pos)
-			print("want to give reward")
+			spawn_reward("Broom", pos)
+		if type == "boss":
+			spawn_chests()
 		level_completed()
 
 """
@@ -126,10 +129,10 @@ func level_completed():
 func enemy_difficulties(enemy):
 	pass
 	if GlobalVars.level_counter % 2:
-		enemy._set_perm_damage(1)
+		enemy._set_perm_damage(enemy._get_perm_damage() + 1)
 		print("enemy DMG: ", enemy._get_perm_damage())
 		print("level counter:", GlobalVars.level_counter)
 	if GlobalVars.level_counter % 3:
-		enemy._set_perm_damage(1)
+		enemy._set_perm_damage(enemy._get_perm_damage() + 1)
 		print("enemy DMG: ", enemy._get_perm_damage())
 		print("level counter:", GlobalVars.level_counter)

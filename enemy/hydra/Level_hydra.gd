@@ -15,10 +15,6 @@ extends "res://levels/Level.gd"
 #			child.disabled = false
 #	Player.can_move = true
 
-
-
-# Called when the node enters the scene tree for the first time.
-#Lijkt me niet nodig, wordt dit script gebruikt?
 func _ready():
 	GlobalVars.level_counter += 1
 	challenge_counter = 3

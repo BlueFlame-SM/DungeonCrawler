@@ -13,7 +13,7 @@ var inventory = {
 	1: ["Broom", 1],
 	2: ["Max_speed_potion", 10],
 	3: ["Speed_potion", 10],
-	4: ["Medium_health_potion", 1]
+	4: ["Apple", 1]
 }
 
 func add_item(item_name, item_quantity):

@@ -4,6 +4,7 @@ extends Node
 var item_data: Dictionary = {
 	"Broom": {
 		"ItemCategory": "melee_weapon",
+		"Rarity": 1,
 		"Damage": 2,
 		"Attack_speed": 3,
 		"Attack_type": "Swipe",
@@ -19,6 +20,7 @@ var item_data: Dictionary = {
 	},
 	"Iron_sword": {
 		"ItemCategory": "melee_weapon",
+		"Rarity": 2,
 		"Damage": 3,
 		"Attack_speed": 5,
 		"Attack_type": "Swipe",
@@ -34,6 +36,7 @@ var item_data: Dictionary = {
 	},
 	"Steel_sword": {
 		"ItemCategory": "melee_weapon",
+		"Rarity": 3,
 		"Damage": 4,
 		"Attack_speed": 5,
 		"Attack_type": "Swipe",
@@ -49,6 +52,7 @@ var item_data: Dictionary = {
 	},
 	"Obsidian_sword": {
 		"ItemCategory": "melee_weapon",
+		"Rarity": 5,
 		"Damage": 6,
 		"Attack_speed": 5,
 		"Attack_type": "Swipe",
@@ -64,6 +68,7 @@ var item_data: Dictionary = {
 	},
 	"Club": {
 		"ItemCategory": "melee_weapon",
+		"Rarity": 3,
 		"Damage": 6,
 		"Attack_speed": 1,
 		"Attack_type": "Swipe",
@@ -77,23 +82,25 @@ var item_data: Dictionary = {
 		"StackSize": 1,
 		"Description": "Great to keep enemies at bay."
 	},
-	"Posionous_blade": {
-		"ItemCategory": "melee_weapon",
-		"Damage": 2,
-		"Attack_speed": 5,
-		"Attack_type": "Poke",
-		"Range": 1,
-		"Knockback": 32,
-		"Poison": 2,
-		"Bleed": 0,
-		"Slow_enemy": 0,
-		"Speed_change": 0,
-		"Stun_chance": 0,	#Percentage chance for enemies to get stunned.
-		"StackSize": 1,
-		"Description": "Usefull to widdle down enemies over time."
-	},
+#	"Posionous_blade": {
+#		"ItemCategory": "melee_weapon",
+#		"Rarity": 1,
+#		"Damage": 2,
+#		"Attack_speed": 5,
+#		"Attack_type": "Poke",
+#		"Range": 1,
+#		"Knockback": 32,
+#		"Poison": 2,
+#		"Bleed": 0,
+#		"Slow_enemy": 0,
+#		"Speed_change": 0,
+#		"Stun_chance": 0,	#Percentage chance for enemies to get stunned.
+#		"StackSize": 1,
+#		"Description": "Usefull to widdle down enemies over time."
+#	},
 	"Spear": {
 		"ItemCategory": "melee_weapon",
+		"Rarity": 4,
 		"Damage": 4,
 		"Attack_speed": 4,
 		"Attack_type": "Poke",
@@ -179,20 +186,29 @@ var item_data: Dictionary = {
 ##########################################################
 ###################### Healing############################
 ##########################################################
-	"Small_health_potion": {
+	"Grape": {
 		"ItemCategory": "health_potion",
+		"Rarity": 1,
 		"HP_healed": 5,
-		"StackSize": 1,
+		"StackSize": 20,
 	},
-	"Medium_health_potion": {
+	"Apple": {
 		"ItemCategory": "health_potion",
+		"Rarity": 2,
 		"HP_healed": 10,
-		"StackSize": 1,
+		"StackSize": 15,
 	},
-	"Large_health_potion": {
+	"Pomegranate": {
 		"ItemCategory": "health_potion",
+		"Rarity": 3,
 		"HP_healed": 20,
-		"StackSize": 1,
+		"StackSize": 10,
+	},
+	"Nectar": {
+		"ItemCategory": "health_potion",
+		"Rarity": 5,
+		"HP_healed": 40,
+		"StackSize": 5,
 	},
 
 ##########################################################
@@ -200,24 +216,26 @@ var item_data: Dictionary = {
 ##########################################################
 	"Speed_potion": {
 		"ItemCategory": "potion",
+		"Rarity": 4,
 		"Duration": 10,
 		"Speed": +3,
 		"Damage": +0,
 		"Attack speed": +2,
 		"Infinite_ammo": false,
 		"Invisibility": false,
-		"StackSize": 1,
+		"StackSize": 5,
 		"Description": "Everything seems slow compared to this."
 	},
 	"Strength_potion": {
 		"ItemCategory": "potion",
+		"Rarity": 4,
 		"Duration": 10,
 		"Speed": 0,
 		"Damage": +3,
 		"Attack speed": +0,
 		"Infinite_ammo": false,
 		"Invisibility": false,
-		"StackSize": 1,
+		"StackSize": 5,
 		"Description": "Everything seems slow compared to this."
 	},
 #	"Potion_of_plenty": {
@@ -232,23 +250,25 @@ var item_data: Dictionary = {
 #		"StackSize": 1,
 #		"Description": "Get out of a pinch ammo get's low."
 #	},
-	"Invisibility_potion": {
-		"ItemCategory": "potion",
-		"Duration": 3,
-		"Speed": 0,
-		"Damage": +0,
-		"Attack speed": +0,
-		"Infinite_ammo": false,
-		"Invisibility": true,
-		"StackSize": 10,
-		"Description": "Dissapear into the void."
-	},
+#	"Invisibility_potion": {
+#		"ItemCategory": "potion",
+#		"Rarity": 1,
+#		"Duration": 3,
+#		"Speed": 0,
+#		"Damage": +0,
+#		"Attack speed": +0,
+#		"Infinite_ammo": false,
+#		"Invisibility": true,
+#		"StackSize": 10,
+#		"Description": "Dissapear into the void."
+#	},
 
 ##########################################################
 ############### Permanent statt buffs ####################
 ##########################################################
 	"Max_health_potion": {
 		"ItemCategory": "permanent_stat_increase",
+		"Rarity": 4,
 		"Max_HP": +3,
 		"Speed": +0,
 		"Damage": +0,
@@ -258,6 +278,7 @@ var item_data: Dictionary = {
 	},
 	"Max_speed_potion": {
 		"ItemCategory": "permanent_stat_increase",
+		"Rarity": 4,
 		"Max_HP": +0,
 		"Speed": +1,
 		"Damage": +0,
@@ -267,6 +288,7 @@ var item_data: Dictionary = {
 	},
 	"Max_strength_potion": {
 		"ItemCategory": "permanent_stat_increase",
+		"Rarity": 4,
 		"Max_HP": +0,
 		"Speed": +0,
 		"Damage": +2,
@@ -276,6 +298,7 @@ var item_data: Dictionary = {
 	},
 		"Max_attack_speed_potion": {
 		"ItemCategory": "permanent_stat_increase",
+		"Rarity": 4,
 		"Max_HP": +0,
 		"Speed": +0,
 		"Damage": +0,

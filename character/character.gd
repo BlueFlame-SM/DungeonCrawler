@@ -5,7 +5,7 @@ signal character_died
 
 const MAX_POINTS = 10
 const SPEED_WEIGHT = 25
-const SPEED_BIAS = 100
+const SPEED_BIAS = 80
 const MAX_COOLDOWN = 1000
 
 
@@ -49,14 +49,13 @@ func do_damage(damage) -> void:
 
 
 func _set_perm_damage(value: int) -> void:
-	perm_damage = clamp(perm_damage + value, 1, MAX_POINTS)
-	temp_damage = _get_temp_damage() + value
+	perm_damage = clamp(value, 1, MAX_POINTS)
 
 func _get_perm_damage() -> int:
 	return perm_damage
 
 func _set_temp_damage(value: int) -> void:
-	temp_damage = clamp(perm_damage + value, 1, MAX_POINTS)
+	temp_damage = clamp(value, 1, MAX_POINTS)
 
 func _get_temp_damage() -> int:
 	return temp_damage
@@ -92,15 +91,14 @@ func _get_perm_speed() -> int:
 	return perm_speed
 
 func _set_perm_speed(value: int) -> void:
-	perm_speed = clamp(value + perm_speed, 1, MAX_POINTS)
-	temp_speed = _get_temp_speed() + value
+	perm_speed = clamp(value, 0, MAX_POINTS)
 
 
 func _get_temp_speed() -> int:
 	return temp_speed
 
 func _set_temp_speed(value: int) -> void:
-	temp_speed = clamp(value + perm_speed, 1, MAX_POINTS)
+	temp_speed = clamp(value, 0, MAX_POINTS)
 
 func _get_attack_speed() -> int:
 	return attack_speed

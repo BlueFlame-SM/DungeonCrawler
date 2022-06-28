@@ -109,7 +109,7 @@ position = Vector2( 1, -36 )
 scale = Vector2( 1.3375, 1.25 )
 frames = SubResource( 10 )
 animation = "zombie_left"
-frame = 2
+frame = 3
 playing = true
 
 [node name="Shadow" type="AnimatedSprite" parent="."]
@@ -121,7 +121,11 @@ frames = SubResource( 11 )
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
 
+[node name="TimerKnockback" type="Timer" parent="."]
+wait_time = 0.35
+
 [connection signal="body_entered" from="Range" to="." method="_on_Range_body_entered"]
 [connection signal="body_entered" from="FiringRange" to="." method="_on_FiringRange_body_entered"]
 [connection signal="body_exited" from="FiringRange" to="." method="_on_FiringRange_body_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="TimerKnockback" to="." method="_on_TimerKnockback_timeout"]
