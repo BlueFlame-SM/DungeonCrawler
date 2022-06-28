@@ -47,4 +47,9 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 	if LevelSwitcher.followingScene != "":
 		call_deferred("_deferred_goto_scene", LevelSwitcher.followingScene)
 	LevelSwitcher.followingScene = ""
-	Gui.get_child(0).show()
+#	Gui.get_child(0).show()
+# When the player is not on a menu screen, the player and GUI are shown.
+	if GlobalVars.level_type == "start":
+		Gui.get_child(0).show()
+		Player.show()
+		Player.get_child(4).get_child(1).show()

@@ -130,9 +130,11 @@ When the player dies, the player stops being able to move. The next level is
 the start level. We then call the levelswitcher to go to the start level.
 """
 func die():
+	GlobalVars.level_type = "game_over"
+	do_damage(health)
 	self.can_move = false
-	GlobalVars.level_type = "start"
-	LevelSwitcher.goto_scene("res://levels/LevelStart.tscn", true)
+	LevelSwitcher.goto_scene("res://interface/death_screen.tscn", true)
+	print("player died")
 
 # Checks for input.
 func _input(event):
