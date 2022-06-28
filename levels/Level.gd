@@ -22,11 +22,12 @@ func enable_styx():
 	if GlobalVars.level_type == "start":
 		GlobalVars.reset()
 		GlobalVars.level_counter = 1
+	else:
+		GlobalVars.level_counter += 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 #	Count how many levels the player has played from start level
-	GlobalVars.level_counter += 1
 	rng.randomize()
 #	Connect the signal from GlobalVars to function
 	GlobalVars.connect("challenge_down", self, "_on_challenge_down")

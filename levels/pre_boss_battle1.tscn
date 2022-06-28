@@ -138,6 +138,7 @@ disabled = true
 position = Vector2( 478, 539 )
 
 [node name="Chest" parent="." instance=ExtResource( 8 )]
+position = Vector2( 477, 313 )
 
 [connection signal="body_entered" from="BossGate" to="BossGate" method="_on_Gate_body_entered"]
 [connection signal="body_entered" from="River_collision" to="." method="_on_River_collision_body_entered"]
