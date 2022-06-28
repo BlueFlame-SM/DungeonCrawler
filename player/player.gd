@@ -18,6 +18,8 @@ var extra_damage = 0
 
 func _ready():
 	self._set_perm_speed(0)
+	self._set_max_health(40)
+	self._set_health(40)
 
 func playAnimations(velocity: Vector2, delta: float) -> void:
 	# Only move if attack animation is not playing
