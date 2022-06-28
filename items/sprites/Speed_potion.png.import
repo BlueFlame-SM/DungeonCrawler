@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/chest_closed.jpg-f08544be13edc53458804eba09f3fd6c.stex"
+path="res://.import/Speed_potion.png-2082dcf169b0d8d1bbf2d1e539594703.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://chest/chest_closed.jpg"
-dest_files=[ "res://.import/chest_closed.jpg-f08544be13edc53458804eba09f3fd6c.stex" ]
+source_file="res://items/sprites/Speed_potion.png"
+dest_files=[ "res://.import/Speed_potion.png-2082dcf169b0d8d1bbf2d1e539594703.stex" ]
 
 [params]
 
