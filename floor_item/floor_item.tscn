@@ -1,7 +1,6 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://floor_item/floor_item.gd" type="Script" id=1]
-[ext_resource path="res://items/sprites/slime_potion.png" type="Texture" id=2]
 [ext_resource path="res://items/sprites/iron_sword.png" type="Texture" id=3]
 [ext_resource path="res://items/sprites/tree_branch.png" type="Texture" id=4]
 [ext_resource path="res://items/sprites/brown_shirt.png" type="Texture" id=5]
@@ -13,11 +12,6 @@ animations = [ {
 "frames": [ ExtResource( 5 ) ],
 "loop": true,
 "name": "brown_shirt",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 4 ) ],
-"loop": true,
-"name": "slime_potion",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 3 ) ],
@@ -33,6 +27,11 @@ animations = [ {
 "frames": [ ExtResource( 6 ) ],
 "loop": true,
 "name": "blue_jeans",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "slime_potion",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 4 ) ],
