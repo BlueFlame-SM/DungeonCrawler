@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/blue_jeans.png-0bad0d35f0585c5ecbf82f34899b5cc4.stex"
+path="res://.import/Steel_sword.png-6697566a46787d7491fd6f537ab81e00.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://items/sprites/blue_jeans.png"
-dest_files=[ "res://.import/blue_jeans.png-0bad0d35f0585c5ecbf82f34899b5cc4.stex" ]
+source_file="res://items/sprites/Steel_sword.png"
+dest_files=[ "res://.import/Steel_sword.png-6697566a46787d7491fd6f537ab81e00.stex" ]
 
 [params]
 

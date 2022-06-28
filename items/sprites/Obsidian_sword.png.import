@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/brown_shirt.png-dbb1abdbe52e20f5f8def515c145a45c.stex"
+path="res://.import/Obsidian_sword.png-ce6fb3f8ee708d6376eaab326943a6fc.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://items/sprites/brown_shirt.png"
-dest_files=[ "res://.import/brown_shirt.png-dbb1abdbe52e20f5f8def515c145a45c.stex" ]
+source_file="res://items/sprites/Obsidian_sword.png"
+dest_files=[ "res://.import/Obsidian_sword.png-ce6fb3f8ee708d6376eaab326943a6fc.stex" ]
 
 [params]
 

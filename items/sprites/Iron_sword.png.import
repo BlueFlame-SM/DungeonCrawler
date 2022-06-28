@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/chest_open.jpg-e03b7bb394c54eca0d990e1bf3c7e5e1.stex"
+path="res://.import/Iron_sword.png-44c8aa0f9803e8800a9310a6ac475f2d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://chest/chest_open.jpg"
-dest_files=[ "res://.import/chest_open.jpg-e03b7bb394c54eca0d990e1bf3c7e5e1.stex" ]
+source_file="res://items/sprites/Iron_sword.png"
+dest_files=[ "res://.import/Iron_sword.png-44c8aa0f9803e8800a9310a6ac475f2d.stex" ]
 
 [params]
 

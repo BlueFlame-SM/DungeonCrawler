@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/brown_boots.png-aca9b28b2235c61e9e4a3dd1b7a73d01.stex"
+path="res://.import/Broom.png-210d5fc85c8ead18f4c2b5e54c6e2228.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://items/sprites/brown_boots.png"
-dest_files=[ "res://.import/brown_boots.png-aca9b28b2235c61e9e4a3dd1b7a73d01.stex" ]
+source_file="res://items/sprites/Broom.png"
+dest_files=[ "res://.import/Broom.png-210d5fc85c8ead18f4c2b5e54c6e2228.stex" ]
 
 [params]
 
