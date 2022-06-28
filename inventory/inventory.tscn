@@ -221,10 +221,10 @@ custom_styles/panel = SubResource( 1 )
 script = ExtResource( 2 )
 
 [node name="GridContainer3" type="GridContainer" parent="."]
-margin_left = 659.0
-margin_top = 555.0
-margin_right = 677.0
-margin_bottom = 573.0
+margin_left = 661.0
+margin_top = 557.0
+margin_right = 681.0
+margin_bottom = 577.0
 
 [node name="slot21" type="Panel" parent="GridContainer3"]
 margin_right = 20.0
@@ -253,8 +253,8 @@ rect_scale = Vector2( 0.01, 0.01 )
 texture = ExtResource( 1 )
 stretch_mode = 1
 
-[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
 [node name="Timer" type="Timer" parent="."]
 wait_time = 7.0
 
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
