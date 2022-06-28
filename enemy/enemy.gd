@@ -10,9 +10,8 @@ var knockback = Vector2.ZERO
 
 var path: Array = []
 var levelNavigation: Navigation2D = null
-
-#Ik neem aan dat dit niet nodig is aangezien player global is?
 onready var player = get_node("../Player")
+
 signal enemy_hit
 
 var attack_counter = 0
