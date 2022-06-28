@@ -90,6 +90,7 @@ func _physics_process(delta: float) -> void:
 			direction.y += 1
 			lastDirection = Vector2.DOWN
 		if Input.is_action_just_pressed("attack"):
+			$SlashSound.play()
 			var now = OS.get_ticks_msec()
 			# Only attack if cooldown is up
 			if now >= next_attack_time:
@@ -143,6 +144,7 @@ func _input(event):
 		var items = $Pickup.get_overlapping_bodies()
 		if items.size() > 0:
 			var item = items[0]
+			$PickUpSound.play()
 			item.pick_up_item(self)
 
 
