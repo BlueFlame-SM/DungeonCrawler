@@ -4,7 +4,7 @@
 [ext_resource path="res://interface/settings_menu.tscn" type="PackedScene" id=2]
 [ext_resource path="res://fonts/button_text.tres" type="DynamicFont" id=3]
 [ext_resource path="res://interface/how_to_play.tscn" type="PackedScene" id=4]
-[ext_resource path="res://interface/main_menu/background.jpg" type="Texture" id=7]
+[ext_resource path="res://fonts/button_theme.tres" type="Theme" id=5]
 [ext_resource path="res://interface/main_menu.gd" type="Script" id=8]
 
 [sub_resource type="DynamicFont" id=1]
@@ -16,11 +16,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 8 )
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Background" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 7 )
-expand = true
+color = Color( 0, 0, 0, 1 )
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0
@@ -55,6 +54,7 @@ margin_right = 320.0
 margin_bottom = 143.0
 rect_min_size = Vector2( 170, 40 )
 focus_neighbour_top = NodePath("../Quit")
+theme = ExtResource( 5 )
 custom_fonts/font = ExtResource( 3 )
 text = "New Game"
 
@@ -63,6 +63,7 @@ margin_top = 153.0
 margin_right = 320.0
 margin_bottom = 193.0
 rect_min_size = Vector2( 0, 40 )
+theme = ExtResource( 5 )
 custom_fonts/font = ExtResource( 3 )
 text = "How To Play"
 
@@ -71,6 +72,7 @@ margin_top = 203.0
 margin_right = 320.0
 margin_bottom = 243.0
 rect_min_size = Vector2( 170, 40 )
+theme = ExtResource( 5 )
 custom_fonts/font = ExtResource( 3 )
 text = "Settings"
 
@@ -80,10 +82,12 @@ margin_right = 320.0
 margin_bottom = 293.0
 rect_min_size = Vector2( 170, 40 )
 focus_neighbour_bottom = NodePath("../NewGame")
+theme = ExtResource( 5 )
 custom_fonts/font = ExtResource( 3 )
 text = "Quit"
 
 [node name="SettingsMenu" parent="." instance=ExtResource( 2 )]
+visible = false
 
 [node name="How_to_play" parent="." instance=ExtResource( 4 )]
 
