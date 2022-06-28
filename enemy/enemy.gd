@@ -82,7 +82,6 @@ func _on_Range_body_entered(body):
 
 func _on_Player_hit(amount):
 	do_damage(amount)
-	print("Enemy health", health)
 
 """
 Functies voor pathfinding zodat het niet achter bosjes blijft zitten, kan pas met nieuwe tileset.
@@ -106,12 +105,10 @@ func generate_path():
 
 # When the player enters Area2D named Hitbox, the enemy will change to ATTACK mode.
 func _on_Hitbox_body_entered(body):
-	print("enter")
 	state = states.ATTACK
 
 # When the player exits Area2D named Hitbox, the enemy will change to CHASE mode.
 func _on_Hitbox_body_exited(body):
-	print("exit")
 	state = states.CHASE
 
 """
@@ -124,15 +121,13 @@ func _damage_player():
 	timer_attack.start()
 	timer.start()
 	attack_counter = 1
-	print(Player.health)
 
 func _on_Timer_timeout():
-	print("timeout")
 	timer.stop()
 	attack_counter = 0
 
 
-func _on_Enemy_healthChanged(newValue):
+func _on_Enemy_healthChanged(newValue, dif):
 	$AnimatedSprite.animation = "on_hit"
 	timer_hurt.start()
 

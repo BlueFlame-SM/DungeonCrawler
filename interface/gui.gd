@@ -42,10 +42,8 @@ func update_health(newValue):
 	if not tween.is_active():
 		tween.start()
 
-
-func _on_Player_healthChanged(playerHealth):
+func _on_Player_healthChanged(playerHealth, dif):
 	"""
 	Player sends signal when health changes.
 	"""
-	print("health changed")
 	update_health(playerHealth)

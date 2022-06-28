@@ -113,12 +113,10 @@ func _on_HazardNotifier_body_entered(body):
 	do_damage(2)
 	print("HP: {}/{}".format([health, max_health], "{}"))
 
-#Dit werkt niet, doet damage aan zichzelf.
 func _on_Weapon_body_entered(body):
-#	print(body.name)
-#	print("weapon hit enemy (not necessarilly)")
-	body.do_damage(2)
-	emit_signal("hit", weapon.damage)
+	if body.name != "Player":
+		body.do_damage(2)
+		emit_signal("hit", weapon.damage)
 
 
 """
@@ -126,6 +124,7 @@ When the player dies, the player stops being able to move. The next level is
 the start level. We then call the levelswitcher to go to the start level.
 """
 func die():
+	print("player died")
 	self.can_move = false
 	GlobalVars.level_type = "start"
 	LevelSwitcher.goto_scene("res://levels/LevelStart.tscn", true)
@@ -155,10 +154,11 @@ func _on_Inventory_use_w():
 	# TODO: De hoeveelheid damage die een wapen geeft moet gekoppeld worden aan stats.
 	# Dat doe je zoals bij on_Inventory_use_i.
 
-
-func _on_Player_healthChanged(newValue):
-	if GlobalVars.level_type != "start":
-			$AnimatedSprite.play("hit_effect")
-			$HurtSound.play()
-	if Player.health <= 0:
-		die()
+func _on_Player_healthChanged(newValue, dif):
+	if dif < 0:
+		if GlobalVars.level_type != "start":
+				$AnimatedSprite.play("hit_effect")
+				$HurtSound.play()
+		if Player.health <= 0:
+			Player.die()
+	pass

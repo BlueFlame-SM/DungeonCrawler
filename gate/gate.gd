@@ -87,6 +87,7 @@ func _on_Gate_body_entered(body):
 	if body.name == "Player":
 		Player.can_move = false
 		GlobalVars.level_type = gate_type
+		print(next_scene_name)
 		LevelSwitcher.goto_scene(next_scene_name)
 
 
