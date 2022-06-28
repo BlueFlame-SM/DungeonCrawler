@@ -17,6 +17,11 @@ func init(pos:Vector2=position, vel:Vector2=velocity, dmg:int=damage):
 		The velocity of the bullet.
 	dmg: int, default = 1
 		The amount of damage dealt on hit.
+
+	Returns
+	-------
+	self: Bullet
+		The self instance, useful for chaining calls.
 	"""
 	position = pos
 	velocity = vel
