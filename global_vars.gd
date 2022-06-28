@@ -12,10 +12,10 @@ func challenge_down():
 func reset():
 	print("reset")
 	level_counter = 0
-	Player._set_health(40)
 	Player._set_max_health(40)
-	Player._set_damage(1)
-	Player._set_speed(3)
+	Player._set_health(40)
+#	Player._set_damage(1)
+#	Player._set_speed(3)
 	"""TODO write empty inventory function in inventory """
 
 #

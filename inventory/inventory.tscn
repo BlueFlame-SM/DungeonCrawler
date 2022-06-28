@@ -218,3 +218,8 @@ rect_min_size = Vector2( 18, 18 )
 mouse_default_cursor_shape = 6
 custom_styles/panel = SubResource( 1 )
 script = ExtResource( 2 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
