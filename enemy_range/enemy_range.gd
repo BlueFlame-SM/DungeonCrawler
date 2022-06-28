@@ -2,6 +2,8 @@ extends "res://character/character.gd"
 
 enum states {PATROL, FIRE, DEAD, CHASE, KNOCKBACK}
 
+const BULLET := preload("res://bullet/bullet.tscn")
+
 var state = states.PATROL
 var time = 1
 var screen_size
@@ -18,7 +20,6 @@ var levelNavigation: Navigation2D = null
 
 #Lijkt me niet nodig want global
 onready var player = get_node("../Player")
-onready var BULLET_SCENE = preload("res://bullet/bullet.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -125,8 +126,8 @@ func _on_Timer_timeout():
 
 
 func fire():
-	var bullet = BULLET_SCENE.instance()
-	bullet.position = get_global_position()
+	var bullet = BULLET.instance()
+	bullet.init(position, position.direction_to(Player.position) * 200, 2)
 	get_parent().add_child(bullet)
 
 
