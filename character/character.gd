@@ -8,6 +8,7 @@ const SPEED_WEIGHT = 25
 const SPEED_BIAS = 100
 const MAX_COOLDOWN = 1000
 
+
 # health: The amount of health the player has.
 # max_health: The total amount of health the player can have.
 # strength: Increases attack damage.

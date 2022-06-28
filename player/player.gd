@@ -126,7 +126,6 @@ When the player dies, the player stops being able to move. The next level is
 the start level. We then call the levelswitcher to go to the start level.
 """
 func die():
-	print("player died")
 	self.can_move = false
 	GlobalVars.level_type = "start"
 	LevelSwitcher.goto_scene("res://levels/LevelStart.tscn", true)
@@ -139,6 +138,11 @@ func _input(event):
 			var item = items[0]
 			item.pick_up_item(self)
 
+
+func _on_Inventory_use_i():
+	var item = JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["ItemCategory"]
+	if item == "Consumable":
+		Player._set_health(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["AddHealth"])
 
 
 func _on_Player_healthChanged(newValue, dif):
