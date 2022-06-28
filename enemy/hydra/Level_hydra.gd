@@ -15,9 +15,6 @@ extends "res://levels/Level.gd"
 #			child.disabled = false
 #	Player.can_move = true
 
-
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	GlobalVars.level_counter += 1
 	challenge_counter = 3
@@ -28,8 +25,6 @@ func _ready():
 		spawn_enemies()
 	elif GlobalVars.level_type == "loot":
 		spawn_chests()
-	elif GlobalVars.level_type == "start":
-		Player._set_health(10)
 	Player.position = $PlayerSpawn.position
 	timer.connect("timeout",self,"enable_styx")
 	timer.wait_time = 1

@@ -30,7 +30,7 @@ onready var timer_attack = $Timer_anim_attack
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	speed = 4
+	_set_perm_speed(4)
 	screen_size = get_viewport_rect().size
 	$AnimatedSprite.animation = "default"
 	"""Kan pas met nieuwe tileset, laten staan!!!"""
@@ -40,7 +40,7 @@ func _ready():
 		levelNavigation = tree.get_nodes_in_group("LevelNavigation")[0]
 	if tree.has_group("Player"):
 		player = tree.get_nodes_in_group("Player")[0]
-		
+
 
 #func _physics_process(delta):
 #	choose_action()
@@ -68,7 +68,7 @@ func choose_action():
 			if time > 0:
 				self.modulate.a = 0 if Engine.get_frames_drawn() % 5 == 0 else 1.0
 			else:
-				GlobalVars.challenge_down()
+				GlobalVars.challenge_down("boss")
 				set_physics_process(false)
 				queue_free()
 		states.PATROL:
@@ -81,6 +81,12 @@ func choose_action():
 			if player and levelNavigation:
 				generate_path()
 				navigate()
+		states.KNOCKBACK:
+			if $TimerKnockback.time_left <= 0:
+				velocity = Vector2.ZERO
+				timer_knockback.start()
+
+			_knockback_Enemy()
 
 #func _on_Range_body_entered(body):
 #	state = states.CHASE
@@ -107,13 +113,14 @@ func choose_action():
 #	if fire != false:
 #		fire()
 
-
+""" Fires to towards the player. """
 func fire():
 	$AnimatedSprite.animation = "attack"
 	timer_attack.start()
-	var bullet = BULLET_SCENE.instance()
-	bullet.position = get_global_position()
+	var bullet = BULLET.instance()
+	bullet.init(position, position.direction_to(Player.position) * 200, 2)
 	get_parent().add_child(bullet)
+
 
 
 """
@@ -133,19 +140,18 @@ Functies voor pathfinding zodat het niet achter bosjes blijft zitten, kan pas me
 #		path = levelNavigation.get_simple_path(global_position, player.global_position, false)
 #
 
-
-func _on_EnemyRange_healthChanged(newValue):
+# Generates a neck of enemies to the player.
+func _on_EnemyRange_healthChanged(newValue, dif):
 	if timer_hurt != null:
 		$AnimatedSprite.animation = "hurt"
-	#	print(timer_hurt)
 		timer_hurt.start()
-	
 
+# Generates a neck of enemies to the player.
 func _on_Timer_anim_hurt_timeout():
 	timer_hurt.stop()
 	$AnimatedSprite.animation = "default"
 
-
+# Generates a neck of enemies to the player.
 func _on_Timer_anim_attack_timeout():
 	timer_attack.stop()
 	$AnimatedSprite.animation = "default"

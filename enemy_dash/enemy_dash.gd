@@ -47,7 +47,6 @@ func _on_state_disabled(delta):
 
 
 func _set_state_patrol():
-	print("patrol")
 	state = States.PATROL
 
 
@@ -56,7 +55,6 @@ func _on_state_patrol(delta):
 
 
 func _set_state_windup():
-	print("windup")
 	charge_direction = position.direction_to(Player.position)
 	windup_timer = windup_time
 	state = States.WINDUP
@@ -69,14 +67,12 @@ func _on_state_windup(delta):
 
 
 func _set_state_charge():
-	print("charge")
 	charge_timer = charge_time
 	state = States.CHARGE
 
 
 func _on_state_charge(delta):
 	charge_timer -= delta
-	print(charge_timer)
 	if charge_timer <= 0:
 		_set_state_patrol()
 	else:
@@ -92,7 +88,6 @@ func _on_state_charge(delta):
 
 
 func _set_state_confused():
-	print("confused")
 	confused_timer = confused_time
 	state = States.CONFUSED
 
@@ -104,11 +99,9 @@ func _on_state_confused(delta):
 
 
 func _set_state_dieing():
-	print("dieing")
-	emit_signal("dieing")
+	emit_signal("dying")
 	dieing_timer = dieing_time
 	state = States.DIEING
-
 
 func _on_state_dieing(delta):
 	dieing_timer -= delta

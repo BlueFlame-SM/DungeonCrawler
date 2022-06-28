@@ -7,10 +7,6 @@ func _ready():
 	"""
 	Player.hide()
 	$MarginContainer/VBoxContainer/Buttons/NewGame.grab_focus()
-	print(Player._get_health())
-
-#func _process(delta):
-#	print(Player._get_health())
 
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel"):

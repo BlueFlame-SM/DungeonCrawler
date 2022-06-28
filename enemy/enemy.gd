@@ -10,19 +10,19 @@ var knockback = Vector2.ZERO
 
 var path: Array = []
 var levelNavigation: Navigation2D = null
-
-#Ik neem aan dat dit niet nodig is aangezien player global is?
 onready var player = get_node("../Player")
+
 signal enemy_hit
 
 var attack_counter = 0
 onready var timer = $Timer
 onready var timer_hurt = $Timer_anim_hurt
 onready var timer_attack = $Timer_anim_attack
+onready var timer_knockback = $TimerKnockback
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	speed = 4
+	self._set_perm_speed(4)
 	screen_size = get_viewport_rect().size
 	"""Kan pas met nieuwe tileset, laten staan!!!"""
 	yield(get_tree(), "idle_frame")
@@ -59,7 +59,7 @@ func choose_action():
 			if time > 0:
 				self.modulate.a = 0 if Engine.get_frames_drawn() % 5 == 0 else 1.0
 			else:
-				GlobalVars.challenge_down()
+				GlobalVars.challenge_down("enemy", self.position)
 				set_physics_process(false)
 				queue_free()
 		states.PATROL:
@@ -74,22 +74,31 @@ func choose_action():
 				generate_path()
 				navigate()
 		states.KNOCKBACK:
-			var player_direction = (Player.get_position() - self.position).normalized()
-			velocity = position.direction_to(Player.position) * -200
+			if $TimerKnockback.time_left <= 0:
+				velocity = Vector2.ZERO
+				timer_knockback.start()
+			_knockback_Enemy()
 
+func _knockback_Enemy():
+	var player_direction = (Player.get_position() - self.position).normalized()
+	velocity = position.direction_to(Player.position) * -200
+
+func _on_TimerKnockback_timeout():
+	state = states.CHASE
+
+# If the player comes in the detection range, the enemy starts chasing the player.
 func _on_Range_body_entered(body):
 	state = states.CHASE
 
 func _on_Player_hit(amount):
 	do_damage(amount)
-	print("Enemy health", health)
 
 """
 Functies voor pathfinding zodat het niet achter bosjes blijft zitten, kan pas met nieuwe tileset.
 """
 func navigate():	# Define the next position to go to
 	if path.size() > 0:
-		velocity = global_position.direction_to(path[1]) * speed
+		velocity = global_position.direction_to(path[1]) * (_get_temp_speed() + _get_temp_speed())
 
 	# If the destination is reached, remove this path from the array
 	if global_position == path[0]:
@@ -106,33 +115,30 @@ func generate_path():
 
 # When the player enters Area2D named Hitbox, the enemy will change to ATTACK mode.
 func _on_Hitbox_body_entered(body):
-	print("enter")
 	state = states.ATTACK
 
 # When the player exits Area2D named Hitbox, the enemy will change to CHASE mode.
 func _on_Hitbox_body_exited(body):
-	print("exit")
-	state = states.CHASE
+	if $TimerKnockback.time_left <= 0:
+		state = states.CHASE
 
 """
 Gives damage to the player equal to the damage stat of the enemy
 and starts a 1 second timer as cooldown for attack.
 """
 func _damage_player():
-	Player.do_damage(self._get_damage())
+	Player.do_damage(_get_temp_damage() + _get_perm_damage())
 	$AnimatedSprite.animation = "attack"
 	timer_attack.start()
 	timer.start()
 	attack_counter = 1
-	print(Player.health)
 
 func _on_Timer_timeout():
-	print("timeout")
 	timer.stop()
 	attack_counter = 0
 
 
-func _on_Enemy_healthChanged(newValue):
+func _on_Enemy_healthChanged(newValue, dif):
 	$AnimatedSprite.animation = "on_hit"
 	timer_hurt.start()
 

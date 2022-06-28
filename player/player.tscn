@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://player/player.gd" type="Script" id=1]
 [ext_resource path="res://player/player.tres" type="SpriteFrames" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://player/HurtSound.gd" type="Script" id=5]
 [ext_resource path="res://hotbar/hotbar.gd" type="Script" id=6]
 [ext_resource path="res://effects/Hurt.wav" type="AudioStream" id=7]
+[ext_resource path="res://effects/Action RPG_Music and Sounds_Hit.wav" type="AudioStream" id=8]
 [ext_resource path="res://player/weapon.gd" type="Script" id=18]
 
 [sub_resource type="CapsuleShape2D" id=2]
@@ -45,7 +46,7 @@ collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pickup"]
 light_mask = 0
-position = Vector2( -1, 9 )
+position = Vector2( 3, 14 )
 shape = SubResource( 3 )
 __meta__ = {
 "_edit_group_": true
@@ -64,13 +65,27 @@ script = ExtResource( 6 )
 
 [node name="HurtSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
-volume_db = -27.092
+volume_db = -27.0
 script = ExtResource( 5 )
+
+[node name="SlashSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 8 )
+volume_db = -20.0
+
+[node name="PickUpSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 7 )
+volume_db = -15.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 7.0
 
 [connection signal="healthChanged" from="." to="." method="_on_Player_healthChanged"]
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="body_entered" from="Weapon" to="." method="_on_Weapon_body_entered"]
 [connection signal="body_entered" from="Pickup" to="." method="_on_Pickup_body_entered"]
 [connection signal="body_exited" from="Pickup" to="." method="_on_Pickup_body_exited"]
-[connection signal="use_i" from="CanvasLayer/Inventory" to="." method="_on_Inventory_use_i"]
-[connection signal="use_w" from="CanvasLayer/Inventory" to="." method="_on_Inventory_use_w"]
+[connection signal="use_health_potion" from="CanvasLayer/Inventory" to="." method="_on_Inventory_use_health_potion"]
+[connection signal="use_melee_weapon" from="CanvasLayer/Inventory" to="." method="_on_Inventory_use_melee_weapon"]
+[connection signal="use_permanent_stat_increase" from="CanvasLayer/Inventory" to="." method="_on_Inventory_use_permanent_stat_increase"]
+[connection signal="use_potion" from="CanvasLayer/Inventory" to="." method="_on_Inventory_use_potion"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

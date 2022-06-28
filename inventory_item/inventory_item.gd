@@ -4,6 +4,8 @@ extends Node2D
 
 var item_name
 var item_quantity
+var options = JsonData.item_data.keys()
+
 
 func set_item(nm, qt):
 	item_name = nm

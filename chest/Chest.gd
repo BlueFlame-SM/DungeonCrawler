@@ -6,6 +6,11 @@ var opened_before = false
 var items_chest = []
 var item_options = JsonData.item_data.keys()
 
+
+
+func _ready():
+	if GlobalVars.level_type == "preboss":
+		choose_items(["Pomegranate", "Strength_potion", "Speed_potion", "Grape"])
 """
 If list contains strings, append strings to items_chest, otherwise append
 item at passed index to items_chest
@@ -26,14 +31,15 @@ func _process(delta):
 	if area_entered == true and opened_before == false:
 		if Input.is_action_just_pressed("pick_up"):
 			opened_before = true
-			GlobalVars.challenge_down()
+			GlobalVars.challenge_down("chest")
 			get_parent().get_node("Chest/AnimatedSprite").playing = false
 			get_parent().get_node("Chest/AnimatedSprite").frame = 1
 			open_chest()
 			return
 
+""" Opens the chest and adds items to the player's inventory. """
 func open_chest():
-	print(item_options)
+
 	var item_count = items_chest.size()
 	if item_count == 0:
 		return
@@ -46,7 +52,7 @@ func open_chest():
 		var instance = scene.instance()
 		instance.item_name = items_chest[i]
 
-#		Spawn items around chest
+		# Spawn items around chest
 		var direction = Vector2(cos(angle), sin(angle))
 		instance.position = direction * radius
 		instance.scale = Vector2(0.02, 0.02)

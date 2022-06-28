@@ -1,44 +1,82 @@
-[gd_scene load_steps=11 format=2]
+
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://fonts/m5x7.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://items/sprites/iron_sword.png" type="Texture" id=2]
+[ext_resource path="res://items/sprites/Speed_potion.png" type="Texture" id=2]
 [ext_resource path="res://inventory_item/inventory_item.gd" type="Script" id=3]
-[ext_resource path="res://items/sprites/blue_jeans.png" type="Texture" id=4]
-[ext_resource path="res://items/sprites/brown_shirt.png" type="Texture" id=5]
-[ext_resource path="res://items/sprites/brown_boots.png" type="Texture" id=6]
-[ext_resource path="res://items/sprites/tree_branch.png" type="Texture" id=7]
-[ext_resource path="res://items/sprites/slime_potion.png" type="Texture" id=8]
+
+[ext_resource path="res://items/sprites/Club.png" type="Texture" id=4]
+[ext_resource path="res://items/sprites/Strength_potion.png" type="Texture" id=5]
+[ext_resource path="res://items/sprites/Iron_sword.png" type="Texture" id=6]
+[ext_resource path="res://items/sprites/Obsidian_sword.png" type="Texture" id=7]
+[ext_resource path="res://items/sprites/Steel_sword.png" type="Texture" id=8]
+[ext_resource path="res://items/sprites/Pomegranate.png" type="Texture" id=9]
+[ext_resource path="res://items/sprites/Apple.png" type="Texture" id=10]
+[ext_resource path="res://items/sprites/Nectar.png" type="Texture" id=11]
+[ext_resource path="res://items/sprites/Grape.png" type="Texture" id=12]
+[ext_resource path="res://items/sprites/Broom.png" type="Texture" id=13]
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 7 ) ],
-"loop": true,
-"name": "tree_branch",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 2 ) ],
-"loop": true,
-"name": "iron_sword",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 4 ) ],
 "loop": true,
-"name": "blue_jeans",
+"name": "Small_health_potion",
 "speed": 5.0
 }, {
+
 "frames": [ ExtResource( 6 ) ],
+
 "loop": true,
-"name": "brown_boots",
+"name": "Speed_potion",
+"speed": 5.0
+}, {
+
+"frames": [ ExtResource( 2 ) ],
+
+"loop": true,
+"name": "Strength_potion",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 5 ) ],
 "loop": true,
-"name": "brown_shirt",
+"name": "Medium_health_potion",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 13 ) ],
+"loop": true,
+"name": "Broom",
+"speed": 5.0
+}, {
+
+"frames": [ ExtResource( 12 ) ],
+"loop": true,
+"name": "Grape",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ) ],
+"loop": true,
+"name": "Nectar",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 8 ) ],
 "loop": true,
-"name": "slime_potion",
+"name": "Steel_sword",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ) ],
+
+"loop": true,
+"name": "Iron_sword",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "Obsidian_sword",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "Strength_potion",
 "speed": 5.0
 } ]
 
@@ -50,9 +88,12 @@ z_index = 1
 script = ExtResource( 3 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 8, 8 )
+position = Vector2( 7, 7 )
+scale = Vector2( 0.15, 0.15 )
 frames = SubResource( 2 )
-animation = "slime_potion"
+
+animation = "Strength_potion"
+
 
 [node name="Label" type="Label" parent="."]
 margin_left = 7.0

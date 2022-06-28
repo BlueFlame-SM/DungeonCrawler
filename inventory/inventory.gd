@@ -7,15 +7,19 @@ onready var inventory_slots = $GridContainer.get_children()
 onready var trash_slot = $GridContainer3.get_child(0)
 onready var hotbar_slots = get_parent().find_node("Hotbar").find_node("GridContainer").get_children()
 onready var slots
+onready var timer = $Timer
 
 var holding_item = null
 var use_item_slot: SlotClass = null
 var use_item = null
 var equipped_slot: SlotClass = null
 var equiped_item = null
+var potion = false
 
-signal use_i
-signal use_w
+signal use_melee_weapon()
+signal use_health_potion()
+signal use_potion()
+signal use_permanent_stat_increase()
 
 func _ready():
 	PlayerInventory.connect("inventory_updated", self, "initialize_inventory")
@@ -43,6 +47,7 @@ func initialize_inventory():
 		trash_slot.remove_child(trash_slot.item)
 		trash_slot.item = null
 		trash_slot.refresh_style()
+
 	print(PlayerInventory.inventory)
 
 func slot_gui_input(event: InputEvent, slot: SlotClass):
@@ -65,7 +70,7 @@ func slot_gui_input(event: InputEvent, slot: SlotClass):
 
 			# If nothing is held yet, here the item will be picked up.
 			elif slot.item:
-				slot_white(slot)
+#				slot_white(slot)
 				left_click_not_holding_item(slot)
 		# Consumes an item.
 		if event.button_index == BUTTON_RIGHT && event.pressed:
@@ -74,10 +79,11 @@ func slot_gui_input(event: InputEvent, slot: SlotClass):
 func consume_item(slot):
 	if !slot.item:
 		return -1
-	if JsonData.item_data[slot.item.item_name]["ItemCategory"] == "Weapon":
+	var category = JsonData.item_data[slot.item.item_name]["ItemCategory"]
+	if category == "melee_weapon":
 		use_item = slot.item
+		emit_signal("use_" + category)
 		var old_equiped_item = slots[0].item
-#		var slot_num = slots.find(slot)
 		PlayerInventory.remove_item(slot)
 		PlayerInventory.remove_item(slots[0])
 		PlayerInventory.add_item_to_empty_slot(use_item, slots[0])
@@ -85,19 +91,28 @@ func consume_item(slot):
 			PlayerInventory.add_item_to_empty_slot(old_equiped_item, slot)
 		else:
 			slot.pickFromSlot()
-#		emit_signal("use_w")
 		initialize_inventory()
+	elif category == "potion":
+		use_item = slot.item
+		if potion == false:
+			emit_signal("use_potion")
+			potion = true
+			timer.start()
+			if slot.item.item_quantity == 1:
+				slot.remove_child(use_item)
+				slot.item = null
+				slot.refresh_style()
+			PlayerInventory.add_item_quantity(slot, -1)
+			initialize_inventory()
 	else:
 		use_item = slot.item
 		use_item_slot = slot
-		timer_use()
-		emit_signal("use_i")
+		emit_signal("use_" + category)
 		var stack_size = int(JsonData.item_data[slot.item.item_name]["StackSize"])
 		if slot.item.item_quantity == 1:
 			slot.remove_child(use_item)
 			slot.item = null
 			slot.refresh_style()
-#			use_item.decrease_item_quantity(1)
 		PlayerInventory.add_item_quantity(slot, -1)
 		initialize_inventory()
 
@@ -109,12 +124,6 @@ func _input(event):
 		if event.pressed and [49,50,51,52,53].has(event.unicode):
 			var slot = get_parent().find_node("Hotbar").find_node("HotbarSlot" + str(event.unicode - 48))
 			consume_item(slot)
-
-func timer_use():
-	slot_blue(use_item_slot)
-	yield(get_tree().create_timer(0.1), "timeout")
-	slot_white(use_item_slot)
-#	use_item_slot = null
 
 func left_click_empty_slot(slot):
 	PlayerInventory.add_item_to_empty_slot(holding_item, slot)
@@ -149,15 +158,12 @@ func left_click_not_holding_item(slot):
 	slot.pickFromSlot()
 	holding_item.global_position = get_global_mouse_position()
 
-func slot_green(slot):
-	slot.modulate = "2ee30c"
-
-func slot_white(slot):
-	 slot.modulate = "ffffff"
-
-func slot_blue(slot):
-	 slot.modulate = "0000FF"
 
 # Trash an item in the trash item_slot.
 func _on_Button_pressed():
 	initialize_inventory()
+
+
+func _on_Timer_timeout():
+	timer.stop()
+	potion = false

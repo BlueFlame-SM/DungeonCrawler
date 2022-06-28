@@ -254,3 +254,7 @@ texture = ExtResource( 1 )
 stretch_mode = 1
 
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+[node name="Timer" type="Timer" parent="."]
+wait_time = 7.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
