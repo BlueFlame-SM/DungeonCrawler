@@ -5,7 +5,7 @@ signal character_died
 
 const MAX_POINTS = 10
 const SPEED_WEIGHT = 25
-const SPEED_BIAS = 10
+const SPEED_BIAS = 80
 const MAX_COOLDOWN = 1000
 
 
@@ -18,8 +18,8 @@ const MAX_COOLDOWN = 1000
 # dexterity: (optional) Increases attack speed.
 export var health: int = 10 setget _set_health, _get_health
 export var max_health: int = 10 setget _set_max_health, _get_max_health
-export var perm_speed: int = 0 setget _set_perm_speed, _get_perm_speed
-export var temp_speed: int = 0 setget _set_temp_speed, _get_temp_speed
+export var perm_speed: int = 1 setget _set_perm_speed, _get_perm_speed
+export var temp_speed: int = 1 setget _set_temp_speed, _get_temp_speed
 export var perm_damage: int = 1 setget _set_perm_damage, _get_perm_damage
 export var temp_damage: int = 1 setget _set_temp_damage, _get_temp_damage
 export var attack_speed: int = 1 setget _set_attack_speed, _get_attack_speed
