@@ -5,7 +5,9 @@ signal character_died
 
 const MAX_POINTS = 10
 const SPEED_WEIGHT = 25
-const SPEED_BIAS = 20
+const SPEED_BIAS = 100
+const MAX_COOLDOWN = 1000
+
 
 # health: The amount of health the player has.
 # max_health: The total amount of health the player can have.
@@ -16,12 +18,13 @@ const SPEED_BIAS = 20
 # dexterity: (optional) Increases attack speed.
 export var health: int = 10 setget _set_health, _get_health
 export var max_health: int = 10 setget _set_max_health, _get_max_health
-export var strength: int = 1 setget _set_strength, _get_strength
-export var defence: int = 1 setget _set_defence, _get_defence
-export var speed: int = 1 setget _set_speed, _get_speed
-export var agility: int = 1 setget _set_agility, _get_agility
-export var dexterity: int = 1 setget _set_dexterity, _get_dexterity
-export var damage: int = 1 setget _set_damage, _get_damage
+export var perm_speed: int = 1 setget _set_perm_speed, _get_perm_speed
+export var temp_speed: int = 1 setget _set_temp_speed, _get_temp_speed
+export var perm_damage: int = 1 setget _set_perm_damage, _get_perm_damage
+export var temp_damage: int = 1 setget _set_temp_damage, _get_temp_damage
+export var attack_speed: int = 1 setget _set_attack_speed, _get_attack_speed
+export var cooldown_time: int = 1000 setget _set_cooldown_time, _get_cooldown_time
+export var range_weapon: int = 1 setget _set_range_weapon, _get_range_weapon
 
 export var can_move: bool = true
 signal healthChanged(newValue, dif)
@@ -30,7 +33,7 @@ signal healthChanged(newValue, dif)
 # Computes the velocity vector of the character from `direction` and the speed stat.
 func move_in_direction(direction: Vector2) -> Vector2:
 	if can_move:
-		return direction.normalized() * ((speed - 1) * SPEED_WEIGHT + SPEED_BIAS)
+		return direction.normalized() * ((temp_speed - 1) * SPEED_WEIGHT + SPEED_BIAS)
 	else:
 		return Vector2.ZERO
 
@@ -45,12 +48,18 @@ func do_damage(damage) -> void:
 	_set_health(health - max(damage, 0))
 
 
-func _set_damage(value: int) -> void:
-	damage = clamp(value, 1, MAX_POINTS)
+func _set_perm_damage(value: int) -> void:
+	perm_damage = clamp(perm_damage + value, 1, MAX_POINTS)
+	temp_damage = _get_temp_damage() + value
 
+func _get_perm_damage() -> int:
+	return perm_damage
 
-func _get_damage() -> int:
-	return damage
+func _set_temp_damage(value: int) -> void:
+	temp_damage = clamp(perm_damage + value, 1, MAX_POINTS)
+
+func _get_temp_damage() -> int:
+	return temp_damage
 
 
 # Heals the character by `amount` of health points.
@@ -79,41 +88,35 @@ func _get_max_health() -> int:
 	return max_health
 
 
-func _set_strength(value: int) -> void:
-	strength = clamp(value, 1, MAX_POINTS)
+func _get_perm_speed() -> int:
+	return perm_speed
+
+func _set_perm_speed(value: int) -> void:
+	perm_speed = clamp(value + perm_speed, 1, MAX_POINTS)
+	temp_speed = _get_temp_speed() + value
 
 
-func _get_strength() -> int:
-	return strength
+func _get_temp_speed() -> int:
+	return temp_speed
+
+func _set_temp_speed(value: int) -> void:
+	temp_speed = clamp(value + perm_speed, 1, MAX_POINTS)
+
+func _get_attack_speed() -> int:
+	return attack_speed
+
+func _set_attack_speed(value: int) -> void:
+	_set_cooldown_time(MAX_COOLDOWN - (value * 100)) #
 
 
-func _set_defence(value: int) -> void:
-	defence = clamp(value, 1, MAX_POINTS)
+func _set_cooldown_time(value: int) -> void:
+	cooldown_time = clamp(value, 100, MAX_COOLDOWN) #?????
 
+func _get_cooldown_time() -> int:
+	return cooldown_time
 
-func _get_defence() -> int:
-	return defence
+func _set_range_weapon(value: int) -> void:
+	range_weapon = value
 
-
-func _set_speed(value: int) -> void:
-	speed = clamp(value, 1, MAX_POINTS)
-
-
-func _get_speed() -> int:
-	return speed
-
-
-func _set_agility(value: int) -> void:
-	agility = clamp(value, 1, MAX_POINTS)
-
-
-func _get_agility() -> int:
-	return agility
-
-
-func _set_dexterity(value: int) -> void:
-	dexterity = clamp(value, 1, MAX_POINTS)
-
-
-func _get_dexterity() -> int:
-	return dexterity
+func _get_range_weapon() -> int:
+	return range_weapon
