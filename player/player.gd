@@ -83,6 +83,8 @@ func _physics_process(delta: float) -> void:
 			direction.y += 1
 			lastDirection = Vector2.DOWN
 		if Input.is_action_just_pressed("attack"):
+			print("slash")
+			$SlashSound.play()
 			var now = OS.get_ticks_msec()
 			# Only attack if cooldown is up
 			if now >= next_attack_time:
@@ -119,6 +121,8 @@ func _on_Weapon_body_entered(body):
 	if body.name != "Player":
 		body.do_damage(2)
 		emit_signal("hit", weapon.damage)
+		$HurtSound.play()
+		body.state = body.states.KNOCKBACK
 
 
 """
@@ -126,7 +130,6 @@ When the player dies, the player stops being able to move. The next level is
 the start level. We then call the levelswitcher to go to the start level.
 """
 func die():
-	print("player died")
 	self.can_move = false
 	GlobalVars.level_type = "start"
 	LevelSwitcher.goto_scene("res://levels/LevelStart.tscn", true)
@@ -137,8 +140,14 @@ func _input(event):
 		var items = $Pickup.get_overlapping_bodies()
 		if items.size() > 0:
 			var item = items[0]
+			$PickUpSound.play()
 			item.pick_up_item(self)
 
+
+func _on_Inventory_use_i():
+	var item = JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["ItemCategory"]
+	if item == "Consumable":
+		Player._set_health(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["AddHealth"])
 
 
 func _on_Player_healthChanged(newValue, dif):

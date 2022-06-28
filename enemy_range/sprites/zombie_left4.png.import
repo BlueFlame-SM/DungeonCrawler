@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/sword2.png-21f11c614d42d80b8c4116fea6ad0300.stex"
+path="res://.import/zombie_left4.png-bc8f278b544e2b6f633f6e84cbca9781.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sword2.png"
-dest_files=[ "res://.import/sword2.png-21f11c614d42d80b8c4116fea6ad0300.stex" ]
+source_file="res://enemy_range/sprites/zombie_left4.png"
+dest_files=[ "res://.import/zombie_left4.png-bc8f278b544e2b6f633f6e84cbca9781.stex" ]
 
 [params]
 

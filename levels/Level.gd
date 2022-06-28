@@ -22,6 +22,7 @@ func enable_styx():
 		$Enemy/Range/CollisionShape2D.disabled = false
 	if GlobalVars.level_type == "start":
 		GlobalVars.reset()
+		GlobalVars.level_counter = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

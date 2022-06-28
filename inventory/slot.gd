@@ -40,7 +40,7 @@ func refresh_style():
 			hint_tooltip = "Iron_sword, \nDamage: x3, \nAttack_speed: +5, \nRange: x1"
 		if item.item_name == "Broom":
 			hint_tooltip = "Broom, \nDamage: x2, \nAttack_speed: +3, \nRange: x1"
-		if item.item_name == "steel_sword":
+		if item.item_name == "Steel_sword":
 			hint_tooltip = "Steel_sword, \nDamage: x4, \nAttack_speed: +5, \nRange: x1"
 		if item.item_name == "Obsidian_sword":
 			hint_tooltip = "Obsidian_sword, \nDamage: x6, \nAttack_speed: +5, \nRange: x1"

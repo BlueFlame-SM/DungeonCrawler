@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tile2.jpg-8c3133e4b044496a616ea332d9269d8f.stex"
+path="res://.import/zombie_up.png-938dd554e3e65a2dba496536a13a1d66.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tile2.jpg"
-dest_files=[ "res://.import/tile2.jpg-8c3133e4b044496a616ea332d9269d8f.stex" ]
+source_file="res://enemy_range/sprites/zombie_up.png"
+dest_files=[ "res://.import/zombie_up.png-938dd554e3e65a2dba496536a13a1d66.stex" ]
 
 [params]
 

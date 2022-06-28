@@ -10,15 +10,15 @@ var knockback = Vector2.ZERO
 
 var path: Array = []
 var levelNavigation: Navigation2D = null
-
-#Ik neem aan dat dit niet nodig is aangezien player global is?
 onready var player = get_node("../Player")
+
 signal enemy_hit
 
 var attack_counter = 0
 onready var timer = $Timer
 onready var timer_hurt = $Timer_anim_hurt
 onready var timer_attack = $Timer_anim_attack
+onready var timer_knockback = $TimerKnockback
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -59,7 +59,7 @@ func choose_action():
 			if time > 0:
 				self.modulate.a = 0 if Engine.get_frames_drawn() % 5 == 0 else 1.0
 			else:
-				GlobalVars.challenge_down()
+				GlobalVars.challenge_down("enemy", self.position)
 				set_physics_process(false)
 				queue_free()
 		states.PATROL:
@@ -74,9 +74,19 @@ func choose_action():
 				generate_path()
 				navigate()
 		states.KNOCKBACK:
-			var player_direction = (Player.get_position() - self.position).normalized()
-			velocity = position.direction_to(Player.position) * -200
+			if $TimerKnockback.time_left <= 0:
+				velocity = Vector2.ZERO
+				timer_knockback.start()
+			_knockback_Enemy()
 
+func _knockback_Enemy():
+	var player_direction = (Player.get_position() - self.position).normalized()
+	velocity = position.direction_to(Player.position) * -200
+
+func _on_TimerKnockback_timeout():
+	state = states.CHASE
+
+# If the player comes in the detection range, the enemy starts chasing the player.
 func _on_Range_body_entered(body):
 	state = states.CHASE
 
@@ -109,7 +119,8 @@ func _on_Hitbox_body_entered(body):
 
 # When the player exits Area2D named Hitbox, the enemy will change to CHASE mode.
 func _on_Hitbox_body_exited(body):
-	state = states.CHASE
+	if $TimerKnockback.time_left <= 0:
+		state = states.CHASE
 
 """
 Gives damage to the player equal to the damage stat of the enemy

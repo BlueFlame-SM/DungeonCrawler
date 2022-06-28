@@ -18,10 +18,13 @@ func _physics_process(delta):
 	move = move.normalized() * speed
 	position += move
 
-
+"""
+When a bullet hits a body, we want to remove it from the world.
+This is done by calling the remove_body function.
+"""
 func _on_Bullet_body_entered(body):
+
 	if body == Player:
 		#TODO: hardcode weghalen
 		Player.health -= 2
-	print(Player.health)
 	queue_free()

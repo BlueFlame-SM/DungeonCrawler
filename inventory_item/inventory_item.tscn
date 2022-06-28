@@ -23,9 +23,10 @@ animations = [ {
 "frames": [ ExtResource( 5 ) ],
 "loop": true,
 "name": "Club",
+
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 2 ) ],
+"frames": [ ExtResource( 7 ) ],
 "loop": true,
 "name": "Iron_sword",
 "speed": 5.0
@@ -35,6 +36,7 @@ animations = [ {
 "name": "Speed_potion",
 "speed": 5.0
 }, {
+
 "frames": [ ExtResource( 9 ) ],
 "loop": true,
 "name": "Pomegranate",
@@ -63,6 +65,7 @@ animations = [ {
 "frames": [ ExtResource( 10 ) ],
 "loop": true,
 "name": "Apple",
+
 "speed": 5.0
 } ]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/map_tiles.png-d07dc9ce8c65b3d16459ca2acf4e4576.stex"
+path="res://.import/zombie_left.png-3d775f58b3fe177a39d361ff2c7ce46e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/map_tiles.png"
-dest_files=[ "res://.import/map_tiles.png-d07dc9ce8c65b3d16459ca2acf4e4576.stex" ]
+source_file="res://enemy_range/sprites/zombie_left.png"
+dest_files=[ "res://.import/zombie_left.png-3d775f58b3fe177a39d361ff2c7ce46e.stex" ]
 
 [params]
 
