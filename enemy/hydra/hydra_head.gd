@@ -30,7 +30,7 @@ onready var timer_attack = $Timer_anim_attack
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	speed = 4
+	self._set_temp_speed(4)
 	screen_size = get_viewport_rect().size
 	$AnimatedSprite.animation = "default"
 	"""Kan pas met nieuwe tileset, laten staan!!!"""
@@ -81,6 +81,12 @@ func choose_action():
 			if player and levelNavigation:
 				generate_path()
 				navigate()
+		states.KNOCKBACK:
+			if $TimerKnockback.time_left <= 0:
+				velocity = Vector2.ZERO
+				timer_knockback.start()
+
+			_knockback_Enemy()
 
 #func _on_Range_body_entered(body):
 #	state = states.CHASE
@@ -137,7 +143,6 @@ Functies voor pathfinding zodat het niet achter bosjes blijft zitten, kan pas me
 func _on_EnemyRange_healthChanged(newValue, dif):
 	if timer_hurt != null:
 		$AnimatedSprite.animation = "hurt"
-	#	print(timer_hurt)
 		timer_hurt.start()
 
 # Generates a neck of enemies to the player.

@@ -122,6 +122,7 @@ func _on_Weapon_body_entered(body):
 	if body.name != "Player":
 		body.do_damage(2)
 		emit_signal("hit", weapon.damage)
+		body.state = body.states.KNOCKBACK
 
 
 """
