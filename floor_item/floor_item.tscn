@@ -10,6 +10,11 @@
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "brown_shirt",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 4 ) ],
 "loop": true,
 "name": "tree_branch",
@@ -20,19 +25,14 @@ animations = [ {
 "name": "iron_sword",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 6 ) ],
-"loop": true,
-"name": "blue_jeans",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 7 ) ],
 "loop": true,
 "name": "brown_boots",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 5 ) ],
+"frames": [ ExtResource( 6 ) ],
 "loop": true,
-"name": "brown_shirt",
+"name": "blue_jeans",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 2 ) ],

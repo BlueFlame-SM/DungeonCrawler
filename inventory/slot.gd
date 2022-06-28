@@ -23,7 +23,6 @@ func _ready():
 	empty_style = StyleBoxTexture.new()
 	default_style.texture = default_tex
 	empty_style.texture = empty_tex
-
 	# Puts random item in slot.
 #	if randi() % 2 == 0:
 #		item = ItemClass.instance()
