@@ -117,9 +117,9 @@ func choose_action():
 func fire():
 	$AnimatedSprite.animation = "attack"
 	timer_attack.start()
-	var bullet = BULLET_SCENE.instance()
-	bullet.position = get_global_position()
-	get_parent().add_child(bullet)
+	var bullet = BULLET.instance()
+	bullet.init(position, position.direction_to(Player.position) * 200, 2)
+	get_tree().get_current_scene().add_child(bullet)
 
 
 """
