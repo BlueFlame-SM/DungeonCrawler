@@ -1,8 +1,10 @@
+
 [gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://fonts/m5x7.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://items/sprites/Speed_potion.png" type="Texture" id=2]
 [ext_resource path="res://inventory_item/inventory_item.gd" type="Script" id=3]
+
 [ext_resource path="res://items/sprites/Club.png" type="Texture" id=4]
 [ext_resource path="res://items/sprites/Strength_potion.png" type="Texture" id=5]
 [ext_resource path="res://items/sprites/Iron_sword.png" type="Texture" id=6]
@@ -18,22 +20,26 @@
 animations = [ {
 "frames": [ ExtResource( 4 ) ],
 "loop": true,
-"name": "Club",
+"name": "Small_health_potion",
 "speed": 5.0
 }, {
+
 "frames": [ ExtResource( 6 ) ],
-"loop": true,
-"name": "Iron_sword",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 2 ) ],
+
 "loop": true,
 "name": "Speed_potion",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 9 ) ],
+
+"frames": [ ExtResource( 2 ) ],
+
 "loop": true,
-"name": "Pomegranate",
+"name": "Strength_potion",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "Medium_health_potion",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 13 ) ],
@@ -41,6 +47,7 @@ animations = [ {
 "name": "Broom",
 "speed": 5.0
 }, {
+
 "frames": [ ExtResource( 12 ) ],
 "loop": true,
 "name": "Grape",
@@ -57,8 +64,9 @@ animations = [ {
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 10 ) ],
+
 "loop": true,
-"name": "Apple",
+"name": "Iron_sword",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 7 ) ],
@@ -83,7 +91,9 @@ script = ExtResource( 3 )
 position = Vector2( 7, 7 )
 scale = Vector2( 0.15, 0.15 )
 frames = SubResource( 2 )
+
 animation = "Strength_potion"
+
 
 [node name="Label" type="Label" parent="."]
 margin_left = 7.0

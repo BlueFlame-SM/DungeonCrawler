@@ -151,6 +151,5 @@ func left_click_not_holding_item(slot):
 	holding_item.global_position = get_global_mouse_position()
 
 func _on_Timer_timeout():
-	print("time")
 	timer.stop()
 	potion = false

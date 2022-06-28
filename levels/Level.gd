@@ -5,7 +5,6 @@ var challenge_counter = 0
 signal gates_open()
 var rng = RandomNumberGenerator.new()
 
-
 """
 To prevent players from getting damage from the styx when a new level starts,
 due to the styx loading earlier than the player getting repositioned at the
@@ -112,7 +111,8 @@ func _on_challenge_down(type, pos):
 		if type == "enemy":
 			spawn_reward("Broom", pos)
 		if type == "boss":
-			spawn_chests()
+			pos = Vector2(Player.position.x, Player.position.y - 5)
+			spawn_reward("Obsidian_sword", pos)
 		level_completed()
 
 """

@@ -41,6 +41,16 @@ func add_item_to_empty_slot(item, slot):
 func remove_item(slot):
 	inventory.erase(slot.slot_index)
 
+func reset_inventory():
+	inventory = {
+	0: ['Iron_sword', 1],
+	1: ["Broom", 1],
+	2: ["Max_speed_potion", 10],
+	3: ["Speed_potion", 10],
+	4: ["Apple", 1]
+	}
+
+
 func add_item_quantity(slot, quantity):
 	if inventory[slot.slot_index][1] == 1 and quantity == -1:
 		remove_item(slot)

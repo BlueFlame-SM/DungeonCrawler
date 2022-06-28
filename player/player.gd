@@ -17,7 +17,7 @@ var extra_speed = 0
 var extra_damage = 0
 
 func _ready():
-	self._set_perm_speed(5)
+	self._set_perm_speed(0)
 
 func playAnimations(velocity: Vector2, delta: float) -> void:
 	# Only move if attack animation is not playing
@@ -84,10 +84,10 @@ func _physics_process(delta: float) -> void:
 			direction.y += 1
 			lastDirection = Vector2.DOWN
 		if Input.is_action_just_pressed("attack"):
-			$SlashSound.play()
 			var now = OS.get_ticks_msec()
 			# Only attack if cooldown is up
 			if now >= next_attack_time:
+				$SlashSound.play()
 				# Play attack animation
 				playAttack = true
 				# Attack
