@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/slime_potion.png-b1f0eebad24ec41e5275dfe18e958d27.stex"
+path="res://.import/Strength_potion.png-8663d5d7ca03c7e64c88927800721170.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://items/sprites/slime_potion.png"
-dest_files=[ "res://.import/slime_potion.png-b1f0eebad24ec41e5275dfe18e958d27.stex" ]
+source_file="res://items/sprites/Strength_potion.png"
+dest_files=[ "res://.import/Strength_potion.png-8663d5d7ca03c7e64c88927800721170.stex" ]
 
 [params]
 

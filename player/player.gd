@@ -23,6 +23,7 @@ func playAnimations(velocity: Vector2, delta: float) -> void:
 	# Only move if attack animation is not playing
 	if !playAttack:
 		if velocity.length() > 0:
+			print(_get_temp_speed() + _get_perm_speed())
 			velocity = velocity.normalized() * (_get_temp_speed() + _get_perm_speed())
 			$AnimatedSprite.play()
 		else:
@@ -166,6 +167,7 @@ func _on_Inventory_use_melee_weapon():
 
 func _on_Inventory_use_permanent_stat_increase():
 	self._set_max_health(self._get_max_health() + JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Max_HP"])
+	print(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Speed"])
 	self._set_perm_speed(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Speed"] + _get_perm_speed())
 	self._set_perm_damage(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Damage"] + _get_perm_damage())
 

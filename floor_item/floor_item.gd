@@ -14,8 +14,8 @@ func _ready():
 	# 0: branch, 1:poison, 2:sword, 3:shirt, 4:pants, 5:boots
 	$AnimatedSprite.set_frame(options.find(item_name))
 	$AnimatedSprite.animation = item_name
-	$AnimatedSprite.scale.x = 3
-	$AnimatedSprite.scale.y = 3
+#	$AnimatedSprite.scale.x = 3
+#	$AnimatedSprite.scale.y = 3
 
 
 # Function called every in-game tick.
