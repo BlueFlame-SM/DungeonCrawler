@@ -103,7 +103,6 @@ func _set_state_dieing():
 	dieing_timer = dieing_time
 	state = States.DIEING
 
-
 func _on_state_dieing(delta):
 	dieing_timer -= delta
 	if dieing_timer > 0:

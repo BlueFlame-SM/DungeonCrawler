@@ -48,6 +48,7 @@ GlobalVars="*res://global_vars.gd"
 PlayerInventory="*res://player_inventory/player_inventory.gd"
 JsonData="*res://other/json_data.gd"
 Gui="*res://interface/gui.tscn"
+GlobalAudioStreamPlayer="*res://background_music/AudioStreamPlayer.tscn"
 
 [display]
 

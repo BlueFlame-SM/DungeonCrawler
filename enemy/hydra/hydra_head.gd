@@ -81,6 +81,12 @@ func choose_action():
 			if player and levelNavigation:
 				generate_path()
 				navigate()
+		states.KNOCKBACK:
+			if $TimerKnockback.time_left <= 0:
+				velocity = Vector2.ZERO
+				timer_knockback.start()
+
+			_knockback_Enemy()
 
 #func _on_Range_body_entered(body):
 #	state = states.CHASE
@@ -107,7 +113,7 @@ func choose_action():
 #	if fire != false:
 #		fire()
 
-
+""" Fires to towards the player. """
 func fire():
 	$AnimatedSprite.animation = "attack"
 	timer_attack.start()
@@ -133,19 +139,18 @@ Functies voor pathfinding zodat het niet achter bosjes blijft zitten, kan pas me
 #		path = levelNavigation.get_simple_path(global_position, player.global_position, false)
 #
 
-
+# Generates a neck of enemies to the player.
 func _on_EnemyRange_healthChanged(newValue, dif):
 	if timer_hurt != null:
 		$AnimatedSprite.animation = "hurt"
-	#	print(timer_hurt)
 		timer_hurt.start()
 
-
+# Generates a neck of enemies to the player.
 func _on_Timer_anim_hurt_timeout():
 	timer_hurt.stop()
 	$AnimatedSprite.animation = "default"
 
-
+# Generates a neck of enemies to the player.
 func _on_Timer_anim_attack_timeout():
 	timer_attack.stop()
 	$AnimatedSprite.animation = "default"

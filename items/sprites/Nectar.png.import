@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/sword2.png-21f11c614d42d80b8c4116fea6ad0300.stex"
+path="res://.import/Nectar.png-f78fe7e3c03a6b77a3e956dd6a13f8bb.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sword2.png"
-dest_files=[ "res://.import/sword2.png-21f11c614d42d80b8c4116fea6ad0300.stex" ]
+source_file="res://items/sprites/Nectar.png"
+dest_files=[ "res://.import/Nectar.png-f78fe7e3c03a6b77a3e956dd6a13f8bb.stex" ]
 
 [params]
 

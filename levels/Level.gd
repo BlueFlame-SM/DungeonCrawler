@@ -21,6 +21,7 @@ func enable_styx():
 		$Enemy/Range/CollisionShape2D.disabled = false
 	if GlobalVars.level_type == "start":
 		GlobalVars.reset()
+		GlobalVars.level_counter = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -128,10 +129,10 @@ func level_completed():
 func enemy_difficulties(enemy):
 	pass
 	if GlobalVars.level_counter % 2:
-		enemy._set_perm_damage(1)
+		enemy._set_perm_damage(enemy._get_perm_damage() + 1)
 		print("enemy DMG: ", enemy._get_perm_damage())
 		print("level counter:", GlobalVars.level_counter)
 	if GlobalVars.level_counter % 3:
-		enemy._set_perm_damage(1)
+		enemy._set_perm_damage(enemy._get_perm_damage() + 1)
 		print("enemy DMG: ", enemy._get_perm_damage())
 		print("level counter:", GlobalVars.level_counter)
