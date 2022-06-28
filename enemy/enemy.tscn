@@ -33,6 +33,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Range"]
 shape = SubResource( 1 )
+disabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 1.74845e-07 )
@@ -69,7 +70,7 @@ wait_time = 0.35
 wait_time = 0.25
 
 [node name="TimerKnockback" type="Timer" parent="."]
-wait_time = 0.35
+wait_time = 0.5
 
 [connection signal="healthChanged" from="." to="." method="_on_Enemy_healthChanged"]
 [connection signal="body_entered" from="Range" to="." method="_on_Range_body_entered"]
@@ -77,7 +78,7 @@ wait_time = 0.35
 [connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_body_entered"]
 [connection signal="body_exited" from="Hitbox" to="." method="_on_Hitbox_body_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
-[connection signal="timeout" from="Timer_anim_hurt" to="." method="_on_Timer_anim_hurt_timeout"]
 [connection signal="timeout" from="Timer_anim_hurt" to="." method="_on_Timer_animation_timeout"]
+[connection signal="timeout" from="Timer_anim_hurt" to="." method="_on_Timer_anim_hurt_timeout"]
 [connection signal="timeout" from="Timer_anim_attack" to="." method="_on_Timer_anim_attack_timeout"]
 [connection signal="timeout" from="TimerKnockback" to="." method="_on_TimerKnockback_timeout"]

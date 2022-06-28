@@ -6,11 +6,12 @@ var state = states.PATROL
 var time = 1
 var screen_size
 var velocity = Vector2()
-var knockback = Vector2.ZERO
 var fire = false
 
 onready var timer = $Timer
 var fire_counter = 0
+
+onready var timer_knockback = $TimerKnockback
 
 var path: Array = []
 var levelNavigation: Navigation2D = null
@@ -19,11 +20,9 @@ var levelNavigation: Navigation2D = null
 onready var player = get_node("../Player")
 onready var BULLET_SCENE = preload("res://bullet/bullet.tscn")
 
-onready var timer_knockback = $TimerKnockback
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	speed = 4
+	self._set_temp_speed(4)
 	screen_size = get_viewport_rect().size
 	"""Kan pas met nieuwe tileset, laten staan!!!"""
 	yield(get_tree(), "idle_frame")
@@ -38,6 +37,23 @@ func _physics_process(delta):
 	velocity = move_and_slide(move_in_direction(velocity))
 	position.x = clamp(position.x, 0, screen_size.x)
 	position.y = clamp(position.y, 0, screen_size.y)
+	if abs(velocity.x) - abs(velocity.y) > 10:
+		if velocity.x > 0:
+			print(true)
+			$AnimatedSprite.animation = "zombie_left"
+			$AnimatedSprite.flip_h = true
+		elif velocity.x < 0:
+			$AnimatedSprite.animation = "zombie_left"
+			$AnimatedSprite.flip_h = false
+	else:
+		if velocity.y > 0:
+			$AnimatedSprite.animation = "zombie_down"
+			$AnimatedSprite.flip_h = false
+		elif velocity.y < 0:
+			$AnimatedSprite.animation = "zombie_up"
+			$AnimatedSprite.flip_h = false
+
+
 	if health == 0:
 		state = states.DEAD
 	match state:
@@ -57,7 +73,7 @@ func choose_action():
 			if time > 0:
 				self.modulate.a = 0 if Engine.get_frames_drawn() % 5 == 0 else 1.0
 			else:
-				GlobalVars.challenge_down()
+				GlobalVars.challenge_down("enemy", self.position)
 				set_physics_process(false)
 				queue_free()
 		states.PATROL:
@@ -87,6 +103,7 @@ func _on_TimerKnockback_timeout():
 	else:
 		state = states.CHASE
 
+# If the player comes in the detection range, the enemy starts chasing the player.
 func _on_Range_body_entered(body):
 	state = states.CHASE
 
@@ -107,6 +124,7 @@ func _on_Timer_timeout():
 	if fire != false:
 		fire()
 
+
 func fire():
 	var bullet = BULLET_SCENE.instance()
 	bullet.position = get_global_position()
@@ -118,7 +136,7 @@ Functies voor pathfinding zodat het niet achter bosjes blijft zitten, kan pas me
 """
 func navigate():	# Define the next position to go to
 	if path.size() > 0:
-		velocity = global_position.direction_to(path[1]) * speed
+		velocity = global_position.direction_to(path[1]) * self._get_temp_speed()
 
 	# If the destination is reached, remove this path from the array
 	if global_position == path[0]:

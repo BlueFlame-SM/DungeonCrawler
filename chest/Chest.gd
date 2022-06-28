@@ -26,14 +26,13 @@ func _process(delta):
 	if area_entered == true and opened_before == false:
 		if Input.is_action_just_pressed("pick_up"):
 			opened_before = true
-			GlobalVars.challenge_down()
+			GlobalVars.challenge_down("chest")
 			get_parent().get_node("Chest/AnimatedSprite").playing = false
 			get_parent().get_node("Chest/AnimatedSprite").frame = 1
 			open_chest()
 			return
 
 func open_chest():
-	print(item_options)
 	var item_count = items_chest.size()
 	if item_count == 0:
 		return

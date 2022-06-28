@@ -6,22 +6,24 @@ var lastDirection = Vector2.LEFT
 
 # onready var healthbar = $HealthBar
 onready var weapon = $Weapon
-
+onready var timer = $Timer
 # When player hits enemy
 signal hit(amount)
 
 # Attack cooldown variables
-var attack_cooldown_time = 100
+var ranged_weapon = false
 var next_attack_time = 0
+var extra_speed = 0
+var extra_damage = 0
 
 func _ready():
-	speed = 5
+	self._set_perm_speed(5)
 
 func playAnimations(velocity: Vector2, delta: float) -> void:
 	# Only move if attack animation is not playing
 	if !playAttack:
 		if velocity.length() > 0:
-			velocity = velocity.normalized() * speed
+			velocity = velocity.normalized() * self._get_temp_speed()
 			$AnimatedSprite.play()
 		else:
 			$AnimatedSprite.stop()
@@ -89,13 +91,14 @@ func _physics_process(delta: float) -> void:
 				# Attack
 				weapon.attack(lastDirection)
 				# Add cooldown time to current time
-				next_attack_time = now + attack_cooldown_time
+				next_attack_time = now + self._get_cooldown_time()
 
 		# Inventory can't be opened during start screen.
 		if GlobalVars.level_counter != 0:
 			if Input.is_action_just_pressed("inventory"):
 				$CanvasLayer/Inventory.visible = !$CanvasLayer/Inventory.visible
 			$CanvasLayer/Hotbar.visible = true
+
 
 	var velocity = move_and_slide(move_in_direction(direction))
 	position += velocity * delta
@@ -112,11 +115,11 @@ func _on_HazardNotifier_body_entered(body):
 	do_damage(2)
 	print("HP: {}/{}".format([health, max_health], "{}"))
 
-# If the weapon hitbox enters an enemy this function is activated.
 func _on_Weapon_body_entered(body):
-	body.do_damage(2)
-	emit_signal("hit", weapon.damage)
-	body.state = body.states.KNOCKBACK
+	if body.name != "Player":
+		body.do_damage(2)
+		emit_signal("hit", weapon.damage)
+		body.state = body.states.KNOCKBACK
 
 
 """
@@ -135,28 +138,50 @@ func _input(event):
 		if items.size() > 0:
 			var item = items[0]
 			item.pick_up_item(self)
-#	if event.is_action_pressed("inventory"):
-#		$CanvasLayer/Inventory.visible = !$CanvasLayer/Inventory.visible
-#		$CanvasLayer/Inventory.initialize_inventory()
 
 
 func _on_Inventory_use_i():
 	var item = JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["ItemCategory"]
 	if item == "Consumable":
 		Player._set_health(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["AddHealth"])
-		print(health)
-
-func _on_Inventory_use_w():
-	var item = JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["ItemCategory"]
-	if item == "Weapon":
-		Player._set_damage(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Damage"])
-	# TODO: De hoeveelheid damage die een wapen geeft moet gekoppeld worden aan stats.
-	# Dat doe je zoals bij on_Inventory_use_i.
 
 
-func _on_Player_healthChanged(newValue):
-	if GlobalVars.level_type != "start":
-			$AnimatedSprite.play("hit_effect")
-			$HurtSound.play()
-	if Player.health <= 0:
-		die()
+func _on_Player_healthChanged(newValue, dif):
+	if dif < 0:
+		if GlobalVars.level_type != "start":
+				$AnimatedSprite.play("hit_effect")
+				$HurtSound.play()
+		if Player.health <= 0:
+			Player.die()
+	pass
+
+func _on_Inventory_use_health_potion():
+	Player.heal(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["HP_healed"])
+
+
+func _on_Inventory_use_melee_weapon():
+	self._set_temp_damage(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Damage"])
+	self._set_attack_speed(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Attack_speed"])
+	self._set_range_weapon(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Range"])
+	$Weapon/HurtBox.scale = Vector2(_get_range_weapon(), _get_range_weapon())
+	self._set_temp_speed(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Speed_change"])
+
+
+func _on_Inventory_use_permanent_stat_increase():
+	self._set_max_health(self._get_max_health() + JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Max_HP"])
+	self._set_perm_speed(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Speed"])
+	self._set_perm_damage(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Damage"])
+
+
+func _on_Inventory_use_potion():
+	extra_speed = JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Speed"]
+	extra_damage = JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Damage"]
+	self._set_temp_speed(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Speed"] + Player._get_temp_speed() - Player._get_perm_speed())
+	self._set_temp_damage(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Damage"] + Player._get_temp_damage() - Player._get_perm_damage())
+	timer.start()
+
+
+func _on_Timer_timeout():
+	timer.stop()
+	Player._set_temp_speed(Player._get_temp_speed() - extra_speed - self._get_perm_speed())
+	Player._set_temp_damage(Player._get_temp_damage() - extra_damage - self._get_perm_damage())

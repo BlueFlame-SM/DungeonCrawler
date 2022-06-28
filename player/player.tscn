@@ -55,11 +55,11 @@ __meta__ = {
 
 [node name="Inventory" parent="CanvasLayer" instance=ExtResource( 3 )]
 visible = false
-position = Vector2( 16, 10 )
+position = Vector2( 10, -406 )
 
 [node name="Hotbar" parent="CanvasLayer" instance=ExtResource( 4 )]
 visible = false
-position = Vector2( 295, 568 )
+position = Vector2( 27, 517 )
 script = ExtResource( 6 )
 
 [node name="HurtSound" type="AudioStreamPlayer" parent="."]
@@ -67,8 +67,12 @@ stream = ExtResource( 7 )
 volume_db = -27.092
 script = ExtResource( 5 )
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 7.0
+
 [connection signal="healthChanged" from="." to="." method="_on_Player_healthChanged"]
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="body_entered" from="Weapon" to="." method="_on_Weapon_body_entered"]
 [connection signal="body_entered" from="Pickup" to="." method="_on_Pickup_body_entered"]
 [connection signal="body_exited" from="Pickup" to="." method="_on_Pickup_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

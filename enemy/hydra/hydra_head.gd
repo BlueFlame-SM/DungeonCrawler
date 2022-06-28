@@ -30,7 +30,7 @@ onready var timer_attack = $Timer_anim_attack
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	speed = 4
+	self._set_temp_speed(4)
 	screen_size = get_viewport_rect().size
 	$AnimatedSprite.animation = "default"
 	"""Kan pas met nieuwe tileset, laten staan!!!"""
@@ -40,6 +40,7 @@ func _ready():
 		levelNavigation = tree.get_nodes_in_group("LevelNavigation")[0]
 	if tree.has_group("Player"):
 		player = tree.get_nodes_in_group("Player")[0]
+
 
 #func _physics_process(delta):
 #	choose_action()
@@ -67,7 +68,7 @@ func choose_action():
 			if time > 0:
 				self.modulate.a = 0 if Engine.get_frames_drawn() % 5 == 0 else 1.0
 			else:
-				GlobalVars.challenge_down()
+				GlobalVars.challenge_down("boss")
 				set_physics_process(false)
 				queue_free()
 		states.PATROL:
@@ -139,10 +140,9 @@ Functies voor pathfinding zodat het niet achter bosjes blijft zitten, kan pas me
 #
 
 
-func _on_EnemyRange_healthChanged(newValue):
+func _on_EnemyRange_healthChanged(newValue, dif):
 	if timer_hurt != null:
 		$AnimatedSprite.animation = "hurt"
-	#	print(timer_hurt)
 		timer_hurt.start()
 
 

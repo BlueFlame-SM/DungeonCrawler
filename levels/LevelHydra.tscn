@@ -11,7 +11,7 @@
 [ext_resource path="res://tilemap/gates4.tres" type="TileSet" id=9]
 [ext_resource path="res://enemy/hydra/hydra.tscn" type="PackedScene" id=10]
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 24.25, 27 )
 
 [sub_resource type="TileSet" id=3]
@@ -30,7 +30,7 @@ extents = Vector2( 24.25, 27 )
 0/shapes = [  ]
 0/z_index = 0
 
-[sub_resource type="TileSet" id=5]
+[sub_resource type="TileSet" id=2]
 0/name = "Gate_Loot_Icon.png 0"
 0/texture = ExtResource( 5 )
 0/tex_offset = Vector2( 0, 0 )
@@ -63,7 +63,7 @@ tile_set = ExtResource( 8 )
 cell_size = Vector2( 32, 32 )
 cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
 format = 1
-tile_data = PoolIntArray( 589913, 8, 0, 655462, 3, 0, 655466, 7, 0, 720919, 0, 0, 786531, 3, 0, 786536, 1, 0, 851981, 1, 0, 852023, 2, 0, 917605, 3, 0, 917609, 8, 0, 983064, 3, 0, 983119, 8, 0, 983139, 3, 0, 983145, 9, 0 )
+tile_data = PoolIntArray( 720919, 0, 0, 983064, 3, 0 )
 
 [node name="Walls" type="TileMap" parent="LevelNavigation"]
 tile_set = ExtResource( 1 )
@@ -83,31 +83,6 @@ cell_size = Vector2( 16, 64 )
 format = 1
 tile_data = PoolIntArray( 7, 1, 0, 47, 1, 0 )
 
-[node name="Gate" parent="." instance=ExtResource( 6 )]
-position = Vector2( 112, 1 )
-
-[node name="Gate_right" type="Area2D" parent="."]
-position = Vector2( 742, -20 )
-script = ExtResource( 2 )
-
-[node name="GateCollision" type="CollisionShape2D" parent="Gate_right"]
-position = Vector2( 58, 60 )
-shape = SubResource( 4 )
-
-[node name="BossOpen" type="TileMap" parent="Gate_right"]
-visible = false
-position = Vector2( 10, 20 )
-tile_set = SubResource( 3 )
-format = 1
-tile_data = PoolIntArray( 0, 0, 0 )
-
-[node name="LootOpen" type="TileMap" parent="Gate_right"]
-visible = false
-position = Vector2( 10, 20 )
-tile_set = SubResource( 5 )
-format = 1
-tile_data = PoolIntArray( 0, 0, 0 )
-
 [node name="River_collision" type="Area2D" parent="."]
 
 [node name="Lake" type="CollisionPolygon2D" parent="River_collision"]
@@ -121,8 +96,33 @@ position = Vector2( 478, 539 )
 
 [node name="Hydra" parent="." instance=ExtResource( 10 )]
 
+[node name="Gate" parent="." instance=ExtResource( 6 )]
+position = Vector2( 111, 2 )
+
+[node name="Gate_right" type="Area2D" parent="."]
+position = Vector2( 742, -20 )
+script = ExtResource( 2 )
+
+[node name="GateCollision" type="CollisionShape2D" parent="Gate_right"]
+position = Vector2( 58, 60 )
+shape = SubResource( 1 )
+
+[node name="BossOpen" type="TileMap" parent="Gate_right"]
+visible = false
+position = Vector2( 10, 20 )
+tile_set = SubResource( 3 )
+format = 1
+tile_data = PoolIntArray( 0, 0, 0 )
+
+[node name="LootOpen" type="TileMap" parent="Gate_right"]
+visible = false
+position = Vector2( 10, 20 )
+tile_set = SubResource( 2 )
+format = 1
+tile_data = PoolIntArray( 0, 0, 0 )
+
 [connection signal="gates_open" from="." to="Gate" method="_on_gates_open"]
 [connection signal="gates_open" from="." to="Gate_right" method="_on_gates_open"]
+[connection signal="body_entered" from="River_collision" to="." method="_on_River_collision_body_entered"]
 [connection signal="body_entered" from="Gate" to="Gate" method="_on_Gate_body_entered"]
 [connection signal="body_entered" from="Gate_right" to="Gate_right" method="_on_Gate_body_entered"]
-[connection signal="body_entered" from="River_collision" to="." method="_on_River_collision_body_entered"]

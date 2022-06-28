@@ -1,7 +1,5 @@
 extends Node2D
 
-export (String) var level_name = "level"
-
 var timer = Timer.new()
 var challenge_counter = 0
 signal gates_open()
@@ -12,21 +10,23 @@ var rng = RandomNumberGenerator.new()
 To prevent players from getting damage from the styx when a new level starts,
 due to the styx loading earlier than the player getting repositioned at the
 start gate, the styx only does damage when this function is called. This function
-is called after a timer.
+is called after a timer. Also enables enemy. Rename function to more general
 """
 func enable_styx():
 	if $River_collision:
 		for child in $River_collision.get_children():
 			child.disabled = false
 	Player.can_move = true
-
-
+#	TODO ix this
+	if $Enemy:
+		$Enemy/Range/CollisionShape2D.disabled = false
+	if GlobalVars.level_type == "start":
+		GlobalVars.reset()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 #	Count how many levels the player has played from start level
 	GlobalVars.level_counter += 1
-
 	rng.randomize()
 #	Connect the signal from GlobalVars to function
 	GlobalVars.connect("challenge_down", self, "_on_challenge_down")
@@ -35,10 +35,6 @@ func _ready():
 		spawn_enemies()
 	elif GlobalVars.level_type == "loot":
 		spawn_chests()
-	elif GlobalVars.level_type == "start":
-#		Reset level counter and player health
-		GlobalVars.level_counter = 1
-		Player._set_health(10)
 #	Set the global player at the start position near the entering gate
 	Player.position = $PlayerSpawn.position
 #	Wait a second to enable styx collision box
@@ -55,7 +51,7 @@ Spawns either a range or normal enemy. Can be extended to other types.
 """
 func spawn_enemies():
 	var enemy
-	if rng.randf_range(0, 1) < 0.1:
+	if rng.randf_range(0, 1) < 0.5:
 		enemy = load("res://enemy_range/enemy_range.tscn").instance()
 	else:
 		enemy = load("res://enemy/enemy.tscn").instance()
@@ -66,6 +62,16 @@ func spawn_enemies():
 #	This becomes relevant if you want to spawn more than 1 enemy. Not currently implemented.
 	challenge_counter += 1
 
+
+"""TODO get location of enemy that died"""
+func spawn_reward(item, pos):
+	if typeof(item) == TYPE_STRING:
+		print(pos)
+		pass
+	pass
+
+
+
 """
 Spawns a chest in a level at a random position out of 4 possible positions.
 """
@@ -73,8 +79,10 @@ func spawn_chests():
 	var chest = load("res://chest/Chest.tscn").instance()
 	var spawn_point = $EnemySpawns.get_children()[randi() % 4]
 	chest.position = spawn_point.position
+	var max_idx = JsonData.item_data.keys().size() - 1
 #	Change this to get random ints of max len_keys.
-	chest.choose_items([0,1,2,3,4])
+	chest.choose_items([rng.randi_range(0, max_idx), rng.randi_range(0, max_idx),\
+	 rng.randi_range(0, max_idx), rng.randi_range(0, max_idx),rng.randi_range(0, max_idx)])
 	add_child(chest)
 #	This becomes relevant if you want to spawn more than 1 chest. Not currently implemented.
 	challenge_counter += 1
@@ -87,17 +95,21 @@ The player then dies.
 func _on_River_collision_body_entered(body):
 	if body.name == "Player":
 		Player.do_damage(Player.health)
-		Player.die()
-
 
 """
 This function is called when a challenge to the player is overcome. Possible
 challenges are killing enemies or opening chests. When all tasks are completed
 the challenge counter is 0 and the function or level_completed is called.
 """
-func _on_challenge_down():
+func _on_challenge_down(type, pos):
+	print(challenge_counter)
 	challenge_counter -= 1
 	if challenge_counter <= 0:
+#		Because of this code, be wary of spawning both a chest and enemy at once
+#	Needs to be rewritten to support this implementation.
+		if type == "enemy":
+			spawn_reward("a", pos)
+			print("want to give reward")
 		level_completed()
 
 """
@@ -112,6 +124,10 @@ func level_completed():
 
 """Function to increase the stats of enemies when levels increase. """
 func enemy_difficulties(enemy):
-	print("ENEMY DMG: ", enemy._get_damage())
+	if GlobalVars.level_counter == 1:
+		enemy._set_perm_damage(2)
+		enemy._set_max_health(10)
+		enemy._set_health(10)
 	if GlobalVars.level_counter % 2 or GlobalVars.level_counter % 3:
-		enemy._set_damage(enemy._get_damage() + 1)
+		enemy._set_perm_damage(enemy._get_perm_damage() + 1)
+		enemy._set_max_health(enemy._get_max_health() + 1)

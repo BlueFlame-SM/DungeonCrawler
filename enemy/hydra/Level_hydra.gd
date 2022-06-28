@@ -18,6 +18,7 @@ extends "res://levels/Level.gd"
 
 
 # Called when the node enters the scene tree for the first time.
+#Lijkt me niet nodig, wordt dit script gebruikt?
 func _ready():
 	GlobalVars.level_counter += 1
 	challenge_counter = 3
@@ -28,8 +29,6 @@ func _ready():
 		spawn_enemies()
 	elif GlobalVars.level_type == "loot":
 		spawn_chests()
-	elif GlobalVars.level_type == "start":
-		Player._set_health(10)
 	Player.position = $PlayerSpawn.position
 	timer.connect("timeout",self,"enable_styx")
 	timer.wait_time = 1
