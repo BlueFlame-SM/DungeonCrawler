@@ -5,8 +5,8 @@ signal character_died
 
 const MAX_POINTS = 10
 const SPEED_WEIGHT = 25
-const SPEED_BIAS = 100
-const MAX_COOLDOWN = 1000
+const SPEED_BIAS = 50
+const MAX_COOLDOWN = 700
 
 
 # health: The amount of health the player has.
