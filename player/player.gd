@@ -122,6 +122,7 @@ func _on_Weapon_body_entered(body):
 		body.do_damage(2)
 		emit_signal("hit", weapon.damage)
 		$HurtSound.play()
+		body.state = body.states.KNOCKBACK
 
 
 """

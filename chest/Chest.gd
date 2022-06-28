@@ -32,7 +32,9 @@ func _process(delta):
 			open_chest()
 			return
 
+""" Opens the chest and adds items to the player's inventory. """
 func open_chest():
+
 	var item_count = items_chest.size()
 	if item_count == 0:
 		return
@@ -45,7 +47,7 @@ func open_chest():
 		var instance = scene.instance()
 		instance.item_name = items_chest[i]
 
-#		Spawn items around chest
+		# Spawn items around chest
 		var direction = Vector2(cos(angle), sin(angle))
 		instance.position = direction * radius
 		instance.scale = Vector2(0.02, 0.02)
