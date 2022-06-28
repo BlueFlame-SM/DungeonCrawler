@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://interface/pause_menu.gd" type="Script" id=1]
 [ext_resource path="res://fonts/button_text.tres" type="DynamicFont" id=2]
 [ext_resource path="res://interface/settings_menu.tscn" type="PackedScene" id=3]
 [ext_resource path="res://interface/how_to_play.tscn" type="PackedScene" id=4]
+[ext_resource path="res://fonts/button_theme.tres" type="Theme" id=5]
 
 [node name="Pause_menu" type="Control"]
 pause_mode = 2
@@ -46,6 +47,7 @@ margin_right = 170.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 170, 40 )
 focus_neighbour_top = NodePath("../Quit_button")
+theme = ExtResource( 5 )
 custom_fonts/font = ExtResource( 2 )
 text = "Resume Game"
 
@@ -54,6 +56,7 @@ margin_top = 118.0
 margin_right = 170.0
 margin_bottom = 158.0
 rect_min_size = Vector2( 170, 40 )
+theme = ExtResource( 5 )
 custom_fonts/font = ExtResource( 2 )
 text = "How To Play"
 
@@ -62,6 +65,7 @@ margin_top = 176.0
 margin_right = 170.0
 margin_bottom = 216.0
 rect_min_size = Vector2( 170, 40 )
+theme = ExtResource( 5 )
 custom_fonts/font = ExtResource( 2 )
 text = "Settings"
 
@@ -71,6 +75,7 @@ margin_right = 170.0
 margin_bottom = 274.0
 rect_min_size = Vector2( 170, 40 )
 focus_neighbour_bottom = NodePath("../Resume_button")
+theme = ExtResource( 5 )
 custom_fonts/font = ExtResource( 2 )
 text = "Quit"
 
