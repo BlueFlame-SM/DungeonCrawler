@@ -87,7 +87,6 @@ custom_fonts/font = ExtResource( 3 )
 text = "Quit"
 
 [node name="SettingsMenu" parent="." instance=ExtResource( 2 )]
-visible = false
 
 [node name="How_to_play" parent="." instance=ExtResource( 4 )]
 
