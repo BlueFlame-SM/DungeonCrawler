@@ -119,10 +119,11 @@ func _input(event):
 	# location of item held gets updated by mouse location.
 	if holding_item:
 		holding_item.global_position = get_global_mouse_position()
-	if event is InputEventKey:
-		if event.pressed and [49,50,51,52,53].has(event.unicode):
-			var slot = get_parent().find_node("Hotbar").find_node("HotbarSlot" + str(event.unicode - 48))
-			consume_item(slot)
+	if GlobalVars.level_counter != 0:
+		if event is InputEventKey:
+			if event.pressed and [49,50,51,52,53].has(event.unicode):
+				var slot = get_parent().find_node("Hotbar").find_node("HotbarSlot" + str(event.unicode - 48))
+				consume_item(slot)
 
 func left_click_empty_slot(slot):
 	PlayerInventory.add_item_to_empty_slot(holding_item, slot)
