@@ -41,7 +41,6 @@ func _physics_process(delta):
 	if velocity == Vector2.ZERO:
 		if abs(Player.position.y - position.y) > abs(Player.position.x - position.x):
 			if Player.position.y - position.y < 0:
-				print("looking up")
 				$AnimatedSprite.animation = "zombie_up"
 				$AnimatedSprite.flip_h = false
 			else:

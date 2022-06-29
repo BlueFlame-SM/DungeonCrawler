@@ -96,7 +96,6 @@ The damage is done to display the decline of health on the health bar.
 The player then dies.
 """
 func _on_River_collision_body_entered(body):
-	print(body)
 	if body.name == "Player":
 		Player.do_damage(Player.health)
 
