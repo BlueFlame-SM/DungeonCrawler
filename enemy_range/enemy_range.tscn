@@ -111,6 +111,7 @@ scale = Vector2( 1.3375, 1.25 )
 frames = SubResource( 10 )
 animation = "zombie_left"
 frame = 2
+
 playing = true
 
 [node name="Shadow" type="AnimatedSprite" parent="."]
