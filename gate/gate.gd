@@ -30,6 +30,7 @@ var combat_levels = [1, 2, 3, 4, 5, 6, 7, 8 ,9 ,11]
 var loot_levels = [1, 2, 3, 4, 5, 6, 7, 8 ,9, 10 ,11]
 var cur_lvl_nr
 var gate_type = "loot"
+var odds_chest_room = 0.1
 
 
 func _ready():
@@ -76,7 +77,7 @@ func det_gate_type():
 	cur_lvl_nr = int(get_parent().name.right(5))
 	combat_levels.erase(cur_lvl_nr)
 	loot_levels.erase(cur_lvl_nr)
-	if rng.randf_range(0, 1) < 0.6:
+	if rng.randf_range(0, 1) < odds_chest_room:
 		nxt_lvl_nr = loot_levels[randi() % loot_levels.size()]
 		$LootOpen.visible = true
 		gate_type = "loot"
