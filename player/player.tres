@@ -18,6 +18,7 @@
 [ext_resource path="res://effects/HitEffect.png" type="Texture" id=16]
 [ext_resource path="res://player/sprites/Left_walk_4.png" type="Texture" id=17]
 
+
 [sub_resource type="AtlasTexture" id=19]
 flags = 4
 atlas = ExtResource( 15 )
@@ -200,6 +201,11 @@ animations = [ {
 "name": "idle_down",
 "speed": 5.0
 }, {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "walk_up",
+"speed": 5.0
+}, {
 "frames": [ SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ) ],
 "loop": true,
 "name": "hit_effect",
@@ -209,6 +215,7 @@ animations = [ {
 "loop": true,
 "name": "front_slash",
 "speed": 20.0
+
 }, {
 "frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
 "loop": true,
@@ -224,4 +231,5 @@ animations = [ {
 "loop": true,
 "name": "left_slash",
 "speed": 20.0
+
 } ]

@@ -161,6 +161,7 @@ func _on_Player_healthChanged(newValue, dif):
 			Player.die()
 			$CanvasLayer/Inventory.visible = false
 	pass
+	
 
 
 func _on_Inventory_use_health_potion():

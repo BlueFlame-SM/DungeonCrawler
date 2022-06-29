@@ -1,4 +1,6 @@
+
 [gd_scene load_steps=21 format=2]
+
 
 [ext_resource path="res://fonts/m5x7.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://items/sprites/Speed_potion.png" type="Texture" id=2]
@@ -99,6 +101,7 @@ animations = [ {
 "frames": [ ExtResource( 17 ) ],
 "loop": true,
 "name": "Spear",
+
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 18 ) ],
@@ -118,6 +121,7 @@ script = ExtResource( 3 )
 position = Vector2( 7, 7 )
 scale = Vector2( 0.15, 0.15 )
 frames = SubResource( 2 )
+
 animation = "New Anim"
 
 [node name="Label" type="Label" parent="."]
