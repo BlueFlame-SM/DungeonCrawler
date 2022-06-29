@@ -90,9 +90,6 @@ func _on_TimerKnockback_timeout():
 func _on_Range_body_entered(body):
 	state = states.CHASE
 
-func _on_Player_hit(amount):
-	do_damage(amount)
-
 """
 Functies voor pathfinding zodat het niet achter bosjes blijft zitten, kan pas met nieuwe tileset.
 """
@@ -129,6 +126,7 @@ and starts a 1 second timer as cooldown for attack.
 func _damage_player():
 	Player.do_damage(_get_temp_damage() + _get_perm_damage())
 	$AnimatedSprite.animation = "attack"
+	Player.hurt()
 	timer_attack.start()
 	timer.start()
 	attack_counter = 1

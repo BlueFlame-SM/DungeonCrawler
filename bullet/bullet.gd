@@ -50,12 +50,13 @@ func _physics_process(delta):
 	move = move.normalized() * speed
 	position += move
 
-
+"""TODO!"""
 func _on_Bullet_body_entered(body):
 	if body == Player:
+		print("bullet entered")
+		Player.hurt()
 		#TODO: hardcode weghalen
 		Player.health -= 2
-	print(Player.health)
 	queue_free()
 
 #When a bullet hits a body, we want to remove it from the world.
