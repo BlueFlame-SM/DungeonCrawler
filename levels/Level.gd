@@ -4,6 +4,7 @@ var timer = Timer.new()
 var challenge_counter = 0
 signal gates_open()
 var rng = RandomNumberGenerator.new()
+var river = false
 
 """
 To prevent players from getting damage from the styx when a new level starts,
@@ -44,6 +45,10 @@ func _ready():
 	timer.one_shot = true
 	add_child(timer)
 	timer.start()
+
+func _physics_process(delta):
+	if river == true:
+		Player.do_damage(1)
 
 
 """
@@ -152,7 +157,8 @@ The player then dies.
 func _on_River_collision_body_entered(body):
 	print(body)
 	if body.name == "Player":
-		Player.do_damage(Player.health)
+		river = true
+#		Player.do_damage(Player.health)
 
 """
 This function is called when a challenge to the player is overcome. Possible
@@ -200,3 +206,8 @@ func enemy_difficulties(enemy):
 		enemy._set_perm_damage(enemy._get_perm_damage() + 1)
 		print("enemy DMG: ", enemy._get_perm_damage())
 		print("level counter:", GlobalVars.level_counter)
+
+
+func _on_River_collision_body_exited(body):
+	if body == Player:
+		river = false
