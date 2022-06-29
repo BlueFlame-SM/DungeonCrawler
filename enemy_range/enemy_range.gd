@@ -98,7 +98,7 @@ func choose_action():
 			velocity = Vector2.ZERO
 		states.FIRE:
 			velocity = Vector2.ZERO
-			pass
+			_fire_check()
 		states.CHASE:
 			""" Weer tileset"""
 			if player and levelNavigation:
@@ -127,20 +127,24 @@ func _on_Range_body_entered(body):
 
 func _on_FiringRange_body_entered(body):
 	state = states.FIRE
-	fire()
 	fire = true
-	timer.start(0)
 
 func _on_FiringRange_body_exited(body):
 	if $TimerKnockback.time_left <= 0:
 		state = states.CHASE
 
 	fire = false
-	timer.stop()
+
 
 func _on_Timer_timeout():
-	if fire != false:
+	timer.stop()
+	fire_counter = 0
+
+func _fire_check():
+	if fire_counter == 0:
+		timer.start()
 		fire()
+		fire_counter = 1
 
 
 func fire():
