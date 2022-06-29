@@ -47,7 +47,7 @@ func reset_inventory():
 	1: ["Broom", 1],
 	2: ["Max_speed_potion", 10],
 	3: ["Speed_potion", 10],
-	4: ["Apple", 1]
+	4: ["Nectar", 5]
 	}
 
 
