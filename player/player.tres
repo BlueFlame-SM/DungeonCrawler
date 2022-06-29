@@ -38,10 +38,51 @@ flags = 4
 atlas = ExtResource( 7 )
 region = Rect2( 0, 0, 70, 85 )
 
-[sub_resource type="AtlasTexture" id=19]
+
+[sub_resource type="AtlasTexture" id=10]
 flags = 4
-atlas = ExtResource( 15 )
-region = Rect2( 0, 0, 36, 64 )
+atlas = ExtResource( 1 )
+region = Rect2( 32, 0, 32, 64 )
+
+[sub_resource type="AtlasTexture" id=11]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 64, 0, 32, 64 )
+
+[sub_resource type="AtlasTexture" id=12]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 96, 0, 32, 64 )
+
+[sub_resource type="AtlasTexture" id=13]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 128, 0, 32, 64 )
+
+[sub_resource type="AtlasTexture" id=14]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 160, 0, 32, 64 )
+
+[sub_resource type="AtlasTexture" id=15]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 0, 0, 70, 85 )
+
+[sub_resource type="AtlasTexture" id=16]
+flags = 4
+atlas = ExtResource( 11 )
+region = Rect2( 0, 0, 70, 85 )
+
+[sub_resource type="AtlasTexture" id=17]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 0, 0, 70, 85 )
+
+[sub_resource type="AtlasTexture" id=18]
+flags = 4
+atlas = ExtResource( 7 )
+region = Rect2( 0, 0, 70, 85 )
 
 [sub_resource type="AtlasTexture" id=20]
 flags = 4
@@ -77,6 +118,11 @@ region = Rect2( 0, 0, 36, 64 )
 flags = 4
 atlas = ExtResource( 15 )
 region = Rect2( 36, 0, 36, 64 )
+
+[sub_resource type="AtlasTexture" id=19]
+flags = 4
+atlas = ExtResource( 15 )
+region = Rect2( 0, 0, 36, 64 )
 
 [sub_resource type="AtlasTexture" id=29]
 flags = 4
@@ -122,6 +168,7 @@ region = Rect2( 80, 0, 40, 64 )
 flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 120, 0, 40, 64 )
+
 
 [sub_resource type="AtlasTexture" id=5]
 flags = 4
@@ -181,9 +228,15 @@ animations = [ {
 "speed": 20.0
 }, {
 "frames": [ SubResource( 19 ) ],
+
 "loop": true,
-"name": "idle_left",
+"name": "walk_down",
 "speed": 5.0
+}, {
+"frames": [ SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ) ],
+"loop": true,
+"name": "left_slash",
+"speed": 20.0
 }, {
 "frames": [ SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ) ],
 "loop": true,
@@ -215,6 +268,7 @@ animations = [ {
 "name": "walk_up",
 "speed": 5.0
 }, {
+
 "frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
 "loop": true,
 "name": "front_slash",
@@ -222,6 +276,6 @@ animations = [ {
 }, {
 "frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ) ],
 "loop": true,
-"name": "walk_down",
+"name": "idle_left",
 "speed": 5.0
 } ]

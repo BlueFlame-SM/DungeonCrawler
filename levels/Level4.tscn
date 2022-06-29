@@ -139,3 +139,4 @@ position = Vector2( 485, 101 )
 [connection signal="body_entered" from="Gate" to="Gate" method="_on_Gate_body_entered"]
 [connection signal="body_entered" from="Gate_right" to="Gate_right" method="_on_Gate_body_entered"]
 [connection signal="body_entered" from="River_collision" to="." method="_on_River_collision_body_entered"]
+[connection signal="body_exited" from="River_collision" to="." method="_on_River_collision_body_exited"]
