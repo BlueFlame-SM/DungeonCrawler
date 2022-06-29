@@ -163,6 +163,7 @@ func _on_Player_healthChanged(newValue, dif):
 	pass
 	
 
+
 func _on_Inventory_use_health_potion():
 	Player.heal(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["HP_healed"])
 	print("HP: {}/{}".format([health, max_health], "{}"))
