@@ -92,6 +92,7 @@ script = ExtResource( 7 )
 [node name="GateCollision" type="CollisionShape2D" parent="Gate_right"]
 position = Vector2( 58, 60 )
 shape = SubResource( 4 )
+disabled = true
 
 [node name="BossOpen" type="TileMap" parent="Gate_right"]
 visible = false
@@ -127,7 +128,7 @@ position = Vector2( 336, 240 )
 position = Vector2( 777, 309 )
 
 [node name="EnemySpawn3" type="Position2D" parent="EnemySpawns"]
-position = Vector2( 170, 108 )
+position = Vector2( 149, 136 )
 
 [node name="EnemySpawn4" type="Position2D" parent="EnemySpawns"]
 position = Vector2( 123, 397 )
