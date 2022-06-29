@@ -23,8 +23,7 @@ func playAnimations(velocity: Vector2, delta: float) -> void:
 	# Only move if attack animation is not playing
 	if !playAttack:
 		if velocity.length() > 0:
-			print(_get_temp_speed() + _get_perm_speed())
-			velocity = velocity.normalized() * (_get_temp_speed() + _get_perm_speed())
+			velocity = velocity.normalized() * (self._get_temp_speed() + self._get_perm_speed())
 			$AnimatedSprite.play()
 		else:
 			$AnimatedSprite.stop()
@@ -157,6 +156,7 @@ func _on_Player_healthChanged(newValue, dif):
 
 func _on_Inventory_use_health_potion():
 	Player.heal(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["HP_healed"])
+	print("HP: {}/{}".format([health, max_health], "{}"))
 
 
 func _on_Inventory_use_melee_weapon():
@@ -170,21 +170,20 @@ func _on_Inventory_use_melee_weapon():
 func _on_Inventory_use_permanent_stat_increase():
 	self._set_max_health(self._get_max_health() + JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Max_HP"])
 	print(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Speed"])
-	self._set_perm_speed(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Speed"] + _get_perm_speed())
-	self._set_perm_damage(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Damage"] + _get_perm_damage())
+	self._set_perm_speed(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Speed"] + self._get_perm_speed())
+	self._set_perm_damage(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Damage"] + self._get_perm_damage())
+
 
 
 func _on_Inventory_use_potion():
 	extra_speed = JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Speed"]
 	extra_damage = JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Damage"]
-	self._set_temp_speed(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Speed"] + Player._get_temp_speed())
-	self._set_temp_damage(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Damage"] + Player._get_temp_damage())
+	self._set_temp_speed(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Speed"] + self._get_temp_speed())
+	self._set_temp_damage(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Damage"] + self._get_temp_damage())
 	timer.start()
 
 
 func _on_Timer_timeout():
 	timer.stop()
-	print(_get_temp_speed())
 	Player._set_temp_speed(Player._get_temp_speed() - extra_speed)
 	Player._set_temp_damage(Player._get_temp_damage() - extra_damage)
-	print(_get_temp_speed())

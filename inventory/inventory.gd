@@ -48,7 +48,6 @@ func initialize_inventory():
 		trash_slot.item = null
 		trash_slot.refresh_style()
 
-	print(PlayerInventory.inventory)
 
 func slot_gui_input(event: InputEvent, slot: SlotClass):
 	# When a mouseclick occurs, check if it is a left mouse click.
