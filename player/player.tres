@@ -18,6 +18,31 @@
 [ext_resource path="res://effects/HitEffect.png" type="Texture" id=16]
 [ext_resource path="res://player/sprites/Left_walk_4.png" type="Texture" id=17]
 
+[sub_resource type="AtlasTexture" id=19]
+flags = 4
+atlas = ExtResource( 15 )
+region = Rect2( 0, 0, 36, 64 )
+
+[sub_resource type="AtlasTexture" id=15]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 0, 0, 70, 85 )
+
+[sub_resource type="AtlasTexture" id=16]
+flags = 4
+atlas = ExtResource( 11 )
+region = Rect2( 0, 0, 70, 85 )
+
+[sub_resource type="AtlasTexture" id=17]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 0, 0, 70, 85 )
+
+[sub_resource type="AtlasTexture" id=18]
+flags = 4
+atlas = ExtResource( 7 )
+region = Rect2( 0, 0, 70, 85 )
+
 [sub_resource type="AtlasTexture" id=9]
 flags = 4
 atlas = ExtResource( 1 )
@@ -47,31 +72,6 @@ region = Rect2( 128, 0, 32, 64 )
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 160, 0, 32, 64 )
-
-[sub_resource type="AtlasTexture" id=15]
-flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 0, 0, 70, 85 )
-
-[sub_resource type="AtlasTexture" id=16]
-flags = 4
-atlas = ExtResource( 11 )
-region = Rect2( 0, 0, 70, 85 )
-
-[sub_resource type="AtlasTexture" id=17]
-flags = 4
-atlas = ExtResource( 14 )
-region = Rect2( 0, 0, 70, 85 )
-
-[sub_resource type="AtlasTexture" id=18]
-flags = 4
-atlas = ExtResource( 7 )
-region = Rect2( 0, 0, 70, 85 )
-
-[sub_resource type="AtlasTexture" id=19]
-flags = 4
-atlas = ExtResource( 15 )
-region = Rect2( 0, 0, 36, 64 )
 
 [sub_resource type="AtlasTexture" id=20]
 flags = 4
@@ -175,7 +175,7 @@ region = Rect2( 0, 0, 98, 98 )
 
 [resource]
 animations = [ {
-"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ) ],
+"frames": [ SubResource( 19 ) ],
 "loop": true,
 "name": "walk_down",
 "speed": 5.0
@@ -185,7 +185,7 @@ animations = [ {
 "name": "left_slash",
 "speed": 20.0
 }, {
-"frames": [ SubResource( 19 ) ],
+"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ) ],
 "loop": true,
 "name": "idle_left",
 "speed": 5.0
