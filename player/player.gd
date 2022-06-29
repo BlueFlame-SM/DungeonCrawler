@@ -15,6 +15,7 @@ var ranged_weapon = false
 var next_attack_time = 0
 var extra_speed = 0
 var extra_damage = 0
+var extra_atk_speed = 0
 
 func _ready():
 	self._set_perm_speed(0)
@@ -181,12 +182,13 @@ func _on_Inventory_use_permanent_stat_increase():
 	self._set_perm_damage(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Damage"] + self._get_perm_damage())
 	self._set_perm_attack_speed(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Attack_speed"] + self._get_perm_attack_speed())
 
-
 func _on_Inventory_use_potion():
 	extra_speed = JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Speed"]
 	extra_damage = JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Damage"]
+	extra_atk_speed = JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Attack_speed"]
 	self._set_temp_speed(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Speed"] + self._get_temp_speed())
 	self._set_temp_damage(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Damage"] + self._get_temp_damage())
+	self._set_temp_attack_speed(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Attack_speed"] + self._get_temp_attack_speed())
 	timer.start()
 
 
@@ -194,3 +196,4 @@ func _on_Timer_timeout():
 	timer.stop()
 	Player._set_temp_speed(Player._get_temp_speed() - extra_speed)
 	Player._set_temp_damage(Player._get_temp_damage() - extra_damage)
+	Player._set_temp_attack_speed(Player._get_temp_attack_speed() - extra_atk_speed)
