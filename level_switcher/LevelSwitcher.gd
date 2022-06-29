@@ -40,7 +40,8 @@ func _deferred_goto_scene(path):
 	player.play_backwards()
 	# Plays sound on level enter. not for commercial use ( check)
 	#	https://freesound.org/people/InspectorJ/sounds/431118/
-	$door_shuts.play()
+	if GlobalVars.level_type != "start":
+		$door_shuts.play()
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):

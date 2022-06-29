@@ -18,12 +18,13 @@ var extra_damage = 0
 
 func _ready():
 	self._set_perm_speed(0)
+	self._set_max_health(40)
+	self._set_health(40)
 
 func playAnimations(velocity: Vector2, delta: float) -> void:
 	# Only move if attack animation is not playing
 	if !playAttack:
 		if velocity.length() > 0:
-			print(_get_temp_speed() + _get_perm_speed())
 			velocity = velocity.normalized() * (_get_temp_speed() + _get_perm_speed())
 			$AnimatedSprite.play()
 		else:
@@ -121,9 +122,10 @@ func _on_Weapon_body_entered(body):
 	if body.name != "Player":
 		body.do_damage(2)
 		emit_signal("hit", weapon.damage)
-		$HurtSound.play()
 		body.state = body.states.KNOCKBACK
 
+func hurt():
+	$HurtSound.play()
 
 """
 When the player dies, the player stops being able to move. The next level is
@@ -134,7 +136,6 @@ func die():
 	do_damage(health)
 	self.can_move = false
 	LevelSwitcher.goto_scene("res://interface/death_screen.tscn", true)
-	print("player died")
 
 # Checks for input.
 func _input(event):
@@ -150,7 +151,7 @@ func _on_Player_healthChanged(newValue, dif):
 	if dif < 0:
 		if GlobalVars.level_type != "start":
 				$AnimatedSprite.play("hit_effect")
-				$HurtSound.play()
+#				$HurtSound.play()
 		if Player.health <= 0:
 			Player.die()
 	pass
@@ -169,7 +170,6 @@ func _on_Inventory_use_melee_weapon():
 
 func _on_Inventory_use_permanent_stat_increase():
 	self._set_max_health(self._get_max_health() + JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Max_HP"])
-	print(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Speed"])
 	self._set_perm_speed(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Speed"] + _get_perm_speed())
 	self._set_perm_damage(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Damage"] + _get_perm_damage())
 
@@ -184,7 +184,5 @@ func _on_Inventory_use_potion():
 
 func _on_Timer_timeout():
 	timer.stop()
-	print(_get_temp_speed())
 	Player._set_temp_speed(Player._get_temp_speed() - extra_speed)
 	Player._set_temp_damage(Player._get_temp_damage() - extra_damage)
-	print(_get_temp_speed())
