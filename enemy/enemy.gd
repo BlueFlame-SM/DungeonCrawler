@@ -20,6 +20,8 @@ onready var timer_hurt = $Timer_anim_hurt
 onready var timer_attack = $Timer_anim_attack
 onready var timer_knockback = $TimerKnockback
 
+onready var hitbox = $Hitbox
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	self._set_perm_speed(4)
@@ -56,6 +58,8 @@ func choose_action():
 		states.DEAD:
 			$AnimatedSprite.animation = "on_hit"
 			velocity = Vector2.ZERO
+			# Disables the hitbox so it doesn't damage the player.
+			hitbox.get_node("CollisionShape2D").disabled = true
 			if time > 0:
 				self.modulate.a = 0 if Engine.get_frames_drawn() % 5 == 0 else 1.0
 			else:
