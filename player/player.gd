@@ -18,12 +18,15 @@ var extra_damage = 0
 
 func _ready():
 	self._set_perm_speed(0)
+	self._set_max_health(40)
+	self._set_health(40)
 
 func playAnimations(velocity: Vector2, delta: float) -> void:
 	# Only move if attack animation is not playing
 	if !playAttack:
 		if velocity.length() > 0:
 			velocity = velocity.normalized() * (self._get_temp_speed() + self._get_perm_speed())
+
 			$AnimatedSprite.play()
 		else:
 			$AnimatedSprite.stop()
@@ -120,9 +123,10 @@ func _on_Weapon_body_entered(body):
 	if body.name != "Player":
 		body.do_damage(2)
 		emit_signal("hit", weapon.damage)
-		$HurtSound.play()
 		body.state = body.states.KNOCKBACK
 
+func hurt():
+	$HurtSound.play()
 
 """
 When the player dies, the player stops being able to move. The next level is
@@ -133,7 +137,6 @@ func die():
 	do_damage(health)
 	self.can_move = false
 	LevelSwitcher.goto_scene("res://interface/death_screen.tscn", true)
-	print("player died")
 
 # Checks for input.
 func _input(event):
@@ -149,7 +152,7 @@ func _on_Player_healthChanged(newValue, dif):
 	if dif < 0:
 		if GlobalVars.level_type != "start":
 				$AnimatedSprite.play("hit_effect")
-				$HurtSound.play()
+#				$HurtSound.play()
 		if Player.health <= 0:
 			Player.die()
 	pass
@@ -172,7 +175,6 @@ func _on_Inventory_use_permanent_stat_increase():
 	print(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Speed"])
 	self._set_perm_speed(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Speed"] + self._get_perm_speed())
 	self._set_perm_damage(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Damage"] + self._get_perm_damage())
-
 
 
 func _on_Inventory_use_potion():

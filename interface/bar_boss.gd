@@ -20,20 +20,19 @@ func _ready():
 	parPos.y -= 80
 	parPos.x -= 40
 	offset = parPos
-	print(offset)
 	var bossMaxHealth = get_parent().max_health
 	bar.max_value = bossMaxHealth
 	bar.value = bossMaxHealth
 	numberLabel.text = str(bar.value)
 	animatedHealth = bar.value
 	get_parent().connect("healthChanged", self, "_on_boss_healthChanged")
-	
-	
+
+
 func _process(delta):
 	"""
 	Update text label and bar on interface.
 	"""
-	
+
 	var parPos = get_parent().position
 	parPos.y -= 80
 	parPos.x -= 40
@@ -51,8 +50,8 @@ func update_health(newValue):
 	tween.interpolate_property(self, "animatedHealth", animatedHealth, newValue, 0.6, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	if not tween.is_active():
 		tween.start()
-	
-	
+
+
 func _on_boss_healthChanged(newValue, dif):
 	update_health(newValue)
 

@@ -11,8 +11,7 @@
 [ext_resource path="res://player/weapon.gd" type="Script" id=18]
 
 [sub_resource type="CapsuleShape2D" id=2]
-radius = 13.0
-height = 10.0
+height = 16.0
 
 [sub_resource type="CircleShape2D" id=3]
 radius = 31.0

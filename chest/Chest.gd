@@ -61,8 +61,10 @@ func open_chest():
 
 # The area is entered.
 func _on_Pickup_Chest_body_entered(body):
+	if body.name == "Player":
 		area_entered = true
 
 # The area is exited.
 func _on_Pickup_Chest_body_exited(body):
-	area_entered = false
+	if body.name == "Player":
+		area_entered = false

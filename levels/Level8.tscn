@@ -110,8 +110,8 @@ tile_data = PoolIntArray( 0, 0, 0 )
 [node name="River_collision" type="Area2D" parent="."]
 
 [node name="Lake" type="CollisionPolygon2D" parent="River_collision"]
-position = Vector2( 1.52588e-05, -1.3375 )
-scale = Vector2( 1, 0.895508 )
+position = Vector2( 3.05176e-05, -1.11875 )
+scale = Vector2( 1, 0.912598 )
 polygon = PoolVector2Array( 320, 64, 320, 160, 352, 160, 352, 192, 384, 192, 384, 256, 416, 256, 416, 320, 576, 320, 576, 256, 608, 256, 608, 160, 640, 160, 640, 96, 672, 96, 672, 64 )
 disabled = true
 

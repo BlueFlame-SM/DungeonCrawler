@@ -55,14 +55,14 @@ animations = [ {
 "name": "default",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 11 ), ExtResource( 5 ), ExtResource( 11 ), ExtResource( 10 ) ],
-"loop": true,
-"name": "zombie_left",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 6 ), ExtResource( 9 ), ExtResource( 6 ), ExtResource( 12 ) ],
 "loop": true,
 "name": "zombie_down",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 5 ), ExtResource( 11 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "zombie_left",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 7 ), ExtResource( 4 ), ExtResource( 7 ), ExtResource( 8 ) ],
@@ -110,7 +110,6 @@ position = Vector2( 1, -36 )
 scale = Vector2( 1.3375, 1.25 )
 frames = SubResource( 10 )
 animation = "zombie_left"
-frame = 1
 playing = true
 
 [node name="Shadow" type="AnimatedSprite" parent="."]
