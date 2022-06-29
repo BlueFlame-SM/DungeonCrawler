@@ -5,8 +5,11 @@
 [ext_resource path="res://inventory/slot.gd" type="Script" id=3]
 
 [node name="Hotbar" type="Node2D"]
-scale = Vector2( 2, 2 )
+scale = Vector2( 2.2, 2.2 )
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="GridContainer2" type="GridContainer" parent="."]
 margin_left = 6.0

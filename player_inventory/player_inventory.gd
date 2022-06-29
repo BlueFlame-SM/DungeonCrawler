@@ -53,8 +53,9 @@ func reset_inventory():
 
 
 func add_item_quantity(slot, quantity):
-	if inventory[slot.slot_index][1] == 1 and quantity == -1:
-		remove_item(slot)
-	else:
-		inventory[slot.slot_index][1] += quantity
+	if slot.slot_index in inventory:
+		if inventory[slot.slot_index][1] == 1 and quantity == -1:
+			remove_item(slot)
+		else:
+			inventory[slot.slot_index][1] += quantity
 

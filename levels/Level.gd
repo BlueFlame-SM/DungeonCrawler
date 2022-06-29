@@ -109,7 +109,23 @@ func spawn_chests():
 	for i in range(5):
 		randomize()
 		var num = rng.randi_range(1, 19)
-		chosen_items.append(random_item(dict_rarity, num))
+
+		if num < 9:
+			randomize()
+			chosen_items.append(dict_rarity[1][randi() % dict_rarity[1].size() - 1])
+		elif num < 14:
+			randomize()
+			chosen_items.append(dict_rarity[2][randi() % dict_rarity[2].size() - 1])
+		elif num < 17:
+			randomize()
+			chosen_items.append(dict_rarity[3][randi() % dict_rarity[3].size() - 1])
+		elif num < 19:
+			randomize()
+			chosen_items.append(dict_rarity[4][randi() % dict_rarity[4].size() - 1])
+		else:
+			randomize()
+			chosen_items.append(dict_rarity[5][randi() % dict_rarity[5].size() - 1])
+
 
 	chest.choose_items(chosen_items)
 	add_child(chest)
@@ -117,17 +133,18 @@ func spawn_chests():
 	#	This becomes relevant if you want to spawn more than 1 chest. Not currently implemented.
 	challenge_counter += 1
 
-func random_item(dict_rarity, num):
-	if num < 9:
+
+	if num < 10:
 		randomize()
 		return dict_rarity[1][randi() % dict_rarity[1].size() - 1]
-	elif num < 14:
+	elif num < 15:
 		randomize()
 		return dict_rarity[2][randi() % dict_rarity[2].size() - 1]
-	elif num < 17:
+	elif num < 19:
 		randomize()
 		return dict_rarity[3][randi() % dict_rarity[3].size() - 1]
-	elif num < 19:
+	elif num < 22:
+
 		randomize()
 		return dict_rarity[4][randi() % dict_rarity[4].size() - 1]
 	else:
@@ -157,13 +174,18 @@ func _on_challenge_down(type, pos):
 		var dict_rarity = item_rarity()
 		if type == "enemy":
 			randomize()
-			var num = rng.randi_range(1, 19)
+
+			var num = rng.randi_range(1, 24)
 			spawn_reward(random_item(dict_rarity, num), pos)
-		if type == "boss":
+		if type == "hydra":
 			pos = Vector2(Player.position.x, Player.position.y - 5)
 			randomize()
 			var num = rng.randi_range(17, 19)
 			spawn_reward(random_item(dict_rarity, num), pos)
+		if type == "lion":
+			pos = Vector2(Player.position.x, Player.position.y - 5)
+			spawn_reward("Lion_hide", pos)
+
 		level_completed()
 
 """

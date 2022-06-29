@@ -1,5 +1,5 @@
 
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://floor_item/floor_item.gd" type="Script" id=1]
 [ext_resource path="res://items/sprites/Nectar.png" type="Texture" id=2]
@@ -14,29 +14,23 @@
 [ext_resource path="res://items/sprites/Steel_sword.png" type="Texture" id=11]
 [ext_resource path="res://items/sprites/Spear.png" type="Texture" id=12]
 [ext_resource path="res://items/sprites/Broom.png" type="Texture" id=13]
+[ext_resource path="res://items/sprites/Max_speed_potion.png" type="Texture" id=14]
+[ext_resource path="res://items/sprites/Max_speed_attack_potion.png" type="Texture" id=15]
+[ext_resource path="res://items/sprites/Max_strength_potion.png" type="Texture" id=16]
+[ext_resource path="res://items/sprites/Max_health_potion.png" type="Texture" id=17]
+[ext_resource path="res://items/sprites/Lion_hide.png" type="Texture" id=18]
 
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 7 ) ],
-"loop": true,
-"name": "Club",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 9 ) ],
-"loop": true,
-"name": "Iron_sword",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 6 ) ],
 "loop": true,
 "name": "Speed_potion",
 "speed": 5.0
 }, {
-
-"frames": [ ExtResource( 4 ) ],
+"frames": [ ExtResource( 8 ) ],
 "loop": true,
-"name": "Pomegranate",
+"name": "Strength_potion",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 13 ) ],
@@ -44,7 +38,6 @@ animations = [ {
 "name": "Broom",
 "speed": 5.0
 }, {
-
 "frames": [ ExtResource( 3 ) ],
 "loop": true,
 "name": "Grape",
@@ -60,10 +53,9 @@ animations = [ {
 "name": "Steel_sword",
 "speed": 5.0
 }, {
-
-"frames": [ ExtResource( 5 ) ],
+"frames": [ ExtResource( 9 ) ],
 "loop": true,
-"name": "Apple",
+"name": "Iron_sword",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 10 ) ],
@@ -71,25 +63,55 @@ animations = [ {
 "name": "Obsidian_sword",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "Apple",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 16 ) ],
+"loop": true,
+"name": "Max_strength_potion",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "Club",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 14 ) ],
+"loop": true,
+"name": "Max_speed_potion",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 15 ) ],
+"loop": true,
+"name": "Max_speed_attack_potion",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 17 ) ],
+"loop": true,
+"name": "Max_health_potion",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "Pomegranate",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 12 ) ],
 "loop": true,
 "name": "Spear",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 8 ) ],
+"frames": [ ExtResource( 18 ) ],
+"loop": true,
+"name": "Lion_hide",
 
-"loop": true,
-"name": "Strength_potion",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 4 ) ],
-"loop": true,
-"name": "Broom",
 "speed": 5.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 26.5, 24.5 )
+extents = Vector2( 16, 15 )
 
 [node name="FloorItem" type="RigidBody2D"]
 light_mask = 0
@@ -101,13 +123,12 @@ script = ExtResource( 1 )
 item_name = "slime_potion"
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 5.25, -1.5 )
-scale = Vector2( 0.64375, 0.625 )
+position = Vector2( -7, 9 )
+scale = Vector2( 0.4, 0.3625 )
 frames = SubResource( 2 )
-
-animation = "Steel_sword"
+animation = "Lion_hide"
 
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 5.5, -2 )
+position = Vector2( -5, 7.5 )
 shape = SubResource( 4 )

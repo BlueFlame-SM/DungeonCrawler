@@ -32,6 +32,9 @@ func _process(delta):
 	"""
 	Update text label and bar on interface.
 	"""
+	# Set the health bar size to the current max_health if it was changed.
+	if bar.max_value != get_parent().max_health:
+		bar.max_value = get_parent().max_health
 
 	var parPos = get_parent().position
 	parPos.y -= 80
