@@ -47,7 +47,10 @@ func _ready():
 #	To get the scene that this gate leads to, determine what kind of gate it is
 	if GlobalVars.level_type == "preboss":
 		gate_type = "bigboss"
-		next_scene_name = "res://levels/LevelHydra.tscn"
+		if GlobalVars.level_counter %9 == 0:
+			next_scene_name = "res://levels/LevelLion.tscn"
+		else:
+			next_scene_name = "res://levels/LevelHydra.tscn"
 	else:
 		next_scene_name = det_gate_type()
 
@@ -68,7 +71,7 @@ func det_gate_type():
 		$LootOpen.visible = true
 		gate_type = "preboss"
 		return "res://levels/pre_boss_battle1.tscn"
-	elif GlobalVars.level_counter % 5 == 0 and GlobalVars.level_counter != 0:
+	if GlobalVars.level_counter % 4 == 0 and GlobalVars.level_counter != 0:
 		$LootOpen.visible = true
 		gate_type = "preboss"
 #		CHANGE TO LION LEVEL

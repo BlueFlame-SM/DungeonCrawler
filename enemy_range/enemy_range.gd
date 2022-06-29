@@ -41,7 +41,6 @@ func _physics_process(delta):
 	if velocity == Vector2.ZERO:
 		if abs(Player.position.y - position.y) > abs(Player.position.x - position.x):
 			if Player.position.y - position.y < 0:
-				print("looking up")
 				$AnimatedSprite.animation = "zombie_up"
 				$AnimatedSprite.flip_h = false
 			else:
@@ -87,6 +86,7 @@ func choose_action():
 	match state:
 		states.DEAD:
 			velocity = Vector2.ZERO
+			fire = false
 			if time > 0:
 				self.modulate.a = 0 if Engine.get_frames_drawn() % 5 == 0 else 1.0
 			else:
@@ -97,7 +97,7 @@ func choose_action():
 			velocity = Vector2.ZERO
 		states.FIRE:
 			velocity = Vector2.ZERO
-			pass
+			_fire_check()
 		states.CHASE:
 			""" Weer tileset"""
 			if player and levelNavigation:
@@ -126,20 +126,24 @@ func _on_Range_body_entered(body):
 
 func _on_FiringRange_body_entered(body):
 	state = states.FIRE
-	fire()
 	fire = true
-	timer.start(0)
 
 func _on_FiringRange_body_exited(body):
 	if $TimerKnockback.time_left <= 0:
 		state = states.CHASE
 
 	fire = false
-	timer.stop()
+
 
 func _on_Timer_timeout():
-	if fire != false:
+	timer.stop()
+	fire_counter = 0
+
+func _fire_check():
+	if fire_counter == 0:
+		timer.start()
 		fire()
+		fire_counter = 1
 
 
 func fire():
