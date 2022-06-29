@@ -1,5 +1,20 @@
 class_name Character
 extends KinematicBody2D
+"""
+An entity in the world with stats, which can move, take and deal damage.
+
+Attributes:
+	health: The current amount of health, between 0 and `max_health`.
+	max_health: The maximum amount of health with a minimum value of 1.
+	perm_speed: A permanent boost to speed, between 0 and `MAX_POINTS`.
+	temp_speed: A temporary boost to speed, between 0 and `MAX_POINTS`.
+	perm_damage: A permanent boost to damage, between 0 and `MAX_POINTS`.
+	temp_damage: A temporary boost to damage, between 0 and `MAX_POINTS`.
+	attack_speed: The current attack speed, between 1 and `MAX_POINTS`.
+	range_weapon: The attack range.
+	can_move: True if the character can move.
+	cooldown_time: The cooldown time between attacks.
+"""
 
 signal character_died
 
@@ -8,14 +23,6 @@ const SPEED_WEIGHT = 25
 const SPEED_BIAS = 50
 const MAX_COOLDOWN = 700
 
-
-# health: The amount of health the player has.
-# max_health: The total amount of health the player can have.
-# strength: Increases attack damage.
-# defence: Decreases incomming attack damage.
-# speed: Increases movement speed.
-# agility: (optional) Increases acceleration.
-# dexterity: (optional) Increases attack speed.
 export var health: int = 10 setget _set_health, _get_health
 export var max_health: int = 10 setget _set_max_health, _get_max_health
 export var perm_speed: int = 1 setget _set_perm_speed, _get_perm_speed
@@ -27,8 +34,10 @@ export var perm_attack_speed: int = 1 setget _set_perm_attack_speed, _get_perm_a
 
 export var cooldown_time: int = 1000 setget _set_cooldown_time, _get_cooldown_time
 export var range_weapon: int = 1 setget _set_range_weapon, _get_range_weapon
-
 export var can_move: bool = true
+
+var cooldown_time: int = 1000 setget , _get_cooldown_time
+
 signal healthChanged(newValue, dif)
 
 
@@ -53,11 +62,14 @@ func do_damage(damage) -> void:
 func _set_perm_damage(value: int) -> void:
 	perm_damage = clamp(value, 1, MAX_POINTS)
 
+
 func _get_perm_damage() -> int:
 	return perm_damage
 
+
 func _set_temp_damage(value: int) -> void:
 	temp_damage = clamp(value, 1, MAX_POINTS)
+
 
 func _get_temp_damage() -> int:
 	return temp_damage
@@ -92,12 +104,14 @@ func _get_max_health() -> int:
 func _get_perm_speed() -> int:
 	return perm_speed
 
+
 func _set_perm_speed(value: int) -> void:
 	perm_speed = clamp(value, 0, MAX_POINTS)
 
 
 func _get_temp_speed() -> int:
 	return temp_speed
+
 
 func _set_temp_speed(value: int) -> void:
 	temp_speed = clamp(value, 0, MAX_POINTS)
@@ -114,15 +128,18 @@ func _get_perm_attack_speed() -> int:
 func _set_perm_attack_speed(value: int) -> void:
 	_set_cooldown_time(MAX_COOLDOWN - (value * 100))
 
+func _set_attack_speed(value: int) -> void:
+	attack_speed = clamp(value, 1, MAX_POINTS)
+	cooldown_time = MAX_COOLDOWN / MAX_POINTS * (MAX_POINTS - attack_speed + 1)
 
-func _set_cooldown_time(value: int) -> void:
-	cooldown_time = clamp(value, 100, MAX_COOLDOWN) #?????
 
 func _get_cooldown_time() -> int:
 	return cooldown_time
 
+
 func _set_range_weapon(value: int) -> void:
 	range_weapon = value
+
 
 func _get_range_weapon() -> int:
 	return range_weapon
