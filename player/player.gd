@@ -156,10 +156,13 @@ func _on_Player_healthChanged(newValue, dif):
 	if dif < 0:
 		if GlobalVars.level_type != "start":
 				$AnimatedSprite.play("hit_effect")
-#				$HurtSound.play()
+#                $HurtSound.play()
 		if Player.health <= 0:
 			Player.die()
+			$CanvasLayer/Inventory.visible = false
 	pass
+
+
 
 func _on_Inventory_use_health_potion():
 	Player.heal(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["HP_healed"])

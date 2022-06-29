@@ -53,7 +53,6 @@ func _physics_process(delta):
 """TODO!"""
 func _on_Bullet_body_entered(body):
 	if body == Player:
-		print("bullet entered")
 		Player.hurt()
 		#TODO: hardcode weghalen
 		Player.health -= 2

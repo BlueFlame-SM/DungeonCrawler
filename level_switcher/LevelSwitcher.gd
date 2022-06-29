@@ -6,7 +6,11 @@ extends Node
 var followingScene = ""
 var currentScene = ""
 
+var timer = Timer.new()
 onready var player = $AnimationPlayer
+signal anim_finished
+
+
 func _ready():
 	var root = get_tree().get_root()
 	currentScene = root.get_child(root.get_child_count() - 1)
@@ -18,6 +22,7 @@ func goto_scene(path, dead=false):
 	if !dead:
 		player.play("fade")
 	else:
+		pass
 		player.play("die")
 
 
@@ -27,6 +32,7 @@ func _deferred_goto_scene(path):
 
 	# Load the new scene.
 	var s = ResourceLoader.load(path)
+	player.play_backwards()
 
 	# Instance the new scene.
 	currentScene = s.instance()
@@ -37,14 +43,16 @@ func _deferred_goto_scene(path):
 	# Optionally, to make it compatible with the SceneTree.change_scene() API.
 #	get_tree().set_current_scene(currentScene)
 
-	player.play_backwards()
+
 	# Plays sound on level enter. not for commercial use ( check)
 	#	https://freesound.org/people/InspectorJ/sounds/431118/
-	if GlobalVars.level_type != "start":
+	if GlobalVars.level_type != "start" and GlobalVars.level_type != "game_over":
 		$door_shuts.play()
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):
+	emit_signal("anim_finished")
+
 	if LevelSwitcher.followingScene != "":
 		call_deferred("_deferred_goto_scene", LevelSwitcher.followingScene)
 	LevelSwitcher.followingScene = ""
