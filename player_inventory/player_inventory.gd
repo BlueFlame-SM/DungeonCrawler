@@ -13,7 +13,7 @@ var inventory = {
 	1: ["Broom", 1],
 	2: ["Max_speed_potion", 10],
 	3: ["Speed_potion", 10],
-	4: ["Nectar", 5]
+	4: ["Nectar", 1]
 }
 
 func add_item(item_name, item_quantity):
@@ -42,6 +42,7 @@ func remove_item(slot):
 	inventory.erase(slot.slot_index)
 
 func reset_inventory():
+	inventory.clear()
 	inventory = {
 	0: ['Iron_sword', 1],
 	1: ["Broom", 1],
