@@ -20,7 +20,7 @@ func _ready():
 	self._set_perm_speed(0)
 	self._set_max_health(40)
 	self._set_health(40)
-	
+
 
 func playAnimations(velocity: Vector2, delta: float) -> void:
 	# Only move if attack animation is not playing
@@ -65,7 +65,7 @@ func playAnimations(velocity: Vector2, delta: float) -> void:
 			$AnimatedSprite.play("back_slash")
 		else:
 			$AnimatedSprite.play("left_slash")
-	
+
 	# If character speed increases then increase FPS of animation.
 	if self._get_perm_speed() > 5:
 		$AnimatedSprite.set_speed_scale(2)
