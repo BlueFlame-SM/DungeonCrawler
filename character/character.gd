@@ -22,7 +22,9 @@ export var perm_speed: int = 1 setget _set_perm_speed, _get_perm_speed
 export var temp_speed: int = 1 setget _set_temp_speed, _get_temp_speed
 export var perm_damage: int = 1 setget _set_perm_damage, _get_perm_damage
 export var temp_damage: int = 1 setget _set_temp_damage, _get_temp_damage
-export var attack_speed: int = 1 setget _set_attack_speed, _get_attack_speed
+export var temp_attack_speed: int = 1 setget _set_temp_attack_speed, _get_temp_attack_speed
+export var perm_attack_speed: int = 1 setget _set_perm_attack_speed, _get_perm_attack_speed
+
 export var cooldown_time: int = 1000 setget _set_cooldown_time, _get_cooldown_time
 export var range_weapon: int = 1 setget _set_range_weapon, _get_range_weapon
 
@@ -100,11 +102,17 @@ func _get_temp_speed() -> int:
 func _set_temp_speed(value: int) -> void:
 	temp_speed = clamp(value, 0, MAX_POINTS)
 
-func _get_attack_speed() -> int:
-	return attack_speed
+func _set_temp_attack_speed(value: int) -> void:
+	temp_attack_speed = clamp(value, 0, MAX_POINTS)
 
-func _set_attack_speed(value: int) -> void:
-	_set_cooldown_time(MAX_COOLDOWN - (value * 100)) #
+func _get_temp_attack_speed() -> int:
+	return temp_attack_speed
+
+func _get_perm_attack_speed() -> int:
+	return perm_attack_speed
+
+func _set_perm_attack_speed(value: int) -> void:
+	_set_cooldown_time(MAX_COOLDOWN - (value * 100))
 
 
 func _set_cooldown_time(value: int) -> void:

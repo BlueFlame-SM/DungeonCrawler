@@ -220,7 +220,7 @@ var item_data: Dictionary = {
 		"Duration": 10,
 		"Speed": +3,
 		"Damage": +0,
-		"Attack speed": +2,
+		"Attack_speed": +2,
 		"Infinite_ammo": false,
 		"Invisibility": false,
 		"StackSize": 5,
@@ -232,7 +232,7 @@ var item_data: Dictionary = {
 		"Duration": 10,
 		"Speed": 0,
 		"Damage": +3,
-		"Attack speed": +0,
+		"Attack_speed": +0,
 		"Infinite_ammo": false,
 		"Invisibility": false,
 		"StackSize": 5,
@@ -272,7 +272,7 @@ var item_data: Dictionary = {
 		"Max_HP": +3,
 		"Speed": +0,
 		"Damage": +0,
-		"Attack speed": +0,
+		"Attack_speed": +0,
 		"StackSize": 1,
 		"Description": "."
 	},
@@ -282,7 +282,7 @@ var item_data: Dictionary = {
 		"Max_HP": +0,
 		"Speed": +1,
 		"Damage": +0,
-		"Attack speed": +0,
+		"Attack_speed": +0,
 		"StackSize": 10,
 		"Description": "."
 	},
@@ -292,7 +292,7 @@ var item_data: Dictionary = {
 		"Max_HP": +0,
 		"Speed": +0,
 		"Damage": +2,
-		"Attack speed": +0,
+		"Attack_speed": +0,
 		"StackSize": 1,
 		"Description": "."
 	},
@@ -302,7 +302,7 @@ var item_data: Dictionary = {
 		"Max_HP": +0,
 		"Speed": +0,
 		"Damage": +0,
-		"Attack speed": +1,
+		"Attack_speed": +1,
 		"StackSize": 1,
 		"Description": "."
 	},

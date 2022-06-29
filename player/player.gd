@@ -169,7 +169,7 @@ func _on_Inventory_use_health_potion():
 
 func _on_Inventory_use_melee_weapon():
 	self._set_temp_damage(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Damage"])
-	self._set_attack_speed(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Attack_speed"])
+	self._set_temp_attack_speed(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Attack_speed"])
 	self._set_range_weapon(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Range"])
 	$Weapon/HurtBox.scale = Vector2(_get_range_weapon(), _get_range_weapon())
 	self._set_temp_speed(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Speed_change"])
@@ -177,9 +177,9 @@ func _on_Inventory_use_melee_weapon():
 
 func _on_Inventory_use_permanent_stat_increase():
 	self._set_max_health(self._get_max_health() + JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Max_HP"])
-	print(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Speed"])
 	self._set_perm_speed(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Speed"] + self._get_perm_speed())
 	self._set_perm_damage(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Damage"] + self._get_perm_damage())
+	self._set_perm_attack_speed(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Attack_speed"] + self._get_perm_attack_speed())
 
 
 func _on_Inventory_use_potion():
