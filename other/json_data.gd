@@ -238,6 +238,18 @@ var item_data: Dictionary = {
 		"StackSize": 5,
 		"Description": "Everything seems slow compared to this."
 	},
+	"Attack_speed_potion": {
+		"ItemCategory": "potion",
+		"Rarity": 4,
+		"Duration": 10,
+		"Speed": 0,
+		"Damage": +0,
+		"Attack_speed": +3,
+		"Infinite_ammo": false,
+		"Invisibility": false,
+		"StackSize": 5,
+		"Description": "Everything seems slow compared to this."
+	},
 #	"Potion_of_plenty": {
 #		"ItemCategory": "potion",
 #		"HP_healed": 0,
