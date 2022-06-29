@@ -49,6 +49,7 @@ func reset_inventory():
 	3: ["Speed_potion", 10],
 	4: ["Nectar", 5]
 	}
+	Player.find_node("Inventory").initialize_inventory()
 
 
 func add_item_quantity(slot, quantity):

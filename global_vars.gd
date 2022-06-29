@@ -16,6 +16,7 @@ func reset():
 #	Dit werkt heel raar.
 	Player._set_perm_speed(-Player._get_perm_speed() + 3)
 	PlayerInventory.reset_inventory()
+	Player
 
 
 	"""TODO write empty inventory function in inventory """

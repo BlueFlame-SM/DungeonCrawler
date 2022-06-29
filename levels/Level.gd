@@ -51,20 +51,24 @@ Spawns one enemy in a level at a random position out of 4 possible positions.
 Spawns either a range or normal enemy. Can be extended to other types.
 """
 func spawn_enemies():
-	var enemy
+	var enemy_type
 	if rng.randf_range(0, 1) < 0.5:
-		enemy = load("res://enemy_range/enemy_range.tscn").instance()
+		enemy_type = load("res://enemy_range/enemy_range.tscn")
 	else:
-		enemy = load("res://enemy/enemy.tscn").instance()
-	var spawn_point = $EnemySpawns.get_children()[randi() % 4]
-	enemy.position = spawn_point.position
-	add_child(enemy)
-	enemy_difficulties(enemy)
+		enemy_type = load("res://enemy/enemy.tscn")
+	var amount = rng.randi_range(1, 4)
+	print(amount)
+	for i in amount:
+		var enemy
+		enemy = enemy_type.instance()
+		var spawn_point = $EnemySpawns.get_children()[i]
+		enemy.position = spawn_point.position
+		add_child(enemy)
+		enemy_difficulties(enemy)
 #	This becomes relevant if you want to spawn more than 1 enemy. Not currently implemented.
-	challenge_counter += 1
+		challenge_counter += 1
 
 
-"""TODO get location of enemy that died"""
 func spawn_reward(item, pos):
 	if typeof(item) == TYPE_STRING:
 		var scene = load("res://floor_item/floor_item.tscn")
@@ -105,6 +109,7 @@ func spawn_chests():
 	for i in range(5):
 		randomize()
 		var num = rng.randi_range(1, 19)
+
 		if num < 9:
 			randomize()
 			chosen_items.append(dict_rarity[1][randi() % dict_rarity[1].size() - 1])
@@ -121,13 +126,14 @@ func spawn_chests():
 			randomize()
 			chosen_items.append(dict_rarity[5][randi() % dict_rarity[5].size() - 1])
 
+
 	chest.choose_items(chosen_items)
 	add_child(chest)
 
 	#	This becomes relevant if you want to spawn more than 1 chest. Not currently implemented.
 	challenge_counter += 1
 
-func random_item(dict_rarity, num):
+
 	if num < 10:
 		randomize()
 		return dict_rarity[1][randi() % dict_rarity[1].size() - 1]
@@ -138,6 +144,7 @@ func random_item(dict_rarity, num):
 		randomize()
 		return dict_rarity[3][randi() % dict_rarity[3].size() - 1]
 	elif num < 22:
+
 		randomize()
 		return dict_rarity[4][randi() % dict_rarity[4].size() - 1]
 	else:
@@ -167,6 +174,7 @@ func _on_challenge_down(type, pos):
 		var dict_rarity = item_rarity()
 		if type == "enemy":
 			randomize()
+
 			var num = rng.randi_range(1, 24)
 			spawn_reward(random_item(dict_rarity, num), pos)
 		if type == "hydra":
@@ -177,6 +185,7 @@ func _on_challenge_down(type, pos):
 		if type == "lion":
 			pos = Vector2(Player.position.x, Player.position.y - 5)
 			spawn_reward("Lion_hide", pos)
+
 		level_completed()
 
 """
