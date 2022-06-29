@@ -122,7 +122,6 @@ func fire():
 	get_parent().add_child(bullet)
 
 
-
 """
 Functies voor pathfinding zodat het niet achter bosjes blijft zitten, kan pas met nieuwe tileset.
 """
@@ -155,4 +154,3 @@ func _on_Timer_anim_hurt_timeout():
 func _on_Timer_anim_attack_timeout():
 	timer_attack.stop()
 	$AnimatedSprite.animation = "default"
-

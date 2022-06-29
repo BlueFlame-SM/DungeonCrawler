@@ -38,7 +38,24 @@ func _physics_process(delta):
 	velocity = move_and_slide(move_in_direction(velocity))
 	position.x = clamp(position.x, 0, screen_size.x)
 	position.y = clamp(position.y, 0, screen_size.y)
-	if abs(velocity.x) - abs(velocity.y) > 5:
+	if velocity == Vector2.ZERO:
+		if abs(Player.position.y - position.y) > abs(Player.position.x - position.x):
+			if Player.position.y - position.y < 0:
+				print("looking up")
+				$AnimatedSprite.animation = "zombie_up"
+				$AnimatedSprite.flip_h = false
+			else:
+				$AnimatedSprite.animation = "zombie_down"
+				$AnimatedSprite.flip_h = false
+		else:
+			if Player.position.x - position.x > 0:
+				$AnimatedSprite.animation = "zombie_left"
+				$AnimatedSprite.flip_h = true
+			else:
+				$AnimatedSprite.animation = "zombie_left"
+				$AnimatedSprite.flip_h = false
+
+	elif abs(velocity.x) - abs(velocity.y) > 5:
 		if velocity.x > 0:
 			$AnimatedSprite.animation = "zombie_left"
 			$AnimatedSprite.flip_h = true
