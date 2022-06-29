@@ -20,8 +20,8 @@ signal character_died
 
 const MAX_POINTS = 10
 const SPEED_WEIGHT = 25
-const SPEED_BIAS = 80
-const MAX_COOLDOWN = 1000
+const SPEED_BIAS = 50
+const MAX_COOLDOWN = 700
 
 export var health: int = 10 setget _set_health, _get_health
 export var max_health: int = 10 setget _set_max_health, _get_max_health

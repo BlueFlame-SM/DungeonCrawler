@@ -5,7 +5,7 @@
 [ext_resource path="res://assets/GUI/energy_bar_fill.png" type="Texture" id=3]
 
 [node name="BossBar" instance=ExtResource( 2 )]
-margin_right = 352.0
+margin_right = 102.0
 margin_bottom = 40.0
 
 [node name="Count" parent="." index="0"]
@@ -15,8 +15,14 @@ margin_bottom = 40.0
 margin_bottom = 40.0
 
 [node name="Title" parent="Count/Background" index="0"]
-margin_top = 2.0
-margin_bottom = 42.0
+margin_left = 1.33331
+margin_top = 2.66667
+margin_right = 51.3333
+margin_bottom = 39.6667
+
+[node name="Number" parent="Count/Background" index="1"]
+margin_top = 4.0
+margin_bottom = 4.0
 
 [node name="Gauge" parent="." index="1"]
 margin_right = 352.0

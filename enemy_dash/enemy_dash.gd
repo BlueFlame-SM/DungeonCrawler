@@ -54,7 +54,6 @@ func _on_state_patrol(delta):
 	_try_charge()
 
 
-
 func _set_state_windup():
 	charge_direction = position.direction_to(Player.position)
 	windup_timer = windup_time

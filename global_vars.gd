@@ -12,10 +12,11 @@ func challenge_down(type, pos=Vector2.ZERO):
 func reset():
 	level_counter = 0
 	Player._set_max_health(40)
-
 	Player._set_health(40)
-#	Player._set_damage(1)
-#	Player._set_speed(3)
+#	Dit werkt heel raar.
+	Player._set_perm_speed(-Player._get_perm_speed() + 3)
+	PlayerInventory.reset_inventory()
+
 
 	"""TODO write empty inventory function in inventory """
 

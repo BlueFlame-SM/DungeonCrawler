@@ -8,9 +8,6 @@ func _ready():
 	Player.hide()
 	$MarginContainer/VBoxContainer/Buttons/NewGame.grab_focus()
 
-#func _process(delta):
-#	print(Player._get_health())
-
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel"):
 		get_tree().quit()
@@ -20,8 +17,9 @@ func _on_NewGame_pressed():
 	"""
 	If a new game is started, switch to LevelStart scene
 	"""
+	GlobalVars.level_type = "start"
 	LevelSwitcher.goto_scene("res://levels/LevelStart.tscn")
-	Player.show()
+#	Player.show()
 
 func _on_Quit_pressed():
 	"""

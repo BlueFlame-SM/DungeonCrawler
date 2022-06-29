@@ -38,9 +38,8 @@ func _physics_process(delta):
 	velocity = move_and_slide(move_in_direction(velocity))
 	position.x = clamp(position.x, 0, screen_size.x)
 	position.y = clamp(position.y, 0, screen_size.y)
-	if abs(velocity.x) - abs(velocity.y) > 10:
+	if abs(velocity.x) - abs(velocity.y) > 5:
 		if velocity.x > 0:
-			print(true)
 			$AnimatedSprite.animation = "zombie_left"
 			$AnimatedSprite.flip_h = true
 		elif velocity.x < 0:

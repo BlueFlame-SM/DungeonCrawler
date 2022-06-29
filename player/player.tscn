@@ -11,8 +11,7 @@
 [ext_resource path="res://player/weapon.gd" type="Script" id=18]
 
 [sub_resource type="CapsuleShape2D" id=2]
-radius = 13.0
-height = 10.0
+height = 16.0
 
 [sub_resource type="CircleShape2D" id=3]
 radius = 31.0
@@ -79,8 +78,13 @@ volume_db = -15.0
 [node name="Timer" type="Timer" parent="."]
 wait_time = 7.0
 
+[connection signal="healthChanged" from="." to="." method="_on_Player_healthChanged"]
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="body_entered" from="Weapon" to="." method="_on_Weapon_body_entered"]
 [connection signal="body_entered" from="Pickup" to="." method="_on_Pickup_body_entered"]
 [connection signal="body_exited" from="Pickup" to="." method="_on_Pickup_body_exited"]
+[connection signal="use_health_potion" from="CanvasLayer/Inventory" to="." method="_on_Inventory_use_health_potion"]
+[connection signal="use_melee_weapon" from="CanvasLayer/Inventory" to="." method="_on_Inventory_use_melee_weapon"]
+[connection signal="use_permanent_stat_increase" from="CanvasLayer/Inventory" to="." method="_on_Inventory_use_permanent_stat_increase"]
+[connection signal="use_potion" from="CanvasLayer/Inventory" to="." method="_on_Inventory_use_potion"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
