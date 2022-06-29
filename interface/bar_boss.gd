@@ -4,9 +4,9 @@ extends CanvasLayer
 
 
 # Health bar variables
-onready var numberLabel = $MarginContainer/HBoxContainer/PlayerBars/CanvasModulate/Bar/Count/Background/Number
-onready var bar = $MarginContainer/HBoxContainer/PlayerBars/CanvasModulate/Bar/Gauge
-onready var tween = $MarginContainer/Tween
+onready var numberLabel = $MarginContainer/BossBar/Count/Background/Number
+onready var bar = $MarginContainer/BossBar/Gauge
+onready var tween = $Tween
 
 var animatedHealth = 0
 
@@ -15,20 +15,29 @@ func _ready():
 	"""
 	Set initial maximum and current value of health bar
 	"""
-	var playerMaxHealth = Player.max_health
-	bar.max_value = playerMaxHealth
-	bar.value = playerMaxHealth
+	# $CanvasModulate.color.a = 100
+	var parPos = get_parent().position
+	parPos.y -= 80
+	parPos.x -= 40
+	offset = parPos
+	print(offset)
+	var bossMaxHealth = get_parent().max_health
+	bar.max_value = bossMaxHealth
+	bar.value = bossMaxHealth
 	numberLabel.text = str(bar.value)
 	animatedHealth = bar.value
-	Player.connect("healthChanged", self, "_on_Player_healthChanged")
-
-
+	get_parent().connect("healthChanged", self, "_on_boss_healthChanged")
+	
+	
 func _process(delta):
 	"""
 	Update text label and bar on interface.
 	"""
-	if bar.max_value != Player.max_health:
-		bar.max_value = Player.max_health
+	
+	var parPos = get_parent().position
+	parPos.y -= 80
+	parPos.x -= 40
+	offset = parPos
 	var roundValue = round(animatedHealth)
 	numberLabel.text = str(roundValue)
 	bar.value = animatedHealth
@@ -42,9 +51,8 @@ func update_health(newValue):
 	tween.interpolate_property(self, "animatedHealth", animatedHealth, newValue, 0.6, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	if not tween.is_active():
 		tween.start()
+	
+	
+func _on_boss_healthChanged(newValue, dif):
+	update_health(newValue)
 
-func _on_Player_healthChanged(playerHealth, dif):
-	"""
-	Player sends signal when health changes.
-	"""
-	update_health(playerHealth)

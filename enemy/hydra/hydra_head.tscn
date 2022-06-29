@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://enemy/hydra/hydra_head.gd" type="Script" id=1]
 [ext_resource path="res://enemy/sprites/Hydra_front_attack.png" type="Texture" id=2]
 [ext_resource path="res://enemy/sprites/Hydra_front_hit.png" type="Texture" id=3]
 [ext_resource path="res://enemy/sprites/Hydra_front_down.png" type="Texture" id=4]
 [ext_resource path="res://enemy/sprites/Hydra_front_up.png" type="Texture" id=5]
+[ext_resource path="res://interface/gui_boss.tscn" type="PackedScene" id=6]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 317.0
@@ -93,6 +94,8 @@ wait_time = 0.25
 
 [node name="TimerKnockback" type="Timer" parent="."]
 wait_time = 0.35
+
+[node name="CanvasLayer" parent="." instance=ExtResource( 6 )]
 
 [connection signal="healthChanged" from="." to="." method="_on_EnemyRange_healthChanged"]
 [connection signal="body_entered" from="Range" to="." method="_on_Range_body_entered"]
