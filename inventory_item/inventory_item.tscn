@@ -13,11 +13,11 @@
 [ext_resource path="res://items/sprites/Nectar.png" type="Texture" id=11]
 [ext_resource path="res://items/sprites/Grape.png" type="Texture" id=12]
 [ext_resource path="res://items/sprites/Broom.png" type="Texture" id=13]
-[ext_resource path="res://items/sprites/Spear.png" type="Texture" id=14]
+[ext_resource path="res://items/sprites/Max_speed_potion.png" type="Texture" id=14]
 [ext_resource path="res://items/sprites/Max_speed_attack_potion.png" type="Texture" id=15]
-[ext_resource path="res://items/sprites/Max_speed_potion.png" type="Texture" id=16]
-[ext_resource path="res://items/sprites/Max_health_potion.png" type="Texture" id=17]
-[ext_resource path="res://items/sprites/Max_strength_potion.png" type="Texture" id=18]
+[ext_resource path="res://items/sprites/Max_strength_potion.png" type="Texture" id=16]
+[ext_resource path="res://items/sprites/Spear.png" type="Texture" id=17]
+[ext_resource path="res://items/sprites/Lion_hide.png" type="Texture" id=18]
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -61,24 +61,14 @@ animations = [ {
 "name": "Obsidian_sword",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 15 ) ],
-"loop": true,
-"name": "Max_health_potion",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 17 ) ],
-"loop": true,
-"name": "Max_attack_speed_potion",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 18 ) ],
-"loop": true,
-"name": "Max_strength_potion",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 10 ) ],
 "loop": true,
 "name": "Apple",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 16 ) ],
+"loop": true,
+"name": "Max_strength_potion",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 4 ) ],
@@ -86,9 +76,19 @@ animations = [ {
 "name": "Club",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 16 ) ],
+"frames": [ ExtResource( 14 ) ],
 "loop": true,
 "name": "Max_speed_potion",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 15 ) ],
+"loop": true,
+"name": "Max_speed_attack_potion",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "Max_health_potion",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 9 ) ],
@@ -96,9 +96,14 @@ animations = [ {
 "name": "Pomegranate",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 14 ) ],
+"frames": [ ExtResource( 17 ) ],
 "loop": true,
 "name": "Spear",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 18 ) ],
+"loop": true,
+"name": "Lion_hide",
 "speed": 5.0
 } ]
 
@@ -113,7 +118,7 @@ script = ExtResource( 3 )
 position = Vector2( 7, 7 )
 scale = Vector2( 0.15, 0.15 )
 frames = SubResource( 2 )
-animation = "Spear"
+animation = "Lion_hide"
 
 [node name="Label" type="Label" parent="."]
 margin_left = 7.0
