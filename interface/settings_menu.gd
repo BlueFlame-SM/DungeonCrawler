@@ -1,6 +1,5 @@
 extends Popup
 
-
 # The two checkboxes that control the settings
 onready var window_check = $MarginContainer/VBoxContainer/GridContainer/DisplayCheck
 onready var vsync_check = $MarginContainer/VBoxContainer/GridContainer/VsyncCheck
