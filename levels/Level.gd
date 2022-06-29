@@ -23,7 +23,7 @@ func enable_styx():
 	if GlobalVars.level_type == "start":
 		GlobalVars.reset()
 		GlobalVars.level_counter = 1
-	else:
+	elif GlobalVars.level_type in ["loot", "boss", "preboss", "bigboss"]:
 		GlobalVars.level_counter += 1
 
 # Called when the node enters the scene tree for the first time.
@@ -56,18 +56,22 @@ Spawns one enemy in a level at a random position out of 4 possible positions.
 Spawns either a range or normal enemy. Can be extended to other types.
 """
 func spawn_enemies():
-	var enemy
-	if rng.randf_range(0, 1) < 0.5:
-		enemy = load("res://enemy_range/enemy_range.tscn").instance()
-	else:
-		enemy = load("res://enemy/enemy.tscn").instance()
-	var spawn_point = $EnemySpawns.get_children()[randi() % 4]
-	enemy.position = spawn_point.position
-	add_child(enemy)
-	enemy_difficulties(enemy)
+	var amount = rng.randi_range(1, 4)
+	print(amount)
+	for i in amount:
+		var enemy_type
+		if rng.randf_range(0, 1) < 0.5:
+			enemy_type = load("res://enemy_range/enemy_range.tscn")
+		else:
+			enemy_type = load("res://enemy/enemy.tscn")
+		var enemy
+		enemy = enemy_type.instance()
+		var spawn_point = $EnemySpawns.get_children()[i]
+		enemy.position = spawn_point.position
+		add_child(enemy)
+		enemy_difficulties(enemy)
 #	This becomes relevant if you want to spawn more than 1 enemy. Not currently implemented.
-	challenge_counter += 1
-
+		challenge_counter += 1
 
 """TODO get location of enemy that died"""
 func spawn_reward(item, pos):
