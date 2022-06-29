@@ -13,23 +13,20 @@ signal hit(amount)
 # Attack cooldown variables
 var ranged_weapon = false
 var next_attack_time = 0
-var extra_speed = 0
-var extra_damage = 0
-var extra_atk_speed = 0
+var potion_speed = 0
+var potion_damage = 0
+var potion_dexterity = 0
 
 func _ready():
-	self._set_perm_speed(0)
-	self._set_max_health(40)
-	self._set_health(40)
+	self.max_health = 40
+	self.health = 40
 
 
 func playAnimations(velocity: Vector2, delta: float) -> void:
-	print("speed", self.temp_speed)
-	print("DMG", self.temp_damage)
 	# Only move if attack animation is not playing
 	if !playAttack:
 		if velocity.length() > 0:
-			velocity = velocity.normalized() * (self._get_temp_speed() + self._get_perm_speed())
+			velocity = velocity.normalized() * self.get_speed()
 
 			$AnimatedSprite.play()
 		else:
@@ -70,18 +67,15 @@ func playAnimations(velocity: Vector2, delta: float) -> void:
 			$AnimatedSprite.play("left_slash")
 
 	# If character speed increases then increase FPS of animation.
-	if self._get_perm_speed() > 5:
+	if self.get_speed() > 5:
 		$AnimatedSprite.set_speed_scale(2)
-		if self._get_perm_speed() < 5:
-			$AnimatedSprite.set_speed_scale(0)
+	else:
+		$AnimatedSprite.set_speed_scale(0)
 
 func _physics_process(delta: float) -> void:
 	var direction = Vector2.ZERO
-	if !self.can_move:
-		direction.x = 0
-		direction.y = 0
 
-	else:
+	if self.can_move:
 		if Input.is_action_pressed("left"):
 			direction.x -= 1
 			lastDirection = Vector2.LEFT
@@ -104,7 +98,7 @@ func _physics_process(delta: float) -> void:
 				# Attack
 				weapon.attack(lastDirection)
 				# Add cooldown time to current time
-				next_attack_time = now + self._get_cooldown_time()
+				next_attack_time = now + self.get_attack_delay()
 
 		# Inventory can't be opened during start screen.
 		if GlobalVars.level_counter != 0:
@@ -125,12 +119,14 @@ func _on_AnimatedSprite_animation_finished():
 
 func _on_Weapon_body_entered(body):
 	if body.name != "Player":
-		body.do_damage(self.perm_damage + self.temp_damage)
-		emit_signal("hit", weapon.damage)
+		body.take_damage(get_damage())
+		emit_signal("hit", get_damage())
 		body.state = body.states.KNOCKBACK
+
 
 func hurt():
 	$HurtSound.play()
+
 
 """
 When the player dies, the player stops being able to move. The next level is
@@ -138,7 +134,7 @@ the start level. We then call the levelswitcher to go to the start level.
 """
 func die():
 	GlobalVars.level_type = "game_over"
-	do_damage(health)
+	self.health = 0
 	self.can_move = false
 	LevelSwitcher.goto_scene("res://interface/death_screen.tscn", true)
 
@@ -157,38 +153,50 @@ func _on_Player_healthChanged(newValue, dif):
 		if GlobalVars.level_type != "start":
 				$AnimatedSprite.play("hit_effect")
 #				$HurtSound.play()
+		print(self.health)
 		if Player.health <= 0:
 			Player.die()
-	pass
+			print("died")
+
 
 func _on_Inventory_use_health_potion():
-	Player.heal(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["HP_healed"])
+	self.heal(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["HP_healed"])
 	print("HP: {}/{}".format([health, max_health], "{}"))
 
 
 func _on_Inventory_use_melee_weapon():
-	self.temp_damage = JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Damage"]
-	self.temp_attack_speed = JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Attack_speed"]
-	self.range_weapon = JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Range"]
-	$Weapon/HurtBox.scale = Vector2(_get_range_weapon(), _get_range_weapon())
-	self.temp_speed = JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Speed_change"]
+	self.damage_bonus = JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Damage"] + potion_damage
+	self.dexterity_bonus = JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Attack_speed"] + potion_dexterity
+	self.reach_bonus = JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Range"]
+	self.speed_bonus = JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Speed_change"] + potion_speed
+
+	$Weapon/HurtBox.scale = Vector2(get_reach(), get_reach())
 
 
 func _on_Inventory_use_permanent_stat_increase():
-	self._set_max_health(self._get_max_health() + JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Max_HP"])
-	self._set_perm_speed(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Speed"] + self._get_perm_speed())
-	self._set_perm_damage(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Damage"] + self._get_perm_damage())
-	self._set_perm_attack_speed(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Attack_speed"] + self._get_perm_attack_speed())
+	self.max_health += JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Max_HP"]
+	self.speed += JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Speed"]
+	self.strength += JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Damage"]
+	self.dexterity += JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Attack_speed"]
+
 
 func _on_Inventory_use_potion():
-	self.temp_speed = JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Speed"] + self._get_temp_speed()
-	self.temp_damage = JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Damage"] + self._get_temp_damage()
-	self.temp_attack_speed = JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Attack_speed"] + self._get_temp_attack_speed()
+	var speed_change = JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Speed"]
+	var damage_change = JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Damage"]
+	var dexterity_change = JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Attack_speed"]
+	self.speed_bonus += speed_change
+	self.damage_bonus += damage_change
+	self.dexterity_bonus += dexterity_change
+	potion_speed += speed_change
+	potion_damage += damage_change
+	potion_dexterity += dexterity_change
 	timer.start()
 
 
 func _on_Timer_timeout():
-	timer.stop()
-	Player._set_temp_speed(Player._get_temp_speed() - extra_speed)
-	Player._set_temp_damage(Player._get_temp_damage() - extra_damage)
-	Player._set_temp_attack_speed(Player._get_temp_attack_speed() - extra_atk_speed)
+	self.speed_bonus -= potion_speed
+	self.damage_bonus -= potion_damage
+	self.dexterity_bonus -= potion_dexterity
+	potion_speed = 0
+	potion_damage = 0
+	potion_dexterity = 0

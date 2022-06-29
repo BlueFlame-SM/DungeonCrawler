@@ -23,7 +23,7 @@ onready var player = get_node("../Player")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	self._set_perm_speed(4)
+	self.speed = 4
 	screen_size = get_viewport_rect().size
 	"""Kan pas met nieuwe tileset, laten staan!!!"""
 	yield(get_tree(), "idle_frame")
@@ -154,10 +154,10 @@ Functies voor pathfinding zodat het niet achter bosjes blijft zitten, kan pas me
 """
 func navigate():	# Define the next position to go to
 	if path.size() > 0:
-		velocity = global_position.direction_to(path[1]) * (_get_temp_speed() + _get_perm_speed())
+		velocity = global_position.direction_to(path[1]) * (get_speed())
 
 	# If the destination is reached, remove this path from the array
-	if global_position == path[0]:
+	if path.size() > 0 and global_position == path[0]:
 		path.pop_front()
 
 # Generates a path to the player.

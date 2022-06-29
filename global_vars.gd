@@ -11,10 +11,11 @@ func challenge_down(type, pos=Vector2.ZERO):
 
 func reset():
 	level_counter = 0
-	Player._set_max_health(40)
-	Player._set_health(40)
-#	Dit werkt heel raar.
-	Player._set_perm_speed(-Player._get_perm_speed() + 3)
+
+	Player.reset_stats()
+	Player.max_health = 40
+	Player.health = 40
+
 	PlayerInventory.reset_inventory()
 
 

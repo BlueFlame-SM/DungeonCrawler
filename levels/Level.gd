@@ -98,7 +98,7 @@ The player then dies.
 func _on_River_collision_body_entered(body):
 	print(body)
 	if body.name == "Player":
-		Player.do_damage(Player.health)
+		Player.health = 0
 
 """
 This function is called when a challenge to the player is overcome. Possible
@@ -131,10 +131,10 @@ func level_completed():
 func enemy_difficulties(enemy):
 	pass
 	if GlobalVars.level_counter % 2:
-		enemy._set_perm_damage(enemy._get_perm_damage() + 1)
-		print("enemy DMG: ", enemy._get_perm_damage())
+		enemy.strength += 1
+		print("enemy DMG: ", enemy.strength)
 		print("level counter:", GlobalVars.level_counter)
 	if GlobalVars.level_counter % 3:
-		enemy._set_perm_damage(enemy._get_perm_damage() + 1)
-		print("enemy DMG: ", enemy._get_perm_damage())
+		enemy.strength += 1
+		print("enemy DMG: ", enemy.strength)
 		print("level counter:", GlobalVars.level_counter)

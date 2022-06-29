@@ -79,6 +79,7 @@ volume_db = -15.0
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 7.0
+one_shot = true
 
 [connection signal="healthChanged" from="." to="." method="_on_Player_healthChanged"]
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
