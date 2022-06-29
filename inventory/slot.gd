@@ -47,6 +47,32 @@ func refresh_style():
 
 		if category == "permanent_stat_increase":
 			hint_tooltip = str(item.item_name) + ", \nMax HP:" + str(JsonData.item_data[item.item_name]["Max_HP"]) + ", \nSpeed:" + str(JsonData.item_data[item.item_name]["Speed"])  + ", \nDamage:" + str(JsonData.item_data[item.item_name]["Damage"]) + ", \nAttack speed:" + str(JsonData.item_data[item.item_name]["Attack_speed"])
+#
+#		# Permanent potions
+#		if item.item_name == "max_health_potion":
+#			hint_tooltip = "Max_health_potion, \nMax_HP: +3, \nSpeed: +0, \nDamage: +0, \nAttack speed: +0"
+#		if item.item_name == "max_speed_potion":
+#			hint_tooltip = "Max_speed_potion, \nMax_HP: +0, \nSpeed: +1, \nDamage: +0, \nAttack speed: +0"
+#		if item.item_name == "max_strength_potion":
+#			hint_tooltip = "Max_strength_potion, \nMax_HP: +0, \nSpeed: +0, \nDamage: +2, \nAttack speed: +0"
+#		if item.item_name == "max_attack_speed_potion":
+#			hint_tooltip = "Max_attack_speed_potion, \nMax_HP: +0, \nSpeed: +0, \nDamage: +0, \nAttack speed: +1"
+#
+#		# Healing potions
+#		if item.item_name =="small_health_potion":
+#			hint_tooltip = "Small_health_potion, \nHP_healed: 5"
+#		if item.item_name =="medium_health_potion":
+#			hint_tooltip = "Medium_health_potion, \nHP_healed: 10"
+#		if item.item_name =="large_health_potion":
+#			hint_tooltip = "Large_health_potion, \nHP_healed: 20"
+#
+#		# Temporary stat buffs
+#		if item.item_name =="speed_potion":
+#			hint_tooltip = "Speed_potion, \nDuration: 10, \nSpeed: +3, \nDamage: +0, \nAttack speed: +2, Infinite_ammo: False, \nInvisibility: False"
+#		if item.item_name =="strength_potion":
+#			hint_tooltip = "Strength_potion, \nDuration: 10, \nSpeed: +0, \nDamage: +3, \nAttack speed: +0, Infinite_ammo: False, \nInvisibility: False"
+#		if item.item_name =="invisibility_potion":
+#			hint_tooltip = "Invisibility_potion, \nDuration: 3, \nSpeed: +0, \nDamage: +0, \nAttack speed: +0, Infinite_ammo: False, \nInvisibility: True"
 
 # Function for picking item from slot.
 func pickFromSlot():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://fonts/m5x7.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://items/sprites/Speed_potion.png" type="Texture" id=2]
@@ -17,7 +17,6 @@
 [ext_resource path="res://items/sprites/Max_speed_attack_potion.png" type="Texture" id=15]
 [ext_resource path="res://items/sprites/Max_strength_potion.png" type="Texture" id=16]
 [ext_resource path="res://items/sprites/Spear.png" type="Texture" id=17]
-[ext_resource path="res://items/sprites/Lion_hide.png" type="Texture" id=18]
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -101,7 +100,7 @@ animations = [ {
 "name": "Spear",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 18 ) ],
+"frames": [ null ],
 "loop": true,
 "name": "Lion_hide",
 "speed": 5.0
