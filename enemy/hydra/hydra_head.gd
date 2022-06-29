@@ -119,7 +119,7 @@ func fire():
 	timer_attack.start()
 	var bullet = BULLET.instance()
 	bullet.init(position, position.direction_to(Player.position) * 200, 2)
-	get_tree().get_current_scene().add_child(bullet)
+	get_parent().add_child(bullet)
 
 
 """
