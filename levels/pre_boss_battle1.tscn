@@ -47,7 +47,6 @@ cell_size = Vector2( 32, 32 )
 cell_quadrant_size = 32
 cell_custom_transform = Transform2D( 64, 0, 0, 32, 0, 0 )
 format = 1
-
 tile_data = PoolIntArray( 327702, 8, 0, 393224, 9, 0, 524311, 4, 0, 589827, 1, 0, 589844, 3, 0, 655386, 5, 0 )
 
 [node name="Walls" type="TileMap" parent="LevelNavigation"]
