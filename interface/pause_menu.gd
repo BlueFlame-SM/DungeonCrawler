@@ -1,4 +1,8 @@
+# Sources:
+#	https://www.youtube.com/watch?v=Su3pU14YzeY
+
 extends Control
+
 
 var is_paused = false setget set_paused
 
@@ -30,8 +34,10 @@ func _on_Quit_button_pressed():
 
 
 func _on_Settings_button_pressed():
+	""" Show Settings menu upon settings button pressed. """
 	$SettingsMenu.popup()
 
 
 func _on_Rules_button_pressed():
+	""" Show How To Play menu upon Rules (How To Play) button pressed. """
 	$How_to_play.popup()

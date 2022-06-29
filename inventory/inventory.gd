@@ -4,6 +4,7 @@ extends Node2D
 
 const SlotClass = preload("res://inventory/slot.gd")
 onready var inventory_slots = $GridContainer.get_children()
+onready var trash_slot = $GridContainer3.get_child(0)
 onready var hotbar_slots = get_parent().find_node("Hotbar").find_node("GridContainer").get_children()
 onready var slots
 onready var timer = $Timer
@@ -25,7 +26,7 @@ func _ready():
 	get_parent().find_node("Hotbar").connect("inventory_updated", self, "initialize_inventory")
 	if get_parent().find_node("GridContainer2"):
 		slots = get_parent().find_node("GridContainer2").get_children()
-	slots += hotbar_slots + inventory_slots
+	slots += hotbar_slots + inventory_slots + [trash_slot]
 	for i in range(slots.size()):
 		slots[i].connect("gui_input", self, "slot_gui_input", [slots[i]])
 		slots[i].slot_index = i
@@ -41,6 +42,12 @@ func initialize_inventory():
 			slots[i].initialize_item(PlayerInventory.inventory[i][0], PlayerInventory.inventory[i][1])
 
 	equiped_item = slots[0].item
+	if trash_slot.item != null:
+		PlayerInventory.remove_item(trash_slot)
+		trash_slot.remove_child(trash_slot.item)
+		trash_slot.item = null
+		trash_slot.refresh_style()
+
 
 func slot_gui_input(event: InputEvent, slot: SlotClass):
 	# When a mouseclick occurs, check if it is a left mouse click.
@@ -149,6 +156,12 @@ func left_click_not_holding_item(slot):
 	holding_item = slot.item
 	slot.pickFromSlot()
 	holding_item.global_position = get_global_mouse_position()
+
+
+# Trash an item in the trash item_slot.
+func _on_Button_pressed():
+	initialize_inventory()
+
 
 func _on_Timer_timeout():
 	timer.stop()

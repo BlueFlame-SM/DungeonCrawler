@@ -6,6 +6,11 @@ var opened_before = false
 var items_chest = []
 var item_options = JsonData.item_data.keys()
 
+
+
+func _ready():
+	if GlobalVars.level_type == "preboss":
+		choose_items(["Pomegranate", "Strength_potion", "Speed_potion", "Grape"])
 """
 If list contains strings, append strings to items_chest, otherwise append
 item at passed index to items_chest
@@ -56,8 +61,10 @@ func open_chest():
 
 # The area is entered.
 func _on_Pickup_Chest_body_entered(body):
+	if body.name == "Player":
 		area_entered = true
 
 # The area is exited.
 func _on_Pickup_Chest_body_exited(body):
-	area_entered = false
+	if body.name == "Player":
+		area_entered = false

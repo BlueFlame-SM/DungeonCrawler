@@ -22,11 +22,12 @@ func enable_styx():
 	if GlobalVars.level_type == "start":
 		GlobalVars.reset()
 		GlobalVars.level_counter = 1
+	else:
+		GlobalVars.level_counter += 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 #	Count how many levels the player has played from start level
-	GlobalVars.level_counter += 1
 	rng.randomize()
 #	Connect the signal from GlobalVars to function
 	GlobalVars.connect("challenge_down", self, "_on_challenge_down")
@@ -95,6 +96,7 @@ The damage is done to display the decline of health on the health bar.
 The player then dies.
 """
 func _on_River_collision_body_entered(body):
+	print(body)
 	if body.name == "Player":
 		Player.do_damage(Player.health)
 
