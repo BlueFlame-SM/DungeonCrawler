@@ -20,6 +20,7 @@ func _ready():
 	self._set_perm_speed(0)
 	self._set_max_health(40)
 	self._set_health(40)
+	
 
 func playAnimations(velocity: Vector2, delta: float) -> void:
 	# Only move if attack animation is not playing
@@ -64,7 +65,12 @@ func playAnimations(velocity: Vector2, delta: float) -> void:
 			$AnimatedSprite.play("back_slash")
 		else:
 			$AnimatedSprite.play("left_slash")
-
+	
+	# If character speed increases then increase FPS of animation.
+	if self._get_perm_speed() > 5:
+		$AnimatedSprite.set_speed_scale(2)
+		if self._get_perm_speed() < 5:
+			$AnimatedSprite.set_speed_scale(0)
 
 func _physics_process(delta: float) -> void:
 	var direction = Vector2.ZERO
@@ -102,7 +108,6 @@ func _physics_process(delta: float) -> void:
 			if Input.is_action_just_pressed("inventory"):
 				$CanvasLayer/Inventory.visible = !$CanvasLayer/Inventory.visible
 			$CanvasLayer/Hotbar.visible = true
-
 
 	var velocity = move_and_slide(move_in_direction(direction))
 	position += velocity * delta
