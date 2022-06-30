@@ -23,7 +23,7 @@ func enable_styx():
 	if GlobalVars.level_type == "start":
 		GlobalVars.reset()
 		GlobalVars.level_counter = 1
-	elif GlobalVars.level_type in ["loot", "boss", "preboss", "bigboss"]:
+	elif GlobalVars.level_type in ["loot", "boss", "preboss", "bigboss", "endboss"]:
 		GlobalVars.level_counter += 1
 
 # Called when the node enters the scene tree for the first time.
@@ -187,6 +187,10 @@ func _on_challenge_down(type, pos):
 		if type == "lion":
 			pos = Vector2(Player.position.x, Player.position.y - 5)
 			spawn_reward("Lion_hide", pos)
+		if type == "cerberus":
+#			We should spawn something, maybe play a sound?
+
+			pass
 		level_completed()
 
 """

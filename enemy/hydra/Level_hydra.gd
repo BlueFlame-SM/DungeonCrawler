@@ -2,7 +2,7 @@ extends "res://levels/Level.gd"
 
 func _ready():
 	GlobalVars.level_counter += 1
-	
+
 	# Set counter to three for the three heads.
 	challenge_counter = 3
 	rng.randomize()
