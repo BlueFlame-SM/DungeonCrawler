@@ -162,7 +162,6 @@ The player then dies.
 func _on_River_collision_body_entered(body):
 	if body.name == "Player":
 		river = true
-#		Player.do_damage(Player.health)
 
 """
 This function is called when a challenge to the player is overcome. Possible
@@ -188,6 +187,7 @@ func _on_challenge_down(type, pos):
 			pos = Vector2(Player.position.x, Player.position.y - 5)
 			spawn_reward("Lion_hide", pos)
 		if type == "cerberus":
+			$DeadCerberus.visible = true
 #			We should spawn something, maybe play a sound?
 			pass
 		level_completed()

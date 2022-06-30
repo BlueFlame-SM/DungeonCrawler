@@ -1,3 +1,5 @@
+#https://github.com/arkeve/Godot-Inventory-System/tree/lootable-items
+
 class_name FloorItem
 extends RigidBody2D
 
