@@ -1,4 +1,6 @@
-Title game: DungeonCrawler
+**Title game**: DungeonCrawler
+
+Developed in Game engine Godot, read LISENCE.md for availability
 
 Description:
 DungeonCrawler is a game where you go through levels in a 2D world.
@@ -9,11 +11,13 @@ game such as wich items to use and by chosing between two doors for the next lev
 The game is won after beating the endboss.
 
 Guide players:
+Download tarfile DungeonCrawlerExacutable
 
-
-
-Tech stack:
-Game engine Godot
+Guide Contributers:
+1. Install Godot engine
+2. Clone repository
+3. In Godot engine click "IMPORT" and select project.godot from the cloned repository
+4. The main scene is res://interface/main_menu (this is already set when you open the project)
 
 Notulen:
 https://docs.google.com/document/d/1UHgV871afOeHcjqzH3PNGwz6D1NnC2l-zHhNkmQV9mc/edit?usp=sharing
