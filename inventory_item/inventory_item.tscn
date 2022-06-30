@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://fonts/m5x7.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://items/sprites/small_lion_hide.png" type="Texture" id=2]
@@ -14,13 +14,18 @@
 [ext_resource path="res://items/sprites/Grape.png" type="Texture" id=12]
 [ext_resource path="res://items/sprites/Broom.png" type="Texture" id=13]
 [ext_resource path="res://items/sprites/Max_speed_potion.png" type="Texture" id=14]
-[ext_resource path="res://items/sprites/Max_speed_attack_potion.png" type="Texture" id=15]
 [ext_resource path="res://items/sprites/Max_strength_potion.png" type="Texture" id=16]
 [ext_resource path="res://items/sprites/Speed_potion.png" type="Texture" id=17]
 [ext_resource path="res://items/sprites/Iron_sword.png" type="Texture" id=18]
+[ext_resource path="res://items/sprites/Max_attack_speed_potion.png" type="Texture" id=19]
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
+"frames": [ ExtResource( 17 ) ],
+"loop": true,
+"name": "Speed_potion",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 5 ) ],
 "loop": true,
 "name": "Strength_potion",
@@ -91,14 +96,14 @@ animations = [ {
 "name": "Max_speed_potion",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 15 ) ],
-"loop": true,
-"name": "Max_speed_attack_potion",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 17 ) ],
 "loop": true,
 "name": "Speed_potion",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 19 ) ],
+"loop": true,
+"name": "Max_attack_speed_potion",
 "speed": 5.0
 } ]
 
@@ -114,7 +119,7 @@ light_mask = 0
 position = Vector2( 8, 8 )
 scale = Vector2( 0.15, 0.15 )
 frames = SubResource( 2 )
-animation = "Pomegranate"
+animation = "Max_attack_speed_potion"
 
 [node name="Label" type="Label" parent="."]
 margin_left = 7.0

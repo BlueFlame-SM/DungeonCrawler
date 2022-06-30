@@ -308,7 +308,7 @@ var item_data: Dictionary = {
 		"StackSize": 1,
 		"Description": "."
 	},
-		"Max_attack_speed_potion": {
+	"Max_attack_speed_potion": {
 		"ItemCategory": "permanent_stat_increase",
 		"Rarity": 4,
 		"Max_HP": +0,
@@ -319,11 +319,11 @@ var item_data: Dictionary = {
 		"Description": "."
 	},
 
-		"Lion_hide": {
-			"StackSize": 1,
-			"ItemCategory": "lion_hide",
-			"Rarity": 0,
-			"Defence": 1,
+	"Lion_hide": {
+		"StackSize": 1,
+		"ItemCategory": "lion_hide",
+		"Rarity": 0,
+		"Defence": 1,
 		}
 
 
