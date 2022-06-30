@@ -1,4 +1,12 @@
-# Source: https://github.com/arkeve/Godot-Inventory-System
+"""
+	Script for the inventory item.
+	Able to set items and add and subtract of item stacks.
+	
+	Global variables:
+		keep track of kind of item and quantity.
+		
+	Source: https://github.com/arkeve/Godot-Inventory-System
+"""
 
 extends Node2D
 
@@ -7,6 +15,9 @@ var item_quantity
 var options = JsonData.item_data.keys()
 
 func set_item(nm, qt):
+	"""
+	Sets an inventory item.
+	"""
 	item_name = nm
 	item_quantity = qt
 	$AnimatedSprite.animation = item_name
@@ -18,13 +29,18 @@ func set_item(nm, qt):
 		$Label.visible = true
 		$Label.text = String(item_quantity)
 
-# add item to stack.
+
 func add_item_quantity(amount_to_add):
+	"""
+	Add item to stack of items.
+	"""
 	item_quantity += amount_to_add
 	$Label.text = String(item_quantity)
 
-# remove item from stack.
+
 func decrease_item_quantity(amount_to_remove):
+	"""
+	Remove item from stack of items.
+	"""
 	item_quantity -= amount_to_remove
 	$Label.text = String(item_quantity)
-

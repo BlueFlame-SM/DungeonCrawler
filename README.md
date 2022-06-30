@@ -4,6 +4,7 @@ Developed in Game engine Godot, read LISENCE.md for availability
 
 
 **Description:**
+
 DungeonCrawler is a game where you go through levels in a 2D world.
 Each level is either a lootroom or a fightroom. In a lootroom you can open
 a chest to find usefull items. In a fightroom you have to fight enemies after which

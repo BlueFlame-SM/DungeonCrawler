@@ -58,7 +58,7 @@ __meta__ = {
 
 [node name="Inventory" parent="CanvasLayer" instance=ExtResource( 3 )]
 visible = false
-position = Vector2( 10, -406 )
+position = Vector2( 10, 9 )
 
 [node name="Hotbar" parent="CanvasLayer" instance=ExtResource( 4 )]
 visible = false
