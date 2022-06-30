@@ -135,3 +135,15 @@ func _set_range_weapon(value: int) -> void:
 
 func _get_range_weapon() -> int:
 	return range_weapon
+
+func reset() -> void:
+	health = 10
+	max_health = 10
+	perm_speed = 1
+	temp_speed = 1
+	perm_damage = 1
+	temp_damage = 1
+	temp_attack_speed = 1
+	perm_attack_speed = 1
+	range_weapon = 1
+	can_move = true
