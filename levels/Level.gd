@@ -171,14 +171,14 @@ the challenge counter is 0 and the function or level_completed is called.
 """
 func _on_challenge_down(type, pos):
 	challenge_counter -= 1
+	var dict_rarity = item_rarity()
+	if type == "enemy":
+		randomize()
+		var num = rng.randi_range(1, 24)
+		spawn_reward(random_item(dict_rarity, num), pos)
 	if challenge_counter <= 0:
 #		Because of this code, be wary of spawning both a chest and enemy at once
 #	Needs to be rewritten to support this implementation.
-		var dict_rarity = item_rarity()
-		if type == "enemy":
-			randomize()
-			var num = rng.randi_range(1, 24)
-			spawn_reward(random_item(dict_rarity, num), pos)
 		if type == "hydra":
 			pos = Vector2(Player.position.x, Player.position.y - 5)
 			randomize()
