@@ -32,8 +32,8 @@ onready var hitbox = $Hitbox
 func _ready():
 	""" Set starting stats and default animation. """
 	self._set_perm_speed(0)
-	self._set_max_health(2)
-	self._set_health(2)
+	self._set_max_health(100)
+	self._set_health(100)
 	self._set_perm_damage(10)
 
 	screen_size = get_viewport_rect().size
