@@ -12,11 +12,12 @@ func challenge_down(type, pos=Vector2.ZERO):
 
 func reset():
 	level_counter = 0
+	Player.reset()
 	Player._set_max_health(40)
 	Player._set_health(40)
 #	Dit werkt heel raar.
 	PlayerInventory.reset_inventory()
-	
+
 
 
 	"""TODO write empty inventory function in inventory """
