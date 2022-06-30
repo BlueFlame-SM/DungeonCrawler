@@ -1,12 +1,12 @@
  """
-  Enemy script for the Boss Cerberus. Allows Cerberus to Bite, Fire, and Die. Do damage 
-  to the player according to the corresponding attack and play the correct animations. 
+  Enemy script for the Boss Cerberus. Allows Cerberus to Bite, Fire, and Die. Do damage
+  to the player according to the corresponding attack and play the correct animations.
   Use timers to restore the default animation.
-  Use states to keep track of the current state of Cerberus. BULLET is the fireball scene 
-  which is used to Fire. Attack and fire counter are set to space the attacks. Fire is set 
-  if Cerberus is allowed to fire. In_bite_range is set if the player is within bitting range. 
+  Use states to keep track of the current state of Cerberus. BULLET is the fireball scene
+  which is used to Fire. Attack and fire counter are set to space the attacks. Fire is set
+  if Cerberus is allowed to fire. In_bite_range is set if the player is within bitting range.
   Timers are used to restore the default animation after the attack or fire animation has
-  played. Hitbox is the area where if the player is within it, the player can be hit. 
+  played. Hitbox is the area where if the player is within it, the player can be hit.
 """
 
 extends "res://character/character.gd"
@@ -116,7 +116,7 @@ func _damage_player():
 	timer_attack.start()
 	timer_bite.start()
 	attack_counter = 1
-	
+
 	$AnimatedSprite.animation = "attack"
 
 	# Give the player 0.5 to dodge the attack, and if it is stil in range
