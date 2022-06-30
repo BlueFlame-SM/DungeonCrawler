@@ -57,7 +57,6 @@ Spawns either a range or normal enemy. Can be extended to other types.
 """
 func spawn_enemies():
 	var amount = rng.randi_range(1, 4)
-	print(amount)
 	for i in amount:
 		var enemy_type
 		if rng.randf_range(0, 1) < 0.5:
@@ -93,7 +92,6 @@ func item_rarity():
 		else:
 			dict_rarity[JsonData.item_data[key]["Rarity"]] = [key]
 
-	print("dict_rarity\n", dict_rarity)
 	return dict_rarity
 
 
@@ -159,7 +157,6 @@ The damage is done to display the decline of health on the health bar.
 The player then dies.
 """
 func _on_River_collision_body_entered(body):
-	print(body)
 	if body.name == "Player":
 		river = true
 #		Player.do_damage(Player.health)

@@ -64,7 +64,6 @@ func _physics_process(delta):
 					current_direction = "left"
 			else:
 				if Player.position.y - position.y < 0:
-					print("looking up")
 					$AnimatedSprite.animation = "idle_back"
 					$AnimatedSprite.flip_h = false
 					current_direction = "back"
@@ -143,7 +142,6 @@ func _on_TimerKnockback_timeout():
 
 # If the player comes in the detection range, the enemy starts chasing the player.
 func _on_Range_body_entered(body):
-	print("Start chase")
 	state = states.CHASE
 
 func _on_Player_hit(amount):
