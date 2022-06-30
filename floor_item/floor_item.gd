@@ -12,7 +12,7 @@ var options = JsonData.item_data.keys()
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# 0: branch, 1:poison, 2:sword, 3:shirt, 4:pants, 5:boots
-	$AnimatedSprite.set_frame(options.find(item_name))
+#	$AnimatedSprite.set_frame(options.find(item_name))
 	$AnimatedSprite.animation = item_name
 #	$AnimatedSprite.scale.x = 3
 #	$AnimatedSprite.scale.y = 3
@@ -24,8 +24,8 @@ func _physics_process(delta):
 	# If item is picked up, animation plays, and item is removed.
 	if picked_up == true:
 		if self.scale.x > 0:
-			self.scale.x -= 0.1
-			self.scale.y -= 0.1
+			self.scale.x -= 0.15
+			self.scale.y -= 0.15
 
 		if self.scale.x < 0.2:
 			PlayerInventory.add_item(item_name, 1)
