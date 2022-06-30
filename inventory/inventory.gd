@@ -31,6 +31,7 @@ signal use_melee_weapon()
 signal use_health_potion()
 signal use_potion()
 signal use_permanent_stat_increase()
+signal use_lion_hide()
 
 
 func _ready():

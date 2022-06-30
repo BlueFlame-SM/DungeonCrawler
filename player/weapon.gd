@@ -14,7 +14,6 @@ extends Area2D
 
 onready var HurtBox = $HurtBox
 var angle = PI/2
-export var damage = 2
 
 
 func _ready():

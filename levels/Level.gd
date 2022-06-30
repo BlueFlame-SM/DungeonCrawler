@@ -45,7 +45,7 @@ func _ready():
 
 func _physics_process(delta):
 	if river == true:
-		Player.do_damage(1)
+		Player.do_damage(1 + Player._get_defence())
 
 
 """
@@ -181,7 +181,6 @@ func _on_challenge_down(type, pos):
 		if type == "cerberus":
 			$DeadCerberus.visible = true
 #			We should spawn something, maybe play a sound?
-			pass
 		level_completed()
 
 """
@@ -194,12 +193,15 @@ func level_completed():
 	$LevelNavigation/Gates_open.visible = true
 
 
-"""Function to increase the stats of enemies each 5 levels."""
 func enemy_difficulties(enemy):
-	if GlobalVars.level_counter % 5:
-		enemy._set_perm_damage(enemy._get_perm_damage() + 1)
-	if GlobalVars.level_counter == 1:
-		enemy._set_perm_damage(GlobalVars.dmg_reset)
+	if GlobalVars.level_counter % 3 == 0:
+		randomize()
+		var num = GlobalVars.level_counter / 3
+		print("perm: ", enemy._get_perm_damage())
+		print("level: ", GlobalVars.level_counter)
+		enemy._set_perm_damage(enemy._get_perm_damage() + num + rng.randi_range(-2, 2))
+		enemy._set_max_health(enemy._get_max_health() + num*2 + rng.randi_range(-2, 2))
+		enemy._set_health(enemy._get_max_health())
 
 
 func _on_River_collision_body_exited(body):

@@ -52,7 +52,7 @@ func _ready():
 			next_scene_name = "res://levels/LevelHydra.tscn"
 		elif GlobalVars.level_counter %5 == 0:
 			next_scene_name = "res://levels/LevelLion.tscn"
-		else:
+		elif GlobalVars.level_counter %13 == 0:
 			gate_type = "endboss"
 			next_scene_name = "res://levels/LevelCerberus.tscn"
 	else:

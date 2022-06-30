@@ -101,7 +101,7 @@ Functies voor pathfinding zodat het niet achter bosjes blijft zitten, kan pas me
 """
 func navigate():	# Define the next position to go to
 	if path.size() > 0:
-		velocity = global_position.direction_to(path[1]) * (_get_temp_speed() + _get_temp_speed())
+		velocity = global_position.direction_to(path[1]) * (self._get_perm_speed() + self._get_temp_speed())
 
 	# If the destination is reached, remove this path from the array
 	if global_position == path[0]:

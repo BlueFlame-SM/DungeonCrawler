@@ -27,11 +27,12 @@ const MAX_COOLDOWN = 700
 export var health: int = 10 setget _set_health, _get_health
 export var max_health: int = 10 setget _set_max_health, _get_max_health
 export var perm_speed: int = 1 setget _set_perm_speed, _get_perm_speed
-export var temp_speed: int = 1 setget _set_temp_speed, _get_temp_speed
+export var temp_speed: int = 0 setget _set_temp_speed, _get_temp_speed
 export var perm_damage: int = 1 setget _set_perm_damage, _get_perm_damage
-export var temp_damage: int = 1 setget _set_temp_damage, _get_temp_damage
-export var temp_attack_speed: int = 1 setget _set_temp_attack_speed, _get_temp_attack_speed
+export var temp_damage: int = 0 setget _set_temp_damage, _get_temp_damage
+export var temp_attack_speed: int = 0 setget _set_temp_attack_speed, _get_temp_attack_speed
 export var perm_attack_speed: int = 1 setget _set_perm_attack_speed, _get_perm_attack_speed
+export var defence: int = 0 setget _set_defence, _get_defence
 export var range_weapon: int = 1 setget _set_range_weapon, _get_range_weapon
 export var can_move: bool = true
 
@@ -136,14 +137,25 @@ func _set_range_weapon(value: int) -> void:
 func _get_range_weapon() -> int:
 	return range_weapon
 
+
+# Sets the defence of a chracter
+func _set_defence(value:int) -> void:
+	defence = clamp(value, 0, MAX_POINTS)
+
+
+func _get_defence() -> int:
+	return defence
+
+
 func reset() -> void:
 	health = 10
 	max_health = 10
 	perm_speed = 1
-	temp_speed = 1
+	temp_speed = 0
 	perm_damage = 1
-	temp_damage = 1
-	temp_attack_speed = 1
+	temp_damage = 0
+	temp_attack_speed = 0
 	perm_attack_speed = 1
 	range_weapon = 1
+	defence = 0
 	can_move = true

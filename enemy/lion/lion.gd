@@ -126,7 +126,7 @@ func choose_action():
 			if attack_counter == 0:
 				_damage_player()
 		states.CHASE:
-			velocity = position.direction_to(Player.position) * (_get_temp_speed() + _get_temp_speed())
+			velocity = position.direction_to(Player.position) * (self._get_perm_speed() + self._get_temp_speed())
 			velocity = move_and_slide(velocity)
 		states.KNOCKBACK:
 			if $TimerKnockback.time_left <= 0:

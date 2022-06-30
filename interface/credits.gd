@@ -111,6 +111,9 @@ func _ready():
 	"""
 	The timer for showing the thank you message is initialized and started.
 	"""
+	Player.hide()
+	Player.get_child(4).get_child(1).hide()
+	Gui.get_child(0).hide()
 	titleTimer = Timer.new()
 	add_child(titleTimer)
 	titleTimer.connect("timeout", self, "_on_timeout")

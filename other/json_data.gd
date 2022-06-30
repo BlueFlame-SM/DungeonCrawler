@@ -303,7 +303,7 @@ var item_data: Dictionary = {
 		"Rarity": 4,
 		"Max_HP": +0,
 		"Speed": +0,
-		"Damage": +2,
+		"Damage": +1,
 		"Attack_speed": +0,
 		"StackSize": 1,
 		"Description": "."

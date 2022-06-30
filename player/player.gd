@@ -24,8 +24,6 @@ func _ready():
 
 
 func playAnimations(velocity: Vector2, delta: float) -> void:
-	print("speed", self.temp_speed)
-	print("DMG", self.temp_damage)
 	# Only move if attack animation is not playing
 	if !playAttack:
 		if velocity.length() > 0:
@@ -126,7 +124,7 @@ func _on_AnimatedSprite_animation_finished():
 func _on_Weapon_body_entered(body):
 	if body.name != "Player":
 		body.do_damage(self.perm_damage + self.temp_damage)
-		emit_signal("hit", weapon.damage)
+		emit_signal("hit", self.perm_damage + self.temp_damage)
 		body.state = body.states.KNOCKBACK
 
 func hurt():
@@ -181,6 +179,9 @@ func _on_Inventory_use_permanent_stat_increase():
 	self._set_perm_attack_speed(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Attack_speed"] + self._get_perm_attack_speed())
 
 func _on_Inventory_use_potion():
+	extra_speed = JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Speed"]
+	extra_damage = JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Damage"]
+	extra_atk_speed = JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Attack_speed"]
 	self.temp_speed = JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Speed"] + self._get_temp_speed()
 	self.temp_damage = JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Damage"] + self._get_temp_damage()
 	self.temp_attack_speed = JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Attack_speed"] + self._get_temp_attack_speed()
@@ -192,3 +193,7 @@ func _on_Timer_timeout():
 	Player._set_temp_speed(Player._get_temp_speed() - extra_speed)
 	Player._set_temp_damage(Player._get_temp_damage() - extra_damage)
 	Player._set_temp_attack_speed(Player._get_temp_attack_speed() - extra_atk_speed)
+
+
+func _on_Inventory_use_lion_hide():
+	Player._set_defence(Player._get_defence() + JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Defence"])
