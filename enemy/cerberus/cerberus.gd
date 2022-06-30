@@ -23,7 +23,6 @@ var screen_size
 # Counters to space the attacks.
 var attack_counter = 0
 var fire_counter = 0
-var music_counter = true
 
 # Boolean if Cerberus can fire.
 var fire = false
@@ -60,20 +59,18 @@ func _physics_process(delta):
 		states.DEAD:
 			time -= delta
 
-"""
-Chooses the right state at the right moment:
-- Dead: the sprite flickers and then gets removed from the queue.
-- Patrol: the sprite waits for the player to enter the range.
-- Attack: Sprite doesn't move when attacking, gets thrown back.
-- Knockback: Enemy gets knocked back, then goes back to chasing.
-"""
 func choose_action():
+	"""
+	Chooses the right state at the right moment:
+	- Dead: the sprite flickers and then gets removed from the queue.
+	- Patrol: the sprite waits for the player to enter the range.
+	- Attack: Sprite doesn't move when attacking, gets thrown back.
+	- Knockback: Enemy gets knocked back, then goes back to chasing.
+	"""
 	match state:
 		states.DEAD:
 			# Disables the hitbox so it doesn't damage the player.
 			$Hitbox/CollisionPolygon2D.disabled = true
-			if $WinSound.playing == false:
-				$WinSound.play()
 			if time > 0:
 				self.modulate.a = 0 if Engine.get_frames_drawn() % 5 == 0 else 1.0
 			else:
@@ -83,7 +80,6 @@ func choose_action():
 		states.ATTACK:
 			if attack_counter == 0:
 				_damage_player()
-				$SlashSound.play()
 		states.KNOCKBACK:
 			# Do nothing, as Cerberus can't be knocked back, but its a state
 			# that is inherited from character.
@@ -120,6 +116,8 @@ func _damage_player():
 	timer_attack.start()
 	timer_bite.start()
 	attack_counter = 1
+	
+	$AnimatedSprite.animation = "attack"
 
 	# Give the player 0.5 to dodge the attack, and if it is stil in range
 	# after that time, do damage. Always play the attack animation.
@@ -128,8 +126,6 @@ func _damage_player():
 		Player.do_damage(_get_temp_damage() + _get_perm_damage())
 		Player.get_node("CerberusBite").animation = "bitten"
 		Player.hurt()
-
-	$AnimatedSprite.animation = "attack"
 
 
 func _on_Timer_anim_attack_timeout():
@@ -151,7 +147,6 @@ func _on_FiringRange_body_entered(body):
 		state = states.FIRE
 		fire()
 		fire = true
-		timer_fire.start(0)
 
 
 func _on_FiringRange_body_exited(body):
@@ -169,6 +164,7 @@ func fire():
 	var velocity = start_pos.direction_to(Player.position) * 200
 	bullet.init(start_pos, velocity, 5)
 	get_parent().add_child(bullet)
+	timer_fire.start(0)
 
 	fire_counter = 1
 
@@ -181,6 +177,7 @@ func _on_TimerBite_timeout():
 
 func _on_TimerFire_timeout():
 	""" Upon timeout, allow Cerberus to fire again. """
+	timer_fire.stop()
 	fire_counter = 0
 
 	if fire != false and !in_bite_range:
