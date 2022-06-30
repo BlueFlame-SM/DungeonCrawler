@@ -21,11 +21,6 @@
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 6 ) ],
-"loop": true,
-"name": "Speed_potion",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 8 ) ],
 "loop": true,
 "name": "Strength_potion",
@@ -61,9 +56,24 @@ animations = [ {
 "name": "Obsidian_sword",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "Club",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 5 ) ],
 "loop": true,
 "name": "Apple",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 17 ) ],
+"loop": true,
+"name": "Max_health_potion",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 18 ) ],
+"loop": true,
+"name": "Lion_hide",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 16 ) ],
@@ -71,9 +81,9 @@ animations = [ {
 "name": "Max_strength_potion",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 7 ) ],
+"frames": [ ExtResource( 4 ) ],
 "loop": true,
-"name": "Club",
+"name": "Pomegranate",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 14 ) ],
@@ -86,24 +96,14 @@ animations = [ {
 "name": "Max_speed_attack_potion",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 17 ) ],
+"frames": [ ExtResource( 6 ) ],
 "loop": true,
-"name": "Max_health_potion",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 4 ) ],
-"loop": true,
-"name": "Pomegranate",
+"name": "Speed_potion",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 12 ) ],
 "loop": true,
 "name": "Spear",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 18 ) ],
-"loop": true,
-"name": "Lion_hide",
 "speed": 5.0
 } ]
 

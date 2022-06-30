@@ -1,7 +1,7 @@
 [gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://fonts/m5x7.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://items/sprites/Iron_sword.png" type="Texture" id=2]
+[ext_resource path="res://items/sprites/small_lion_hide.png" type="Texture" id=2]
 [ext_resource path="res://inventory_item/inventory_item.gd" type="Script" id=3]
 [ext_resource path="res://items/sprites/Club.png" type="Texture" id=4]
 [ext_resource path="res://items/sprites/Strength_potion.png" type="Texture" id=5]
@@ -46,9 +46,7 @@ animations = [ {
 "name": "Steel_sword",
 "speed": 5.0
 }, {
-
 "frames": [ ExtResource( 18 ) ],
-
 "loop": true,
 "name": "Iron_sword",
 "speed": 5.0
@@ -73,7 +71,7 @@ animations = [ {
 "name": "Max_health_potion",
 "speed": 5.0
 }, {
-"frames": [ null ],
+"frames": [ ExtResource( 2 ) ],
 "loop": true,
 "name": "Lion_hide",
 "speed": 5.0
