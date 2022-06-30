@@ -38,13 +38,13 @@ config/icon="res://assets/icon.png"
 
 [autoload]
 
+Player="*res://player/player.tscn"
 LevelSwitcher="*res://level_switcher/level_switcher.tscn"
 GlobalVars="*res://global_vars.gd"
 PlayerInventory="*res://player_inventory/player_inventory.gd"
 JsonData="*res://other/json_data.gd"
 Gui="*res://interface/gui.tscn"
 GlobalAudioStreamPlayer="*res://background_music/AudioStreamPlayer.tscn"
-Player="*res://player/player.tscn"
 
 [display]
 
