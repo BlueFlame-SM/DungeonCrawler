@@ -83,6 +83,7 @@ format = 1
 tile_data = PoolIntArray( 27, 1, 0 )
 
 [node name="Cerberus" parent="." instance=ExtResource( 10 )]
+visible = false
 position = Vector2( 376, 136 )
 
 [node name="PlayerSpawn" type="Position2D" parent="."]
