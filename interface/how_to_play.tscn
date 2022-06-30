@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://interface/how_to_play.gd" type="Script" id=1]
 [ext_resource path="res://fonts/sub_title.tres" type="DynamicFont" id=2]
@@ -11,7 +11,12 @@
 size = 46
 font_data = ExtResource( 3 )
 
+[sub_resource type="DynamicFont" id=2]
+size = 46
+font_data = ExtResource( 3 )
+
 [node name="How_to_play" type="Popup"]
+visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -71,6 +76,7 @@ monsters and collect items to get
 stronger to put an end to his penance."
 
 [node name="Keybindings" type="Control" parent="Background"]
+visible = false
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -125,6 +131,42 @@ Attack
 Pick up / Open chest
 Toggle inventory
 Pause game"
+
+[node name="Inventory" type="Control" parent="Background"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -437.0
+
+[node name="Title" type="Label" parent="Background/Inventory"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -85.0
+margin_right = 85.0
+margin_bottom = 37.0
+custom_fonts/font = SubResource( 2 )
+text = "Inventory"
+align = 1
+
+[node name="Control" type="Control" parent="Background/Inventory"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 72.0
+
+[node name="Explanation" type="Label" parent="Background/Inventory/Control"]
+anchor_bottom = 1.0
+margin_left = 49.0
+margin_right = 467.0
+custom_fonts/font = ExtResource( 4 )
+text = "Click to pick up item from slot
+Click again to put down item in slot
+
+Put item in trash slot and click the
+trash icon to trash an item
+
+Press keys 1-5 to equip or consume
+item in corresponding hotbar slot
+The first slot shows the equipped item"
 
 [node name="Footer" type="Control" parent="Background"]
 anchor_top = 1.0
@@ -189,6 +231,16 @@ theme = ExtResource( 6 )
 custom_fonts/font = ExtResource( 5 )
 text = "Keybindings"
 
+[node name="Inventory" type="Button" parent="Navigation/VBoxContainer"]
+margin_top = 88.0
+margin_right = 150.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 150, 40 )
+theme = ExtResource( 6 )
+custom_fonts/font = ExtResource( 5 )
+text = "Inventory"
+
 [connection signal="pressed" from="Background/Footer/Close" to="." method="_on_Close_pressed"]
 [connection signal="pressed" from="Navigation/VBoxContainer/Gameplay" to="." method="_on_Gameplay_pressed"]
 [connection signal="pressed" from="Navigation/VBoxContainer/Keybindings" to="." method="_on_Keybindings_pressed"]
+[connection signal="pressed" from="Navigation/VBoxContainer/Inventory" to="." method="_on_Inventory_pressed"]
