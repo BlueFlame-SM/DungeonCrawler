@@ -1,6 +1,11 @@
-# Source: https://github.com/IvessJohn/basic-pathfinding-Godot/blob/main/Enemy.gd
-
-# Generate a neck between the head node and body node.
+"""
+  Script for generating a neck between a head and body, defined by the head_path and body_path. 
+  Use levelNavigation to allow a simple path to be formed. Place the formed neck in path. 
+  Death checks if the head is not death. If a head is death, don't generate a new neck but 
+  place a cut_head at the end of the current path.
+  
+  Source: https://github.com/IvessJohn/basic-pathfinding-Godot/blob/main/Enemy.gd
+"""
 
 extends Line2D
 
