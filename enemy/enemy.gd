@@ -1,3 +1,5 @@
+# https://www.youtube.com/watch?v=gFlGMLmg8yg
+
 extends "res://character/character.gd"
 
 enum states {PATROL, CHASE, ATTACK, KNOCKBACK, DEAD}
