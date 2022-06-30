@@ -189,7 +189,6 @@ func _on_challenge_down(type, pos):
 			spawn_reward("Lion_hide", pos)
 		if type == "cerberus":
 #			We should spawn something, maybe play a sound?
-
 			pass
 		level_completed()
 
@@ -203,17 +202,12 @@ func level_completed():
 	$LevelNavigation/Gates_open.visible = true
 
 
-"""Function to increase the stats of enemies when levels increase. """
+"""Function to increase the stats of enemies each 5 levels."""
 func enemy_difficulties(enemy):
-	pass
-	if GlobalVars.level_counter % 2:
+	if GlobalVars.level_counter % 5:
 		enemy._set_perm_damage(enemy._get_perm_damage() + 1)
-		print("enemy DMG: ", enemy._get_perm_damage())
-		print("level counter:", GlobalVars.level_counter)
-	if GlobalVars.level_counter % 3:
-		enemy._set_perm_damage(enemy._get_perm_damage() + 1)
-		print("enemy DMG: ", enemy._get_perm_damage())
-		print("level counter:", GlobalVars.level_counter)
+	if GlobalVars.level_counter == 1:
+		enemy._set_perm_damage(GlobalVars.dmg_reset)
 
 
 func _on_River_collision_body_exited(body):
