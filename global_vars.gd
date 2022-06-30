@@ -16,7 +16,7 @@ func reset():
 	Player._set_health(40)
 #	Dit werkt heel raar.
 	PlayerInventory.reset_inventory()
-	
+
 
 
 	"""TODO write empty inventory function in inventory """
