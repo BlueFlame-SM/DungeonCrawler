@@ -1,3 +1,5 @@
+# https://www.youtube.com/watch?v=gFlGMLmg8yg
+
 extends "res://enemy_range/enemy_range.gd"
 
 onready var timer_hurt = $Timer_anim_hurt

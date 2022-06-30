@@ -81,7 +81,7 @@ wait_time = 0.5
 [connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_body_entered"]
 [connection signal="body_exited" from="Hitbox" to="." method="_on_Hitbox_body_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
-[connection signal="timeout" from="Timer_anim_hurt" to="." method="_on_Timer_animation_timeout"]
 [connection signal="timeout" from="Timer_anim_hurt" to="." method="_on_Timer_anim_hurt_timeout"]
+[connection signal="timeout" from="Timer_anim_hurt" to="." method="_on_Timer_animation_timeout"]
 [connection signal="timeout" from="Timer_anim_attack" to="." method="_on_Timer_anim_attack_timeout"]
 [connection signal="timeout" from="TimerKnockback" to="." method="_on_TimerKnockback_timeout"]

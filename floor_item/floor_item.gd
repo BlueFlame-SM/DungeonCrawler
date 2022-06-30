@@ -1,3 +1,5 @@
+#https://github.com/arkeve/Godot-Inventory-System/tree/lootable-items
+
 class_name FloorItem
 extends RigidBody2D
 
@@ -24,8 +26,8 @@ func _physics_process(delta):
 	# If item is picked up, animation plays, and item is removed.
 	if picked_up == true:
 		if self.scale.x > 0:
-			self.scale.x -= 0.1
-			self.scale.y -= 0.1
+			self.scale.x -= 0.15
+			self.scale.y -= 0.15
 
 		if self.scale.x < 0.2:
 			PlayerInventory.add_item(item_name, 1)

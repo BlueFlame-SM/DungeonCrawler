@@ -78,7 +78,7 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 16 ) ],
 "loop": true,
-"name": "Max_strength_potion",
+"name": "Max_health_potion",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 4 ) ],
@@ -86,9 +86,14 @@ animations = [ {
 "name": "Pomegranate",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 14 ) ],
+"frames": [ ExtResource( 16 ) ],
 "loop": true,
-"name": "Max_speed_potion",
+"name": "Max_strength_potion",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "Pomegranate",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 6 ) ],
@@ -99,11 +104,6 @@ animations = [ {
 "frames": [ ExtResource( 15 ) ],
 "loop": true,
 "name": "Max_attack_speed_potion",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 12 ) ],
-"loop": true,
-"name": "Spear",
 "speed": 5.0
 } ]
 
