@@ -160,8 +160,8 @@ func navigate():	# Define the next position to go to
 		velocity = global_position.direction_to(path[1]) * (_get_temp_speed() + _get_perm_speed())
 
 	# If the destination is reached, remove this path from the array
-	if global_position == path[0]:
-		path.pop_front()
+		if global_position == path[0]:
+			path.pop_front()
 
 # Generates a path to the player.
 func generate_path():
