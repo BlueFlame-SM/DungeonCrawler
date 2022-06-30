@@ -14,21 +14,20 @@ The game is won after beating the endboss.
 Download tarfile DungeonCrawlerExacutable
 
 **Guide Contributers:**
-1. Install Godot engine
+1. Install Godot engine: https://godotengine.org/download/linux
 2. Clone repository
 3. In Godot engine click "IMPORT" and select project.godot from the cloned repository
 4. The main scene is res://interface/main_menu (this is already set when you open the project)
 
 **Files game development progression:**
-
-**Notulen:**
+Notulen:
 https://docs.google.com/document/d/1UHgV871afOeHcjqzH3PNGwz6D1NnC2l-zHhNkmQV9mc/edit?usp=sharing
 
-**Items: **
+Items:
 https://docs.google.com/document/d/1oVRcXGDCauN2EQRkg_3sK2dU6C8ZlpkrIgdM-7srU_4/edit?usp=sharing
 
-**Enemies:**
+Enemies:
 https://docs.google.com/document/d/1cmWADQ-cFN5owzd0HY3cwC2X2t8OprcN5GLwvYnreEM/edit?usp=sharing
 
-**Agenda:**
+Agenda:
 https://docs.google.com/spreadsheets/d/1eO9IDSayotqlMNERWH-zEk_pjOx9J_3VT0gsljjKTYg/edit#gid=0
