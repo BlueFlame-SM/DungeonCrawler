@@ -3,6 +3,10 @@
 class_name FloorItem
 extends RigidBody2D
 
+"""
+
+"""
+
 var player = null
 var picked_up = false
 export var item_name: String
