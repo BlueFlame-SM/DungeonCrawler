@@ -17,9 +17,9 @@ func enable_styx():
 		for child in $River_collision.get_children():
 			child.disabled = false
 	Player.can_move = true
-#	TODO ix this
-	if $Enemy:
-		$Enemy/Range/CollisionShape2D.disabled = false
+#	if GlobalVars.level_type == "boss":
+#		get_child(6).get_child(2).get_child(0).disabled = false
+#		get_child(6).get_child(0).get_child(0).disabled = false
 	if GlobalVars.level_type == "start":
 		GlobalVars.reset()
 		GlobalVars.level_counter = 1
@@ -33,15 +33,18 @@ func _ready():
 #	Connect the signal from GlobalVars to function
 	GlobalVars.connect("challenge_down", self, "_on_challenge_down")
 #	Depending on level type, spawn appropriate instances
-	if GlobalVars.level_type == "boss":
+	if GlobalVars.level_type in "boss":
 		spawn_enemies()
+#		get_child(6).get_child(2).get_child(0).disabled = true
+#		get_child(6).get_child(0).get_child(0).disabled = true
+
 	elif GlobalVars.level_type == "loot":
 		spawn_chests()
 #	Set the global player at the start position near the entering gate
 	Player.position = $PlayerSpawn.position
 #	Wait a second to enable styx collision box
 	timer.connect("timeout",self,"enable_styx")
-	timer.wait_time = 1
+	timer.wait_time = 0.8
 	timer.one_shot = true
 	add_child(timer)
 	timer.start()
@@ -159,7 +162,6 @@ The player then dies.
 func _on_River_collision_body_entered(body):
 	if body.name == "Player":
 		river = true
-#		Player.do_damage(Player.health)
 
 """
 This function is called when a challenge to the player is overcome. Possible
@@ -168,14 +170,14 @@ the challenge counter is 0 and the function or level_completed is called.
 """
 func _on_challenge_down(type, pos):
 	challenge_counter -= 1
+	var dict_rarity = item_rarity()
+	if type == "enemy":
+		randomize()
+		var num = rng.randi_range(1, 24)
+		spawn_reward(random_item(dict_rarity, num), pos)
 	if challenge_counter <= 0:
 #		Because of this code, be wary of spawning both a chest and enemy at once
 #	Needs to be rewritten to support this implementation.
-		var dict_rarity = item_rarity()
-		if type == "enemy":
-			randomize()
-			var num = rng.randi_range(1, 24)
-			spawn_reward(random_item(dict_rarity, num), pos)
 		if type == "hydra":
 			pos = Vector2(Player.position.x, Player.position.y - 5)
 			randomize()
@@ -185,6 +187,7 @@ func _on_challenge_down(type, pos):
 			pos = Vector2(Player.position.x, Player.position.y - 5)
 			spawn_reward("Lion_hide", pos)
 		if type == "cerberus":
+			$DeadCerberus.visible = true
 #			We should spawn something, maybe play a sound?
 			pass
 		level_completed()

@@ -1,3 +1,5 @@
+# Source: https://github.com/arkeve/Godot-Inventory-System
+
 extends Node
 
 signal inventory_updated
