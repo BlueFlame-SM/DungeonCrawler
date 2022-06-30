@@ -1,6 +1,7 @@
-**Title game**: DungeonCrawler
+**Title game**: Stxq
 
 Developed in Game engine Godot, read LISENCE.md for availability
+
 
 **Description:**
 DungeonCrawler is a game where you go through levels in a 2D world.
@@ -10,15 +11,18 @@ you earn items with more chance at more rare items. You can make choices that in
 game such as wich items to use and by chosing between two doors for the next level.
 The game is won after beating the endboss.
 
+
 **Guide players:**
 
 Download tarfile DungeonCrawlerExacutable
+
 
 **Guide Contributers:**
 1. Install Godot engine: https://godotengine.org/download/linux
 2. Clone repository
 3. In Godot engine click "IMPORT" and select project.godot from the cloned repository
 4. The main scene is res://interface/main_menu (this is already set when you open the project)
+
 
 **Files game development progression:**
 Notulen:
