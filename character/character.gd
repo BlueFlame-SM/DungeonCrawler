@@ -41,7 +41,7 @@ var cooldown_time: int setget , _get_cooldown_time
 # Computes the velocity vector of the character from `direction` and the speed stat.
 func move_in_direction(direction: Vector2) -> Vector2:
 	if can_move:
-		return direction.normalized() * ((temp_speed - 1) * SPEED_WEIGHT + SPEED_BIAS)
+		return direction.normalized() * ((perm_speed + temp_speed - 1) * SPEED_WEIGHT + SPEED_BIAS)
 	else:
 		return Vector2.ZERO
 
