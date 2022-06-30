@@ -48,7 +48,7 @@ func refresh_style():
 
 		if category == "permanent_stat_increase":
 			hint_tooltip = str(item.item_name) + ", \nMax HP:" + str(JsonData.item_data[item.item_name]["Max_HP"]) + ", \nSpeed:" + str(JsonData.item_data[item.item_name]["Speed"])  + ", \nDamage:" + str(JsonData.item_data[item.item_name]["Damage"]) + ", \nAttack speed:" + str(JsonData.item_data[item.item_name]["Attack_speed"])
-		
+
 		if category == "lion_hide":
 			hint_tooltip = str(item.item_name) + ", \nDefence:" + str(JsonData.item_data[item.item_name]["Defence"])
 #

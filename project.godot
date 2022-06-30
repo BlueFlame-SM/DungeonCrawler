@@ -38,8 +38,12 @@ config/icon="res://assets/icon.png"
 
 [autoload]
 
-Player="*res://player/player.tscn"
+PluginSettings="*res://addons/github-integration/scripts/PluginSettings.gd"
+IconLoaderGithub="*res://addons/github-integration/scripts/IconLoaderGithub.gd"
+UserData="*res://addons/github-integration/scripts/user_data.gd"
+RestHandler="*res://addons/github-integration/scenes/RestHandler.tscn"
 LevelSwitcher="*res://level_switcher/level_switcher.tscn"
+Player="*res://player/player.tscn"
 GlobalVars="*res://global_vars.gd"
 PlayerInventory="*res://player_inventory/player_inventory.gd"
 JsonData="*res://other/json_data.gd"
