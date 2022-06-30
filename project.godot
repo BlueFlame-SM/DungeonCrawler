@@ -38,7 +38,7 @@ config/icon="res://assets/icon.png"
 
 [autoload]
 
-LevelSwitcher="*res://level_switcher/LevelSwitcher.tscn"
+LevelSwitcher="*res://level_switcher/level_switcher.tscn"
 GlobalVars="*res://global_vars.gd"
 PlayerInventory="*res://player_inventory/player_inventory.gd"
 JsonData="*res://other/json_data.gd"
