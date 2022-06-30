@@ -153,16 +153,16 @@ func _on_Hitbox_body_entered(body):
 	state = states.ATTACK
 
 
-# 
+#
 func _on_Hitbox_body_exited(body):
-	""" When the player exits Area2D named Hitbox, and the enemy is currently not 
+	""" When the player exits Area2D named Hitbox, and the enemy is currently not
 		knocked back, the enemy will change to CHASE mode. """
 	if $TimerKnockback.time_left <= 0:
 		state = states.CHASE
 
 func _damage_player():
 	""" Gives damage to the player equal to the damage stat of the enemy
-		and starts a 1 second timer as cooldown for attack. Set the animation 
+		and starts a 1 second timer as cooldown for attack. Set the animation
 		cooldown to true to ensure the animation plays in full.
 	"""
 	Player.do_damage(_get_temp_damage() + _get_perm_damage())
@@ -190,7 +190,7 @@ func _on_Timer_timeout():
 
 func _on_Enemy_healthChanged(newValue, dif):
 	""" Once a enemy is hit, start playing the hurt animation and
-		start the timer for the hurt animation. Set the animation cooldown 
+		start the timer for the hurt animation. Set the animation cooldown
 		to true to ensure the animation plays in full.
 	"""
 	if timer_hurt != null:
