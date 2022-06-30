@@ -115,15 +115,15 @@ collision_layer = 8
 collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="River_collision"]
-position = Vector2( -2, 10 )
-scale = Vector2( 1, 0.958984 )
+position = Vector2( -2, 53.5738 )
+scale = Vector2( 1, 0.899261 )
 polygon = PoolVector2Array( 64, 576, 128, 576, 128, 480, 160, 480, 160, 416, 191, 416.065, 192, 352, 224, 352, 224, 320, 288, 320, 288, 288, 256, 288, 256, 256, 224, 256, 224, 224, 192, 224, 192, 192, 160, 192, 160, 160, 127, 160.248, 128, 64, 64, 64 )
 disabled = true
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="River_collision"]
-position = Vector2( 3, 22 )
-scale = Vector2( 1, 0.841797 )
-polygon = PoolVector2Array( 191, 53.4571, 512, 53.4571, 512, 128, 480, 128, 480, 160, 448, 160, 446, 198.385, 416, 197.197, 417, 235.211, 386, 235.211, 384, 273.225, 320, 273.225, 322, 234.023, 291, 231.647, 291, 197.197, 258, 199.573, 256, 160, 224, 160, 224, 128, 192, 128 )
+position = Vector2( 3, 19.8539 )
+scale = Vector2( 1, 0.66974 )
+polygon = PoolVector2Array( 191, 53.4571, 512, 53.4571, 512, 128, 480, 128, 480, 160, 448, 160, 446, 198.385, 416, 197.197, 417, 235.211, 386, 235.211, 382, 324.224, 334, 318.252, 311, 258.527, 291, 231.647, 291, 197.197, 272, 186.858, 256, 160, 235, 143.557, 224, 128, 192, 128 )
 disabled = true
 
 [node name="PlayerSpawn" type="Position2D" parent="."]
