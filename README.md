@@ -1,4 +1,4 @@
-**Title game**: Stxq
+**Title game**: STYX
 
 Developed in Game engine Godot, read LISENCE.md for availability
 
