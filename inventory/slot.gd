@@ -44,6 +44,7 @@ func refresh_style():
 	"""
 	if item == null:
 		set('custom_styles/panel', empty_style)
+		hint_tooltip = ""
 	else:
 		set('custom_styles/panel', default_style)
 		var category = JsonData.item_data[item.item_name]["ItemCategory"]
@@ -55,7 +56,9 @@ func refresh_style():
 			hint_tooltip = str(item.item_name) + ", \nDuration:" + str(JsonData.item_data[item.item_name]["Duration"]) + ", \nSpeed:" + str(JsonData.item_data[item.item_name]["Speed"]) + ", \nDamage:" + str(JsonData.item_data[item.item_name]["Damage"])
 		if category == "permanent_stat_increase":
 			hint_tooltip = str(item.item_name) + ", \nMax HP:" + str(JsonData.item_data[item.item_name]["Max_HP"]) + ", \nSpeed:" + str(JsonData.item_data[item.item_name]["Speed"])  + ", \nDamage:" + str(JsonData.item_data[item.item_name]["Damage"]) + ", \nAttack speed:" + str(JsonData.item_data[item.item_name]["Attack_speed"])
-
+		if category == "lion_hide":
+			hint_tooltip = str(item.item_name) + ", \nDefence: +2"
+			
 
 func pickFromSlot():
 	"""
