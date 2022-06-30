@@ -120,4 +120,5 @@ format = 1
 tile_data = PoolIntArray( 0, 0, 0 )
 
 [connection signal="gates_open" from="." to="Gate_final" method="_on_gates_open"]
+[connection signal="body_entered" from="River_collision" to="." method="_on_River_collision_body_entered"]
 [connection signal="body_entered" from="Gate_final" to="Gate_final" method="_on_Gate_body_entered"]

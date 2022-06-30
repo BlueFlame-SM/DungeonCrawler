@@ -48,7 +48,7 @@ func _physics_process(delta):
 	velocity = move_and_slide(move_in_direction(velocity))
 	position.x = clamp(position.x, 0, screen_size.x)
 	position.y = clamp(position.y, 0, screen_size.y)
-	
+
 	# If there is no attack animation playing, and the Lion is not knocked back or death,
 	# set the sprite to the direction the Lion is currently going.
 	if !animation_cooldown and state != states.KNOCKBACK and state != states.DEAD:
@@ -91,7 +91,7 @@ func _physics_process(delta):
 				$AnimatedSprite.animation = "default_back"
 				$AnimatedSprite.flip_h = false
 				current_direction = "back"
-	
+
 	if health == 0:
 		state = states.DEAD
 	match state:
@@ -155,7 +155,7 @@ Functies voor pathfinding zodat het niet achter bosjes blijft zitten, kan pas me
 func navigate():	# Define the next position to go to
 	if path.size() > 0:
 		velocity = global_position.direction_to(path[1]) * (_get_temp_speed() + _get_temp_speed())
-		
+
 	# If the destination is reached, remove this path from the array
 	if global_position == path[0]:
 		path.pop_front()
@@ -185,7 +185,7 @@ and starts a 1 second timer as cooldown for attack.
 func _damage_player():
 	Player.do_damage(_get_temp_damage() + _get_perm_damage())
 	animation_cooldown = true
-	if current_direction == "left":	
+	if current_direction == "left":
 		$AnimatedSprite.animation = "attack"
 	elif current_direction == "right":
 		$AnimatedSprite.animation = "attack"
@@ -194,7 +194,7 @@ func _damage_player():
 	elif current_direction == "back":
 		$Claws.animation = "attack"
 		$AnimatedSprite.animation = "attack_back"
-	
+
 	timer_attack.start()
 	timer.start()
 	attack_counter = 1
@@ -205,7 +205,7 @@ func _on_Timer_timeout():
 
 
 func _on_Enemy_healthChanged(newValue, dif):
-	""" Once a enemy is hit, start playing the hurt animation and 
+	""" Once a enemy is hit, start playing the hurt animation and
 		start the timer for the hurt animation.
 	"""
 	if timer_hurt != null:
@@ -218,7 +218,7 @@ func _on_Enemy_healthChanged(newValue, dif):
 func _on_Timer_anim_attack_timeout():
 	""" On the attack timeout, return to the default animation. """
 	timer_attack.stop()
-	if current_direction == "left" or current_direction == "right":	
+	if current_direction == "left" or current_direction == "right":
 		$AnimatedSprite.animation = "default"
 	else:
 		$AnimatedSprite.animation = str("default_" + current_direction)

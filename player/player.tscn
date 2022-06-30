@@ -29,6 +29,7 @@ frames = ExtResource( 2 )
 animation = "hit_effect"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( -1, 9 )
 shape = SubResource( 2 )
 

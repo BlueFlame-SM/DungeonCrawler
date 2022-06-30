@@ -8,9 +8,9 @@ func _ready():
 	# Set states and default animation.
 	_set_perm_speed(4)
 	$AnimatedSprite.animation = "default"
-	
+
 	screen_size = get_viewport_rect().size
-	
+
 	# Set up navigation.
 	yield(get_tree(), "idle_frame")
 	var tree = get_tree()
@@ -61,7 +61,7 @@ func _on_FiringRange_body_entered(body):
 	fire = true
 
 func _on_FiringRange_body_exited(body):
-	""" Disable firing when a body leaves the firing range. Start chasing if 
+	""" Disable firing when a body leaves the firing range. Start chasing if
 		if the knockback is finished.
 	"""
 	if $TimerKnockback.time_left <= 0:
