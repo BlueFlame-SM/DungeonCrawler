@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://floor_item/floor_item.gd" type="Script" id=1]
 [ext_resource path="res://items/sprites/Nectar.png" type="Texture" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://items/sprites/Max_speed_attack_potion.png" type="Texture" id=15]
 [ext_resource path="res://items/sprites/Max_strength_potion.png" type="Texture" id=16]
 [ext_resource path="res://items/sprites/Max_health_potion.png" type="Texture" id=17]
+[ext_resource path="res://items/sprites/Lion_hide.png" type="Texture" id=18]
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -99,6 +100,11 @@ animations = [ {
 "loop": true,
 "name": "Spear",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 18 ) ],
+"loop": true,
+"name": "Lion_hide",
+"speed": 5.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=4]
@@ -117,7 +123,7 @@ item_name = "slime_potion"
 position = Vector2( -7, 9 )
 scale = Vector2( 0.4, 0.3625 )
 frames = SubResource( 2 )
-animation = "Max_strength_potion"
+animation = "Lion_hide"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -5, 7.5 )

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://tilemap/walls3.tres" type="TileSet" id=1]
 [ext_resource path="res://tilemap/rocks1.tres" type="TileSet" id=2]
@@ -9,7 +9,6 @@
 [ext_resource path="res://gate/gate.gd" type="Script" id=7]
 [ext_resource path="res://tilemap/Gate_Boss_Open_Icon.png" type="Texture" id=8]
 [ext_resource path="res://tilemap/Gate_Loot_Icon.png" type="Texture" id=9]
-[ext_resource path="res://enemy_range/enemy_range.tscn" type="PackedScene" id=10]
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 24.25, 27 )
@@ -93,6 +92,7 @@ script = ExtResource( 7 )
 [node name="GateCollision" type="CollisionShape2D" parent="Gate_right"]
 position = Vector2( 58, 60 )
 shape = SubResource( 4 )
+disabled = true
 
 [node name="BossOpen" type="TileMap" parent="Gate_right"]
 visible = false
@@ -128,16 +128,14 @@ position = Vector2( 336, 240 )
 position = Vector2( 777, 309 )
 
 [node name="EnemySpawn3" type="Position2D" parent="EnemySpawns"]
-position = Vector2( 170, 108 )
+position = Vector2( 149, 136 )
 
 [node name="EnemySpawn4" type="Position2D" parent="EnemySpawns"]
 position = Vector2( 123, 397 )
-
-[node name="EnemyRange" parent="." instance=ExtResource( 10 )]
-position = Vector2( 278, 433 )
 
 [connection signal="gates_open" from="." to="Gate" method="_on_gates_open"]
 [connection signal="gates_open" from="." to="Gate_right" method="_on_gates_open"]
 [connection signal="body_entered" from="Gate" to="Gate" method="_on_Gate_body_entered"]
 [connection signal="body_entered" from="Gate_right" to="Gate_right" method="_on_Gate_body_entered"]
 [connection signal="body_entered" from="River_collision" to="." method="_on_River_collision_body_entered"]
+[connection signal="body_exited" from="River_collision" to="." method="_on_River_collision_body_exited"]

@@ -47,7 +47,13 @@ func _ready():
 #	To get the scene that this gate leads to, determine what kind of gate it is
 	if GlobalVars.level_type == "preboss":
 		gate_type = "bigboss"
-		next_scene_name = "res://levels/LevelHydra.tscn"
+		if GlobalVars.level_counter %9 == 0:
+			next_scene_name = "res://levels/LevelHydra.tscn"
+		elif GlobalVars.level_counter %5 == 0:
+			next_scene_name = "res://levels/LevelLion.tscn"
+		else:
+			gate_type = "endboss"
+			next_scene_name = "res://levels/LevelCerberus.tscn"
 	else:
 		next_scene_name = det_gate_type()
 
@@ -59,16 +65,10 @@ The current level layout is removed as an option to not get two similar levels
 in a row. The appropriate sign on top of the gate appears visible.
 """
 func det_gate_type():
-	if GlobalVars.level_counter % 15 == 0 and GlobalVars.level_counter != 0:
-		$LootOpen.visible = true
-		gate_type = "preboss"
-#		Change to CERBERUS
-		return "res://levels/pre_boss_battle1.tscn"
-	elif GlobalVars.level_counter % 10 == 0 and GlobalVars.level_counter != 0:
-		$LootOpen.visible = true
-		gate_type = "preboss"
-		return "res://levels/pre_boss_battle1.tscn"
-	elif GlobalVars.level_counter % 5 == 0 and GlobalVars.level_counter != 0:
+	if GlobalVars.level_type == "endboss":
+		gate_type = "credits"
+		return "res://interface/credits.tscn"
+	if GlobalVars.level_counter % 4 == 0 and GlobalVars.level_counter != 0:
 		$LootOpen.visible = true
 		gate_type = "preboss"
 #		CHANGE TO LION LEVEL

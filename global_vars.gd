@@ -3,6 +3,7 @@ extends Node
 var level_type = "start"
 
 var level_counter = 0
+var dmg_reset = 1
 
 signal challenge_down(type, pos)
 
@@ -17,6 +18,7 @@ func reset():
 	Player.health = 40
 
 	PlayerInventory.reset_inventory()
+
 
 
 	"""TODO write empty inventory function in inventory """

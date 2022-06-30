@@ -319,6 +319,13 @@ var item_data: Dictionary = {
 		"Description": "."
 	},
 
+		"Lion_hide": {
+			"StackSize": 1,
+			"ItemCategory": "lion_hide",
+			"Rarity": 0,
+			"Defence": 1,
+		}
+
 
 ##########################################################
 ######################### MONEY ##########################
