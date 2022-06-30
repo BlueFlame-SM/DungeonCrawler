@@ -25,7 +25,7 @@ Download tarfile DungeonCrawlerExacutable
 4. The main scene is res://interface/main_menu (this is already set when you open the project)
 
 
-**Files game development progression:**
+**Game development progression:**
 
 Notulen:
 https://docs.google.com/document/d/1UHgV871afOeHcjqzH3PNGwz6D1NnC2l-zHhNkmQV9mc/edit?usp=sharing
