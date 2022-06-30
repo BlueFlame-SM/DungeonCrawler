@@ -57,7 +57,7 @@ func reset_stats() -> void:
 
 func heal(amount: int) -> int:
 	amount = clamp(amount, 0, max_health - health)
-	health += amount
+	self.health += amount
 	return amount
 
 
@@ -72,7 +72,8 @@ func get_damage() -> int:
 func take_damage(amount: int) -> int:
 	amount -= defence + defence_bonus
 	amount = clamp(amount, 0, health)
-	health -= amount
+	print(amount)
+	self.health -= amount
 	return amount
 
 
@@ -81,7 +82,7 @@ func get_attack_delay() -> int:
 
 
 func get_reach() -> float:
-	return max(reach + reach_bonus, 0)
+	return max(reach + reach_bonus - 1, 0)
 
 
 # Computes the velocity vector of the character from `direction` and speed.

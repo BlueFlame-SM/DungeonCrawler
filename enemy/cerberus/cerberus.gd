@@ -30,10 +30,10 @@ onready var hitbox = $Hitbox
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	""" Set starting stats and default animation. """
-	self._set_perm_speed(0)
-	self._set_max_health(100)
-	self._set_health(100)
-	self._set_perm_damage(10)
+	self.speed = 0
+	self.max_health = 100
+	self.health = 100
+	self.strength = 10
 
 	screen_size = get_viewport_rect().size
 	$AnimatedSprite.animation = "default"
@@ -110,7 +110,7 @@ func _damage_player():
 	# after that time, do damage. Always play the attack animation.
 	yield(get_tree().create_timer(0.5), "timeout")
 	if in_bite_range:
-		Player.do_damage(_get_temp_damage() + _get_perm_damage())
+		Player.take_damage(get_damage())
 		Player.get_node("CerberusBite").animation = "bitten"
 		Player.hurt()
 

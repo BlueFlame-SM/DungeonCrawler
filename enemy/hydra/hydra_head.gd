@@ -6,7 +6,7 @@ onready var timer_attack = $Timer_anim_attack
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# Set states and default animation.
-	_set_perm_speed(4)
+	self.speed = 4
 	$AnimatedSprite.animation = "default"
 
 	screen_size = get_viewport_rect().size

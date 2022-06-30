@@ -46,9 +46,10 @@ func _ready():
 	add_child(timer)
 	timer.start()
 
+
 func _physics_process(delta):
 	if river == true:
-		Player.do_damage(1)
+		Player.health -= 1
 
 
 """
@@ -159,7 +160,6 @@ The player then dies.
 func _on_River_collision_body_entered(body):
 	if body.name == "Player":
 		river = true
-#		Player.do_damage(Player.health)
 
 """
 This function is called when a challenge to the player is overcome. Possible

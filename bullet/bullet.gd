@@ -54,8 +54,7 @@ func _physics_process(delta):
 func _on_Bullet_body_entered(body):
 	if body == Player:
 		Player.hurt()
-		#TODO: hardcode weghalen
-		Player.health -= 2
+		Player.take_damage(damage)
 	queue_free()
 
 #When a bullet hits a body, we want to remove it from the world.

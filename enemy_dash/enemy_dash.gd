@@ -80,7 +80,7 @@ func _on_state_charge(delta):
 		var collision = move_and_collide(velocity * delta)
 		if collision != null:
 			if collision.collider == Player:
-				Player.do_damage(3)
+				Player.take_damage(3)
 #				print(Player.health)
 				_set_state_patrol()
 			else:

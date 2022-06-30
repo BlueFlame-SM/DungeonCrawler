@@ -27,11 +27,10 @@ onready var timer_knockback = $TimerKnockback
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# Set stats of the Lion.
-	self._set_perm_speed(4)
-	self._set_temp_speed(2)
-	self._set_max_health(20)
-	self._set_health(20)
-	self._set_perm_damage(4)
+	self.speed = 6
+	self.max_health = 20
+	self.health = 20
+	self.strength = 4
 
 	screen_size = get_viewport_rect().size
 	"""Kan pas met nieuwe tileset, laten staan!!!"""
@@ -145,14 +144,14 @@ func _on_Range_body_entered(body):
 	state = states.CHASE
 
 func _on_Player_hit(amount):
-	do_damage(amount)
+	print(1)
 
 """
 Functies voor pathfinding zodat het niet achter bosjes blijft zitten, kan pas met nieuwe tileset.
 """
 func navigate():	# Define the next position to go to
 	if path.size() > 0:
-		velocity = global_position.direction_to(path[1]) * (_get_temp_speed() + _get_temp_speed())
+		velocity = global_position.direction_to(path[1]) * get_speed()
 
 	# If the destination is reached, remove this path from the array
 	if global_position == path[0]:
@@ -181,7 +180,7 @@ Gives damage to the player equal to the damage stat of the enemy
 and starts a 1 second timer as cooldown for attack.
 """
 func _damage_player():
-	Player.do_damage(_get_temp_damage() + _get_perm_damage())
+	Player.take_damage(get_damage())
 	animation_cooldown = true
 	if current_direction == "left":
 		$AnimatedSprite.animation = "attack"
