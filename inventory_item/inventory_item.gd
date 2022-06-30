@@ -1,10 +1,10 @@
 """
 	Script for the inventory item.
 	Able to set items and add and subtract of item stacks.
-	
+
 	Global variables:
 		keep track of kind of item and quantity.
-		
+
 	Source: https://github.com/arkeve/Godot-Inventory-System
 """
 

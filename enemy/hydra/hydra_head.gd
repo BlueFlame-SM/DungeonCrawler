@@ -1,5 +1,5 @@
-""" 
-	Enemy script for a hydra head. Allows a head to die, patrol, fire, and chase the player. 
+"""
+	Enemy script for a hydra head. Allows a head to die, patrol, fire, and chase the player.
 	Use Timers to restore the default animation after an attack or hurt animation.
 
 	Source: https://www.youtube.com/watch?v=gFlGMLmg8yg
@@ -14,6 +14,8 @@ onready var timer_attack = $Timer_anim_attack
 func _ready():
 	# Set states and default animation.
 	_set_perm_speed(4)
+	_set_max_health(30)
+	_set_health(30)
 	$AnimatedSprite.animation = "default"
 
 	screen_size = get_viewport_rect().size
