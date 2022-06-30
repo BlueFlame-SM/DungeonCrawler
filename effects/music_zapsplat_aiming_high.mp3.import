@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/music_zapsplat_aiming_high.mp3-fe3c94c38a8393bad876bbe87142e343.mp3str"
+
+[deps]
+
+source_file="res://effects/music_zapsplat_aiming_high.mp3"
+dest_files=[ "res://.import/music_zapsplat_aiming_high.mp3-fe3c94c38a8393bad876bbe87142e343.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

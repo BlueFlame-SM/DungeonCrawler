@@ -1,0 +1,153 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://fonts/button_theme.tres" type="Theme" id=1]
+[ext_resource path="res://fonts/sub_title.tres" type="DynamicFont" id=2]
+[ext_resource path="res://interface/settings_menu.gd" type="Script" id=3]
+[ext_resource path="res://fonts/plain_text.tres" type="DynamicFont" id=4]
+[ext_resource path="res://fonts/button_text.tres" type="DynamicFont" id=5]
+
+[node name="SettingsMenu" type="Popup"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -401.0
+margin_top = -260.0
+margin_right = 401.0
+margin_bottom = 260.0
+script = ExtResource( 3 )
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0235294, 0.0235294, 0.0235294, 1 )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 100.0
+margin_top = 30.0
+margin_right = -100.0
+margin_bottom = -30.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_right = 602.0
+margin_bottom = 460.0
+custom_constants/separation = 10
+alignment = 1
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer"]
+margin_right = 602.0
+margin_bottom = 51.0
+custom_fonts/font = ExtResource( 2 )
+text = "Settings"
+align = 1
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 61.0
+margin_right = 602.0
+margin_bottom = 139.0
+custom_constants/vseparation = 10
+custom_constants/hseparation = 350
+columns = 2
+
+[node name="DisplayLabel" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+margin_top = 4.0
+margin_right = 114.0
+margin_bottom = 30.0
+custom_fonts/font = ExtResource( 4 )
+text = "Full screen"
+
+[node name="DisplayCheck" type="CheckBox" parent="MarginContainer/VBoxContainer/GridContainer"]
+margin_left = 464.0
+margin_right = 524.0
+margin_bottom = 34.0
+focus_neighbour_top = NodePath("../../../../MarginContainer2/BackButton")
+custom_fonts/font = ExtResource( 4 )
+text = "Off"
+
+[node name="VsyncLabel" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+margin_top = 48.0
+margin_right = 114.0
+margin_bottom = 74.0
+custom_fonts/font = ExtResource( 4 )
+text = "Vsync"
+
+[node name="VsyncCheck" type="CheckBox" parent="MarginContainer/VBoxContainer/GridContainer"]
+margin_left = 464.0
+margin_top = 44.0
+margin_right = 524.0
+margin_bottom = 78.0
+focus_neighbour_bottom = NodePath("../../GridContainer2/MarginContainer/Volume/MarginContainer/MusicSlider")
+custom_fonts/font = ExtResource( 4 )
+text = "Off"
+
+[node name="GridContainer2" type="GridContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 149.0
+margin_right = 602.0
+margin_bottom = 460.0
+size_flags_vertical = 3
+custom_constants/vseparation = 10
+custom_constants/hseparation = 100
+columns = 2
+
+[node name="MusicLabel" type="Label" parent="MarginContainer/VBoxContainer/GridContainer2"]
+margin_right = 136.0
+margin_bottom = 26.0
+custom_fonts/font = ExtResource( 4 )
+text = "Music Volume"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/GridContainer2"]
+margin_left = 236.0
+margin_right = 602.0
+margin_bottom = 26.0
+size_flags_horizontal = 3
+
+[node name="Volume" type="HBoxContainer" parent="MarginContainer/VBoxContainer/GridContainer2/MarginContainer"]
+margin_right = 366.0
+margin_bottom = 26.0
+size_flags_horizontal = 3
+custom_constants/separation = 5
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/GridContainer2/MarginContainer/Volume"]
+margin_right = 64.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 64, 0 )
+custom_fonts/font = ExtResource( 4 )
+text = "100.0%"
+align = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/GridContainer2/MarginContainer/Volume"]
+margin_left = 69.0
+margin_right = 366.0
+margin_bottom = 26.0
+size_flags_horizontal = 3
+
+[node name="MusicSlider" type="HSlider" parent="MarginContainer/VBoxContainer/GridContainer2/MarginContainer/Volume/MarginContainer"]
+margin_right = 297.0
+margin_bottom = 26.0
+focus_neighbour_bottom = NodePath("../../../../../../../MarginContainer2/BackButton")
+size_flags_vertical = 3
+step = 0.1
+tick_count = 1000
+ticks_on_borders = true
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+margin_left = 241.0
+margin_top = 420.0
+margin_right = 561.0
+margin_bottom = 460.0
+
+[node name="BackButton" type="Button" parent="MarginContainer2"]
+margin_right = 320.0
+margin_bottom = 40.0
+focus_neighbour_top = NodePath("../../MarginContainer/VBoxContainer/GridContainer2/MarginContainer/Volume/MarginContainer/MusicSlider")
+focus_neighbour_bottom = NodePath("../../MarginContainer/VBoxContainer/GridContainer/DisplayCheck")
+theme = ExtResource( 1 )
+custom_fonts/font = ExtResource( 5 )
+text = "Back"
+
+[connection signal="toggled" from="MarginContainer/VBoxContainer/GridContainer/DisplayCheck" to="." method="_on_DisplayCheck_toggled"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/GridContainer/VsyncCheck" to="." method="_on_VsyncCheck_toggled"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/GridContainer2/MarginContainer/Volume/MarginContainer/MusicSlider" to="." method="_on_MusicSlider_value_changed"]
+[connection signal="pressed" from="MarginContainer2/BackButton" to="." method="_on_BackButton_pressed"]

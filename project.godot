@@ -8,6 +8,28 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Area2D",
+"class": "Bullet",
+"language": "GDScript",
+"path": "res://bullet/bullet.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Character",
+"language": "GDScript",
+"path": "res://character/character.gd"
+}, {
+"base": "RigidBody2D",
+"class": "FloorItem",
+"language": "GDScript",
+"path": "res://floor_item/floor_item.gd"
+} ]
+_global_script_class_icons={
+"Bullet": "",
+"Character": "",
+"FloorItem": ""
+}
+
 [application]
 
 config/name="Dungeon Crawler"
@@ -16,12 +38,8 @@ config/icon="res://assets/icon.png"
 
 [autoload]
 
-PluginSettings="*res://addons/github-integration/scripts/PluginSettings.gd"
-IconLoaderGithub="*res://addons/github-integration/scripts/IconLoaderGithub.gd"
-UserData="*res://addons/github-integration/scripts/user_data.gd"
-RestHandler="*res://addons/github-integration/scenes/RestHandler.tscn"
-LevelSwitcher="*res://level_switcher/level_switcher.tscn"
 Player="*res://player/player.tscn"
+LevelSwitcher="*res://level_switcher/level_switcher.tscn"
 GlobalVars="*res://global_vars.gd"
 PlayerInventory="*res://player_inventory/player_inventory.gd"
 JsonData="*res://other/json_data.gd"
