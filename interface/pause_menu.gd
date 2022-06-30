@@ -14,7 +14,7 @@ func _unhandled_input(event):
 
 
 func set_paused(value):
-	""" Set the game pause state and visibility of the pause screen 
+	""" Set the game pause state and visibility of the pause screen
 		according to the value.
 	"""
 	is_paused = value

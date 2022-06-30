@@ -34,6 +34,7 @@ var odds_chest_room = 0.1
 
 
 func _ready():
+	print(GlobalVars.level_type)
 	rng.randomize()
 #	As a default, no sign should appear above the gate unless its determined
 #	what is behind the gate.
@@ -71,7 +72,6 @@ func det_gate_type():
 	if GlobalVars.level_counter % 4 == 0 and GlobalVars.level_counter != 0:
 		$LootOpen.visible = true
 		gate_type = "preboss"
-#		CHANGE TO LION LEVEL
 		return "res://levels/pre_boss_battle1.tscn"
 
 	cur_lvl_nr = int(get_parent().name.right(5))

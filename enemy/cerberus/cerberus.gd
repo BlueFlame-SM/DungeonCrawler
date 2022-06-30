@@ -1,3 +1,14 @@
+ """
+  Enemy script for the Boss Cerberus. Allows Cerberus to Bite, Fire, and Die. Do damage
+  to the player according to the corresponding attack and play the correct animations.
+  Use timers to restore the default animation.
+  Use states to keep track of the current state of Cerberus. BULLET is the fireball scene
+  which is used to Fire. Attack and fire counter are set to space the attacks. Fire is set
+  if Cerberus is allowed to fire. In_bite_range is set if the player is within bitting range.
+  Timers are used to restore the default animation after the attack or fire animation has
+  played. Hitbox is the area where if the player is within it, the player can be hit.
+"""
+
 extends "res://character/character.gd"
 
 enum states {IDLE, ATTACK, DEAD, FIRE, KNOCKBACK}
@@ -12,6 +23,7 @@ var screen_size
 # Counters to space the attacks.
 var attack_counter = 0
 var fire_counter = 0
+var music_counter = true
 
 # Boolean if Cerberus can fire.
 var fire = false
@@ -31,8 +43,8 @@ onready var hitbox = $Hitbox
 func _ready():
 	""" Set starting stats and default animation. """
 	self._set_perm_speed(0)
-	self._set_max_health(100)
-	self._set_health(100)
+	self._set_max_health(2)
+	self._set_health(2)
 	self._set_perm_damage(10)
 
 	screen_size = get_viewport_rect().size
@@ -60,6 +72,8 @@ func choose_action():
 		states.DEAD:
 			# Disables the hitbox so it doesn't damage the player.
 			$Hitbox/CollisionPolygon2D.disabled = true
+			if $WinSound.playing == false:
+				$WinSound.play()
 			if time > 0:
 				self.modulate.a = 0 if Engine.get_frames_drawn() % 5 == 0 else 1.0
 			else:
@@ -69,6 +83,7 @@ func choose_action():
 		states.ATTACK:
 			if attack_counter == 0:
 				_damage_player()
+				$SlashSound.play()
 		states.KNOCKBACK:
 			# Do nothing, as Cerberus can't be knocked back, but its a state
 			# that is inherited from character.

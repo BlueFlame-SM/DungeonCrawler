@@ -17,9 +17,6 @@ func enable_styx():
 		for child in $River_collision.get_children():
 			child.disabled = false
 	Player.can_move = true
-#	TODO ix this
-	if $Enemy:
-		$Enemy/Range/CollisionShape2D.disabled = false
 	if GlobalVars.level_type == "start":
 		GlobalVars.reset()
 		GlobalVars.level_counter = 1
@@ -33,7 +30,7 @@ func _ready():
 #	Connect the signal from GlobalVars to function
 	GlobalVars.connect("challenge_down", self, "_on_challenge_down")
 #	Depending on level type, spawn appropriate instances
-	if GlobalVars.level_type == "boss":
+	if GlobalVars.level_type in "boss":
 		spawn_enemies()
 	elif GlobalVars.level_type == "loot":
 		spawn_chests()
@@ -41,7 +38,7 @@ func _ready():
 	Player.position = $PlayerSpawn.position
 #	Wait a second to enable styx collision box
 	timer.connect("timeout",self,"enable_styx")
-	timer.wait_time = 1
+	timer.wait_time = 0.8
 	timer.one_shot = true
 	add_child(timer)
 	timer.start()
@@ -69,10 +66,8 @@ func spawn_enemies():
 		enemy.position = spawn_point.position
 		add_child(enemy)
 		enemy_difficulties(enemy)
-#	This becomes relevant if you want to spawn more than 1 enemy. Not currently implemented.
 		challenge_counter += 1
 
-"""TODO get location of enemy that died"""
 func spawn_reward(item, pos):
 	if typeof(item) == TYPE_STRING:
 		var scene = load("res://floor_item/floor_item.tscn")
@@ -159,7 +154,6 @@ The player then dies.
 func _on_River_collision_body_entered(body):
 	if body.name == "Player":
 		river = true
-#		Player.do_damage(Player.health)
 
 """
 This function is called when a challenge to the player is overcome. Possible
@@ -168,14 +162,14 @@ the challenge counter is 0 and the function or level_completed is called.
 """
 func _on_challenge_down(type, pos):
 	challenge_counter -= 1
+	var dict_rarity = item_rarity()
+	if type == "enemy":
+		randomize()
+		var num = rng.randi_range(1, 24)
+		spawn_reward(random_item(dict_rarity, num), pos)
 	if challenge_counter <= 0:
 #		Because of this code, be wary of spawning both a chest and enemy at once
 #	Needs to be rewritten to support this implementation.
-		var dict_rarity = item_rarity()
-		if type == "enemy":
-			randomize()
-			var num = rng.randi_range(1, 24)
-			spawn_reward(random_item(dict_rarity, num), pos)
 		if type == "hydra":
 			pos = Vector2(Player.position.x, Player.position.y - 5)
 			randomize()
@@ -185,6 +179,7 @@ func _on_challenge_down(type, pos):
 			pos = Vector2(Player.position.x, Player.position.y - 5)
 			spawn_reward("Lion_hide", pos)
 		if type == "cerberus":
+			$DeadCerberus.visible = true
 #			We should spawn something, maybe play a sound?
 			pass
 		level_completed()
@@ -201,10 +196,14 @@ func level_completed():
 
 """Function to increase the stats of enemies each 5 levels."""
 func enemy_difficulties(enemy):
-	if GlobalVars.level_counter % 5:
-		enemy._set_perm_damage(enemy._get_perm_damage() + 1)
-	if GlobalVars.level_counter == 1:
-		enemy._set_perm_damage(GlobalVars.dmg_reset)
+	if GlobalVars.level_counter % 3 == 0:
+		randomize()
+		var num = GlobalVars.level_counter / 3
+		print("perm: ", enemy._get_perm_damage())
+		print("level: ", GlobalVars.level_counter)
+		enemy._set_perm_damage(enemy._get_perm_damage() + num + rng.randi_range(-2, 2))
+		enemy._set_max_health(enemy._get_max_health() + num*2 + rng.randi_range(-2, 2))
+		enemy._set_health(enemy._get_max_health())
 
 
 func _on_River_collision_body_exited(body):

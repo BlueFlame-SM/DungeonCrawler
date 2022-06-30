@@ -1,4 +1,15 @@
-# Source: https://github.com/arkeve/Godot-Inventory-System
+"""
+	Script of inventory and hotbar.
+	Initialises inventory, hotbar and slots.
+	Handles all actions within the inventory and hotbar.
+	Items can be moved and used.
+
+	Global variables:
+		Keeps track of wheter a slot is used,
+		an item is hold and/or a potion is in use.
+
+	Source: https://github.com/arkeve/Godot-Inventory-System
+"""
 
 extends Node2D
 
@@ -21,7 +32,11 @@ signal use_health_potion()
 signal use_potion()
 signal use_permanent_stat_increase()
 
+
 func _ready():
+	"""
+	Function puts inventory and hotbar with all its slots in place.
+	"""
 	PlayerInventory.connect("inventory_updated", self, "initialize_inventory")
 	get_parent().find_node("Hotbar").connect("inventory_updated", self, "initialize_inventory")
 	if get_parent().find_node("GridContainer2"):
@@ -32,11 +47,12 @@ func _ready():
 		slots[i].slot_index = i
 		slots[i].slot_type = SlotClass.SlotType.INVENTORY
 	initialize_inventory()
-#	emit_signal("inventory_updated")
 
-#const PlayerInventory = preload("res://src/PlayerInventory.gd")
+
 func initialize_inventory():
-#	var slots = inventory_slots.get_children()
+	"""
+	Initiliases inventory.
+	"""
 	for i in range(slots.size()):
 		if PlayerInventory.inventory.has(i):
 			slots[i].initialize_item(PlayerInventory.inventory[i][0], PlayerInventory.inventory[i][1])
@@ -54,6 +70,9 @@ func initialize_inventory():
 
 
 func slot_gui_input(event: InputEvent, slot: SlotClass):
+	"""
+	Function to handle what to do in case of a mouseclick.
+	"""
 	# When a mouseclick occurs, check if it is a left mouse click.
 	if event is InputEventMouseButton:
 		# Edge case to check if there are items to click.
@@ -80,6 +99,9 @@ func slot_gui_input(event: InputEvent, slot: SlotClass):
 			consume_item(slot)
 
 func consume_item(slot):
+	"""
+	Function to consume an item.
+	"""
 	if !slot.item:
 		return -1
 	var category = JsonData.item_data[slot.item.item_name]["ItemCategory"]
@@ -119,8 +141,12 @@ func consume_item(slot):
 		PlayerInventory.add_item_quantity(slot, -1)
 		initialize_inventory()
 
+
 func _input(event):
-	# location of item held gets updated by mouse location.
+	"""
+	Keeps track of item hold.
+	Location of item held gets updated by mouse location.
+	"""
 	if holding_item:
 		holding_item.global_position = get_global_mouse_position()
 	if GlobalVars.level_counter != 0:
@@ -129,12 +155,21 @@ func _input(event):
 				var slot = get_parent().find_node("Hotbar").find_node("HotbarSlot" + str(event.unicode - 48))
 				consume_item(slot)
 
+
 func left_click_empty_slot(slot):
+	"""
+	Left click on slot not containing item.
+	"""
 	PlayerInventory.add_item_to_empty_slot(holding_item, slot)
 	slot.putIntoSlot(holding_item, 0)
 	holding_item = null
 
+
 func left_click_dif_item(event, slot):
+	"""
+	Item when you are already holding an item and
+	left click on slot and containing a different kind of item.
+	"""
 	PlayerInventory.remove_item(slot)
 	PlayerInventory.add_item_to_empty_slot(holding_item, slot)
 	var temp_item = slot.item
@@ -143,7 +178,12 @@ func left_click_dif_item(event, slot):
 	slot.putIntoSlot(holding_item, 0)
 	holding_item = temp_item
 
+
 func left_click_same_item(slot):
+	"""
+	Item when you are already holding an item and
+	left click on slot and containing the same kind of item.
+	"""
 	var stack_size = int(JsonData.item_data[slot.item.item_name]["StackSize"])
 	var able_to_add = stack_size - slot.item.item_quantity
 	if able_to_add >= holding_item.item_quantity:
@@ -156,18 +196,27 @@ func left_click_same_item(slot):
 		slot.item.add_item_quantity(able_to_add)
 		holding_item.decrease_item_quantity(able_to_add)
 
+
 func left_click_not_holding_item(slot):
+	"""
+	Item when you left click on slot and are not yet holding an item.
+	"""
 	PlayerInventory.remove_item(slot)
 	holding_item = slot.item
 	slot.pickFromSlot()
 	holding_item.global_position = get_global_mouse_position()
 
 
-# Trash an item in the trash item_slot.
 func _on_Button_pressed():
+	"""
+	Thrashes item in trash item slot.
+	"""
 	initialize_inventory()
 
 
 func _on_Timer_timeout():
+	"""
+	Checks that potion effect is stoped when timer is over.
+	"""
 	timer.stop()
 	potion = false

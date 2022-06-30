@@ -1,3 +1,10 @@
+"""
+	Enemy script for a hydra head. Allows a head to die, patrol, fire, and chase the player.
+	Use Timers to restore the default animation after an attack or hurt animation.
+
+	Source: https://www.youtube.com/watch?v=gFlGMLmg8yg
+"""
+
 extends "res://enemy_range/enemy_range.gd"
 
 onready var timer_hurt = $Timer_anim_hurt

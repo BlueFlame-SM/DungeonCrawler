@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://level_switcher/LevelSwitcher.gd" type="Script" id=1]
+[ext_resource path="res://level_switcher/level_switcher.gd" type="Script" id=1]
 [ext_resource path="res://assets/431118__inspectorj__door-front-closing-a.wav" type="AudioStream" id=2]
 
 [sub_resource type="Animation" id=2]
