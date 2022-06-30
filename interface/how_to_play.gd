@@ -6,6 +6,7 @@ func _ready():
 		explenation). """
 	$Background/Keybindings.visible = false
 	$Background/Gameplay.visible = true
+	$Background/Inventory.visible = false
 
 
 func _unhandled_input(event):
@@ -25,6 +26,7 @@ func _on_Keybindings_pressed():
 	"""
 	$Background/Keybindings.visible = true
 	$Background/Gameplay.visible = false
+	$Background/Inventory.visible = false
 
 
 func _on_Gameplay_pressed():
@@ -32,4 +34,11 @@ func _on_Gameplay_pressed():
 		Keybindings node.
 	"""
 	$Background/Gameplay.visible = true
+	$Background/Keybindings.visible = false
+	$Background/Inventory.visible = false
+
+
+func _on_Inventory_pressed():
+	$Background/Inventory.visible = true
+	$Background/Gameplay.visible = false
 	$Background/Keybindings.visible = false

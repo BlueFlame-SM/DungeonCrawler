@@ -17,9 +17,9 @@ func enable_styx():
 		for child in $River_collision.get_children():
 			child.disabled = false
 	Player.can_move = true
-#	TODO ix this
-	if $Enemy:
-		$Enemy/Range/CollisionShape2D.disabled = false
+#	if GlobalVars.level_type == "boss":
+#		get_child(6).get_child(2).get_child(0).disabled = false
+#		get_child(6).get_child(0).get_child(0).disabled = false
 	if GlobalVars.level_type == "start":
 		GlobalVars.reset()
 		GlobalVars.level_counter = 1
@@ -33,15 +33,18 @@ func _ready():
 #	Connect the signal from GlobalVars to function
 	GlobalVars.connect("challenge_down", self, "_on_challenge_down")
 #	Depending on level type, spawn appropriate instances
-	if GlobalVars.level_type == "boss":
+	if GlobalVars.level_type in "boss":
 		spawn_enemies()
+#		get_child(6).get_child(2).get_child(0).disabled = true
+#		get_child(6).get_child(0).get_child(0).disabled = true
+
 	elif GlobalVars.level_type == "loot":
 		spawn_chests()
 #	Set the global player at the start position near the entering gate
 	Player.position = $PlayerSpawn.position
 #	Wait a second to enable styx collision box
 	timer.connect("timeout",self,"enable_styx")
-	timer.wait_time = 1
+	timer.wait_time = 0.8
 	timer.one_shot = true
 	add_child(timer)
 	timer.start()

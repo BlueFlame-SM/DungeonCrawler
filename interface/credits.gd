@@ -78,6 +78,9 @@ var credits = [
 
 
 func _ready():
+	Player.hide()
+	Player.get_child(4).get_child(1).hide()
+	Gui.get_child(0).hide()
 	titleTimer = Timer.new()
 	add_child(titleTimer)
 	titleTimer.connect("timeout", self, "_on_timeout")
@@ -89,27 +92,27 @@ func _ready():
 
 func _process(delta):
 	var scroll_speed = base_speed * delta
-	
+
 	if section_next:
 		section_timer += delta * speed_up_multiplier if speed_up else delta
 		if section_timer >= section_time:
 			section_timer -= section_time
-			
+
 			if credits.size() > 0:
 				started = true
 				section = credits.pop_front()
 				curr_line = 0
 				add_line()
-	
+
 	else:
 		line_timer += delta * speed_up_multiplier if speed_up else delta
 		if line_timer >= line_time:
 			line_timer -= line_time
 			add_line()
-	
+
 	if speed_up:
 		scroll_speed *= speed_up_multiplier
-	
+
 	if lines.size() > 0:
 		for l in lines:
 			l.rect_position.y -= scroll_speed
@@ -134,7 +137,7 @@ func add_line():
 	if curr_line == 0:
 		new_line.add_color_override("font_color", title_color)
 	$CreditsContainer.add_child(new_line)
-	
+
 	if section.size() > 0:
 		curr_line += 1
 		section_next = false
@@ -149,8 +152,8 @@ func _unhandled_input(event):
 		speed_up = true
 	if event.is_action_released("ui_down") and !event.is_echo():
 		speed_up = false
-		
-		
+
+
 func _on_timeout():
 	tween.interpolate_property(messageLabel, "modulate", Color(1, 1, 1, 1), Color(1, 1, 1, 0), 0.6, tween.TRANS_LINEAR, tween.EASE_IN)
 	tween.start()
