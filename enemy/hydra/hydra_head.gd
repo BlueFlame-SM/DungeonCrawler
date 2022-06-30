@@ -1,4 +1,3 @@
-
 """ 
 	Enemy script for a hydra head. Allows a head to die, patrol, fire, and chase the player. 
 	Use Timers to restore the default animation after an attack or hurt animation.

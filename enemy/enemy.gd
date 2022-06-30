@@ -26,7 +26,7 @@ onready var hitbox = $Hitbox
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	self._set_perm_speed(1)
+	self._set_perm_speed(4)
 	screen_size = get_viewport_rect().size
 	"""Kan pas met nieuwe tileset, laten staan!!!"""
 	yield(get_tree(), "idle_frame")
