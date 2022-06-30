@@ -1,12 +1,12 @@
-""" 
-  Enemy script for Boss Lion. Allows the Lion to Patrol, Chase, Attack, be Knocked back, and 
+"""
+  Enemy script for Boss Lion. Allows the Lion to Patrol, Chase, Attack, be Knocked back, and
   Die.
-  Time is time between the attacks. Velocity is the current direction the Lion is moving. 
-  Knockback is the current knockback of the Lion (direction which it is being knocked back). 
-  Current_direction saves which way the animation is currently facing, animation cooldown 
-  is used to ensure the attack animations play in full. Timers are used to restore the 
-  default animation after an attack or hurt animition has played. Attack_counter 
-  states if an enemy is allowed to attack. 
+  Time is time between the attacks. Velocity is the current direction the Lion is moving.
+  Knockback is the current knockback of the Lion (direction which it is being knocked back).
+  Current_direction saves which way the animation is currently facing, animation cooldown
+  is used to ensure the attack animations play in full. Timers are used to restore the
+  default animation after an attack or hurt animition has played. Attack_counter
+  states if an enemy is allowed to attack.
 """
 
 extends "res://character/character.gd"
@@ -39,12 +39,11 @@ func _ready():
 	self._set_perm_damage(4)
 
 	screen_size = get_viewport_rect().size
-	
 	$AnimatedSprite.animation = "default"
 
 
 func _physics_process(delta):
-	""" For every delta, choose the action dependend on the current state and 
+	""" For every delta, choose the action dependend on the current state and
 		set the animation sprite in the direction the Lion is currently moving.
 	"""
 	choose_action()
@@ -217,4 +216,3 @@ func _on_Timer_anim_hurt_timeout():
 	timer_hurt.stop()
 	$AnimatedSprite.animation = "default"
 	animation_cooldown = false
-	
