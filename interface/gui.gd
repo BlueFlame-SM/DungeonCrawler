@@ -10,8 +10,10 @@ onready var tween = $MarginContainer/Tween
 
 var animatedHealth = 0
 
+onready var initialize = true
 
-func _ready():
+
+func ready():
 	"""
 	Set initial maximum and current value of health bar
 	"""
@@ -22,11 +24,13 @@ func _ready():
 	animatedHealth = bar.value
 	Player.connect("healthChanged", self, "_on_Player_healthChanged")
 
-
 func _process(delta):
 	"""
 	Update text label and bar on interface.
 	"""
+	if initialize == true:
+		initialize = false
+		ready()
 	if bar.max_value != Player.max_health:
 		bar.max_value = Player.max_health
 	var roundValue = round(animatedHealth)

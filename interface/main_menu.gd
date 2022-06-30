@@ -1,12 +1,18 @@
 extends Control
 
+onready var initialize = true
 
-func _ready():
+func ready():
 	"""
 	Hide GUI and Player on main menu and set focus on top button
 	"""
 	Player.hide()
 	$MarginContainer/VBoxContainer/Buttons/NewGame.grab_focus()
+
+func _process(delta):
+	if initialize == true:
+		initialize = false
+		ready()
 
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel"):
