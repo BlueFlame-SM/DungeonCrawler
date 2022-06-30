@@ -8,11 +8,6 @@ var screen_size
 var velocity = Vector2()
 var knockback = Vector2.ZERO
 
-var path: Array = []
-var levelNavigation: Navigation2D = null
-#onready var player = get_node("../Player")
-var player = Player
-
 var current_direction = "forward"
 var animation_cooldown = false
 
@@ -28,22 +23,19 @@ onready var timer_knockback = $TimerKnockback
 func _ready():
 	# Set stats of the Lion.
 	self._set_perm_speed(4)
-	self._set_temp_speed(2)
-	self._set_max_health(20)
-	self._set_health(20)
+	self._set_max_health(30)
+	self._set_health(30)
 	self._set_perm_damage(4)
 
 	screen_size = get_viewport_rect().size
-	"""Kan pas met nieuwe tileset, laten staan!!!"""
-	yield(get_tree(), "idle_frame")
-	var tree = get_tree()
-	if tree.has_group("LevelNavigation"):
-		levelNavigation = tree.get_nodes_in_group("LevelNavigation")[0]
-	if tree.has_group("Player"):
-		player = tree.get_nodes_in_group("Player")[0]
+	
 	$AnimatedSprite.animation = "default"
 
+
 func _physics_process(delta):
+	""" For every delta, choose the action dependend on the current state and 
+		set the animation sprite in the direction the Lion is currently moving.
+	"""
 	choose_action()
 	velocity = move_and_slide(move_in_direction(velocity))
 	position.x = clamp(position.x, 0, screen_size.x)
@@ -97,14 +89,14 @@ func _physics_process(delta):
 		states.DEAD:
 			time -= delta
 
-"""
-Chooses the right state at the right moment:
-- Dead: the sprite flickers and then gets removed from the queue.
-- Patrol: the sprite waits for the player to enter the range.
-- Attack: Sprite doesn't move when attacking, gets thrown back.
-- Knockback: Enemy gets knocked back, then goes back to chasing.
-"""
 func choose_action():
+	""" Chooses the right state at the right moment:
+		- Dead: the sprite flickers and then gets removed from the queue.
+		- Patrol: the sprite waits for the player to enter the range.
+		- Attack: Sprite doesn't move when attacking, gets thrown back.
+		- Knockback: Enemy gets knocked back, then goes back to chasing.
+		- Chase: Navigate to the player.
+	"""
 	match state:
 		states.DEAD:
 			$AnimatedSprite.animation = "on_hit"
@@ -123,10 +115,8 @@ func choose_action():
 			if attack_counter == 0:
 				_damage_player()
 		states.CHASE:
-			""" Weer tileset"""
-			if player and levelNavigation:
-				generate_path()
-				navigate()
+			velocity = position.direction_to(Player.position) * (_get_temp_speed() + _get_temp_speed())
+			velocity = move_and_slide(velocity)
 		states.KNOCKBACK:
 			if $TimerKnockback.time_left <= 0:
 				velocity = Vector2.ZERO
@@ -134,53 +124,37 @@ func choose_action():
 			_knockback_Enemy()
 
 func _knockback_Enemy():
+	""" Knock the enemy away from the current player position. """
 	var player_direction = (Player.get_position() - self.position).normalized()
 	velocity = position.direction_to(Player.position) * -200
 
 func _on_TimerKnockback_timeout():
+	""" On timout, set the state back to chase to stop the knockback. """
 	state = states.CHASE
 
 # If the player comes in the detection range, the enemy starts chasing the player.
 func _on_Range_body_entered(body):
+	""" Start chasing the player. """
 	state = states.CHASE
 
-func _on_Player_hit(amount):
-	do_damage(amount)
 
-"""
-Functies voor pathfinding zodat het niet achter bosjes blijft zitten, kan pas met nieuwe tileset.
-"""
-func navigate():	# Define the next position to go to
-	if path.size() > 0:
-		velocity = global_position.direction_to(path[1]) * (_get_temp_speed() + _get_temp_speed())
-
-	# If the destination is reached, remove this path from the array
-	if global_position == path[0]:
-		path.pop_front()
-
-
-# Generates a path to the player.
-func generate_path():
-	if levelNavigation != null and player != null:
-		path = levelNavigation.get_simple_path(global_position, player.global_position, false)
-
-
-# When the player enters Area2D named Hitbox, the enemy will change to ATTACK mode.
 func _on_Hitbox_body_entered(body):
+	""" When the player enters Area2D named Hitbox, the enemy will change to ATTACK mode. """
 	state = states.ATTACK
-#	print("attack")
 
 
-# When the player exits Area2D named Hitbox, the enemy will change to CHASE mode.
+# 
 func _on_Hitbox_body_exited(body):
+	""" When the player exits Area2D named Hitbox, and the enemy is currently not 
+		knocked back, the enemy will change to CHASE mode. """
 	if $TimerKnockback.time_left <= 0:
 		state = states.CHASE
 
-"""
-Gives damage to the player equal to the damage stat of the enemy
-and starts a 1 second timer as cooldown for attack.
-"""
 func _damage_player():
+	""" Gives damage to the player equal to the damage stat of the enemy
+		and starts a 1 second timer as cooldown for attack. Set the animation 
+		cooldown to true to ensure the animation plays in full.
+	"""
 	Player.do_damage(_get_temp_damage() + _get_perm_damage())
 	animation_cooldown = true
 	if current_direction == "left":
@@ -197,14 +171,17 @@ func _damage_player():
 	timer.start()
 	attack_counter = 1
 
+
 func _on_Timer_timeout():
+	""" Set attack counter to 0 to allow the enemy to attack again. """
 	timer.stop()
 	attack_counter = 0
 
 
 func _on_Enemy_healthChanged(newValue, dif):
 	""" Once a enemy is hit, start playing the hurt animation and
-		start the timer for the hurt animation.
+		start the timer for the hurt animation. Set the animation cooldown 
+		to true to ensure the animation plays in full.
 	"""
 	if timer_hurt != null:
 		if current_direction == "left" or current_direction == "right":
@@ -229,3 +206,4 @@ func _on_Timer_anim_hurt_timeout():
 	timer_hurt.stop()
 	$AnimatedSprite.animation = "default"
 	animation_cooldown = false
+	

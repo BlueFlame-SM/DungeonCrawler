@@ -162,7 +162,6 @@ The player then dies.
 func _on_River_collision_body_entered(body):
 	if body.name == "Player":
 		river = true
-#		Player.do_damage(Player.health)
 
 """
 This function is called when a challenge to the player is overcome. Possible
@@ -171,14 +170,14 @@ the challenge counter is 0 and the function or level_completed is called.
 """
 func _on_challenge_down(type, pos):
 	challenge_counter -= 1
+	var dict_rarity = item_rarity()
+	if type == "enemy":
+		randomize()
+		var num = rng.randi_range(1, 24)
+		spawn_reward(random_item(dict_rarity, num), pos)
 	if challenge_counter <= 0:
 #		Because of this code, be wary of spawning both a chest and enemy at once
 #	Needs to be rewritten to support this implementation.
-		var dict_rarity = item_rarity()
-		if type == "enemy":
-			randomize()
-			var num = rng.randi_range(1, 24)
-			spawn_reward(random_item(dict_rarity, num), pos)
 		if type == "hydra":
 			pos = Vector2(Player.position.x, Player.position.y - 5)
 			randomize()
@@ -188,6 +187,7 @@ func _on_challenge_down(type, pos):
 			pos = Vector2(Player.position.x, Player.position.y - 5)
 			spawn_reward("Lion_hide", pos)
 		if type == "cerberus":
+			$DeadCerberus.visible = true
 #			We should spawn something, maybe play a sound?
 			pass
 		level_completed()

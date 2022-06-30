@@ -2,11 +2,8 @@ extends Bullet
 
 
 func _ready():
-	speed = 5
-	
 	# Rotate bullet scene so that is points to the player.
-	var start_dir = Vector2(1, 0)
-	var rotation = rad2deg(acos(velocity.normalized().dot(start_dir)))
+	var rotation = rad2deg(acos(velocity.normalized().dot(Vector2.RIGHT)))
 	rotation_degrees = rotation + 180
 
 
