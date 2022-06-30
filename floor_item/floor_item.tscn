@@ -114,7 +114,7 @@ script = ExtResource( 1 )
 item_name = "slime_potion"
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( -7, 9 )
+position = Vector2( -7, 8 )
 scale = Vector2( 0.4, 0.3625 )
 frames = SubResource( 2 )
 animation = "Max_speed_potion"

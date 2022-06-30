@@ -27,7 +27,7 @@ func attack(direction: Vector2) -> void:
 	"""
 	When a player attacks, the weapon collision box is rotated in the direction of
 	the player. The weapon collision box is also enabled.
-	
+
 	direction: The direction in which the player is standing.
 	"""
 	var new_angle = atan2(direction.y, direction.x)

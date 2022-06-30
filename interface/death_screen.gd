@@ -21,7 +21,8 @@ func _ready():
 	Player.get_child(4).get_child(1).hide()
 	Gui.get_child(0).hide()
 	$MarginContainer2/VBoxContainer/Respawn.grab_focus()
-	
+	GlobalVars.level_counter = 1
+	GlobalVars.reset()
 	# Connect the anim_finished signal to determine when the animation
 	# has finished.
 	LevelSwitcher.connect("anim_finished",self,"button_disable")

@@ -2,11 +2,11 @@
 	Script that handles action with slots.
 	Generates different slot textures for when an item is in it and when not.
 	Able to initialise items into slots and move items between slots.
-	
+
 	Global variables:
 		define the possible textures of the slots.
 		keep track of the slots and if it contains an item.
-		
+
 	Source: https://github.com/arkeve/Godot-Inventory-System
 """
 
@@ -36,7 +36,7 @@ func _ready():
 	empty_style.texture = empty_tex
 	refresh_style()
 #
-# 
+#
 func refresh_style():
 	"""
 	If an item is in a slot, the slot is highligthed.
@@ -58,7 +58,7 @@ func refresh_style():
 			hint_tooltip = str(item.item_name) + ", \nMax HP:" + str(JsonData.item_data[item.item_name]["Max_HP"]) + ", \nSpeed:" + str(JsonData.item_data[item.item_name]["Speed"])  + ", \nDamage:" + str(JsonData.item_data[item.item_name]["Damage"]) + ", \nAttack speed:" + str(JsonData.item_data[item.item_name]["Attack_speed"])
 		if category == "lion_hide":
 			hint_tooltip = str(item.item_name) + ", \nDefence: +2"
-			
+
 
 func pickFromSlot():
 	"""

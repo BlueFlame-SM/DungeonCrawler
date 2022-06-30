@@ -55,6 +55,8 @@ func _ready():
 		elif GlobalVars.level_counter %13 == 0:
 			gate_type = "endboss"
 			next_scene_name = "res://levels/LevelCerberus.tscn"
+#		else:
+#			next_scene_name = det_gate_type()
 	else:
 		next_scene_name = det_gate_type()
 

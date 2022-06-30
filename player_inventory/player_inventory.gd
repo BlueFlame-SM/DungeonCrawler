@@ -14,7 +14,7 @@ var inventory = {
 	0: ['Iron_sword', 1],
 	1: ["Broom", 1],
 	2: ["Max_speed_potion", 10],
-	3: ["Speed_potion", 10],
+	3: ["Max_strength_potion", 10],
 	4: ["Nectar", 1]
 }
 
@@ -49,7 +49,7 @@ func reset_inventory():
 	0: ['Iron_sword', 1],
 	1: ["Broom", 1],
 	2: ["Max_speed_potion", 10],
-	3: ["Speed_potion", 10],
+	3: ["Max_strength_potion", 10],
 	4: ["Nectar", 5]
 	}
 	Player.find_node("Inventory").initialize_inventory()

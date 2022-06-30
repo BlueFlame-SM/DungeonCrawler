@@ -18,7 +18,6 @@ func enable_styx():
 			child.disabled = false
 	Player.can_move = true
 	if GlobalVars.level_type == "start":
-		GlobalVars.reset()
 		GlobalVars.level_counter = 1
 	elif GlobalVars.level_type in ["loot", "boss", "preboss", "bigboss", "endboss"]:
 		GlobalVars.level_counter += 1

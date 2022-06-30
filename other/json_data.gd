@@ -13,7 +13,7 @@ var item_data: Dictionary = {
 		"Poison": 0,
 		"Bleed": 0,
 		"Slow_enemy": 0,
-		"Speed_change": 5,
+		"Speed_change": 2,
 		"Stun_chance": 0,	#Percentage chance for enemies to get stunned.
 		"StackSize": 1,
 		"Description": "Used for sweeping both dust and enemies."
@@ -305,7 +305,7 @@ var item_data: Dictionary = {
 		"Speed": +0,
 		"Damage": +1,
 		"Attack_speed": +0,
-		"StackSize": 1,
+		"StackSize": 10,
 		"Description": "."
 	},
 	"Max_attack_speed_potion": {
