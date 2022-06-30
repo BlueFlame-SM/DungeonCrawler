@@ -106,6 +106,7 @@ script = ExtResource( 2 )
 [node name="GateCollision" type="CollisionShape2D" parent="Gate_right"]
 position = Vector2( 58, 60 )
 shape = SubResource( 1 )
+disabled = true
 
 [node name="BossOpen" type="TileMap" parent="Gate_right"]
 visible = false
