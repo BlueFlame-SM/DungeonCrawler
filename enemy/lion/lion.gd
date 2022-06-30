@@ -28,12 +28,12 @@ func _ready():
 	self._set_perm_damage(4)
 
 	screen_size = get_viewport_rect().size
-	
+
 	$AnimatedSprite.animation = "default"
 
 
 func _physics_process(delta):
-	""" For every delta, choose the action dependend on the current state and 
+	""" For every delta, choose the action dependend on the current state and
 		set the animation sprite in the direction the Lion is currently moving.
 	"""
 	choose_action()
@@ -143,16 +143,16 @@ func _on_Hitbox_body_entered(body):
 	state = states.ATTACK
 
 
-# 
+#
 func _on_Hitbox_body_exited(body):
-	""" When the player exits Area2D named Hitbox, and the enemy is currently not 
+	""" When the player exits Area2D named Hitbox, and the enemy is currently not
 		knocked back, the enemy will change to CHASE mode. """
 	if $TimerKnockback.time_left <= 0:
 		state = states.CHASE
 
 func _damage_player():
 	""" Gives damage to the player equal to the damage stat of the enemy
-		and starts a 1 second timer as cooldown for attack. Set the animation 
+		and starts a 1 second timer as cooldown for attack. Set the animation
 		cooldown to true to ensure the animation plays in full.
 	"""
 	Player.do_damage(_get_temp_damage() + _get_perm_damage())
@@ -180,7 +180,7 @@ func _on_Timer_timeout():
 
 func _on_Enemy_healthChanged(newValue, dif):
 	""" Once a enemy is hit, start playing the hurt animation and
-		start the timer for the hurt animation. Set the animation cooldown 
+		start the timer for the hurt animation. Set the animation cooldown
 		to true to ensure the animation plays in full.
 	"""
 	if timer_hurt != null:
@@ -206,4 +206,4 @@ func _on_Timer_anim_hurt_timeout():
 	timer_hurt.stop()
 	$AnimatedSprite.animation = "default"
 	animation_cooldown = false
-	
+

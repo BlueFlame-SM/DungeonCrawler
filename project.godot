@@ -45,10 +45,6 @@ JsonData="*res://other/json_data.gd"
 Gui="*res://interface/gui.tscn"
 GlobalAudioStreamPlayer="*res://background_music/AudioStreamPlayer.tscn"
 Player="*res://player/player.tscn"
-PluginSettings="*res://addons/github-integration/scripts/PluginSettings.gd"
-IconLoaderGithub="*res://addons/github-integration/scripts/IconLoaderGithub.gd"
-UserData="*res://addons/github-integration/scripts/user_data.gd"
-RestHandler="*res://addons/github-integration/scenes/RestHandler.tscn"
 
 [display]
 
