@@ -237,19 +237,16 @@ custom_styles/panel = SubResource( 1 )
 script = ExtResource( 2 )
 
 [node name="Button" type="Button" parent="."]
-margin_left = 686.0
+margin_left = 685.0
 margin_top = 557.0
-margin_right = 706.0
+margin_right = 705.0
 margin_bottom = 577.0
 mouse_default_cursor_shape = 2
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="TextureRect" type="TextureRect" parent="Button"]
-margin_left = 1.0
+margin_left = 3.0
 margin_top = 2.0
-margin_right = 1701.0
+margin_right = 1303.0
 margin_bottom = 1602.0
 rect_scale = Vector2( 0.01, 0.01 )
 texture = ExtResource( 1 )
