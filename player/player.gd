@@ -24,8 +24,6 @@ func _ready():
 
 
 func playAnimations(velocity: Vector2, delta: float) -> void:
-	print("speed", self.temp_speed)
-	print("DMG", self.temp_damage)
 	# Only move if attack animation is not playing
 	if !playAttack:
 		if velocity.length() > 0:
