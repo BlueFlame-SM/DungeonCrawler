@@ -3,11 +3,11 @@
 	Initialises inventory, hotbar and slots.
 	Handles all actions within the inventory and hotbar.
 	Items can be moved and used.
-
+	
 	Global variables:
 		Keeps track of wheter a slot is used,
 		an item is hold and/or a potion is in use.
-
+		
 	Source: https://github.com/arkeve/Godot-Inventory-System
 """
 

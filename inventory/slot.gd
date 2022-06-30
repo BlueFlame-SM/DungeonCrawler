@@ -35,8 +35,7 @@ func _ready():
 	default_style.texture = default_tex
 	empty_style.texture = empty_tex
 	refresh_style()
-#
-#
+
 func refresh_style():
 	"""
 	If an item is in a slot, the slot is highligthed.
