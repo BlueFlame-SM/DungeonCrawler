@@ -1,4 +1,8 @@
-# Source: https://github.com/arkeve/Godot-Inventory-System
+"""
+	This implements the inventory of the player.
+	It is a list of items.
+	Source: https://github.com/arkeve/Godot-Inventory-System
+"""
 
 extends Node
 
@@ -9,7 +13,7 @@ const ITEM = preload("res://inventory_item/inventory_item.gd")
 const NUM_INVENTORY_SLOTS = 20
 const NUM_HOTBAR_SLOTS = 5
 
-# slot index: [name, quantity]
+
 var inventory = {
 	0: ['Iron_sword', 1],
 	1: ["Broom", 1],
@@ -19,6 +23,10 @@ var inventory = {
 }
 
 func add_item(item_name, item_quantity):
+	"""
+		Adds an item to the inventory.
+		If the item already exists, it will add more to it.
+	"""
 	for item in inventory:
 		if inventory[item][0] == item_name:
 			var stack_size = int(JsonData.item_data[item_name]["StackSize"])
@@ -44,6 +52,9 @@ func remove_item(slot):
 	inventory.erase(slot.slot_index)
 
 func reset_inventory():
+	"""
+		Resets the inventory to the default values.
+	"""
 	inventory.clear()
 	inventory = {
 	0: ['Iron_sword', 1],
@@ -56,6 +67,9 @@ func reset_inventory():
 
 
 func add_item_quantity(slot, quantity):
+	"""
+		Adds a quantity of an item to the inventory.
+	"""
 	if slot.slot_index in inventory:
 		if inventory[slot.slot_index][1] == 1 and quantity == -1:
 			remove_item(slot)

@@ -1,3 +1,9 @@
+"""
+	Script for the enemy.
+	This script is used to control the enemy. 
+	It is used to move the enemy and to detect if the enemy is hit by the player.		
+"""
+
 # https://www.youtube.com/watch?v=gFlGMLmg8yg
 extends "res://character/character.gd"
 

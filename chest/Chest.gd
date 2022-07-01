@@ -1,5 +1,5 @@
 """
-	Script voor the chest.
+	Script for the chest.
 	Functions to detect wheter a player is close enough to the chest to open it.
 	When the chest is opened items are spwaned and thrown around the chest in a 
 	circle.
