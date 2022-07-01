@@ -31,5 +31,8 @@ func _physics_process(delta):
 
 
 func pick_up_item(body):
+	"""
+	Function to pick up an item.
+	"""
 	player = body
 	picked_up = true

@@ -43,9 +43,15 @@ func add_item(item_name, item_quantity):
 			return
 
 func add_item_to_empty_slot(item, slot):
+	"""
+	Adds item to empty slot.
+	"""
 	inventory[slot.slot_index] = [item.item_name, item.item_quantity]
 
 func remove_item(slot):
+	"""
+	Removes item from empty slot.
+	"""
 	inventory.erase(slot.slot_index)
 
 func reset_inventory():

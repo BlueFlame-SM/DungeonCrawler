@@ -1,15 +1,15 @@
 """
 	Script for the chest.
 	Functions to detect wheter a player is close enough to the chest to open it.
-	When the chest is opened items are spwaned and thrown around the chest in a 
+	When the chest is opened items are spwaned and thrown around the chest in a
 	circle.
-	
+
 	Global variables:
 		area_entered: false when player is outside area chest, true when inside.
 		opened_before: false when chest is opened before, true when not.
 		items_chest: list of items inside of the chest.
 		items_options: all possible items to be spawned out of the chest.
-		
+
 """
 
 extends Area2D

@@ -1,3 +1,7 @@
+"""
+	Emits sound when
+"""
+
 extends AudioStreamPlayer
 
 func _ready():

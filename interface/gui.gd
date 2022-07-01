@@ -33,7 +33,7 @@ func _ready():
 	bar.value = playerMaxHealth
 	numberLabel.text = str(bar.value)
 	animatedHealth = bar.value
-	
+
 	# Connect the healthChanged signal to determine when the health has changed.
 	Player.connect("healthChanged", self, "_on_Player_healthChanged")
 
@@ -41,13 +41,13 @@ func _ready():
 func _process(delta):
 	"""
 	Update text label and bar on interface.
-	
+
 	delta: The duration of one tick.
 	"""
 	# Update the maximum health value if that has changed.
 	if bar.max_value != Player.max_health:
 		bar.max_value = Player.max_health
-		
+
 	# Update the bar value.
 	var roundValue = round(animatedHealth)
 	numberLabel.text = str(roundValue)
@@ -58,7 +58,7 @@ func update_health(newValue):
 	"""
 	Use animation to update value, so that bar and text increases/decrease
 	gradually.
-	
+
 	newValue: The new value of the health bar.
 	"""
 	tween.interpolate_property(self, "animatedHealth", animatedHealth, newValue, 0.6, Tween.TRANS_LINEAR, Tween.EASE_IN)

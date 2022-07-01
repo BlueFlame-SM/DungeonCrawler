@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://enemy_range/enemy_range.tscn" type="PackedScene" id=1]
+[ext_resource path="res://character/enemy_range.tscn" type="PackedScene" id=1]
 [ext_resource path="res://gate/gate.tscn" type="PackedScene" id=2]
 [ext_resource path="res://levels/Level.gd" type="Script" id=3]
 [ext_resource path="res://tilemap/Gate_Loot_Icon.png" type="Texture" id=4]

@@ -1,9 +1,9 @@
 """
-	This program implements the gate that is used to crossover levels.
-	It is a simple crossover gate that takes two levels and returns a new level.
-	The new level is a combination of the two input levels.
-	The new level is created by randomly choosing a point in the level and then
-	copying the contents of the two levels to the new level.
+	Script for the gates in levels. When a gate gets instances, the next level that this
+	gate leads to is determined. For basic loot/enemy levels the next level gets determined
+	randomly. Every five levels there is a boss level following a preboss level. This is not random.
+	When gates open on completion of the leven=l, the player can collide with them and they visually
+	appear open.
 
 	Source: https://www.youtube.com/watch?v=XHbrKdsZrxY&ab_channel=jmbiv
 """
@@ -91,5 +91,9 @@ func _on_Gate_body_entered(body):
 
 
 func _on_gates_open():
+	"""
+		This function gets called when the level is completed. The collision shapes then enable
+		so the player can engage with them.
+	"""
 	$GateCollision.disabled = 0
 

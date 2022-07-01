@@ -17,8 +17,8 @@ var is_paused = false setget set_paused
 
 func _unhandled_input(event):
 	"""
-	If ui_cancel is pressed, reverse the paused state. 
-	
+	If ui_cancel is pressed, reverse the paused state.
+
 	event: The unhandled input event.
 	"""
 	if event.is_action_pressed("ui_cancel"):
@@ -27,9 +27,9 @@ func _unhandled_input(event):
 
 func set_paused(value):
 	"""
-	Set the game pause state and visibility of the pause screen 
+	Set the game pause state and visibility of the pause screen
 	according to the value.
-	
+
 	value: The new value of the is_paused variable.
 	"""
 	is_paused = value

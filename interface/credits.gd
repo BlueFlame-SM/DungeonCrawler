@@ -58,52 +58,54 @@ onready var messageLabel = $CreditsContainer/Message
 onready var tween = $Tween
 
 var credits = [
-	[
-		"A game by Team STYX"
-	],[
-		"Programming",
-		"Misha Oberski",
-		"Margot Pauelsen",
-		"Jasper Bruin",
-		"Marijn Versluis",
-		"Luuk den Hartog",
-		"Tika van Bennekum",
-		"Timo Post",
-		"Lisanne Aerts",
-		"Nora Silven",
-		"Kelly de Dood"
-	],[
-		"Art",
-		"Nina The",
-		"Kelly de Dood",
-		"Nora Silven"
-	],[
-		"Music",
-		"Musician Name"
-	],[
-		"Testers",
-		"Misha Oberski",
-		"Margot Pauelsen",
-		"Jasper Bruin",
-		"Marijn Versluis",
-		"Luuk den Hartog",
-		"Tika van Bennekum",
-		"Timo Post",
-		"Lisanne Aerts",
-		"Nora Silven",
-		"Kelly de Dood"
-	],[
-		"Tools used",
-		"Developed with Godot Engine",
-		"https://godotengine.org/license",
-		"",
-		"Art created with My Favourite Art Program",
-		"https://myfavouriteartprogram.com"
-	],[
-		"Special thanks",
-		"dr. Ana Oprescu",
-		"Kyrian Maat MSc"
-	]
+ [
+  "A game by Team STYX"
+ ],[
+  "Programming",
+  "Misha Oberski",
+  "Margot Pauëlsen",
+  "Jasper Bruin",
+  "Marijn Versluis",
+  "Luuk den Hartog",
+  "Tika van Bennekum",
+  "Timo Post",
+  "Lisanne Aerts",
+  "Nora Silven",
+  "Kelly de Dood"
+ ],[
+  "Art",
+  "Lead art director: Nina The",
+  "",
+  "Nina The",
+  "Kelly de Dood",
+  "Nora Silven"
+ ],[
+  "Testers",
+  "Misha Oberski",
+  "Margot Pauëlsen",
+  "Jasper Bruin",
+  "Marijn Versluis",
+  "Luuk den Hartog",
+  "Tika van Bennekum",
+  "Timo Post",
+  "Lisanne Aerts",
+  "Nora Silven",
+  "Kelly de Dood",
+  "Nina The",
+  "Kyrian Maat",
+  "Members of Study Association via (Vereniging Informatiewetenschappen Amsterdam)"
+ ],[
+  "Tools",
+  "Developed with Godot Engine",
+  "https://godotengine.org/license",
+ ],[
+  "Special thanks to:",
+  "",
+  "dr. Ana Oprescu",
+  "Kyrian Maat MSc",
+  "",
+  "All our testers"
+ ]
 ]
 
 
@@ -127,26 +129,26 @@ func _process(delta):
 	If there are credits left to roll, the next line is loaded. The speed is
 	adjusted when the player presses the down arrow. If the credits are done,
 	the screen finishes.
-	
+
 	delta: The duration of one tick.
 	"""
 	var scroll_speed = base_speed * delta
-	
+
 	if section_next:
 		# Update the section timer.
 		section_timer += delta * speed_up_multiplier if speed_up else delta
-	
+
 		# If the section is done, reset the section timer.
 		if section_timer >= section_time:
 			section_timer -= section_time
-			
+
 			# If there are still credits left, the next section is started.
 			if credits.size() > 0:
 				started = true
 				section = credits.pop_front()
 				curr_line = 0
 				add_line()
-	
+
 	else:
 		# Update the line timer.
 		line_timer += delta * speed_up_multiplier if speed_up else delta
@@ -155,11 +157,11 @@ func _process(delta):
 		if line_timer >= line_time:
 			line_timer -= line_time
 			add_line()
-	
+
 	# If the user presses the down arrow, the speed is increased.
 	if speed_up:
 		scroll_speed *= speed_up_multiplier
-	
+
 	# The line is removed when it is done rolling.
 	if lines.size() > 0:
 		for l in lines:
@@ -194,7 +196,7 @@ func add_line():
 	if curr_line == 0:
 		new_line.add_color_override("font_color", title_color)
 	$CreditsContainer.add_child(new_line)
-	
+
 	# If the section is not done, update number of lines.
 	if section.size() > 0:
 		curr_line += 1
@@ -206,7 +208,7 @@ func add_line():
 func _unhandled_input(event):
 	"""
 	When the player presses the down arrow, the rolling credits speed up.
-	
+
 	event: The unhandled input event.
 	"""
 	# If the player presses ESC, the credits finish.
@@ -218,8 +220,8 @@ func _unhandled_input(event):
 	# If the player releases the down arrow, the speedup disappears.
 	if event.is_action_released("ui_down") and !event.is_echo():
 		speed_up = false
-		
-		
+
+
 func _on_timeout():
 	"""
 	When the message was shown for long enough, it is faded out.

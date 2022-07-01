@@ -1,8 +1,7 @@
 """
-	This program creates random levels and bosses so the player can play the game.
-	The levels are stored in a list of lists.
-	The bosses are stored in a list of lists.
-
+	This program handles the logic within a level. This includes the Styx giving damage to the player,
+	the spawning of variable enemies (also variable amount), spawning chests, spawning rewards when
+	enemies are killed and keepnig score of when the level is completed and handling accordingly.
 """
 
 extends Node2D
@@ -19,7 +18,8 @@ func enable_styx():
 		To prevent players from getting damage from the styx when a new level starts,
 		due to the styx loading earlier than the player getting repositioned at the
 		start gate, the styx only does damage when this function is called. This function
-		is called after a timer. Also enables enemy. Rename function to more general
+		is called after a timer. This also ups the level counter. Therefore this function
+		should be renamed.
 	"""
 	if $River_collision:
 		for child in $River_collision.get_children():
@@ -66,6 +66,7 @@ func spawn_enemies():
 		Spawns either a range or normal enemy. Can be extended to other types.
 	"""
 	var amount = rng.randi_range(1, 4)
+	# Instance set amount of enemies
 	for i in amount:
 		var enemy_type
 		if rng.randf_range(0, 1) < 0.5:
@@ -196,6 +197,10 @@ func _on_challenge_down(type, pos):
 
 
 func level_completed():
+	"""
+		When the level is completed this sents a signal to the gate script to handle the enabling
+		of the gates. Then it makes the gates visually appear open.
+	"""
 	emit_signal("gates_open")
 	$LevelNavigation/Gates_open.visible = true
 

@@ -144,6 +144,9 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_AnimatedSprite_animation_finished():
+	"""
+		Stops animation attack.
+	"""
 	playAttack = false
 	weapon.disableHurtBox()
 
@@ -185,6 +188,9 @@ func _input(event):
 
 
 func _on_Player_healthChanged(newValue, dif):
+	"""
+		Function called to change health player.
+	"""
 	if dif < 0:
 		if Player.health <= 0:
 			Player.die()

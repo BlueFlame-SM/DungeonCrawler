@@ -1,3 +1,7 @@
+"""
+	Script for the hotbar.
+"""
+
 extends Node2D
 
 # Signal to update the hotbar.

@@ -1,8 +1,6 @@
 """
-	This implements a level switcher so players can switch levels.
-	It is a simple script that can be added to any level.
-	It will switch to the next level when the player reaches the end of the level.
-	It will also switch to the previous level when the player reaches the start of the level.
+	This script contains code for switching between levels and other types of
+	screen filling scenes.
 
 	Sources:
 		https://github.com/dirkk0/godot-scene-transition/blob/main/global/global.gd
@@ -29,7 +27,7 @@ func _ready():
 func goto_scene(path, dead=false):
 	"""
 		This function will switch to the scene specified by the path.
-		If dead is true, the scene will be switched to after the current scene has finished.
+		If dead is true, the animation should play a red fade ("die") instead of a black fade
 	"""
 	LevelSwitcher.followingScene = path
 	player.playback_speed = 1
@@ -43,7 +41,7 @@ func goto_scene(path, dead=false):
 func _deferred_goto_scene(path):
 	"""
 		This function will switch to the scene specified by the path.
-		It will be called after the current scene has finished.
+		It will be called after the animation has finished.
 	"""
 	# It is now safe to remove the current scene
 	currentScene.free()
@@ -67,15 +65,15 @@ func _deferred_goto_scene(path):
 func _on_AnimationPlayer_animation_finished(anim_name):
 	"""
 		This function is called when the animation has finished.
-		It will switch to the next scene if the current scene is the last one.
-		It will switch to the previous scene if the current scene is the first one.
+		It will then call the next function that will handle the remainder of the
+		necessary level switching.
 	"""
 	emit_signal("anim_finished")
 
 	if LevelSwitcher.followingScene != "":
 		call_deferred("_deferred_goto_scene", LevelSwitcher.followingScene)
 	LevelSwitcher.followingScene = ""
-
+	# This concerns the payer health bar
 	if GlobalVars.level_type == "start":
 		Gui.get_child(0).show()
 		Player.show()

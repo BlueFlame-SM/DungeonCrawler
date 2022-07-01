@@ -116,7 +116,7 @@ func _damage_player():
 	timer_attack.start()
 	timer_bite.start()
 	attack_counter = 1
-	
+
 	$AnimatedSprite.animation = "attack"
 
 	# Give the player 0.5 to dodge the attack, and if it is stil in range

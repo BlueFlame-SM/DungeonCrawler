@@ -34,14 +34,14 @@ func _ready():
 	parPos.y -= 80
 	parPos.x -= 40
 	offset = parPos
-	
+
 	# Set the correct values of the bar.
 	var bossMaxHealth = get_parent().max_health
 	bar.max_value = bossMaxHealth
 	bar.value = bossMaxHealth
 	numberLabel.text = str(bar.value)
 	animatedHealth = bar.value
-	
+
 	# Connect the healthChanged signal to determine when the health changes.
 	get_parent().connect("healthChanged", self, "_on_boss_healthChanged")
 
@@ -49,7 +49,7 @@ func _ready():
 func _process(delta):
 	"""
 	Update text label and bar on interface.
-	
+
 	delta: Time difference of a single tick.
 	"""
 	# Update the maximum value of the bar if it has changed.
@@ -61,7 +61,7 @@ func _process(delta):
 	parPos.y -= 80
 	parPos.x -= 40
 	offset = parPos
-	
+
 	# Set the new value of the health bar and the text next to it.
 	var roundValue = round(animatedHealth)
 	numberLabel.text = str(roundValue)
@@ -72,7 +72,7 @@ func update_health(newValue):
 	"""
 	Use animation to update value, so that bar and text increases/decrease
 	gradually.
-	
+
 	newValue: The new value of the health of the enemy.
 	"""
 	tween.interpolate_property(self, "animatedHealth", animatedHealth, newValue, 0.6, Tween.TRANS_LINEAR, Tween.EASE_IN)
@@ -83,7 +83,7 @@ func update_health(newValue):
 func _on_boss_healthChanged(newValue, dif):
 	"""
 	When the health of the enemy changes, update the healthbar.
-	
+
 	newValue: The new value of the enemy's health.
 	dif: The difference between the old and new health.
 	"""
