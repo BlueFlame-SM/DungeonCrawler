@@ -15,11 +15,8 @@ const NUM_HOTBAR_SLOTS = 5
 
 
 var inventory = {
-	0: ['Iron_sword', 1],
-	1: ["Broom", 1],
-	2: ["Max_speed_potion", 10],
-	3: ["Max_strength_potion", 10],
-	4: ["Nectar", 1]
+	0: ["Broom", 1],
+	1: ["Grape", 10],
 }
 
 func add_item(item_name, item_quantity):
@@ -57,11 +54,8 @@ func reset_inventory():
 	"""
 	inventory.clear()
 	inventory = {
-	0: ['Iron_sword', 1],
-	1: ["Broom", 1],
-	2: ["Max_speed_potion", 10],
-	3: ["Max_strength_potion", 10],
-	4: ["Nectar", 5]
+	0: ["Broom", 1],
+	1: ["Grape", 10],
 	}
 	Player.find_node("Inventory").initialize_inventory()
 

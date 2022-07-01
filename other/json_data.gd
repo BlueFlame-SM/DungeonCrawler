@@ -189,19 +189,19 @@ var item_data: Dictionary = {
 	"Grape": {
 		"ItemCategory": "health_potion",
 		"Rarity": 1,
-		"HP_healed": 5,
+		"HP_healed": 1,
 		"StackSize": 20,
 	},
 	"Apple": {
 		"ItemCategory": "health_potion",
 		"Rarity": 2,
-		"HP_healed": 10,
+		"HP_healed": 5,
 		"StackSize": 15,
 	},
 	"Pomegranate": {
 		"ItemCategory": "health_potion",
 		"Rarity": 3,
-		"HP_healed": 20,
+		"HP_healed": 10,
 		"StackSize": 10,
 	},
 	"Nectar": {

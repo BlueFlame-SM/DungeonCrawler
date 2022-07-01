@@ -127,7 +127,7 @@ func _get_perm_attack_speed() -> int:
 
 
 func _get_cooldown_time() -> int:
-	var cooldown = MAX_COOLDOWN * (1 - (perm_attack_speed + temp_attack_speed - 1) / (2 * MAX_POINTS))
+	var cooldown = max(200, MAX_COOLDOWN -  ((perm_attack_speed + temp_attack_speed) * 50))
 	return cooldown
 
 

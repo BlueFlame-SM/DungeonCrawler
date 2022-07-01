@@ -2,11 +2,11 @@
 	Script for the player.
 	This script is responsible for the player's movement and interaction with the environment.
 	It also handles the player's health and death.
-	
-	
+
+
 	Global variables:
 		player: The player object.
-"""		
+"""
 
 extends "res://character/character.gd"
 
@@ -35,11 +35,11 @@ func playAnimations(velocity: Vector2, delta: float) -> void:
 	"""
 		This function is responsible for playing the player's animations.
 		It is called every frame.
-		
+
 		Parameters:
 			velocity: The player's current velocity.
 			delta: The time since the last frame.
-			
+
 		Returns:
 			void
 	"""
@@ -95,10 +95,10 @@ func _physics_process(delta: float) -> void:
 	"""
 		This function is responsible for the player's physics.
 		It is called every frame.
-		
+
 		Parameters:
 			delta: The time since the last frame.
-			
+
 		Returns:
 			void
 	"""
@@ -151,7 +151,7 @@ func _on_AnimatedSprite_animation_finished():
 func _on_Weapon_body_entered(body):
 	"""
 		This function is called when the player's weapon hits an enemy.
-		
+
 		Parameters:
 			body: The body that was hit.
 	"""

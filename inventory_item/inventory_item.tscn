@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://fonts/m5x7.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://items/sprites/small_lion_hide.png" type="Texture" id=2]
@@ -14,10 +14,12 @@
 [ext_resource path="res://items/sprites/Grape.png" type="Texture" id=12]
 [ext_resource path="res://items/sprites/Broom.png" type="Texture" id=13]
 [ext_resource path="res://items/sprites/Max_speed_potion.png" type="Texture" id=14]
+[ext_resource path="res://items/sprites/Spear.png" type="Texture" id=15]
 [ext_resource path="res://items/sprites/Max_strength_potion.png" type="Texture" id=16]
 [ext_resource path="res://items/sprites/Speed_potion.png" type="Texture" id=17]
 [ext_resource path="res://items/sprites/Iron_sword.png" type="Texture" id=18]
 [ext_resource path="res://items/sprites/Max_attack_speed_potion.png" type="Texture" id=19]
+[ext_resource path="res://items/sprites/Attack_speed_potion.png" type="Texture" id=20]
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -99,6 +101,16 @@ animations = [ {
 "frames": [ ExtResource( 19 ) ],
 "loop": true,
 "name": "Max_attack_speed_potion",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 20 ) ],
+"loop": true,
+"name": "Attack_speed_potion",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 15 ) ],
+"loop": true,
+"name": "Spear",
 "speed": 5.0
 } ]
 
