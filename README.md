@@ -15,7 +15,7 @@ The game is won after beating the endboss.
 
 **Guide players:**
 
-1. Download tarfile Styx_executable.zip
+1. Download bijv de tarfile linux.zip bij "releases" rechts op deze pagina
 2. extract the map
 3. click on Styx.x86_64
 
