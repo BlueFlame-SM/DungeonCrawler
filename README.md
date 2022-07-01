@@ -15,7 +15,9 @@ The game is won after beating the endboss.
 
 **Guide players:**
 
-Download tarfile Styx_executable.zip
+1. Download tarfile Styx_executable.zip
+2. extract the map
+3. click on Styx.x86_64
 
 
 **Guide Contributers:**
