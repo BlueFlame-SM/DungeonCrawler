@@ -15,7 +15,7 @@ The game is won after beating the endboss.
 
 **Guide players:**
 
-Download tarfile DungeonCrawlerExacutable
+Download tarfile DungeonCrawlerExecutable
 
 
 **Guide Contributers:**
