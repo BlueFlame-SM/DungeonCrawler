@@ -1,5 +1,3 @@
-class_name Bullet
-extends Area2D
 """
 A projectile which can be fire from a position with a velocity doing an amount of damage.
 
@@ -18,9 +16,13 @@ Functions
 	Called by the engine when a bullet intersects with a body.
 """
 
+class_name Bullet
+extends Area2D
+
 var velocity = Vector2(0, 200)
 var damage = 1
-#
+
+
 func init(pos:Vector2=position, vel:Vector2=velocity, dmg:int=damage):
 	"""
 	Initializes a bullet. Should be called before adding to the scene tree.

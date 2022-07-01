@@ -36,11 +36,11 @@ func _ready():
 #	To get the scene that this gate leads to, determine what kind of gate it is
 	if GlobalVars.level_type == "preboss":
 		gate_type = "bigboss"
-		if GlobalVars.level_counter %9 == 0:
+		if GlobalVars.level_counter %11 == 0:
 			next_scene_name = "res://levels/LevelHydra.tscn"
 		elif GlobalVars.level_counter %5 == 0:
 			next_scene_name = "res://levels/LevelLion.tscn"
-		elif GlobalVars.level_counter %13 == 0:
+		elif GlobalVars.level_counter %17 == 0:
 			gate_type = "endboss"
 			next_scene_name = "res://levels/LevelCerberus.tscn"
 	else:
@@ -58,10 +58,10 @@ func det_gate_type():
 	if GlobalVars.level_type == "endboss":
 		gate_type = "credits"
 		return "res://interface/credits.tscn"
-	if GlobalVars.level_counter % 4 == 0 and GlobalVars.level_counter != 0:
-		$LootOpen.visible = true
-		gate_type = "preboss"
-		return "res://levels/pre_boss_battle1.tscn"
+		if (GlobalVars.level_counter - 4) % 6 == 0:
+			$LootOpen.visible = true
+			gate_type = "preboss"
+			return "res://levels/pre_boss_battle1.tscn"
 
 	cur_lvl_nr = int(get_parent().name.right(5))
 	combat_levels.erase(cur_lvl_nr)
