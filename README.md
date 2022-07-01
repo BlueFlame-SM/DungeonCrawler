@@ -15,7 +15,7 @@ The game is won after beating the endboss.
 
 **Guide players:**
 
-Download tarfile DungeonCrawlerExecutable
+Download tarfile Styx_executable.zip
 
 
 **Guide Contributers:**
