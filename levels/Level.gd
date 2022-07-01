@@ -70,6 +70,7 @@ func spawn_enemies():
 	for i in amount:
 		var enemy_type
 		if rng.randf_range(0, 1) < 0.5:
+			print(enemy_type)
 			enemy_type = load("res://enemy_range/enemy_range.tscn")
 		else:
 			enemy_type = load("res://enemy/enemy.tscn")

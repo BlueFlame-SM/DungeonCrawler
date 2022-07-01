@@ -58,7 +58,8 @@ func det_gate_type():
 	if GlobalVars.level_type == "endboss":
 		gate_type = "credits"
 		return "res://interface/credits.tscn"
-		if (GlobalVars.level_counter - 4) % 6 == 0:
+	#	This makes every 5th level a preboss level, which is followed by a boss level
+	if (GlobalVars.level_counter - 4) % 6 == 0:
 			$LootOpen.visible = true
 			gate_type = "preboss"
 			return "res://levels/pre_boss_battle1.tscn"
