@@ -1,13 +1,21 @@
+"""
+	Script for the player.
+	This script is responsible for the player's movement and interaction with the environment.
+	It also handles the player's health and death.
+	
+	
+	Global variables:
+		player: The player object.
+"""		
+
 extends "res://character/character.gd"
 
-# Variables for player animation
+
 var playAttack = false
 var lastDirection = Vector2.LEFT
 
-# onready var healthbar = $HealthBar
 onready var weapon = $Weapon
 onready var timer = $Timer
-# When player hits enemy
 signal hit(amount)
 
 # Attack cooldown variables
@@ -24,7 +32,17 @@ func _ready():
 
 
 func playAnimations(velocity: Vector2, delta: float) -> void:
-	# Only move if attack animation is not playing
+	"""
+		This function is responsible for playing the player's animations.
+		It is called every frame.
+		
+		Parameters:
+			velocity: The player's current velocity.
+			delta: The time since the last frame.
+			
+		Returns:
+			void
+	"""
 	if !playAttack:
 		if velocity.length() > 0:
 			velocity = velocity.normalized() * (self._get_temp_speed() + self._get_perm_speed())
@@ -74,6 +92,16 @@ func playAnimations(velocity: Vector2, delta: float) -> void:
 			$AnimatedSprite.set_speed_scale(0)
 
 func _physics_process(delta: float) -> void:
+	"""
+		This function is responsible for the player's physics.
+		It is called every frame.
+		
+		Parameters:
+			delta: The time since the last frame.
+			
+		Returns:
+			void
+	"""
 	var direction = Vector2.ZERO
 	if !self.can_move:
 		direction.x = 0
@@ -116,12 +144,17 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_AnimatedSprite_animation_finished():
-	# If attack animation is done, player can move again
 	playAttack = false
 	weapon.disableHurtBox()
 
 
 func _on_Weapon_body_entered(body):
+	"""
+		This function is called when the player's weapon hits an enemy.
+		
+		Parameters:
+			body: The body that was hit.
+	"""
 	if body.name != "Player":
 		body.do_damage(self.perm_damage + self.temp_damage)
 		emit_signal("hit", self.perm_damage + self.temp_damage)
@@ -130,17 +163,18 @@ func _on_Weapon_body_entered(body):
 func hurt():
 	$HurtSound.play()
 
-"""
-When the player dies, the player stops being able to move. The next level is
-the start level. We then call the levelswitcher to go to the start level.
-"""
+
 func die():
+	"""
+		When the player dies, the player stops being able to move. The next level is
+		the start level. We then call the levelswitcher to go to the start level.
+	"""
 	GlobalVars.level_type = "game_over"
 	do_damage(health)
 	self.can_move = false
 	LevelSwitcher.goto_scene("res://interface/death_screen.tscn", true)
 
-# Checks for input.
+
 func _input(event):
 	if event.is_action_pressed("pick_up"):
 		var items = $Pickup.get_overlapping_bodies()
@@ -160,11 +194,19 @@ func _on_Player_healthChanged(newValue, dif):
 
 
 func _on_Inventory_use_health_potion():
+	"""
+		This function is called when the player uses a health potion.
+		It restores the player's health.
+	"""
 	Player.heal(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["HP_healed"])
 	print("HP: {}/{}".format([health, max_health], "{}"))
 
 
 func _on_Inventory_use_melee_weapon():
+	"""
+		This function is called when the player uses a melee weapon.
+		It sets the weapon to the melee weapon.
+	"""
 	self.temp_damage = JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Damage"]
 	self.temp_attack_speed = JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Attack_speed"]
 	self.range_weapon = JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Range"]
@@ -173,12 +215,20 @@ func _on_Inventory_use_melee_weapon():
 
 
 func _on_Inventory_use_permanent_stat_increase():
+	"""
+		This function is called when the player uses a permanent stat increase.
+		It increases the permanent stat increase.
+	"""
 	self._set_max_health(self._get_max_health() + JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Max_HP"])
 	self._set_perm_speed(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Speed"] + self._get_perm_speed())
 	self._set_perm_damage(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Damage"] + self._get_perm_damage())
 	self._set_perm_attack_speed(JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Attack_speed"] + self._get_perm_attack_speed())
 
 func _on_Inventory_use_potion():
+	"""
+		This function is called when the player uses a potion.
+		It restores the player's health.
+	"""
 	extra_speed = JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Speed"]
 	extra_damage = JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Damage"]
 	extra_atk_speed = JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Attack_speed"]
@@ -189,6 +239,10 @@ func _on_Inventory_use_potion():
 
 
 func _on_Timer_timeout():
+	"""
+		This function is called when the player's potion timer runs out.
+		It sets the player's health back to normal.
+	"""
 	timer.stop()
 	Player._set_temp_speed(Player._get_temp_speed() - extra_speed)
 	Player._set_temp_damage(Player._get_temp_damage() - extra_damage)
@@ -196,4 +250,8 @@ func _on_Timer_timeout():
 
 
 func _on_Inventory_use_lion_hide():
+	"""
+		This function is called when the player uses a lion hide.
+		It increases the player's speed.
+	"""
 	Player._set_defence(Player._get_defence() + JsonData.item_data[$CanvasLayer/Inventory.use_item.item_name]["Defence"])
